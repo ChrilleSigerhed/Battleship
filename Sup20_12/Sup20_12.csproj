@@ -10,4 +10,8 @@
     <Folder Include="Assets\Images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="4.1.4" />
+  </ItemGroup>
+
 </Project>
