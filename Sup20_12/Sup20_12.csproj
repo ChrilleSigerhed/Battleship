@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Assets\Images\" />
-    <Folder Include="ViewModels\Base\" />
   </ItemGroup>
 
 </Project>
