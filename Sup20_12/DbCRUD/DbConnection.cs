@@ -27,7 +27,7 @@ namespace Sup20_12
             {
                 conn.Open();
 
-                using (var trans = conn.BeginTransaction()) //För att HELA transaktionen ska köras och godkännas (allt eller inget)
+                using (var trans = conn.BeginTransaction())
                 {
                     try
                     {
@@ -37,7 +37,7 @@ namespace Sup20_12
                             int id = (int)command.ExecuteScalar();
                             myPlayer.Id = id;
                         }
-                        trans.Commit(); //När HELA transaktionen har godkänts så ska den kommittas och gå in i vår db
+                        trans.Commit();
                         return myPlayer;
                     }
                     catch (PostgresException)
