@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Text;
 
-namespace Sup20_12.DbCRUD
+namespace Sup20_12
 {
     class DbConnection
     {

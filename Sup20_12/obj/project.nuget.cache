@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "7qFTcGy1eDhLEWlf+OHBCt2G/Iq0j4hDDXviXKTiwn9cnHCy2gdzTV5CsWJ3CCKzs1JFjk5AEGBg19cqW53Abg==",
+  "dgSpecHash": "7URN2x8lePKg5Ca5PQLyTeRc/haVTaqH5f97O0uYrBC4A2Y6o+eNbl6IQkZ14iNoMbW3IvKk6pzwrXPoGfX/Yg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Jeppe\\source\\repos\\Sup20_12\\Sup20_12\\Sup20_12.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Jeppe\\.nuget\\packages\\npgsql\\4.1.4\\npgsql.4.1.4.nupkg.sha512",
+    "C:\\Users\\Jeppe\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+  ],
   "logs": []
 }

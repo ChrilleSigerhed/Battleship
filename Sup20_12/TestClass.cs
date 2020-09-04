@@ -9,7 +9,7 @@ namespace Sup20_12
         public static void TestWrite()
         {
             Player myPlayer = new Player(("Kalle"));
-            DbCRUD.DbConnection.AddPlayer(myPlayer);
+            DbConnection.AddPlayer(myPlayer);
         }
     }
 }
