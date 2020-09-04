@@ -12,6 +12,8 @@ namespace Sup20_12.DbCRUD
 
         private static string connectionString = ConfigurationManager.ConnectionStrings["dbLocal"].ConnectionString;
         //CRUD
+
+        //Klar för test
         #region CREATE
 
         ///<summary>
@@ -35,6 +37,7 @@ namespace Sup20_12.DbCRUD
         }
         #endregion
 
+        //Klar för test
         #region READ
         ///<summary>
         ///Returnerar en lista på alla player objekt i databasen med nickname och id.
@@ -102,6 +105,7 @@ namespace Sup20_12.DbCRUD
         }
         #endregion
 
+        //Inte klar
         #region UPDATE
         private static void UpdateHighscore(Highscore myHighscore)
         {
@@ -109,6 +113,7 @@ namespace Sup20_12.DbCRUD
         }
         #endregion
 
+        //Inte klar, ska nog inte vara med heller...
         #region DELETE
         private static void Delete()
         {
