@@ -50,11 +50,11 @@ namespace Sup20_12
         }
 
         ///<summary>
-        ///Skickar in ett objekt Highscore med id(från Player.Id), win, numberOfMoves men utan Date. Den returnerar sedan objektet Highscore med ett datum från Db.
+        ///Skickar in ett objekt Highscore med id, playerId, win, numberOfMoves men utan Date. Den returnerar sedan objektet Highscore med ett datum från Db.
         ///</summary>
-        public static Highscore AddOneHighscoreToDb(Highscore myHighscore, int id)
+        public static Highscore AddOneHighscoreToDb(Highscore myHighscore)
         {
-            string stmt = "INSERT INTO highscore (player_id, win, numberOfMoves) VALUES (@id, win, numberOfMoves) RETURNING date";
+            string stmt = "INSERT INTO highscore (win, numberOfMoves, player_id) VALUES (win, numberOfMoves, @id) RETURNING date";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -93,91 +93,33 @@ namespace Sup20_12
         ///<summary>
         ///Returnerar en List på alla player objekt i databasen med nickname, id och List med Highscore.
         ///</summary>
-        ///
-
-        public static IEnumerable<Player> GetAllPlayers() 
+        public static IEnumerable<Player> GetPlayers() //Byt private mot public när denna funktion är klar
         {
-            string stmt = "SELECT id, nickname FROM player ORDER BY nickname";
-
-            using (var conn = new NpgsqlConnection(connectionString))
-            {
-               //Player myPlayer = null;
-               List<Player> LstAllPlayers = new List<Player>();
-               conn.Open();
-
-                using (var command = new NpgsqlCommand(stmt, conn))
-                {
-
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Player myPlayer = new Player("")
-                            {
-                                Id = (int)reader["id"],
-                                Nickname = (string)reader["nickname"]
-                                
-                            };
-                            LstAllPlayers.Add(myPlayer);
-                        }
-                    }
-                }
-                return LstAllPlayers;
-            }
+            return null;
         }
 
-    
-
-        public static IEnumerable<Highscore> GetHighscore(int id) 
+        private static IEnumerable<Highscore> GetHighscore(int id) //Byt private mot public när denna funktion är klar
         {
-            string stmt = $"SELECT id, win, date, number_of_moves FROM highscore WHERE player_id = {id} ORDER BY number_of_moves DESC;";
-
-            using (var conn = new NpgsqlConnection(connectionString))
-            {
-               // Highscore myHighscore = null;
-                List<Highscore> LstHighscore = new List<Highscore>();
-                conn.Open();
-
-                using (var command = new NpgsqlCommand(stmt, conn))
-                {
-
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Highscore myHighscore = new Highscore(0, true, 0)
-                            {
-                                Id = (int)reader["id"],
-                                Win = (int)reader["win"],
-                                Date = (DateTime)reader["date"],
-                                NumberOfMoves = (int)reader["number_of_moves"],
-                                PlayerId = (int)reader["player_id"]
-
-                            };
-                            LstHighscore.Add(myHighscore);
-                        }
-                    }
-                }
-                return LstHighscore;
-
-            }
-
+            string stmt = $"SELECT id, win, date, numberOfMoves FROM highscore WHERE playerId = {id} ORDER BY numberOfMoves DESC;";
+            return null;
         }
         #endregion
 
-        
+        //Inte klar
         #region UPDATE
 
-       
+        public static Player UpdateHighscoreListToDb(Player myPlayer)
+        {
+            return null;
+        }
         #endregion
 
-        
+        //Inte klar, ska nog inte vara med heller...
         #region DELETE
-        
+        private static void Delete()
+        {
+                
+        }
         #endregion
     }
 }
-
-
-
-
