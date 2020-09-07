@@ -1,19 +1,19 @@
-﻿Sup20_12
+﻿Sup20_12_szq3ro4m_wpftmp
 
 
 winexe
 C#
 .cs
-C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\
-Sup20_12
+C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Release\netcoreapp3.1\
+Sup20_12_szq3ro4m_wpftmp
 none
 false
-TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
+TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\App.xaml
 5-540718385
 
-20-1404414226
-1931662669855
+21-1632071750
+386-969627586
 MainWindow.xaml;View\ChoosePlayerPage.xaml;View\GameWindowPage.xaml;View\HighScorePage.xaml;View\MainMenuPage.xaml;
 
 True
