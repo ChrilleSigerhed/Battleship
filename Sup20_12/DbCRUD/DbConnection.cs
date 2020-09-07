@@ -50,11 +50,11 @@ namespace Sup20_12
         }
 
         ///<summary>
-        ///Skickar in ett objekt Highscore med id(från Player.Id), win, numberOfMoves men utan Date. Den returnerar sedan objektet Highscore med ett datum från Db.
+        ///Skickar in ett objekt Highscore med id, playerId, win, numberOfMoves men utan Date. Den returnerar sedan objektet Highscore med ett datum från Db.
         ///</summary>
-        public static Highscore AddOneHighscoreToDb(Highscore myHighscore, int id)
+        public static Highscore AddOneHighscoreToDb(Highscore myHighscore)
         {
-            string stmt = "INSERT INTO highscore (player_id, win, numberOfMoves) VALUES (@id, win, numberOfMoves) RETURNING date";
+            string stmt = "INSERT INTO highscore (win, numberOfMoves, player_id) VALUES (win, numberOfMoves, @id) RETURNING date";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -123,44 +123,3 @@ namespace Sup20_12
         #endregion
     }
 }
-
-
-
-
-CREATE TABLE public.highscore
-(
-    id integer NOT NULL,
-    player_id integer NOT NULL,
-    win boolean NOT NULL,
-    date DATE NOT NULL DEFAULT CURRENT_DATE,
-    "numberOfMoves" integer NOT NULL,
-    player_id integer NOT NULL,
-    PRIMARY KEY(id),
-    CONSTRAINT player_id FOREIGN KEY(id)
-        REFERENCES public.player(id) MATCH SIMPLE
-        NOT VALID
-)
-WITH(
-    OIDS = FALSE
-);
-
-ALTER TABLE public.highscore
-    OWNER to sup_g12
-
-
-
-
-CREATE TABLE public.highscore
-(
-    id serial PRIMARY KEY,
-    win boolean NOT NULL,
-    date DATE NOT NULL DEFAULT CURRENT_DATE,
-    "numberOfMoves" integer NOT NULL,
-    player_id integer NOT NULL,
-    CONSTRAINT fk_player_id
-    FOREIGN KEY(id)
-
-    REFERENCES public.player(id)
-
-    ON DELETE CASCADE
-);

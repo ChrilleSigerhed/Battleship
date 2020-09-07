@@ -10,5 +10,6 @@ namespace Sup20_12
         public bool Win { get; set; }
         string Date { get; set; }
         public int NumberOfMoves { get; set; }
+        public int PlayerId { get; set; }
     }
 }
