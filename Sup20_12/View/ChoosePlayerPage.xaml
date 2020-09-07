@@ -7,8 +7,44 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ChoosePlayerPage">
-
     <Grid>
-        
+        <Grid>
+            <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Images/water.jpg" />
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75px"/>
+                <RowDefinition/>
+                <RowDefinition Height="75px"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" Grid.Column="1" Background="white">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75px">
+                    </RowDefinition>
+                    <RowDefinition Height="75px">
+                    </RowDefinition>
+                    <RowDefinition Height="75px">
+                    </RowDefinition>
+                    <RowDefinition Height="75px">
+                    </RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label Content="Nickname" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" ></Label>
+                <TextBox Name="txtNickname" Width="100" Height="20" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBox>
+                <Button x:Name="btnAddPlayer" Content="Lägg till Spelare" Grid.Row="1" Grid.Column="1" Click="btnAddPlayer_Click"/>
+                <ComboBox x:Name="lstboxAllPlayers" Grid.Row="2" Grid.Column="1" />
+            </Grid>
+            
+        </Grid>
+        <Frame x:Name="Main"/>
     </Grid>
 </Page>

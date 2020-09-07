@@ -8,7 +8,8 @@ namespace Sup20_12
     {
         int Id { get; set; }
         public bool Win { get; set; }
-        string Date { get; set; }
+        DateTime Date { get; set; }
         public int NumberOfMoves { get; set; }
+        public int PlayerId { get; set; }
     }
 }

@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="305,0,0,0" VerticalAlignment="Center" Height="58" Width="124" Click="Button_Click"/>
+        <Frame x:Name="frame" Source="View/MainMenuPage.xaml"/>
+        <Button Content="Lägg till Player och Highscore till Db" HorizontalAlignment="Center" Margin="0,286,0,0" VerticalAlignment="Top" Height="84" Width="260" Click="Button_Click"/>
+
 
     </Grid>
 </Window>
