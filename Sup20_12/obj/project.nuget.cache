@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "zMDwl8Nsax4Gy4QanIbsoRZPdouH9bZfZflGPyLdjICPQEHXxvlqfJ6ZWzzWfqJceukItbw7shvED52rlIUWUQ==",
+  "dgSpecHash": "1/WTb+mStlf6CKCwmifaaRKZbcPctkcRpoRtufVZJdPK34QMRDWaI53jmqzSFcZRNmDg8NXqRyeDJGY6ATwpEA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gusta\\source\\repos\\sup20_12\\Sup20_12\\Sup20_12.csproj",
+  "projectFilePath": "C:\\Users\\ChrillE\\Source\\Repos\\sup20_12\\Sup20_12\\Sup20_12.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\gusta\\.nuget\\packages\\npgsql\\4.1.4\\npgsql.4.1.4.nupkg.sha512",
-    "C:\\Users\\gusta\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+    "C:\\Users\\ChrillE\\.nuget\\packages\\npgsql\\4.1.4\\npgsql.4.1.4.nupkg.sha512",
+    "C:\\Users\\ChrillE\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
   ],
   "logs": []
 }
