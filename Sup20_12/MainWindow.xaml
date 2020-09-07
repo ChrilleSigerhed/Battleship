@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sup20_12"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" MinWidth="800px" MinHeight="450px">
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Frame x:Name="Main" Source="/View/MainMenuPage.xaml"/>
+        <Frame x:Name="frame" Source="View/MainMenuPage.xaml"/>
+        <Button Content="Lägg till Player och Highscore till Db" HorizontalAlignment="Center" Margin="0,360,0,0" VerticalAlignment="Top" Height="51" Width="260" Click="Button_Click"/>
+
+
     </Grid>
 </Window>
