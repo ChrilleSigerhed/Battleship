@@ -9,6 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Sup20_12;
 using Sup20_12.TESTING;
 using System;
 using System.Diagnostics;
@@ -53,7 +54,7 @@ namespace Sup20_12.TESTING {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Sup20_12;component/testing/testwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Sup20_12;V1.0.0.0;component/testing/testwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\TESTING\TestWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

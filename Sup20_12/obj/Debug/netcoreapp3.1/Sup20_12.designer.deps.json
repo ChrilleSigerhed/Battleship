@@ -9,22 +9,9 @@
       "Npgsql/4.1.4": {
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "4.6.0"
-        },
-        "runtime": {
-          "lib/netcoreapp3.0/Npgsql.dll": {
-            "assemblyVersion": "4.1.4.0",
-            "fileVersion": "4.1.4.0"
-          }
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/4.6.0": {
-        "runtime": {
-          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {
-            "assemblyVersion": "4.0.5.0",
-            "fileVersion": "4.700.19.46214"
-          }
-        }
-      }
+      "System.Runtime.CompilerServices.Unsafe/4.6.0": {}
     }
   },
   "libraries": {
