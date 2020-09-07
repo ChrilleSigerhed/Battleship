@@ -83,7 +83,7 @@ namespace Sup20_12
                 }
             }
         }
-
+  
 
 
 
@@ -126,41 +126,3 @@ namespace Sup20_12
 
 
 
-
-CREATE TABLE public.highscore
-(
-    id integer NOT NULL,
-    player_id integer NOT NULL,
-    win boolean NOT NULL,
-    date DATE NOT NULL DEFAULT CURRENT_DATE,
-    "numberOfMoves" integer NOT NULL,
-    player_id integer NOT NULL,
-    PRIMARY KEY(id),
-    CONSTRAINT player_id FOREIGN KEY(id)
-        REFERENCES public.player(id) MATCH SIMPLE
-        NOT VALID
-)
-WITH(
-    OIDS = FALSE
-);
-
-ALTER TABLE public.highscore
-    OWNER to sup_g12
-
-
-
-
-CREATE TABLE public.highscore
-(
-    id serial PRIMARY KEY,
-    win boolean NOT NULL,
-    date DATE NOT NULL DEFAULT CURRENT_DATE,
-    "numberOfMoves" integer NOT NULL,
-    player_id integer NOT NULL,
-    CONSTRAINT fk_player_id
-    FOREIGN KEY(id)
-
-    REFERENCES public.player(id)
-
-    ON DELETE CASCADE
-);
