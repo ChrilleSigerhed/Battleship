@@ -1,4 +1,5 @@
-﻿<Page x:Class="Sup20_12.View.MainMenuPage"
+﻿
+    <Page x:Class="Sup20_12.View.MainMenuPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,6 +10,7 @@
       Title="MainMenuPage">
 
     <Grid>
-        
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="341,64,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Page>
