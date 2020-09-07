@@ -50,11 +50,11 @@ namespace Sup20_12
         }
 
         ///<summary>
-        ///Skickar in ett objekt Highscore med id(från Player.Id), win, numberOfMoves men utan Date. Den returnerar sedan objektet Highscore med ett datum från Db.
+        ///Skickar in ett objekt Highscore med id, playerId, win, numberOfMoves men utan Date. Den returnerar sedan objektet Highscore med ett datum från Db.
         ///</summary>
-        public static Highscore AddOneHighscoreToDb(Highscore myHighscore, int id)
+        public static Highscore AddOneHighscoreToDb(Highscore myHighscore)
         {
-            string stmt = "INSERT INTO highscore (player_id, win, numberOfMoves) VALUES (@id, win, numberOfMoves) RETURNING date";
+            string stmt = "INSERT INTO highscore (win, numberOfMoves, player_id) VALUES (win, numberOfMoves, @id) RETURNING date";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -83,7 +83,7 @@ namespace Sup20_12
                 }
             }
         }
-  
+
 
 
 
@@ -123,6 +123,3 @@ namespace Sup20_12
         #endregion
     }
 }
-
-
-
