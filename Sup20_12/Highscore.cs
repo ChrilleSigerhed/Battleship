@@ -8,13 +8,12 @@ namespace Sup20_12
     {
         public int Id { get; set; }
         public bool Win { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public int NumberOfMoves { get; set; }
         public int PlayerId { get; set; }
 
-        public Highscore(int id, bool win, int numberOfMoves, int playerId)
+        public Highscore(bool win, int numberOfMoves, int playerId)
         {
-            Id = id;
             Win = win;
             NumberOfMoves = numberOfMoves;
             PlayerId = playerId;

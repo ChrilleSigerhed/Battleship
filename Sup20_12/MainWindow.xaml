@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="305,0,0,0" VerticalAlignment="Center" Height="58" Width="124" Click="Button_Click"/>
+        <Button Content="Add Player and Highscore" HorizontalAlignment="Left" Margin="262,60,0,0" VerticalAlignment="Top" Height="58" Width="173" Click="Button_Click"/>
 
     </Grid>
 </Window>

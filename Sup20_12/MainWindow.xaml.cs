@@ -27,7 +27,7 @@ namespace Sup20_12
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            TestClass.TestWrite();
+            TestClass.TestWritePlayer();
         }
     }
 }

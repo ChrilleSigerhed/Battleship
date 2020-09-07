@@ -50,11 +50,11 @@ namespace Sup20_12
         }
 
         ///<summary>
-        ///Skickar in ett objekt Highscore med id, playerId, win, numberOfMoves men utan Date. Den returnerar sedan objektet Highscore med ett datum från Db.
+        ///Skickar in ett objekt Highscore med id, playerId, win, numberOfMoves men utan Date och Id. Den returnerar sedan objektet Highscore med ett datum från Db.
         ///</summary>
         public static Highscore AddOneHighscoreToDb(Highscore myHighscore)
         {
-            string stmt = "INSERT INTO highscore (win, numberOfMoves, player_id) VALUES (win, numberOfMoves, @id) RETURNING date";
+            string stmt = "INSERT INTO highscore (win, number_of_moves, player_id) VALUES (@win, @number_of_moves, @player_id) RETURNING id, date";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -66,11 +66,11 @@ namespace Sup20_12
                     {
                         using (var command = new NpgsqlCommand(stmt, conn))
                         {
-                            command.Parameters.AddWithValue("player_id", id);
+                            command.Parameters.AddWithValue("player_id", myHighscore.PlayerId);
                             command.Parameters.AddWithValue("win", myHighscore.Win);
-                            command.Parameters.AddWithValue("numberOfMoves", myHighscore.NumberOfMoves);
-                            string date = (string)command.ExecuteScalar();
-                            myHighscore.Date = date;
+                            command.Parameters.AddWithValue("number_of_moves", myHighscore.NumberOfMoves);
+                            int id = (int)command.ExecuteScalar();
+                            myHighscore.Id = id;
                         }
                         trans.Commit();
                         return myHighscore;
