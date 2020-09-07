@@ -5,10 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Sup20_12"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen" MinWidth="800px" MinHeight="450px">
     <Grid>
-        <Frame x:Name="frame" Source="View/MainMenuPage.xaml"/>
-
-
+        <Frame x:Name="Main" Source="/View/MainMenuPage.xaml"/>
     </Grid>
 </Window>
