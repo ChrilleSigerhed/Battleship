@@ -69,7 +69,7 @@ namespace Sup20_12
                             command.Parameters.AddWithValue("player_id", id);
                             command.Parameters.AddWithValue("win", myHighscore.Win);
                             command.Parameters.AddWithValue("numberOfMoves", myHighscore.NumberOfMoves);
-                            string date = (string)command.ExecuteScalar();
+                            DateTime date = (DateTime)command.ExecuteScalar();
                             myHighscore.Date = date;
                         }
                         trans.Commit();
@@ -93,33 +93,119 @@ namespace Sup20_12
         ///<summary>
         ///Returnerar en List på alla player objekt i databasen med nickname, id och List med Highscore.
         ///</summary>
-        public static IEnumerable<Player> GetPlayers() //Byt private mot public när denna funktion är klar
+        public static IEnumerable<Player> GetPlayers() 
         {
-            return null;
+            string stmt = "SELECT id, nickname FROM player ORDER BY nickname";
+
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                //Player myPlayer = null;
+                List<Player> LstAllPlayers = new List<Player>();
+                conn.Open();
+
+                using (var command = new NpgsqlCommand(stmt, conn))
+                {
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Player myPlayer = new Player("")
+                            {
+                                Id = (int)reader["id"],
+                                Nickname = (string)reader["nickname"]
+                                
+                            };
+                            LstAllPlayers.Add(myPlayer);
+                        }
+                    }
+                }
+                return LstAllPlayers;
+            }
         }
 
-        private static IEnumerable<Highscore> GetHighscore(int id) //Byt private mot public när denna funktion är klar
+
+        public static IEnumerable<Highscore> GetAllHighscores(int id) 
         {
-            string stmt = $"SELECT id, win, date, numberOfMoves FROM highscore WHERE playerId = {id} ORDER BY numberOfMoves DESC;";
-            return null;
+            string stmt = $"SELECT id, win, date, number_of_moves, player_id FROM highscore ORDER BY number_of_moves DESC;";
+
+
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                //Highscore myHighscore = null;
+                List<Highscore> LstAllHighscore = new List<Highscore>();
+                conn.Open();
+
+                using (var command = new NpgsqlCommand(stmt, conn))
+                {
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Highscore allHighscore = new Highscore(0, true, 0, 0)
+                            {
+                                Id = (int)reader["id"],
+                                Win = (bool)reader["win"],
+                                Date = (DateTime)reader["date"],
+                                NumberOfMoves = (int)reader["number_of_moves"],
+                                PlayerId = (int)reader["player_id"]
+                            };
+                            LstAllHighscore.Add(allHighscore);
+                        }
+                    }
+                }
+                return LstAllHighscore;
+            }
+
         }
+
+        //public static IEnumerable<Highscore> GetActivePlayerHighscore(int id) //Byt private mot public när denna funktion är klar
+        //{
+        //    string stmt = $"SELECT id, win, date, number_of_moves FROM highscore WHERE player_id = {id} ORDER BY number_of_moves DESC;";
+
+
+        //    using (var conn = new NpgsqlConnection(connectionString))
+        //    {
+        //        //Highscore myHighscore = null;
+        //        List<Highscore> LstActivePlayerHighscore = new List<Highscore>();
+        //        conn.Open();
+
+        //        using (var command = new NpgsqlCommand(stmt, conn))
+        //        {
+
+        //            using (var reader = command.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    Highscore myHighscore = new Highscore(0, true, 0,0)
+        //                    {
+        //                        Id = (int)reader["id"],
+        //                        Win = (int)reader["win"],
+        //                        Date = (DateTime)reader["date"],
+        //                        NumberOfMoves = (int)reader["number_of_moves"],
+        //                        PlayerId = (int)reader["player_id"]
+        //                    };
+        //                    LstActivePlayerHighscore.Add(myHighscore);
+        //                }
+        //            }
+        //        }
+        //        return LstActivePlayerHighscore;
+        //    }
+
+        //}
+
         #endregion
 
-        //Inte klar
+
         #region UPDATE
 
-        public static Player UpdateHighscoreListToDb(Player myPlayer)
-        {
-            return null;
-        }
+
         #endregion
 
-        //Inte klar, ska nog inte vara med heller...
+
         #region DELETE
-        private static void Delete()
-        {
-                
-        }
+
         #endregion
     }
 }
