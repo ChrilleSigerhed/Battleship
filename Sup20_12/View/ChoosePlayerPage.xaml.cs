@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Printing;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,5 +23,13 @@ namespace Sup20_12.View
         {
             InitializeComponent();
         }
+
+
+        private void btnAddPlayer_Click(object sender, RoutedEventArgs e)
+        {
+            Player player = new Player(txtNickname.Text);
+            DbConnection.AddNewPlayerToDb(player);
+        }
+
     }
 }
