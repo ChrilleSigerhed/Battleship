@@ -54,7 +54,7 @@ namespace Sup20_12
         ///</summary>
         public static Highscore AddOneHighscoreToDb(Highscore myHighscore)
         {
-            string stmt = "INSERT INTO highscore (win, number_of_moves, player_id) VALUES (@win, @number_of_moves, @player_id) RETURNING id, date";
+            string stmt = "INSERT INTO highscore (win, number_of_moves, player_id) VALUES (@win, @number_of_moves, @player_id) RETURNING id";
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -73,7 +73,7 @@ namespace Sup20_12
                             myHighscore.Id = id;
                         }
                         trans.Commit();
-                        return myHighscore;
+                       
                     }
                     catch (PostgresException)
                     {
@@ -82,6 +82,7 @@ namespace Sup20_12
                     }
                 }
             }
+            return myHighscore = GetOneHighscoreById(myHighscore.Id);
         }
 
 
@@ -90,6 +91,11 @@ namespace Sup20_12
         #endregion
 
         #region READ
+
+
+
+
+
         ///<summary>
         ///Returnerar en List på alla player objekt i databasen med nickname, id och List med Highscore.
         ///</summary>
@@ -124,6 +130,35 @@ namespace Sup20_12
             }
         }
 
+        private static Highscore GetOneHighscoreById(int id)
+        {
+            string stmt = $"SELECT id, win, date, number_of_moves, player_id FROM highscore WHERE id = {id};";
+
+
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                Highscore myHighscore = null;
+                using (var command = new NpgsqlCommand(stmt, conn))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            myHighscore = new Highscore(true, 0, 0)
+                            {
+                                Id = (int)reader["id"],
+                                Win = (bool)reader["win"],
+                                Date = (DateTime)reader["date"],
+                                NumberOfMoves = (int)reader["number_of_moves"],
+                                PlayerId = (int)reader["player_id"]
+                            };
+                        }
+                    }
+                }
+                return myHighscore;
+            }
+        }
 
         public static IEnumerable<Highscore> GetAllHighscores(int id)
         {
