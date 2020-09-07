@@ -9,7 +9,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using Sup20_12;
 using Sup20_12.TESTING;
 using System;
 using System.Diagnostics;

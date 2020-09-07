@@ -10,11 +10,11 @@ none
 false
 TRACE;RELEASE;NETCOREAPP;NETCOREAPP3_1
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\App.xaml
-5-540718385
+6520632581
 
-20-1404414226
+16-2038368623
 1931662669855
-MainWindow.xaml;View\ChoosePlayerPage.xaml;View\GameWindowPage.xaml;View\HighScorePage.xaml;View\MainMenuPage.xaml;
+MainWindow.xaml;TESTING\TestWindow.xaml;View\ChoosePlayerPage.xaml;View\GameWindowPage.xaml;View\HighScorePage.xaml;View\MainMenuPage.xaml;
 
 True
 
