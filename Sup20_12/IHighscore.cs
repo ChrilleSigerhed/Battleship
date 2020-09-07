@@ -8,7 +8,7 @@ namespace Sup20_12
     {
         int Id { get; set; }
         public bool Win { get; set; }
-        DateTime Date { get; set; }
+        string Date { get; set; }
         public int NumberOfMoves { get; set; }
     }
 }

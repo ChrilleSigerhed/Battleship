@@ -8,8 +8,8 @@ namespace Sup20_12
     {
         public static void TestWrite()
         {
-            Player myPlayer = new Player(("Kalle"));
-            DbConnection.AddPlayer(myPlayer);
+            Player myPlayer = new Player("MrNoName");
+            myPlayer = DbConnection.AddNewPlayerToDb(myPlayer);
         }
     }
 }
