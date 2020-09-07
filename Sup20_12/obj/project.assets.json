@@ -78,25 +78,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\chris\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\gusta\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\chris\\Source\\Repos\\sup20_12\\Sup20_12\\Sup20_12.csproj",
+      "projectUniqueName": "C:\\Users\\gusta\\source\\repos\\sup20_12\\Sup20_12\\Sup20_12.csproj",
       "projectName": "Sup20_12",
-      "projectPath": "C:\\Users\\chris\\Source\\Repos\\sup20_12\\Sup20_12\\Sup20_12.csproj",
-      "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\chris\\Source\\Repos\\sup20_12\\Sup20_12\\obj\\",
+      "projectPath": "C:\\Users\\gusta\\source\\repos\\sup20_12\\Sup20_12\\Sup20_12.csproj",
+      "packagesPath": "C:\\Users\\gusta\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\gusta\\source\\repos\\sup20_12\\Sup20_12\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\gusta\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
