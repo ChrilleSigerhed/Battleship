@@ -12,9 +12,8 @@ namespace Sup20_12
         public int NumberOfMoves { get; set; }
         public int PlayerId { get; set; }
 
-        public Highscore(int id, bool win, int numberOfMoves, int playerId)
+        public Highscore(bool win, int numberOfMoves, int playerId)
         {
-            Id = id;
             Win = win;
             NumberOfMoves = numberOfMoves;
             PlayerId = playerId;
