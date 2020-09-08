@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sup20_12.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Printing;
 using System.Text;
@@ -19,9 +20,11 @@ namespace Sup20_12.View
     /// </summary>
     public partial class ChoosePlayerPage : Page
     {
+       
         public ChoosePlayerPage()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
 
 

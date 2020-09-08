@@ -39,7 +39,7 @@
                 </Grid.RowDefinitions>
 
                 <Label Content="Nickname" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" ></Label>
-                <TextBox Name="txtNickname" Width="100" Height="20" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBox>
+                <TextBox Name="txtNickname"  Width="100" Height="20" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBox>
                 <Button x:Name="btnAddPlayer" Content="Lägg till Spelare" Grid.Row="1" Grid.Column="1" Click="btnAddPlayer_Click"/>
                 <ComboBox x:Name="lstboxAllPlayers" Grid.Row="2" Grid.Column="1" />
             </Grid>
