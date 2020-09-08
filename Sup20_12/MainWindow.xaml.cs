@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sup20_12.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,13 +23,14 @@ namespace Sup20_12
     {
         public MainWindow()
         {
+
             InitializeComponent();
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Player myPlayer = new Player("");
+            Player myPlayer = new Player("SirMrNoName");
             myPlayer = DbConnection.AddNewPlayerToDb(myPlayer);
 
             Highscore myHighscore = new Highscore(true, 99, myPlayer.Id);
