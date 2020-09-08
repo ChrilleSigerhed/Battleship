@@ -21,20 +21,7 @@ namespace Sup20_12.View
         public MainMenuPage()
         {
             InitializeComponent();
-        }
-
-        private void StartGameButton_Click(object sender, RoutedEventArgs e)
-        {
-            var choosePlayerPage = new ChoosePlayerPage();
-            Main.Content = choosePlayerPage;
-
-        }
-        private void TopplistaButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            var page = new ChoosePlayerPage();
-            Main.Content = page; 
-
+            DataContext = new MainMenuViewModel();
         }
     }
 }

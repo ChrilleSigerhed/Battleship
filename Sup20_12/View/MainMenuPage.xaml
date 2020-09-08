@@ -33,10 +33,10 @@
             <RowDefinition Height="25px"/>
         </Grid.RowDefinitions>
 
-        <Button Content="Starta Spel" Grid.Column="1" Grid.Row="3" Background="White" Click="StartGameButton_Click"/>
-            <Button Content="Topplistor" Grid.Column="1" Grid.Row="5" Background="White" Click="TopplistaButton_Click"/>
-            <Button Content="Avsluta" Grid.Column="1" Grid.Row="7" Background="White"/>
+            <Button Content="Starta Spel" Grid.Column="1" Grid.Row="3" Background="White" Command="{Binding ChoosePlayerPageCommand}"/>
+            <Button Content="Topplistor" Grid.Column="1" Grid.Row="5" Background="White" Command="{Binding HighscorePageCommand}"/>
+            <Button Content="Avsluta" Grid.Column="1" Grid.Row="7" Background="White" Command="{Binding ExitGameCommand}"/>
         </Grid>
-            <Frame x:Name="Main"/>
+        <Frame x:Name="Main" Content="{Binding SelectedPage}"/>
     </Grid>
 </Page>

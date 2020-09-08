@@ -24,7 +24,8 @@ namespace Sup20_12.View
         public ChoosePlayerPage()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
+            DataContext = new ChoosePlayerViewModel();
+            
         }
 
 

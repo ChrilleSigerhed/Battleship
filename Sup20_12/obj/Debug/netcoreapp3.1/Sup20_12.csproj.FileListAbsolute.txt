@@ -134,3 +134,4 @@ C:\Users\ChrillE\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12
 C:\Users\ChrillE\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.dll
 C:\Users\ChrillE\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.pdb
 C:\Users\ChrillE\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.genruntimeconfig.cache
+C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.csproj.Fody.CopyLocal.cache

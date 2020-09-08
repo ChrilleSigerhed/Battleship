@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\
+C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\
 Sup20_12
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
-C:\Users\gusta\source\repos\sup20_12\Sup20_12\App.xaml
+C:\Users\chris\Source\Repos\sup20_12\Sup20_12\App.xaml
 6520632581
 
-24424050598
-194-1196675967
+26140377918
+194-956495530
 MainWindow.xaml;TESTING\TestWindow.xaml;View\ChoosePlayerPage.xaml;View\GameWindowPage.xaml;View\HighScorePage.xaml;View\MainMenuPage.xaml;
 
-False
+True
 

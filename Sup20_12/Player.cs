@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sup20_12
 {
-    class Player : IPlayer
+   public class Player : IPlayer
     {
         public string Nickname { get; set; }
         public int Id { get; set; }
@@ -13,6 +13,10 @@ namespace Sup20_12
         {
             Nickname = nickname;
 
+        }
+        public override string ToString()
+        {
+            return Nickname;
         }
 
     }
