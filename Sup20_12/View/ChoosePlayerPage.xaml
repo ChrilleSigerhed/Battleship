@@ -38,13 +38,15 @@
                     </RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Label Content="Nickname" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" ></Label>
-                <TextBox Name="txtNickname" Width="100" Height="20" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBox>
-                <Button x:Name="btnAddPlayer" Content="Lägg till Spelare" Grid.Row="1" Grid.Column="1" Click="btnAddPlayer_Click"/>
-                <ComboBox x:Name="lstboxAllPlayers" Grid.Row="2" Grid.Column="1" />
+                <Label Content="{Binding Nickname}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" ></Label>
+                <TextBox Name="txtNickname" MaxLength="14" Text="{Binding PlayerName}" Width="100" Height="20" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBox>
+                <Button x:Name="btnAddPlayer" Content="Lägg till Spelare" Grid.Row="1" Grid.Column="1" Command="{Binding AddNewPlayerCommand}"/>
+                <ListBox ItemsSource="{Binding Players}" x:Name="lstboxAllPlayers" Grid.Row="2" Grid.Column="1" SelectedItem="{Binding Player}"/>
+                <Button x:Name="btnStartGame" Content="Starta spelet" Grid.Row="3" Grid.Column="1" Command="{Binding StartGameWithSelectedPlayerCommand}" />
+
             </Grid>
-            
+
         </Grid>
-        <Frame x:Name="Main"/>
+        <Frame x:Name="Main" />
     </Grid>
 </Page>

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sup20_12.ViewModels.Base
+namespace Sup20_12.ViewModels
 {
-    class MyTestClass
+    class Ships
     {
+        public int ShipId { get; set; }
     }
 }
