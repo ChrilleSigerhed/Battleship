@@ -34,7 +34,17 @@ namespace Sup20_12
         }
         public void ExitGame()
         {
-            // Lägga till funktion som avslutar spelet
+            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            MessageBoxResult result = MessageBox.Show("Vill du verkligen avsluta?", "Avsluta", MessageBoxButton.YesNo);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    win.Close();
+                    break;
+                case MessageBoxResult.No:
+                    break;
+            }    
+            
         }
     }
 }

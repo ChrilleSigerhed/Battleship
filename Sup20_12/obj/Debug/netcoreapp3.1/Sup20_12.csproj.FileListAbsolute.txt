@@ -159,3 +159,6 @@ C:\Users\sandr\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.c
 C:\Users\sandr\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.csproj.Fody.CopyLocal.cache
 C:\Users\sandr\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.csproj.CopyComplete
 C:\Users\sandr\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.genruntimeconfig.cache
+C:\Users\Jeppe\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\TESTING\TestWindow.g.cs
+C:\Users\Jeppe\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\TESTING\TestWindow.baml
+C:\Users\Jeppe\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.csproj.Fody.CopyLocal.cache
