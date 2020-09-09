@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OH3WVvUETBw7G+s7B4W0+X67MCHpMXV+BLv/IKY+Lv4ja+u3ImTSff8DwUh6S+rvJlfmx/bGP1ediZ7BxebtjA==",
+  "dgSpecHash": "Y1c1qa2EnbBrfCRxi6K55BQkbd456jUHcP9fruvNkSS2tVS3uuRDMTUnaG31i8KDaUviJTi0UPSajoLX+0Sg6w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sandr\\Source\\Repos\\sup20_12\\Sup20_12\\Sup20_12.csproj",
+  "projectFilePath": "C:\\Users\\sandr\\source\\repos\\sup20_12\\Sup20_12\\Sup20_12.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sandr\\.nuget\\packages\\fody\\6.2.4\\fody.6.2.4.nupkg.sha512",
     "C:\\Users\\sandr\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
