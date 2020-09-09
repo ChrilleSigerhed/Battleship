@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -23,14 +24,13 @@ namespace Sup20_12
         }
         public void GoToChoosePlayer()
         {
-            var page = new ChoosePlayerPage();
-            SelectedPage = page;
-            
+            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            win.frame.Content = new ChoosePlayerPage();
         }
         public void GoToHighscorePage()
         {
-            var page = new HighScorePage();
-            SelectedPage = page;
+            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            win.frame.Content = new HighScorePage();
         }
         public void ExitGame()
         {
