@@ -99,7 +99,7 @@ namespace Sup20_12
         ///<summary>
         ///Returnerar en List på alla player objekt i databasen med nickname, id och List med Highscore.
         ///</summary>
-        public static IEnumerable<Player> GetPlayers() //Byt private mot public när denna funktion är klar
+        public static IEnumerable<Player> GetPlayers() 
         {
             string stmt = "SELECT id, nickname FROM player ORDER BY nickname";
 
@@ -160,9 +160,9 @@ namespace Sup20_12
             }
         }
 
-        public static IEnumerable<Highscore> GetAllHighscores(int id)
+        public static IEnumerable<Highscore> GetAllHighscores()
         {
-            string stmt = $"SELECT id, win, date, number_of_moves, player_id FROM highscore ORDER BY number_of_moves DESC;";
+            string stmt = $"SELECT highscore.id, win, date, number_of_moves, player_id, player.Nickname FROM highscore INNER JOIN player on highscore.player_id = player.id ORDER BY number_of_moves ASC";
 
 
             using (var conn = new NpgsqlConnection(connectionString))
@@ -184,7 +184,8 @@ namespace Sup20_12
                                 Win = (bool)reader["win"],
                                 Date = (DateTime)reader["date"],
                                 NumberOfMoves = (int)reader["number_of_moves"],
-                                PlayerId = (int)reader["player_id"]
+                                PlayerId = (int)reader["player_id"],
+                                Nickname = (string)reader["player.Nickname"]
                             };
                             LstAllHighscore.Add(allHighscore);
                         }
@@ -196,7 +197,7 @@ namespace Sup20_12
         }
         #endregion
 
-        //Inte klar
+        
         #region UPDATE
 
         public static Player UpdateHighscoreListToDb(Player myPlayer)
@@ -205,7 +206,7 @@ namespace Sup20_12
         }
         #endregion
 
-        //Inte klar, ska nog inte vara med heller...
+        
         #region DELETE
         private static void Delete()
         {
