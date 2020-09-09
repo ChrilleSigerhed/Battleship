@@ -10,7 +10,7 @@
     <Grid>
         <Grid>
             <Grid.Background>
-            <ImageBrush ImageSource="/Assets/Images/water.jpg" />
+                <ImageBrush ImageSource="/Assets/Images/water.jpg" />
             </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -47,6 +47,5 @@
             </Grid>
 
         </Grid>
-        <Frame x:Name="Main" />
     </Grid>
 </Page>
