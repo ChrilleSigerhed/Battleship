@@ -27,6 +27,9 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="ResourceDictionaries\Style.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="TESTING\TestWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
