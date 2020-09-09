@@ -99,7 +99,7 @@ namespace Sup20_12
         ///<summary>
         ///Returnerar en List på alla player objekt i databasen med nickname, id och List med Highscore.
         ///</summary>
-        public static IEnumerable<Player> GetPlayers() //Byt private mot public när denna funktion är klar
+        public static IEnumerable<Player> GetPlayers() 
         {
             string stmt = "SELECT id, nickname FROM player ORDER BY nickname";
 
@@ -196,7 +196,7 @@ namespace Sup20_12
         }
         #endregion
 
-        //Inte klar
+        
         #region UPDATE
 
         public static Player UpdateHighscoreListToDb(Player myPlayer)
@@ -205,7 +205,7 @@ namespace Sup20_12
         }
         #endregion
 
-        //Inte klar, ska nog inte vara med heller...
+        
         #region DELETE
         private static void Delete()
         {
