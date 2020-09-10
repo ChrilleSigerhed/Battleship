@@ -163,3 +163,4 @@ C:\Users\Jeppe\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\TESTING\Te
 C:\Users\Jeppe\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\TESTING\TestWindow.baml
 C:\Users\Jeppe\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.csproj.Fody.CopyLocal.cache
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\ResourceDictionaries\Style.baml
+C:\Users\sandr\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\ResourceDictionaries\Style.baml

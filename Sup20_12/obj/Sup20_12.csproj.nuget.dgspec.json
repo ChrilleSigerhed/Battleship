@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sandr\\Source\\Repos\\sup20_12\\Sup20_12\\Sup20_12.csproj": {}
+    "C:\\Users\\sandr\\source\\repos\\sup20_12\\Sup20_12\\Sup20_12.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sandr\\Source\\Repos\\sup20_12\\Sup20_12\\Sup20_12.csproj": {
+    "C:\\Users\\sandr\\source\\repos\\sup20_12\\Sup20_12\\Sup20_12.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sandr\\Source\\Repos\\sup20_12\\Sup20_12\\Sup20_12.csproj",
+        "projectUniqueName": "C:\\Users\\sandr\\source\\repos\\sup20_12\\Sup20_12\\Sup20_12.csproj",
         "projectName": "Sup20_12",
-        "projectPath": "C:\\Users\\sandr\\Source\\Repos\\sup20_12\\Sup20_12\\Sup20_12.csproj",
+        "projectPath": "C:\\Users\\sandr\\source\\repos\\sup20_12\\Sup20_12\\Sup20_12.csproj",
         "packagesPath": "C:\\Users\\sandr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sandr\\Source\\Repos\\sup20_12\\Sup20_12\\obj\\",
+        "outputPath": "C:\\Users\\sandr\\source\\repos\\sup20_12\\Sup20_12\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sandr\\AppData\\Roaming\\NuGet\\NuGet.Config",
