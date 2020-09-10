@@ -23,10 +23,10 @@ namespace Sup20_12
             GoToMainPage = new RelayCommand(GoToMain);
         }
 
-        public List<Highscore> GetHighScores()
+        public void GetHighScores()
         {
             HighScoreLst = (List<Highscore>)DbConnection.GetAllHighscores();
-            return HighScoreLst;
+            
         }
 
         public void GoToMain()

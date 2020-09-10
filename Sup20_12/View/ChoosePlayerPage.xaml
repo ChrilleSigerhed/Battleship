@@ -10,39 +10,47 @@
     <Grid>
         <Grid>
             <Grid.Background>
-                <ImageBrush ImageSource="/Assets/Images/water.jpg" />
+                <ImageBrush ImageSource="/Assets/Images/bgChoosePlayerPage.jpg" />
             </Grid.Background>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition />
+                <ColumnDefinition Width="166"/>
+                <ColumnDefinition Width="272" />
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="75px"/>
                 <RowDefinition/>
-                <RowDefinition Height="75px"/>
+                <RowDefinition Height="43"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="1" Grid.Column="1" Background="white">
+            <Grid Grid.Row="1" Grid.Column="1" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="75px">
+                    <RowDefinition Height="77*" >
                     </RowDefinition>
-                    <RowDefinition Height="75px">
+                    <RowDefinition Height="167*" >
                     </RowDefinition>
-                    <RowDefinition Height="75px">
+                    <RowDefinition Height="5*" >
                     </RowDefinition>
-                    <RowDefinition Height="75px">
+                    <RowDefinition Height="83*" >
                     </RowDefinition>
                 </Grid.RowDefinitions>
 
-                <Label Content="{Binding Nickname}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" ></Label>
-                <TextBox Name="txtNickname" MaxLength="14" Text="{Binding PlayerName}" Width="100" Height="20" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBox>
-                <Button x:Name="btnAddPlayer" Content="Lägg till Spelare" Grid.Row="1" Grid.Column="1" Command="{Binding AddNewPlayerCommand}"/>
-                <ListBox ItemsSource="{Binding Players}" x:Name="lstboxAllPlayers" Grid.Row="2" Grid.Column="1" SelectedItem="{Binding Player}"/>
-                <Button x:Name="btnStartGame" Content="Starta spelet" Grid.Row="3" Grid.Column="1" Command="{Binding StartGameWithSelectedPlayerCommand}" />
+                <Label Content="{Binding Nickname}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="10" Width="10" />
+                <TextBox Name="txtNickname" MaxLength="14" Text="{Binding PlayerName}" Width="100" Height="20" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <ListBox ItemsSource="{Binding Players}" x:Name="lstboxAllPlayers" Grid.Row="3" Grid.Column="1" SelectedItem="{Binding Player}"/>
+
+                <StackPanel Grid.Column="1" Grid.Row="1">
+                    <Button Grid.Row="1" Grid.Column="1" Command="{Binding AddNewPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Center" Height="44" Margin="0,41,0,0" Width="136">
+                        <Image Source="/Assets/Images/btnStartgame.png" Height="40"></Image>
+                    </Button>
+
+                    <Button Grid.Row="1" Grid.Column="1" Command="{Binding StartGameWithSelectedPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Center" Height="44" Margin="0,41,0,0" Width="136">
+                        <Image Source="/Assets/Images/btnBack.png" Height="40"></Image>
+                    </Button>
+                </StackPanel>
 
             </Grid>
 

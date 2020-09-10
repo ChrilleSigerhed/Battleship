@@ -162,7 +162,7 @@ namespace Sup20_12
 
         public static IEnumerable<Highscore> GetAllHighscores()
         {
-            string stmt = $"SELECT highscore.id, win, date, number_of_moves, player_id, player.Nickname FROM highscore INNER JOIN player on highscore.player_id = player.id ORDER BY number_of_moves ASC";
+            string stmt = $"SELECT highscore.id, win, date, number_of_moves, player_id, player.nickname FROM highscore INNER JOIN player on highscore.player_id = player.id ORDER BY number_of_moves ASC";
 
 
             using (var conn = new NpgsqlConnection(connectionString))
@@ -185,7 +185,7 @@ namespace Sup20_12
                                 Date = (DateTime)reader["date"],
                                 NumberOfMoves = (int)reader["number_of_moves"],
                                 PlayerId = (int)reader["player_id"],
-                                Nickname = (string)reader["player.Nickname"]
+                                Nickname = (string)reader["nickname"]
                             };
                             LstAllHighscore.Add(allHighscore);
                         }
