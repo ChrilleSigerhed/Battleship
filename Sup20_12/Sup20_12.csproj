@@ -10,6 +10,8 @@
     <None Remove="Assets\Images\bgChoosePlayerPage.jpg" />
     <None Remove="Assets\Images\bgHighscorePage.jpg" />
     <None Remove="Assets\Images\bgMainMenuPage.jpg" />
+    <None Remove="Assets\Images\btnAddPlayerImg.png" />
+    <None Remove="Assets\Images\btnAddPlayerImgPressed.png" />
     <None Remove="Assets\Images\btnBack.png" />
     <None Remove="Assets\Images\btnHighscoreImg.png" />
     <None Remove="Assets\Images\btnHighscoreImgPressed.png" />
@@ -31,6 +33,8 @@
     <Resource Include="Assets\Images\bgChoosePlayerPage.jpg" />
     <Resource Include="Assets\Images\bgHighscorePage.jpg" />
     <Resource Include="Assets\Images\bgMainMenuPage.jpg" />
+    <Resource Include="Assets\Images\btnAddPlayerImg.png" />
+    <Resource Include="Assets\Images\btnAddPlayerImgPressed.png" />
     <Resource Include="Assets\Images\btnBack.png" />
     <Resource Include="Assets\Images\btnHighscoreImg.png" />
     <Resource Include="Assets\Images\btnHighscoreImgPressed.png" />
