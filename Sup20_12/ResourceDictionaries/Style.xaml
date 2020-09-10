@@ -1,10 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:Sup20_12.ResourceDictionaries">
+                    xmlns:local="clr-namespace:Sup20_12.ResourceDictionaries">  
 
 
 
-<!-- Nytt Spel knapp från Main Menu-->
+    <!-- Nytt Spel knapp från Main Menu-->
     <Style x:Key="BtnNewGame" TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
@@ -113,7 +113,88 @@
     </Style>
 
 
-
-
+    <!--Lägg till spelare knapp på ChoosePlayerPage-->
+    <Style x:Key="BtnAddPlayer" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border>
+                        <Grid>
+                            <Grid>
+                                <Image x:Name="buttonImage" Source="/Assets/Images/btnAddPlayerImg.png" Stretch="Uniform" />
+                                <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Opacity" Value="0.85"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="buttonImage" Property="Source" Value="/Assets/Images/btnAddPlayerImgPressed.png" />
+                            <Setter Property="Opacity" Value="1.0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    
+    <!--Starta spelet knapp på ChoosePlayerPage-->
+    <Style x:Key="BtnStartGame" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border>
+                        <Grid>
+                            <Grid>
+                                <Image x:Name="buttonImage" Source="/Assets/Images/btnStartGame.png" Stretch="Uniform" />
+                                <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Opacity" Value="0.85"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="buttonImage" Property="Source" Value="/Assets/Images/btnStartGamePressed.png" />
+                            <Setter Property="Opacity" Value="1.0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!--Tillbaka knapp från ChoosePlayerPage-->
+    <Style x:Key="BtnBack" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border>
+                        <Grid>
+                            <Grid>
+                                <Image x:Name="buttonImage" Source="/Assets/Images/btnBack.png" Stretch="Uniform" />
+                                <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Opacity" Value="0.85"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="buttonImage" Property="Source" Value="/Assets/Images/btnBackPressed.png" />
+                            <Setter Property="Opacity" Value="1.0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    
 
 </ResourceDictionary>
