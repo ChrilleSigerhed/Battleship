@@ -85,6 +85,33 @@
         </Setter>
     </Style>
 
+    <!-- Tillbakaknappen från Highscore och Välj spelare-->
+    <Style x:Key="BtnBack" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border>
+                        <Grid>
+                            <Grid>
+                                <Image x:Name="buttonImage" Source="/Assets/Images/btnBack.png" Stretch="Uniform" />
+                                <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Opacity" Value="0.85"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="buttonImage" Property="Source" Value="/Assets/Images/btnBackPressed.png" />
+                            <Setter Property="Opacity" Value="1.0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 
 

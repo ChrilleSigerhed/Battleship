@@ -10,7 +10,7 @@
     <Grid>
         <Grid>
             <Grid.Background>
-                <ImageBrush ImageSource="/Assets/Images/bgChoosePlayerPage.jpg" />
+                <ImageBrush ImageSource="/Assets/Images/bgChoosePlayerPage.jpg" Stretch="Uniform"/>
             </Grid.Background>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="166"/>

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Sup20_12"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MainMenuPage" Height="450" Width="800">
+      Title="MainMenuPage">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -19,7 +19,7 @@
     <Grid>
         <Grid>
         <Grid.Background>
-                <ImageBrush ImageSource="/Assets/Images/bgMainMenuPage.jpg" />
+                <ImageBrush ImageSource="/Assets/Images/bgMainMenuPage.jpg" Stretch="Uniform"/>
         </Grid.Background>
         
         <Grid.ColumnDefinitions>
