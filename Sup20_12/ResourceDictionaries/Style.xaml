@@ -168,7 +168,7 @@
         </Setter>
     </Style>
     
-    <!--Tillbaka knapp från ChoosePlayerPage-->
+    <!--Tillbaka knapp från ChoosePlayerPage--><!--
     <Style x:Key="BtnBack" TargetType="{x:Type Button}">
         <Setter Property="Template">
             <Setter.Value>
@@ -193,7 +193,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
     
     
 
