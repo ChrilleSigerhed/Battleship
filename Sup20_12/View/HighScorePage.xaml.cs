@@ -21,6 +21,7 @@ namespace Sup20_12.View
         public HighScorePage()
         {
             InitializeComponent();
+            DataContext = new HighScorePage();
         }
     }
 }
