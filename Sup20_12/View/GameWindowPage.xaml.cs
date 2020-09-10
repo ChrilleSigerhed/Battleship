@@ -22,6 +22,7 @@ namespace Sup20_12.View
         public GameWindowPage()
         {
             InitializeComponent();
+            DataContext = new GameWindowViewModel();
         }
     }
 }

@@ -4,24 +4,35 @@ using System.Text;
 
 namespace Sup20_12.ViewModels
 {
-    class PlayerGrid // Behöver Revideras
+   public class PlayerGrid 
     {
-        //public Dictionary<SquaresInGrid, Ships> SquaresAndShips { get; set; } = new Dictionary<SquaresInGrid, Ships>();
-        //private SquaresInGrid square;
-        //public PlayerGrid()
-        //{
-        //    CreatePlayerGrid(square);
-        //    var playerGrid = new GameEngineViewModel();
-        //    playerGrid.PlayerGrid(SquaresAndShips);
-        //}
-        //public void CreatePlayerGrid(SquaresInGrid square)
-        //{
-        //    for (int i = 0; i < 25; i++)
-        //    {
-        //        square = new SquaresInGrid();
-        //        square.SquareId = i;
-        //        SquaresAndShips.Add(square, null);
-        //    }
-        //}
+        public string PlayerButton1 { get; set; }
+        public string PlayerButton2 { get; set; }
+        public string PlayerButton3 { get; set; }
+        public string PlayerButton4 { get; set; }
+        public string PlayerButton5 { get; set; }
+        public string PlayerButton6 { get; set; }
+        public string PlayerButton7 { get; set; }
+        public string PlayerButton8 { get; set; }
+        public string PlayerButton9 { get; set; }
+        public string PlayerButton10 { get; set; }
+        public string PlayerButton11 { get; set; }
+        public string PlayerButton12 { get; set; }
+        public string PlayerButton13 { get; set; }
+        public string PlayerButton14 { get; set; }
+        public string PlayerButton15 { get; set; }
+        public string PlayerButton16 { get; set; }
+        public string PlayerButton17 { get; set; }
+        public string PlayerButton18 { get; set; }
+        public string PlayerButton19 { get; set; }
+        public string PlayerButton20 { get; set; }
+        public string PlayerButton21 { get; set; }
+        public string PlayerButton22 { get; set; }
+        public string PlayerButton23 { get; set; }
+        public string PlayerButton24 { get; set; }
+        public string PlayerButton25 { get; set; }
+
+       
+
     }
 }
