@@ -9,5 +9,11 @@
       Title="GameWindowPage">
 
     <Grid Background="White">
+        <StackPanel>
+            <Button Height="50"  Content="{Binding PlayerButtonsInGame[0]}" Command="{Binding ShootCanon}" CommandParameter="1"></Button>
+            <Button Height="50"  Content="{Binding PlayerButtonsInGame[1]}" Command="{Binding ShootCanon}" CommandParameter="2"></Button>
+            <Button Height="50"  Content="{Binding PlayerButtonsInGame[2], FallbackValue=1}" Command="{Binding ShootCanon}" CommandParameter="1"></Button>
+            <Button Height="50"  Content="{Binding PlayerButtonsInGame[3], FallbackValue=2}" Command="{Binding ShootCanon}" CommandParameter="2"></Button>
+        </StackPanel>
     </Grid>
 </Page>

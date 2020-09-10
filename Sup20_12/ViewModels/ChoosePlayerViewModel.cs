@@ -1,7 +1,9 @@
-﻿using Sup20_12.ViewModels.Base;
+﻿using Sup20_12.View;
+using Sup20_12.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Sup20_12.ViewModels
@@ -15,6 +17,8 @@ namespace Sup20_12.ViewModels
         public ICommand StartGameWithSelectedPlayerCommand { get; set; }
         public List<Player> Players { get; set; }
         private GameEngineViewModel NewGame { get; set; }
+
+        public MainWindow win = (MainWindow)Application.Current.MainWindow;
 
         public ChoosePlayerViewModel()
         {
@@ -45,6 +49,12 @@ namespace Sup20_12.ViewModels
         {
             NewGame = new GameEngineViewModel();
             NewGame.StartTheGameWithSelectedPlayer(this.Player);
+            GoToChoosePlayer();
+        }
+        public void GoToChoosePlayer()
+        {
+            //MainWindow win = (MainWindow)Application.Current.MainWindow;
+            win.frame.Content = new GameWindowPage();
         }
     }
 }
