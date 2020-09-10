@@ -17,30 +17,45 @@
     </Page.Resources>
 
     <Grid>
-        <Grid>
         <Grid.Background>
                 <ImageBrush ImageSource="/Assets/Images/bgMainMenuPage.jpg" Stretch="Uniform"/>
         </Grid.Background>
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="150px"/>
-            <ColumnDefinition MinWidth="150px"/>
-            <ColumnDefinition MinWidth="150px"/>
-                <ColumnDefinition Width="20px"/>
+        <Grid>
 
-        </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="550"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="200px"/>
-            <RowDefinition />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="300"/>
 
-        </Grid.RowDefinitions>
+            </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="2" Grid.Row="1">
-                <Button Style="{StaticResource BtnNewGame}" Grid.Column="2" Grid.Row="1" Command="{Binding ChoosePlayerPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}"/>
-                <Button Style="{StaticResource BtnHighscore}" Grid.Column="2" Grid.Row="1" Command="{Binding HighscorePageCommand}" Background="{x:Null}" BorderBrush="{x:Null}"/>
-                <Button Style="{StaticResource BtnQuitGame}" Grid.Column="2" Grid.Row="1" Command="{Binding ExitGameCommand}" Background="{x:Null}" BorderBrush="{x:Null}"/>
+            <Image x:Name="MyImage" Source="/Assets/Images/animationFire.png" Width="250" Height="250" Grid.Row="1" VerticalAlignment="Bottom" RenderTransformOrigin="0.7,0.7" Opacity="0">
+                <Image.RenderTransform>
+                    <ScaleTransform x:Name="ImageScale" ScaleX="0.5" ScaleY="0.5" />
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" BeginTime="0:0:0.30" To="0.75" Duration="0:0:1.55"/>
+                                <DoubleAnimation Storyboard.TargetName="ImageScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" To="1.1" BeginTime="0:0:0.30" Duration="0:0:2.35" AutoReverse="false" />
+                                <DoubleAnimation Storyboard.TargetName="ImageScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" To="1.1" BeginTime="0:0:0.30" Duration="0:0:2.35" AutoReverse="false"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger> 
+                </Image.Triggers>
+            </Image>
+
+            
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <Button Style="{StaticResource BtnNewGame}"  Command="{Binding ChoosePlayerPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
+                <Button Style="{StaticResource BtnHighscore}" Command="{Binding HighscorePageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
+                <Button Style="{StaticResource BtnQuitGame}" Command="{Binding ExitGameCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
             </StackPanel>
         </Grid>
         <Frame x:Name="Main" Content="{Binding SelectedPage}"/>
