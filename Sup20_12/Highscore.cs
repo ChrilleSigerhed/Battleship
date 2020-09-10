@@ -22,7 +22,7 @@ namespace Sup20_12
 
         public override string ToString()
         {
-            return $"{Nickname}        {NumberOfMoves}";
+            return $"{Nickname}                  {NumberOfMoves}";
         }
     }
 }

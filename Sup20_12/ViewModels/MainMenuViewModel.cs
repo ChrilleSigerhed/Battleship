@@ -15,7 +15,8 @@ namespace Sup20_12
         public ICommand ChoosePlayerPageCommand { get; set; }
         public ICommand HighscorePageCommand { get; set; }
         public ICommand ExitGameCommand { get; set; }
-        public Page SelectedPage { get; set; }
+
+        public MainWindow win = (MainWindow)Application.Current.MainWindow;
         public MainMenuViewModel()
         {
             ChoosePlayerPageCommand = new RelayCommand(GoToChoosePlayer);
@@ -24,17 +25,17 @@ namespace Sup20_12
         }
         public void GoToChoosePlayer()
         {
-            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            //MainWindow win = (MainWindow)Application.Current.MainWindow;
             win.frame.Content = new ChoosePlayerPage();
         }
         public void GoToHighscorePage()
         {
-            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            //MainWindow win = (MainWindow)Application.Current.MainWindow;
             win.frame.Content = new HighScorePage();
         }
         public void ExitGame()
         {
-            MainWindow win = (MainWindow)Application.Current.MainWindow;
+            //MainWindow win = (MainWindow)Application.Current.MainWindow;
             MessageBoxResult result = MessageBox.Show("Vill du verkligen avsluta?", "Avsluta", MessageBoxButton.YesNo);
             switch (result)
             {

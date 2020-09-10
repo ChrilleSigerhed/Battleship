@@ -22,17 +22,16 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="130px"/>
-                <RowDefinition Height="220px"/>
-                <RowDefinition Height="100px"/>
+                <RowDefinition Height="120px"/>
+                <RowDefinition Height="280px"/>
             </Grid.RowDefinitions>
 
 
-            <Button Grid.Column="1" Grid.Row="2" Command="{Binding GoToMainPage}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Grid.Column="1" Grid.Row="1" Margin="30" Command="{Binding GoToMainPage}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                 <Image Source="/Assets/Images/btnBack.png" Height="40"></Image>
             </Button>
 
-            <ListBox ItemsSource="{Binding HighScoreLst}" Grid.Column="2" Grid.Row="1" FontSize="25" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="10,10,-117,0">
+            <ListBox ItemsSource="{Binding HighScoreLst}" Grid.Column="2" Grid.Row="1" FontSize="20" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="0,0,-109,34">
 
             </ListBox>
 
