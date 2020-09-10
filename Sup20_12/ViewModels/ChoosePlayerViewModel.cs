@@ -19,6 +19,8 @@ namespace Sup20_12.ViewModels
         public List<Player> Players { get; set; }
         private GameEngineViewModel NewGame { get; set; }
 
+        public MainWindow win = (MainWindow)Application.Current.MainWindow;
+
         public ChoosePlayerViewModel()
         {
             StartGameWithSelectedPlayerCommand = new RelayCommand(SelectedPlayerForGame);
@@ -49,6 +51,12 @@ namespace Sup20_12.ViewModels
         {
             NewGame = new GameEngineViewModel();
             NewGame.StartTheGameWithSelectedPlayer(this.Player);
+            GoToChoosePlayer();
+        }
+        public void GoToChoosePlayer()
+        {
+            //MainWindow win = (MainWindow)Application.Current.MainWindow;
+            win.frame.Content = new GameWindowPage();
         }
 
         public void GoToMain()
