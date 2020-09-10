@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Sup20_12"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MainMenuPage">
+      Title="MainMenuPage" Height="450" Width="800">
 
     <Page.Resources>
         <ResourceDictionary>
