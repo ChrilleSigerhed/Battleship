@@ -221,6 +221,8 @@ _pkginfo.txt
 
 # Others
 ClientBin/
+obj/
+bin/
 ~$*
 *~
 *.dbmdl
