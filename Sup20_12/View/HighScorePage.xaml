@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Sup20_12.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800" 
-      Title="HighScorePage" Height="450" Width="800">
+      Title="HighScorePage">
 
     <Page.Resources>
         <ResourceDictionary>
@@ -17,45 +17,37 @@
     </Page.Resources>
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Images/bgHighscorePage.jpg" Stretch="Uniform"/>
+        </Grid.Background>
+        
         <Grid>
-            <Grid.Background>
-                <ImageBrush ImageSource="/Assets/Images/bgHighscorePage.jpg" />
-            </Grid.Background>
-
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200px"/>
-                <ColumnDefinition Width="235px"/>
-                <ColumnDefinition Width="200px"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="45"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="120px"/>
-                <RowDefinition Height="280px"/>
+                <RowDefinition Height="135px"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="60px"/>
+                    <RowDefinition Height="40px"/>
                 </Grid.RowDefinitions>
-                <Button Style="{StaticResource BtnNewGame}" Width="20" Margin="4" Grid.Column="0" Grid.Row="1" Command="{Binding GoToMainPage}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                <Button Style="{StaticResource BtnBack}" Grid.Column="0" Grid.Row="1" Command="{Binding GoToMainPage}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
             </Grid>
 
-           
-                
 
-            
-
-
-            <!--<Button Grid.Column="1" Grid.Row="1" Margin="30" Command="{Binding GoToMainPage}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                <Image Source="/Assets/Images/btnBack.png" Height="40"></Image> 
-            </Button>-->
+            <ListBox ItemsSource="{Binding HighScoreLst}" Grid.Column="2" Grid.Row="1" FontSize="20" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            <!--<ListBox Grid.Row="0" Grid.Column="1"></ListBox>-->
 
 
-            
-            <ListBox ItemsSource="{Binding HighScoreLst}" Grid.Column="2" Grid.Row="1" FontSize="20" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="0,0,-109,34">
-
-            </ListBox>
 
         </Grid>
     </Grid>

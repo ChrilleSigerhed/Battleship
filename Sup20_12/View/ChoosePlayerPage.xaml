@@ -7,52 +7,52 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ChoosePlayerPage">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ResourceDictionaries/Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid>
         <Grid>
             <Grid.Background>
-                <ImageBrush ImageSource="/Assets/Images/bgChoosePlayerPage.jpg" />
+                <ImageBrush ImageSource="/Assets/Images/bgChoosePlayerPage.jpg" Stretch="Uniform"/>
             </Grid.Background>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="166"/>
-                <ColumnDefinition Width="272" />
+                <ColumnDefinition Width="226"/>
+                <ColumnDefinition Width="212" />
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="75px"/>
-                <RowDefinition/>
+                <RowDefinition Height="98"/>
                 <RowDefinition Height="43"/>
+                <RowDefinition Height="94"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="1" Grid.Column="1" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="77*" >
-                    </RowDefinition>
-                    <RowDefinition Height="167*" >
-                    </RowDefinition>
-                    <RowDefinition Height="5*" >
-                    </RowDefinition>
-                    <RowDefinition Height="83*" >
-                    </RowDefinition>
-                </Grid.RowDefinitions>
 
-                <Label Content="{Binding Nickname}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="10" Width="10" />
-                <TextBox Name="txtNickname" MaxLength="14" Text="{Binding PlayerName}" Width="100" Height="20" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <ListBox ItemsSource="{Binding Players}" x:Name="lstboxAllPlayers" Grid.Row="3" Grid.Column="1" SelectedItem="{Binding Player}"/>
+            <TextBox Name="txtNickname" MaxLength="14" Text="{Binding PlayerName}" Width="242" Height="34" FontSize="20" BorderBrush="{x:Null}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="2,3,0,0" />
+            <ListBox ItemsSource="{Binding Players}" x:Name="lstboxAllPlayers" FontSize="20" BorderThickness="0" Grid.Row="3" Grid.Column="2" SelectedItem="{Binding Player}" Margin="2,0,111,50"/>
 
-                <StackPanel Grid.Column="1" Grid.Row="1">
-                    <Button Grid.Row="1" Grid.Column="1" Command="{Binding AddNewPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Center" Height="44" Margin="0,41,0,0" Width="136">
-                        <Image Source="/Assets/Images/btnStartgame.png" Height="40"></Image>
+            <Grid Grid.Column="2" Grid.Row="2" Margin="0,0,103,0">
+                <Button Style="{StaticResource BtnAddPlayer}" Command="{Binding AddNewPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Height="37" Margin="0,10,5,0" Width="138">
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="1" Grid.Row="3" Margin="41,67,0,25">
+
+                <StackPanel Margin="0,0,0,10">
+                    <Button Style="{StaticResource BtnStartGame}" Grid.Row="1" Grid.Column="1" Command="{Binding StartGameWithSelectedPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="44" Margin="0,10,0,0" Width="136">
                     </Button>
 
-                    <Button Grid.Row="1" Grid.Column="1" Command="{Binding StartGameWithSelectedPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Center" Height="44" Margin="0,41,0,0" Width="136">
-                        <Image Source="/Assets/Images/btnBack.png" Height="40"></Image>
+                    <Button Style="{StaticResource BtnBack}" Grid.Row="1" Grid.Column="1" Command="{Binding GoToMainPage}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="44" Margin="0,10,0,0" Width="136">
                     </Button>
                 </StackPanel>
 
             </Grid>
+
 
         </Grid>
     </Grid>

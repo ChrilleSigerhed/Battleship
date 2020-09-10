@@ -13,6 +13,7 @@
     <None Remove="Assets\Images\btnAddPlayerImg.png" />
     <None Remove="Assets\Images\btnAddPlayerImgPressed.png" />
     <None Remove="Assets\Images\btnBack.png" />
+    <None Remove="Assets\Images\btnBackPressed.png" />
     <None Remove="Assets\Images\btnHighscoreImg.png" />
     <None Remove="Assets\Images\btnHighscoreImgPressed.png" />
     <None Remove="Assets\Images\btnNewGameImg.png" />
@@ -36,6 +37,7 @@
     <Resource Include="Assets\Images\btnAddPlayerImg.png" />
     <Resource Include="Assets\Images\btnAddPlayerImgPressed.png" />
     <Resource Include="Assets\Images\btnBack.png" />
+    <Resource Include="Assets\Images\btnBackPressed.png" />
     <Resource Include="Assets\Images\btnHighscoreImg.png" />
     <Resource Include="Assets\Images\btnHighscoreImgPressed.png" />
     <Resource Include="Assets\Images\btnNewGameImg.png" />
