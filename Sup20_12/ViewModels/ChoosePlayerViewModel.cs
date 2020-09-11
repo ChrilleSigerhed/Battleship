@@ -15,17 +15,13 @@ namespace Sup20_12.ViewModels
         public string PlayerName { get; set; }
         public ICommand AddNewPlayerCommand { get; set; }
         public ICommand StartGameWithSelectedPlayerCommand { get; set; }
-        public ICommand GoToMainPage { get; set; }
         public List<Player> Players { get; set; }
-        private GameEngineViewModel NewGame { get; set; }
-
-        public MainWindow win = (MainWindow)Application.Current.MainWindow;
+        private GameEngine NewGame { get; set; }
 
         public ChoosePlayerViewModel()
         {
             StartGameWithSelectedPlayerCommand = new RelayCommand(SelectedPlayerForGame);
             AddNewPlayerCommand = new RelayCommand(AddPlayer);
-            GoToMainPage = new RelayCommand(GoToMain);
             GetPlayersFromDb();
         }
         public void AddPlayer()
@@ -49,21 +45,11 @@ namespace Sup20_12.ViewModels
         }
         public void SelectedPlayerForGame()
         {
-            NewGame = new GameEngineViewModel();
-            NewGame.StartTheGameWithSelectedPlayer(this.Player);
-            GoToChoosePlayer();
-        }
-        public void GoToChoosePlayer()
-        {
-            //MainWindow win = (MainWindow)Application.Current.MainWindow;
-            win.frame.Content = new GameWindowPage();
-        }
-
-        public void GoToMain()
-        {
+            //NewGame = new GameEngine();
             MainWindow win = (MainWindow)Application.Current.MainWindow;
-            win.frame.Content = new MainMenuPage();
+            win.frame.Content = new GameWindowPage();
+            
+            
         }
-
     }
 }

@@ -12,52 +12,88 @@ namespace Sup20_12.ViewModels
 {
    public class GameWindowViewModel : BaseViewModel
     {
-        public ICommand CheckButtonIndex { get; set; }
-        public ICommand ShootCanon { get; set; }
-        public Dictionary<string, bool> ButtonsAndShips { get; set; } = new Dictionary<string, bool>();
+        public ICommand PlaceShip { get; set; }
+        public ICommand CheckIfShip { get; set; }
         public int Ships { get; set; } = 3;
-        public ObservableCollection<SquaresInGrid> PlayerButtonsInGame { get; set; } = new ObservableCollection<SquaresInGrid>();
+        public ObservableCollection<GameGrid> PlayerButtonsInGame { get; set; }  = new ObservableCollection<GameGrid>();
+        public ObservableCollection<GameGrid> ComputerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
+        public Dictionary<string, bool> PlayerShips { get; set; } = new Dictionary<string, bool>();
+        public Dictionary<string, bool> ComputerShips { get; set; } = new Dictionary<string, bool>();
+
+        public GameEngine gameEngine;
         public GameWindowViewModel()
         {
-            FillListOfPlayerButtons();
-            CheckButtonIndex = new RelayPropertyCommand(AddShipToList);
-            ShootCanon = new RelayPropertyCommand(CheckHitOrMiss);
+            gameEngine = new GameEngine();
+            CreatePlayerGrid();
+            CreateComputerGrid();
+            FillComputerShips();
+            PlaceShip = new RelayPropertyCommand(FillListOfShips);
+            CheckIfShip = new RelayPropertyCommand(CheckHitOrMiss);
         }
-        private void FillListOfPlayerButtons()
+        public void CreatePlayerGrid()
         {
-            for (int i = 0; i < 24; i++)
+            for (int i = 0; i < 25; i++)
             {
-                SquaresInGrid square = new SquaresInGrid(i,"");
+                GameGrid square = new GameGrid(i, "");
                 PlayerButtonsInGame.Add(square);
             }
+
         }
-        public void CheckHitOrMiss(string parameter)
+        public void CreateComputerGrid()
         {
-            int stringParameter = int.Parse(parameter);
-            if (ButtonsAndShips.ContainsKey(parameter))
+            for (int i = 0; i < 25; i++)
             {
-                PlayerButtonsInGame[stringParameter].HitOrMiss = "Träff";
+                GameGrid square = new GameGrid(i, "");
+                ComputerButtonsInGame.Add(square);
+            }
+
+        }
+
+        public void FillComputerShips()
+        {
+            Random random;
+            int numberFromRandom;
+            for (int i = 0; i < 3; i++)
+            {
+                random = new Random();
+                numberFromRandom = random.Next(0, 24);
+                while (ComputerShips.ContainsKey(numberFromRandom.ToString()))
+                {
+                    numberFromRandom = random.Next(0, 24);
+                }
+                ComputerShips.Add(numberFromRandom.ToString(), true);
+            }
+
+        }
+
+        public void FillListOfShips(string button)
+        {
+            if(gameEngine.FillPlayerShips(button) == true)
+            {
+                Ships--;
+            } else
+            {
+                MessageBox.Show("Du har placerat ut alla skepp. Spelet kan nu börja!");
+            }
+            
+        }
+        public void CheckHitOrMiss(string button)
+        {
+
+            if (ComputerShips.ContainsKey(button))
+            {
+                ComputerShips.Remove(button);
+                int buttonToNumber = int.Parse(button);
+                ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
+
             }
             else
             {
-                PlayerButtonsInGame[stringParameter].HitOrMiss = "Miss";
+                int buttonToNumber = int.Parse(button);
+                ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
             }
+            ComputerButtonsInGame[0].HitOrMiss = "hej";
         }
-        public void AddShipToList(string button) // Placerar ut 3 skepp och skapar en lista där Knappen blir "Nyckeln" och skeppet en bool som visar True;
-        {
-            if(Ships == 0)
-            {
-                MessageBox.Show("Du har placerat alla ships");
-            }
-            else if (!ButtonsAndShips.ContainsKey(button))
-            {
-               ButtonsAndShips.Add(button, true);
-               Ships--;
-            }
-            else
-            {
-              MessageBox.Show("Du har redan en båt på den platsen");
-            }
-        }
+
     }
 }
