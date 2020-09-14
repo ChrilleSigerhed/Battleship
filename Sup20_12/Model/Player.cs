@@ -9,7 +9,7 @@ namespace Sup20_12
     {
         public string Nickname { get; set; }
         public int Id { get; set; }
-        public int NumberOfGamesPlayed { get; set; }
+        public long NumberOfGamesPlayed { get; set; }
 
         public Player(string nickname)
         {

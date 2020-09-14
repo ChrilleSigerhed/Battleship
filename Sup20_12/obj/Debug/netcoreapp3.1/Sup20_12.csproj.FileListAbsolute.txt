@@ -6,7 +6,6 @@ C:\Users\gusta\source\repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Sup20_12.r
 C:\Users\gusta\source\repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Sup20_12.dll
 C:\Users\gusta\source\repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Sup20_12.pdb
 C:\Users\gusta\source\repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Npgsql.dll
-C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.csprojAssemblyReference.cache
 C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\MainWindow.g.cs
 C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\TESTING\TestWindow.g.cs
 C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\ChoosePlayerPage.g.cs
@@ -100,3 +99,4 @@ C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.c
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.dll
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.pdb
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.genruntimeconfig.cache
+C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.csprojAssemblyReference.cache

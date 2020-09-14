@@ -217,7 +217,7 @@ namespace Sup20_12
                             Player myPlayer = new Player("")
                             {
                                 Nickname = (string)reader["nickname"],
-                                NumberOfGamesPlayed = (int)reader["games_played"]
+                                NumberOfGamesPlayed = (long)reader["games_played"]
                             };
                             myThreeFrequentPlayers.Add(myPlayer);
                         }

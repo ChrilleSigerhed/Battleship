@@ -64,8 +64,11 @@
                 <Button Style="{StaticResource BtnNewGame}"  Command="{Binding ChoosePlayerPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
                 <Button Style="{StaticResource BtnHighscore}" Command="{Binding HighscorePageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
                 <Button Style="{StaticResource BtnQuitGame}" Command="{Binding ExitGameCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
+                
+                
+                
             </StackPanel>
         </Grid>
         <Frame x:Name="Main" Content="{Binding SelectedPage}"/>
-    </Grid>
+    </Grid> 
 </Page>

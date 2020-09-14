@@ -20,7 +20,7 @@ namespace Sup20_12
             PlayerId = playerId;
         }
 
-        public override string ToString()
+        /*public override string ToString()
         {
             return $"{Nickname}{AddTabToHighscoreList()}{NumberOfMoves}";
         }
@@ -31,6 +31,6 @@ namespace Sup20_12
                 return "\t\t\t";
             else
                 return "\t\t";
-        }
+        }*/
     }
 }

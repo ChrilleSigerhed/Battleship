@@ -25,15 +25,6 @@ namespace Sup20_12.View
         {
             InitializeComponent();
             DataContext = new ChoosePlayerViewModel();
-            
         }
-
-
-        private void btnAddPlayer_Click(object sender, RoutedEventArgs e)
-        {
-            Player player = new Player(txtNickname.Text);
-            DbConnection.AddNewPlayerToDb(player);
-        }
-
     }
 }

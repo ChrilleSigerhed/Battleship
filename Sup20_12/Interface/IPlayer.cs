@@ -8,6 +8,6 @@ namespace Sup20_12
     {
         string Nickname { get; set; }
         public int Id { get; set; }
-        public int NumberOfGamesPlayed { get; set; }
+        public long NumberOfGamesPlayed { get; set; }
     }
 }
