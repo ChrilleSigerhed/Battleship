@@ -18,7 +18,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/Images/bgHighscorePage.jpg" Stretch="Uniform"/>
+            <ImageBrush ImageSource="/Assets/Images/bgHighscorePage.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
         
         <Grid>
@@ -30,12 +30,14 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="135px"/>
+                <RowDefinition Height="150px"/>
+                <RowDefinition Height="105px"/>
+                <RowDefinition Height="55px"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="34"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1" Grid.Column="1">
+            <Grid Grid.Row="3" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="40px"/>
@@ -44,8 +46,8 @@
             </Grid>
 
 
-            <ListBox ItemsSource="{Binding HighScoreLst}" Grid.Column="2" Grid.Row="1" FontSize="20" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Auto" />
-            <!--<ListBox Grid.Row="0" Grid.Column="1"></ListBox>-->
+            <TextBox Text="{Binding HighScoreLst}" Grid.Column="2" Grid.Row="1" FontSize="16" BorderThickness="1" ScrollViewer.VerticalScrollBarVisibility="auto" />
+            <TextBox Text="{Binding FrequentPlayers}" Grid.Column="2" Grid.Row="3" FontSize="16" BorderThickness="1" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
 
 
 

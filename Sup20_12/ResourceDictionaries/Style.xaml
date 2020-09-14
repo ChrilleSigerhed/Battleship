@@ -12,7 +12,7 @@
                     <Border>
                         <Grid>
                             <Grid>
-                                <Image x:Name="buttonImage" Source="/Assets/Images/btnNewGameImg.png" Stretch="UniformToFill" />
+                                <Image x:Name ="buttonImage" Source="/Assets/Images/btnNewGameImg.png" Stretch="UniformToFill" />
                                 <ContentPresenter Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Grid>
                         </Grid>

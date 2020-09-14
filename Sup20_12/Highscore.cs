@@ -22,7 +22,15 @@ namespace Sup20_12
 
         public override string ToString()
         {
-            return $"{Nickname}                  {NumberOfMoves}";
+            return $"{Nickname}{AddTabToHighscoreList()}{NumberOfMoves}";
+        }
+
+        private string AddTabToHighscoreList()
+        {
+            if (Nickname.Length < 10)
+                return "\t\t\t";
+            else
+                return "\t\t";
         }
     }
 }

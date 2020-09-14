@@ -14,19 +14,25 @@ namespace Sup20_12
         public int MyProperty { get; set; }
 
         public List<Highscore> HighScoreLst { get; set; }
+        public List<Player> FrequentPlayers { get; set; }
 
         public ICommand GoToMainPage { get; set; }
 
         public HighScoreViewModel()
         {
             GetHighScores();
+            GetFrequentPlayers();
             GoToMainPage = new RelayCommand(GoToMain);
         }
 
         public void GetHighScores()
         {
-            HighScoreLst = (List<Highscore>)DbConnection.GetAllHighscores();
-            
+            HighScoreLst = (List<Highscore>)DbConnection.GetThreeWinnersFromHighscore();
+        }
+
+        private void GetFrequentPlayers()
+        {
+            //FrequentPlayers = (List<Player>)DbConnection.GetThreeFrequentPlayersFromHighscore();
         }
 
         public void GoToMain()
@@ -34,6 +40,5 @@ namespace Sup20_12
             MainWindow win = (MainWindow)Application.Current.MainWindow;
             win.frame.Content = new MainMenuPage();
         }
-
     }
 }
