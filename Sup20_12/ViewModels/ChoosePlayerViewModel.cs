@@ -10,26 +10,33 @@ namespace Sup20_12.ViewModels
 {
     public class ChoosePlayerViewModel : BaseViewModel
     {
-        public string Nickname { get; set; } = "Nickname";
-        public Player Player{ get; set; }
+        #region Properties
+        public Player Player { get; set; }
         public string PlayerName { get; set; }
         public ICommand AddNewPlayerCommand { get; set; }
         public ICommand StartGameWithSelectedPlayerCommand { get; set; }
-        public List<Player> Players { get; set; }
-        private GameEngine NewGame { get; set; }
+        public ICommand GoToMainPageCommand { get; set; }
+        public List<Player> ListOfPlayersInListBox { get; set; }
+
+        public MainWindow win = (MainWindow)Application.Current.MainWindow;
+        #endregion
 
         public ChoosePlayerViewModel()
         {
             StartGameWithSelectedPlayerCommand = new RelayCommand(SelectedPlayerForGame);
             AddNewPlayerCommand = new RelayCommand(AddPlayer);
+            GoToMainPageCommand = new RelayCommand(GoToMainPage);
             GetPlayersFromDb();
         }
         public void AddPlayer()
         {
-            Player = new Player(this.PlayerName);
-            ClearTextBox();
-            DbConnection.AddNewPlayerToDb(Player);
-            UpdatePlayerList();
+            if(this.PlayerName != null)
+            {
+                Player = new Player(this.PlayerName);
+                ClearTextBox();
+                DbConnection.AddNewPlayerToDb(Player);
+                UpdatePlayerList();
+            }
         }
         public void UpdatePlayerList()
         {
@@ -41,15 +48,17 @@ namespace Sup20_12.ViewModels
         }
         public void GetPlayersFromDb()
         {
-           Players = (List<Player>)DbConnection.GetPlayers();
+           ListOfPlayersInListBox = (List<Player>)DbConnection.GetPlayers();
         }
         public void SelectedPlayerForGame()
         {
-            //NewGame = new GameEngine();
-            MainWindow win = (MainWindow)Application.Current.MainWindow;
-            win.frame.Content = new GameWindowPage();
             
-            
+            this.Player = Player;
+            win.frame.Content = new GameWindowPage(Player);
+        }
+        public void GoToMainPage()
+        {
+            win.frame.Content = new MainMenuPage();
         }
     }
 }

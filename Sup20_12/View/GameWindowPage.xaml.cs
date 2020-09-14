@@ -19,10 +19,13 @@ namespace Sup20_12.View
     /// </summary>
     public partial class GameWindowPage : Page
     {
-        public GameWindowPage()
+        public Player Player { get; set; }
+        
+        public GameWindowPage(Player player)
         {
+            Player = player;
             InitializeComponent();
-            DataContext = new GameWindowViewModel();
+            DataContext = new GameWindowViewModel(Player);
         }
     }
 }
