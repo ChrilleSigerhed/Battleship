@@ -19,6 +19,7 @@ namespace Sup20_12
         public MainWindow win = (MainWindow)Application.Current.MainWindow;
         public MainMenuViewModel()
         {
+            DbConnection.InitializeDbPooling();
             ChoosePlayerPageCommand = new RelayCommand(GoToChoosePlayer);
             HighscorePageCommand = new RelayCommand(GoToHighscorePage);
             ExitGameCommand = new RelayCommand(ExitGame);

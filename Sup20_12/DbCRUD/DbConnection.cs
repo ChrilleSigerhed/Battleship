@@ -11,8 +11,16 @@ namespace Sup20_12
 
 
         private static string connectionString = ConfigurationManager.ConnectionStrings["universitetet"].ConnectionString;
-        //CRUD
 
+        //CRUD
+        public static void InitializeDbPooling()
+        {
+            NpgsqlConnection conn = new NpgsqlConnection(connectionString);
+            conn.Open();
+            conn.Close();
+        }
+
+       
         //KLAR
         #region CREATE
 
@@ -126,6 +134,7 @@ namespace Sup20_12
                         }
                     }
                 }
+                conn.Close();
                 return LstAllPlayers;
             }
         }
@@ -133,7 +142,6 @@ namespace Sup20_12
         private static Highscore GetOneHighscoreById(int id)
         {
             string stmt = $"SELECT id, win, date, number_of_moves, player_id FROM highscore WHERE id = {id};";
-
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -156,6 +164,7 @@ namespace Sup20_12
                         }
                     }
                 }
+                conn.Close();
                 return myHighscore;
             }
         }
@@ -191,15 +200,14 @@ namespace Sup20_12
                         }
                     }
                 }
+                conn.Close();
                 return LstAllHighscore;
             }
-
         }
 
         public static IEnumerable<Player> GetThreeFrequentPlayersFromHighscore()
         {
             string stmt = $"SELECT player.nickname, COUNT(*) as games_played FROM player INNER JOIN highscore on player.id = highscore.player_id GROUP BY player.nickname, player.id ORDER BY COUNT(*) DESC LIMIT 3";
-
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
@@ -223,6 +231,7 @@ namespace Sup20_12
                         }
                     }
                 }
+                conn.Close();
                 return myThreeFrequentPlayers;
             }
         }
