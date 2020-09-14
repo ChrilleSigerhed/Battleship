@@ -160,9 +160,9 @@ namespace Sup20_12
             }
         }
 
-        public static IEnumerable<Highscore> GetAllHighscores()
+        public static IEnumerable<Highscore> GetThreeWinnersFromHighscore()
         {
-            string stmt = $"SELECT highscore.id, win, date, number_of_moves, player_id, player.nickname FROM highscore INNER JOIN player on highscore.player_id = player.id ORDER BY number_of_moves ASC";
+            string stmt = $"SELECT highscore.id, win, date, number_of_moves, player_id, player.nickname FROM highscore INNER JOIN player on highscore.player_id = player.id WHERE win = true ORDER BY number_of_moves ASC LIMIT 3";
 
 
             using (var conn = new NpgsqlConnection(connectionString))
@@ -195,9 +195,40 @@ namespace Sup20_12
             }
 
         }
+
+        public static IEnumerable<Player> GetThreeFrequentPlayersFromHighscore()
+        {
+            string stmt = $"SELECT player.nickname, COUNT(*) as games_played FROM player INNER JOIN highscore on player.id = highscore.player_id GROUP BY player.nickname, player.id ORDER BY COUNT(*) DESC LIMIT 3";
+
+
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                //Highscore myHighscore = null;
+                List<Player> myThreeFrequentPlayers = new List<Player>();
+                conn.Open();
+
+                using (var command = new NpgsqlCommand(stmt, conn))
+                {
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Player myPlayer = new Player("")
+                            {
+                                Nickname = (string)reader["nickname"],
+                                NumberOfGamesPlayed = (long)reader["games_played"]
+                            };
+                            myThreeFrequentPlayers.Add(myPlayer);
+                        }
+                    }
+                }
+                return myThreeFrequentPlayers;
+            }
+        }
         #endregion
 
-        
+
         #region UPDATE
 
         public static Player UpdateHighscoreListToDb(Player myPlayer)

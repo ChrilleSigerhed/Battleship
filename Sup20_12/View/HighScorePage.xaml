@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sup20_12.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800" 
+      
       Title="HighScorePage">
 
     <Page.Resources>
@@ -18,24 +18,26 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/Images/bgHighscorePage.jpg" Stretch="Uniform"/>
+            <ImageBrush ImageSource="/Assets/Images/bgHighscorePage.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
         
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="195"/>
                 <ColumnDefinition Width="240"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="45"/>
+                <ColumnDefinition Width="315"/>
+                <ColumnDefinition Width="60"/>
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="135px"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="148px"/>
+                <RowDefinition Height="100px"/>
+                <RowDefinition Height="60px"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1" Grid.Column="1">
+            <Grid Grid.Row="3" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="40px"/>
@@ -44,8 +46,8 @@
             </Grid>
 
 
-            <ListBox ItemsSource="{Binding HighScoreLst}" Grid.Column="2" Grid.Row="1" FontSize="20" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Auto" />
-            <!--<ListBox Grid.Row="0" Grid.Column="1"></ListBox>-->
+            <TextBox Text="{Binding HighScoreLst}" Grid.Column="2" Grid.Row="1" FontSize="16" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" IsEnabled="False"/>
+            <TextBox Text="{Binding FrequentPlayers}" Grid.Column="2" Grid.Row="3" FontSize="16" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Disabled" IsEnabled="False" />
 
 
 

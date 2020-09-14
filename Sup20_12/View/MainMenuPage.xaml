@@ -34,17 +34,25 @@
 
             </Grid.RowDefinitions>
 
-            <Image x:Name="MyImage" Source="/Assets/Images/animationFire.png" Width="250" Height="250" Grid.Row="1" VerticalAlignment="Bottom" RenderTransformOrigin="0.7,0.7" Opacity="0">
+            <Image x:Name="MyImage" Source="/Assets/Images/animationFire.png" Width="250" Height="250" Grid.Row="1" VerticalAlignment="Bottom" RenderTransformOrigin="0.7,0.7" Opacity="0.2">
                 <Image.RenderTransform>
-                    <ScaleTransform x:Name="ImageScale" ScaleX="0.5" ScaleY="0.5" />
+                    <ScaleTransform x:Name="ImageScale" ScaleX="0.2" ScaleY="0.2" />
                 </Image.RenderTransform>
                 <Image.Triggers>
                     <EventTrigger RoutedEvent="FrameworkElement.Loaded">
                         <BeginStoryboard>
                             <Storyboard>
                                 <DoubleAnimation Storyboard.TargetProperty="Opacity" BeginTime="0:0:0.30" To="0.75" Duration="0:0:1.55"/>
-                                <DoubleAnimation Storyboard.TargetName="ImageScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" To="1.1" BeginTime="0:0:0.30" Duration="0:0:2.35" AutoReverse="false" />
-                                <DoubleAnimation Storyboard.TargetName="ImageScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" To="1.1" BeginTime="0:0:0.30" Duration="0:0:2.35" AutoReverse="false"/>
+                                <DoubleAnimation Storyboard.TargetName="ImageScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" To="1.3" BeginTime="0:0:0.30" Duration="0:0:2.35" AutoReverse="false">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="ImageScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" To="1.3" BeginTime="0:0:0.30" Duration="0:0:2.35" AutoReverse="false">
+                                    <DoubleAnimation.EasingFunction>
+                                        <CircleEase EasingMode="EaseOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger> 
@@ -56,8 +64,11 @@
                 <Button Style="{StaticResource BtnNewGame}"  Command="{Binding ChoosePlayerPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
                 <Button Style="{StaticResource BtnHighscore}" Command="{Binding HighscorePageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
                 <Button Style="{StaticResource BtnQuitGame}" Command="{Binding ExitGameCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
+                
+                
+                
             </StackPanel>
         </Grid>
         <Frame x:Name="Main" Content="{Binding SelectedPage}"/>
-    </Grid>
+    </Grid> 
 </Page>
