@@ -1,13 +1,12 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Controls;
 
 namespace Sup20_12.ViewModels
 {
-   public class ComputerGrid 
+    interface IGameEngine
     {
-       
 
     }
 }

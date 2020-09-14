@@ -8,12 +8,118 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GameWindowPage">
 
-    <Grid Background="White">
-        <StackPanel>
-            <Button Height="50"  Content="{Binding PlayerButtonsInGame[0]}" Command="{Binding ShootCanon}" CommandParameter="1"></Button>
-            <Button Height="50"  Content="{Binding PlayerButtonsInGame[1]}" Command="{Binding ShootCanon}" CommandParameter="2"></Button>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Images/bgGameWindowPage.jpg" Stretch="Uniform"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="113*"/>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="257*" />
+            <RowDefinition Height="54*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="183*"/>
+            <ColumnDefinition Width="261*"/>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="259*"/>
+            <ColumnDefinition Width="51*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="54"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="53"/>
+            </Grid.RowDefinitions>
+            <Button Content="{Binding PlayerButtonsInGame[0]}" Command="{Binding PlaceShip}" CommandParameter="0" Grid.Column="0" Grid.Row="0"/>
+            <Button Content="{Binding PlayerButtonsInGame[1]}" Command="{Binding PlaceShip}" CommandParameter="1" Grid.Column="1" Grid.Row="0"/>
+            <Button Content="{Binding PlayerButtonsInGame[2]}" Command="{Binding PlaceShip}" CommandParameter="2" Grid.Column="2" Grid.Row="0"/>
+            <Button Content="{Binding PlayerButtonsInGame[3]}" Command="{Binding PlaceShip}" CommandParameter="3" Grid.Column="3" Grid.Row="0"/>
+            <Button Content="{Binding PlayerButtonsInGame[4]}" Command="{Binding PlaceShip}" CommandParameter="4" Grid.Column="4" Grid.Row="0"/>
+            <Button Content="{Binding PlayerButtonsInGame[5]}" Command="{Binding PlaceShip}" CommandParameter="5" Grid.Column="0" Grid.Row="1"/>
+            <Button Content="{Binding PlayerButtonsInGame[6]}" Command="{Binding PlaceShip}" CommandParameter="6" Grid.Column="1" Grid.Row="1"/>
+            <Button Content="{Binding PlayerButtonsInGame[7]}" Command="{Binding PlaceShip}" CommandParameter="7" Grid.Column="2" Grid.Row="1"/>
+            <Button Content="{Binding PlayerButtonsInGame[8]}" Command="{Binding PlaceShip}" CommandParameter="8" Grid.Column="3" Grid.Row="1"/>
+            <Button Content="{Binding PlayerButtonsInGame[9]}" Command="{Binding PlaceShip}" CommandParameter="9" Grid.Column="4" Grid.Row="1"/>
+            <Button Content="{Binding PlayerButtonsInGame[10]}" Command="{Binding PlaceShip}" CommandParameter="10" Grid.Column="0" Grid.Row="2"/>
+            <Button Content="{Binding PlayerButtonsInGame[11]}" Command="{Binding PlaceShip}" CommandParameter="11" Grid.Column="1" Grid.Row="2"/>
+            <Button Content="{Binding PlayerButtonsInGame[12]}" Command="{Binding PlaceShip}" CommandParameter="12" Grid.Column="2" Grid.Row="2"/>
+            <Button Content="{Binding PlayerButtonsInGame[13]}" Command="{Binding PlaceShip}" CommandParameter="13" Grid.Column="3" Grid.Row="2"/>
+            <Button Content="{Binding PlayerButtonsInGame[14]}" Command="{Binding PlaceShip}" CommandParameter="14" Grid.Column="4" Grid.Row="2"/>
+            <Button Content="{Binding PlayerButtonsInGame[15]}" Command="{Binding PlaceShip}" CommandParameter="15" Grid.Column="0" Grid.Row="3"/>
+            <Button Content="{Binding PlayerButtonsInGame[16]}" Command="{Binding PlaceShip}" CommandParameter="16" Grid.Column="1" Grid.Row="3"/>
+            <Button Content="{Binding PlayerButtonsInGame[17]}" Command="{Binding PlaceShip}" CommandParameter="17" Grid.Column="2" Grid.Row="3"/>
+            <Button Content="{Binding PlayerButtonsInGame[18]}" Command="{Binding PlaceShip}" CommandParameter="18" Grid.Column="3" Grid.Row="3"/>
+            <Button Content="{Binding PlayerButtonsInGame[19]}" Command="{Binding PlaceShip}" CommandParameter="19" Grid.Column="4" Grid.Row="3"/>
+            <Button Content="{Binding PlayerButtonsInGame[20]}" Command="{Binding PlaceShip}" CommandParameter="20" Grid.Column="0" Grid.Row="4"/>
+            <Button Content="{Binding PlayerButtonsInGame[21]}" Command="{Binding PlaceShip}" CommandParameter="21" Grid.Column="1" Grid.Row="4"/>
+            <Button Content="{Binding PlayerButtonsInGame[22]}" Command="{Binding PlaceShip}" CommandParameter="22" Grid.Column="2" Grid.Row="4"/>
+            <Button Content="{Binding PlayerButtonsInGame[23]}" Command="{Binding PlaceShip}" CommandParameter="23" Grid.Column="3" Grid.Row="4"/>
+            <Button Content="{Binding PlayerButtonsInGame[24]}" Command="{Binding PlaceShip}" CommandParameter="24" Grid.Column="4" Grid.Row="4"/>
+        </Grid>
+        
+
+        <Grid Grid.Row="2" Grid.Column="3">
+         
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="53*"/>
+                    <ColumnDefinition Width="53*"/>
+                    <ColumnDefinition Width="53*"/>
+                    <ColumnDefinition Width="53*"/>
+                    <ColumnDefinition Width="53"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="54"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="54"/>
+                </Grid.RowDefinitions>
+            <Button Content="{Binding ComputerButtonsInGame[0], FallbackValue=ok}" Command="{Binding CheckIfShip}" CommandParameter="0" Grid.Column="0" Grid.Row="0" FontSize="10"/>
+            <Button Content="{Binding ComputerButtonsInGame[1]}" Command="{Binding CheckIfShip}" CommandParameter="1" Grid.Column="1" Grid.Row="0"/>
+            <Button Content="{Binding ComputerButtonsInGame[2]}" Command="{Binding CheckIfShip}" CommandParameter="2" Grid.Column="2" Grid.Row="0"/>
+            <Button Content="{Binding ComputerButtonsInGame[3]}" Command="{Binding CheckIfShip}" CommandParameter="3" Grid.Column="3" Grid.Row="0"/>
+            <Button Content="{Binding ComputerButtonsInGame[4]}" Command="{Binding CheckIfShip}" CommandParameter="4" Grid.Column="4" Grid.Row="0"/>
+            <Button Content="{Binding ComputerButtonsInGame[5]}" Command="{Binding CheckIfShip}" CommandParameter="5" Grid.Column="0" Grid.Row="1"/>
+            <Button Content="{Binding ComputerButtonsInGame[6]}" Command="{Binding CheckIfShip}" CommandParameter="6" Grid.Column="1" Grid.Row="1"/>
+            <Button Content="{Binding ComputerButtonsInGame[7]}" Command="{Binding CheckIfShip}" CommandParameter="7" Grid.Column="2" Grid.Row="1"/>
+            <Button Content="{Binding ComputerButtonsInGame[8]}" Command="{Binding CheckIfShip}" CommandParameter="8" Grid.Column="3" Grid.Row="1"/>
+            <Button Content="{Binding ComputerButtonsInGame[9]}" Command="{Binding CheckIfShip}" CommandParameter="9" Grid.Column="4" Grid.Row="1"/>
+            <Button Content="{Binding ComputerButtonsInGame[10]}" Command="{Binding CheckIfShip}" CommandParameter="10" Grid.Column="0" Grid.Row="2"/>
+            <Button Content="{Binding ComputerButtonsInGame[11]}" Command="{Binding CheckIfShip}" CommandParameter="11" Grid.Column="1" Grid.Row="2"/>
+            <Button Content="{Binding ComputerButtonsInGame[12]}" Command="{Binding CheckIfShip}" CommandParameter="12" Grid.Column="2" Grid.Row="2"/>
+            <Button Content="{Binding ComputerButtonsInGame[13]}" Command="{Binding CheckIfShip}" CommandParameter="13" Grid.Column="3" Grid.Row="2"/>
+            <Button Content="{Binding ComputerButtonsInGame[14]}" Command="{Binding CheckIfShip}" CommandParameter="14" Grid.Column="4" Grid.Row="2"/>
+            <Button Content="{Binding ComputerButtonsInGame[15]}" Command="{Binding CheckIfShip}" CommandParameter="15" Grid.Column="0" Grid.Row="3"/>
+            <Button Content="{Binding ComputerButtonsInGame[16]}" Command="{Binding CheckIfShip}" CommandParameter="16" Grid.Column="1" Grid.Row="3"/>
+            <Button Content="{Binding ComputerButtonsInGame[17]}" Command="{Binding CheckIfShip}" CommandParameter="17" Grid.Column="2" Grid.Row="3"/>
+            <Button Content="{Binding ComputerButtonsInGame[18]}" Command="{Binding CheckIfShip}" CommandParameter="18" Grid.Column="3" Grid.Row="3"/>
+            <Button Content="{Binding ComputerButtonsInGame[19]}" Command="{Binding CheckIfShip}" CommandParameter="19" Grid.Column="4" Grid.Row="3"/>
+            <Button Content="{Binding ComputerButtonsInGame[20]}" Command="{Binding CheckIfShip}" CommandParameter="20" Grid.Column="0" Grid.Row="4"/>
+            <Button Content="{Binding ComputerButtonsInGame[21]}" Command="{Binding CheckIfShip}" CommandParameter="21" Grid.Column="1" Grid.Row="4"/>
+            <Button Content="{Binding ComputerButtonsInGame[22]}" Command="{Binding CheckIfShip}" CommandParameter="22" Grid.Column="2" Grid.Row="4"/>
+            <Button Content="{Binding ComputerButtonsInGame[23]}" Command="{Binding CheckIfShip}" CommandParameter="23" Grid.Column="3" Grid.Row="4"/>
+            <Button Content="{Binding ComputerButtonsInGame[24]}" Command="{Binding CheckIfShip}" CommandParameter="24" Grid.Column="4" Grid.Row="4"/>
+        </Grid>
+
+        
+
+        <!--<StackPanel>
+            <Button Height="50"  Content="{Binding PlayerButtonsInGame[0]}" Command="{Binding ShootCanon}" CommandParameter="0"></Button>
+            <Button Height="50"  Content="{Binding PlayerButtonsInGame[1]}" Command="{Binding ShootCanon}" CommandParameter="1"></Button>
             <Button Height="50"  Content="{Binding PlayerButtonsInGame[2], FallbackValue=1}" Command="{Binding ShootCanon}" CommandParameter="1"></Button>
             <Button Height="50"  Content="{Binding PlayerButtonsInGame[3], FallbackValue=2}" Command="{Binding ShootCanon}" CommandParameter="2"></Button>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </Page>
