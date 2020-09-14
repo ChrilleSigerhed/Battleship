@@ -68,7 +68,7 @@ namespace Sup20_12.ViewModels
                 ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
                 if(gameEngine.HasWon() == true)
                 {
-                    gameEngine.AddNewHighScore(Player.Id);
+                    gameEngine.AddNewHighscoreWin(Player.Id);
                     MessageBoxResult result = MessageBox.Show($"Grattis {Player.Nickname} du vann, vill du spela igen?", "Avsluta", MessageBoxButton.YesNo);
                     switch (result)
                     {
@@ -95,6 +95,7 @@ namespace Sup20_12.ViewModels
                 PlayerButtonsInGame[shoot].HitOrMiss = "Träff";
                 if(gameEngine.HasLost() == true)
                 {
+                    gameEngine.AddNewHighscoreLost(Player.Id);
                     MessageBoxResult result = MessageBox.Show($"Ops {Player.Nickname}, du förlorade... mot en dator... vill du försöka igen?", "Avsluta", MessageBoxButton.YesNo);
                     switch (result)
                     {

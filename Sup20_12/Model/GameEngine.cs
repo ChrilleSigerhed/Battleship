@@ -131,9 +131,14 @@ namespace Sup20_12.ViewModels
                 return false;
             }
         }
-        public void AddNewHighScore(int playerId)
+        public void AddNewHighscoreWin(int playerId)
         {
             NewHighscore = new Highscore(true, NumberOfMoves, playerId );
+            DbConnection.AddOneHighscoreToDb(NewHighscore);
+        }
+        public void AddNewHighscoreLost(int playerId)
+        {
+            NewHighscore = new Highscore(false, NumberOfMoves, playerId);
             DbConnection.AddOneHighscoreToDb(NewHighscore);
         }
 
