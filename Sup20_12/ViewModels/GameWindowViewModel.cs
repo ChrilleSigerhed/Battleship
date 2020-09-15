@@ -26,6 +26,7 @@ namespace Sup20_12.ViewModels
         public MainWindow win = (MainWindow)Application.Current.MainWindow;
         public GameEngine gameEngine { get; set; } = new GameEngine();
         public Player Player { get; set; }
+        public bool PlayerTurn { get; set; } = true;
         #endregion 
         public GameWindowViewModel(Player player)
         {
@@ -51,41 +52,47 @@ namespace Sup20_12.ViewModels
             }
             else
             {
-                MessageBox.Show("Du har placerat ut alla skepp. Spelet kan nu börja!");
+                MessageBox.Show("Du har redan placerat ett skepp där");
             }
         }
         
         public void PlayerCheckHitOrMiss(string button)
         {
-            int buttonToNumber = int.Parse(button);
-            if(ComputerButtonsInGame[buttonToNumber].HitOrMiss != "")
+            if (PlayerTurn == true)
             {
-                MessageBox.Show("Du har redan skjutit där!");
-            }
 
-            else if(gameEngine.PlayerCheckHitOrMiss(button, ComputerShips) == true)
-            {
-                ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
-                Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
-                if (gameEngine.HasWon() == true)
+                int buttonToNumber = int.Parse(button);
+                if(ComputerButtonsInGame[buttonToNumber].HitOrMiss != "")
                 {
-                    gameEngine.AddNewHighscoreWin(Player.Id);
-                    MessageBoxResult result = MessageBox.Show($"Grattis {Player.Nickname} du vann, vill du spela igen?", "Avsluta", MessageBoxButton.YesNo);
-                    switch (result)
+                    MessageBox.Show("Du har redan skjutit där!");
+                }
+
+                else if(gameEngine.PlayerCheckHitOrMiss(button, ComputerShips) == true)
+                {
+                    ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
+                    PlayerTurn = false;
+                    Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
+                    if (gameEngine.HasWon() == true)
                     {
-                        case MessageBoxResult.Yes:
-                            win.frame.Content = new GameWindowPage(Player);
-                            break;
-                        case MessageBoxResult.No:
-                            win.frame.Content = new MainMenuPage();
-                            break;
+                        gameEngine.AddNewHighscoreWin(Player.Id);
+                        MessageBoxResult result = MessageBox.Show($"Grattis {Player.Nickname} du vann, vill du spela igen?", "Avsluta", MessageBoxButton.YesNo);
+                        switch (result)
+                        {
+                            case MessageBoxResult.Yes:
+                                win.frame.Content = new GameWindowPage(Player);
+                                break;
+                            case MessageBoxResult.No:
+                                win.frame.Content = new MainMenuPage();
+                                break;
+                        }
                     }
                 }
-            }
-            else
-            {
-                ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
-                Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
+                else
+                {
+                    ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
+                    PlayerTurn = false;
+                    Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
+                }
             }
         }
         public void ComputerHitOrMiss()
@@ -94,6 +101,7 @@ namespace Sup20_12.ViewModels
             if(gameEngine.ComputerCheckHitOrMiss(shoot.ToString(), PlayerShips) == true)
             {
                 PlayerButtonsInGame[shoot].HitOrMiss = "Träff";
+                PlayerTurn = true;
                 if(gameEngine.HasLost() == true)
                 {
                     gameEngine.AddNewHighscoreLost(Player.Id);
@@ -118,7 +126,8 @@ namespace Sup20_12.ViewModels
             else
             {
                 PlayerButtonsInGame[shoot].HitOrMiss = "Miss";
+                PlayerTurn = true;
             }
         }
-    }
+   }
 }
