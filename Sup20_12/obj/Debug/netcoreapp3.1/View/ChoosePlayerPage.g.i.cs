@@ -69,7 +69,7 @@ namespace Sup20_12.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Sup20_12;V1.0.0.0;component/view/chooseplayerpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Sup20_12;component/view/chooseplayerpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\View\ChoosePlayerPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

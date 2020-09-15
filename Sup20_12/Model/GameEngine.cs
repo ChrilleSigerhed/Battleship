@@ -102,7 +102,7 @@ namespace Sup20_12.ViewModels
             Random random = new Random();
             int numberFromRandom = random.Next(0, 24);
 
-            while (PlayerButtonsInGame[numberFromRandom].HitOrMiss == "Träff" || PlayerButtonsInGame[numberFromRandom].HitOrMiss == "Miss") // Ful lösning
+            while (PlayerButtonsInGame[numberFromRandom].HitOrMiss == "Träff" || PlayerButtonsInGame[numberFromRandom].HitOrMiss == "Miss") // Ful lösning 
             {
                 numberFromRandom = random.Next(0, 24);
             }
