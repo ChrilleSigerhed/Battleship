@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Fonts\STENCIL.TTF" />
     <None Remove="Assets\Images\animationFire.png" />
     <None Remove="Assets\Images\bgChoosePlayerPage.jpg" />
     <None Remove="Assets\Images\bgGameWindowPage.jpg" />
@@ -36,6 +37,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Assets\Fonts\STENCIL.TTF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Assets\Images\animationFire.png" />
     <Resource Include="Assets\Images\bgChoosePlayerPage.jpg" />
     <Resource Include="Assets\Images\bgGameWindowPage.jpg" />
