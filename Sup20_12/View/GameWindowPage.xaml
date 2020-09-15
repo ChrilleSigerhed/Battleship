@@ -13,8 +13,8 @@
             <ImageBrush ImageSource="/Assets/Images/bgGameWindowPage.jpg" Stretch="Uniform"/>
         </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="113*"/>
-            <RowDefinition Height="26*"/>
+            <RowDefinition Height="120*"/>
+            <RowDefinition Height="19*"/>
             <RowDefinition Height="257*" />
             <RowDefinition Height="54*"/>
         </Grid.RowDefinitions>
@@ -26,6 +26,14 @@
             <ColumnDefinition Width="259*"/>
             <ColumnDefinition Width="51*"/>
         </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Label Content="{Binding Player.Nickname}" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="3">
+            <Label Content="Computer" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        </Grid>
+
 
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -68,24 +76,24 @@
             <Button Content="{Binding PlayerButtonsInGame[23].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="23" Grid.Column="3" Grid.Row="4"/>
             <Button Content="{Binding PlayerButtonsInGame[24].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="24" Grid.Column="4" Grid.Row="4"/>
         </Grid>
-        
 
-        <Grid Grid.Row="2" Grid.Column="3">
-         
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="53*"/>
-                    <ColumnDefinition Width="53*"/>
-                    <ColumnDefinition Width="53*"/>
-                    <ColumnDefinition Width="53*"/>
-                    <ColumnDefinition Width="53"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="54"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="54"/>
-                </Grid.RowDefinitions>
+
+        <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="47,0,0,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="54"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="54"/>
+            </Grid.RowDefinitions>
             <Button Content="{Binding ComputerButtonsInGame[0].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="0" Grid.Column="0" Grid.Row="0"/>
             <Button Content="{Binding ComputerButtonsInGame[1].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="1" Grid.Column="1" Grid.Row="0"/>
             <Button Content="{Binding ComputerButtonsInGame[2].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="2" Grid.Column="2" Grid.Row="0"/>
@@ -113,7 +121,7 @@
             <Button Content="{Binding ComputerButtonsInGame[24].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="24" Grid.Column="4" Grid.Row="4"/>
         </Grid>
 
-        
+
 
         <!--<StackPanel>
             <Button Height="50"  Content="{Binding PlayerButtonsInGame[0]}" Command="{Binding ShootCanon}" CommandParameter="0"></Button>
