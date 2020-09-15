@@ -52,7 +52,7 @@ namespace Sup20_12.ViewModels
             }
             else
             {
-                MessageBox.Show("Du har placerat ut alla skepp. Spelet kan nu börja!");
+                MessageBox.Show("Du har redan placerat ett skepp där");
             }
         }
         
