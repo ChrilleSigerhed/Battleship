@@ -8,13 +8,16 @@ namespace Sup20_12.ViewModels
 {
    public class GameGrid : BaseViewModel
     {
-        public int Id { get; set; }
+        public int Longitude { get; set; }
+        public int Latitude { get; set; }
         public string HitOrMiss { get; set; }
+        public bool IsClicked { get; set; } = false;
 
-        public GameGrid(int id, string hitormiss)
+        public GameGrid(int longitude, int latitude, string hitormiss)
         {
-            this.Id = id;
-            this.HitOrMiss = hitormiss;
+            Longitude = longitude;
+            Latitude = latitude;
+            HitOrMiss = hitormiss;
         }
         public override string ToString()
         {
