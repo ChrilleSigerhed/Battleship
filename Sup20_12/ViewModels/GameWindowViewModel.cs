@@ -66,7 +66,8 @@ namespace Sup20_12.ViewModels
             else if(gameEngine.PlayerCheckHitOrMiss(button, ComputerShips) == true)
             {
                 ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
-                if(gameEngine.HasWon() == true)
+                Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
+                if (gameEngine.HasWon() == true)
                 {
                     gameEngine.AddNewHighscoreWin(Player.Id);
                     MessageBoxResult result = MessageBox.Show($"Grattis {Player.Nickname} du vann, vill du spela igen?", "Avsluta", MessageBoxButton.YesNo);
@@ -84,7 +85,7 @@ namespace Sup20_12.ViewModels
             else
             {
                 ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
-                Task.Delay(1000).ContinueWith(t => ComputerHitOrMiss());
+                Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
             }
         }
         public void ComputerHitOrMiss()
@@ -100,10 +101,16 @@ namespace Sup20_12.ViewModels
                     switch (result)
                     {
                         case MessageBoxResult.Yes:
-                            win.frame.Content = new GameWindowPage(Player);
+                            Application.Current.Dispatcher.Invoke((Action)delegate
+                            {
+                                win.frame.Content = new GameWindowPage(Player);
+                            });
                             break;
                         case MessageBoxResult.No:
-                            win.frame.Content = new MainMenuPage();
+                            Application.Current.Dispatcher.Invoke((Action)delegate
+                            {
+                                win.frame.Content = new MainMenuPage();
+                            });
                             break;
                     }
                 }
