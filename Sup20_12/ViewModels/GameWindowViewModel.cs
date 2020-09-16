@@ -25,7 +25,7 @@ namespace Sup20_12.ViewModels
         public MainWindow win = (MainWindow)Application.Current.MainWindow;
         public GameEngine gameEngine { get; set; } = new GameEngine();
         public Player Player { get; set; }
-        public bool PlayerTurn { get; set; } = true;
+        public bool PlayerTurn { get; set; } = false;
         #endregion 
         public GameWindowViewModel(Player player)
         {
@@ -38,6 +38,7 @@ namespace Sup20_12.ViewModels
       
         public void PlayerPlaceShips(string button)
         {
+            
             int buttonToNumber = int.Parse(button);
             if (gameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Latitude, PlayerButtonsInGame[buttonToNumber].Longitude) == true)
             {
@@ -45,6 +46,7 @@ namespace Sup20_12.ViewModels
                 PlayerButtonsInGame[buttonToNumber].HitOrMiss = "Skepp";
                 if(Ships == 0)
                 {
+                    PlayerTurn = true;
                     MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen");
                 }
             }
