@@ -27,5 +27,17 @@ namespace Sup20_12.View
             InitializeComponent();
             DataContext = new GameWindowViewModel(Player);
         }
+        private void Target_Drop(object sender, DragEventArgs e)
+        {
+            Style colorBrush = (Style)e.Data.GetData(typeof(Style));
+            Target.Style = colorBrush;
+        }
+
+        private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Button r = (Button)sender;
+            DataObject dataObject = new DataObject(r.Style);
+            DragDrop.DoDragDrop(r, dataObject, DragDropEffects.Move);
+        }
     }
 }

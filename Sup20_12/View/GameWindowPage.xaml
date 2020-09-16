@@ -7,6 +7,13 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GameWindowPage">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ResourceDictionaries/Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
 
     <Grid>
         <Grid.Background>
@@ -26,7 +33,8 @@
             <ColumnDefinition Width="259*"/>
             <ColumnDefinition Width="51*"/>
         </Grid.ColumnDefinitions>
-
+        <Button Style="{StaticResource BtnAddPlayer}"  Grid.Column="0" Grid.Row="2" MouseLeftButtonDown="Button_MouseLeftButtonDown" > </Button>
+        <Button x:Name="Target" AllowDrop="True" Height="50" Width="50" Background="White" Grid.Column="0" Grid.Row="3" Drop="Target_Drop" ></Button>
         <Grid Grid.Row="0" Grid.Column="1">
             <Label Content="{Binding Player.Nickname}" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
         </Grid>
@@ -50,6 +58,10 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="53"/>
             </Grid.RowDefinitions>
+
+
+
+            
             <Button Content="{Binding PlayerButtonsInGame[0].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="0" Grid.Column="0" Grid.Row="0"/>
             <Button Content="{Binding PlayerButtonsInGame[1].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="1" Grid.Column="1" Grid.Row="0"/>
             <Button Content="{Binding PlayerButtonsInGame[2].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="2" Grid.Column="2" Grid.Row="0"/>
