@@ -85,9 +85,9 @@ namespace Sup20_12.ViewModels
             NumberOfMoves++;
             foreach (var c in ComputerShipsList)
             {
-                if(c.Latitude == longitude && c.Latitude == latitude)
+                if(c.Longitude == longitude && c.Latitude == latitude)
                 {
-                    ComputerShipsList.Remove(c);
+                    ComputerShipsList.Remove(c); 
                     return true;
                 }
             }
