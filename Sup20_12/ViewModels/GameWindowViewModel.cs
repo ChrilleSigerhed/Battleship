@@ -18,7 +18,7 @@ namespace Sup20_12.ViewModels
         public ICommand PlaceShip { get; set; }
         public ICommand CheckIfShip { get; set; }
         public ICommand GoToMainPageCommand { get; set; }
-        public int ShowNumberOfMoves { get; set; }
+        public int ShowNumberOfMoves { get; set; } 
         public string ShowPlayerNickname { get; set; }
         public int Ships { get; set; } = 3;
         public ObservableCollection<GameGrid> PlayerButtonsInGame { get; set; }  = new ObservableCollection<GameGrid>();
@@ -66,7 +66,7 @@ namespace Sup20_12.ViewModels
             
             if (PlayerTurn == true)
             {
-                ShowNumberOfMoves = gameEngine.NumberOfMoves;
+                
                 int buttonToNumber = int.Parse(button);
                 if (PlayerShootsFired.Contains(buttonToNumber))
                 {
@@ -74,7 +74,7 @@ namespace Sup20_12.ViewModels
                 }
                 else if(gameEngine.PlayerCheckHitOrMiss(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude) == true)
                 {
-                   // ShowNumberOfMoves = gameEngine.NumberOfMoves;
+                    ShowNumberOfMoves = gameEngine.NumberOfMoves;
                     ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
                     PlayerShootsFired.Add(buttonToNumber);
                     PlayerTurn = false;
@@ -97,6 +97,7 @@ namespace Sup20_12.ViewModels
                 }
                 else
                 {
+                    ShowNumberOfMoves = gameEngine.NumberOfMoves;
                     PlayerShootsFired.Add(buttonToNumber);
                     ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
                     PlayerTurn = false;
