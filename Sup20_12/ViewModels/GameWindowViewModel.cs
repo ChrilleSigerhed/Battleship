@@ -39,6 +39,7 @@ namespace Sup20_12.ViewModels
             CheckIfShip = new RelayPropertyCommand(PlayerCheckHitOrMiss);
             GoToMainPageCommand = new RelayCommand(AskIfExitCurrentRound);
             ShowPlayerNickname = player.Nickname;
+            ShowNumberOfMoves = gameEngine.NumberOfMoves;
         }
       
         public void PlayerPlaceShips(string button)
@@ -56,9 +57,7 @@ namespace Sup20_12.ViewModels
                 }
             }
             else
-            {
                 MessageBox.Show("Du har redan placerat ett skepp där");
-            }
         }
         
         public void PlayerCheckHitOrMiss(string button)
@@ -66,7 +65,7 @@ namespace Sup20_12.ViewModels
             
             if (PlayerTurn == true)
             {
-
+                ShowNumberOfMoves = gameEngine.NumberOfMoves;
                 int buttonToNumber = int.Parse(button);
                 if (PlayerShootsFired.Contains(buttonToNumber))
                 {
@@ -77,6 +76,7 @@ namespace Sup20_12.ViewModels
                     ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
                     PlayerShootsFired.Add(buttonToNumber);
                     PlayerTurn = false;
+                    
                     Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
                     if (gameEngine.HasWon() == true)
                     {
@@ -100,7 +100,6 @@ namespace Sup20_12.ViewModels
                     Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
                 }
             }
-            
         }
         public void ComputerHitOrMiss()
         {
