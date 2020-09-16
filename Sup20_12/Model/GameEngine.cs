@@ -103,7 +103,7 @@ namespace Sup20_12.ViewModels
             return false;
            
         }
-        public bool ComputerCheckHitOrMiss(int latitude, int longitude)
+        public bool ComputerCheckHitOrMiss(int longitude , int latitude)
         {
             for (int i = 0; i < PlayerShipsList.Count; i++)
             {
