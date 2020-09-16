@@ -35,24 +35,24 @@ namespace Sup20_12.ViewModels
             Player = player;
             ComputerButtonsInGame = gameEngine.ComputerButtonsInGame;
             PlayerButtonsInGame = gameEngine.PlayerButtonsInGame;
-            SwitchShip = new RelayCommand(SwitchShipsToPlace);
-            PlaceShip = new RelayPropertyCommand(PlayerPlaceDestroyer);
+            //SwitchShip = new RelayCommand(SwitchShipsToPlace);
+            PlaceShip = new RelayPropertyCommand(PlaceShips);
             CheckIfShip = new RelayPropertyCommand(PlayerCheckHitOrMiss);
         }
         
-        public void SwitchShipsToPlace()
+        public void PlaceShips(string button)
         {
             if(ShipSelected == "Destroyer")
             {
-                PlaceShip = new RelayPropertyCommand(PlayerPlaceBattleShip);
+                PlayerPlaceDestroyer(button);
                 ShipSelected = "BattleShip";
             } else if (ShipSelected == "BattleShip")
             {
-                PlaceShip = new RelayPropertyCommand(PlayerPlaceSubmarineShip);
+                PlayerPlaceBattleShip(button);
                 ShipSelected = "Submarine";
             } else if (ShipSelected == "Submarine")
             {
-                PlaceShip = new RelayPropertyCommand(PlayerPlaceDestroyer);
+                PlayerPlaceSubmarineShip(button);
                 ShipSelected = "Destroyer";
             }
         }

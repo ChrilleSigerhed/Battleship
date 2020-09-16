@@ -28,7 +28,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <Button Content="{Binding ShipSelected, Mode=TwoWay}"  Grid.Row="2" Grid.Column="0" Height="50" VerticalAlignment="Top" Margin="30" Command="{Binding SwitchShip}"/>
+        
         <Grid Grid.Row="0" Grid.Column="1">
             <Label Content="{Binding Player.Nickname}" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
         </Grid>
