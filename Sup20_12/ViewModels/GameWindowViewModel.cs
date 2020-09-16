@@ -44,9 +44,8 @@ namespace Sup20_12.ViewModels
       
         public void PlayerPlaceShips(string button)
         {
-            
             int buttonToNumber = int.Parse(button);
-            if (gameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Latitude, PlayerButtonsInGame[buttonToNumber].Longitude) == true)
+            if (gameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Longitude , PlayerButtonsInGame[buttonToNumber].Latitude) == true)
             {
                 Ships--;
                 PlayerButtonsInGame[buttonToNumber].HitOrMiss = "Skepp";
@@ -57,7 +56,9 @@ namespace Sup20_12.ViewModels
                 }
             }
             else
+            {
                 MessageBox.Show("Du har redan placerat ett skepp där");
+            }
         }
         
         public void PlayerCheckHitOrMiss(string button)
@@ -73,6 +74,7 @@ namespace Sup20_12.ViewModels
                 }
                 else if(gameEngine.PlayerCheckHitOrMiss(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude) == true)
                 {
+                   // ShowNumberOfMoves = gameEngine.NumberOfMoves;
                     ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
                     PlayerShootsFired.Add(buttonToNumber);
                     PlayerTurn = false;
@@ -95,6 +97,7 @@ namespace Sup20_12.ViewModels
                 }
                 else
                 {
+                    PlayerShootsFired.Add(buttonToNumber);
                     ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
                     PlayerTurn = false;
                     Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
