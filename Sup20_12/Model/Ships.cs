@@ -4,8 +4,11 @@ using System.Text;
 
 namespace Sup20_12.ViewModels
 {
-    class Ships
+    public class Ships
     {
-        public int ShipId { get; set; }
+
+        public int Longitude { get; set; }
+        public int Latitude { get; set; }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using Sup20_12.ViewModels.Base;
+﻿using Sup20_12.Model;
+using Sup20_12.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,13 +11,12 @@ namespace Sup20_12.ViewModels
     public class GameEngine : BaseViewModel
     {
         #region Properties
-        public Dictionary<string, bool> PlayerShips { get; set; } = new Dictionary<string, bool>();
-        public Dictionary<string, bool> ComputerShips { get; set; } = new Dictionary<string, bool>();
+        public List<Ships> PlayerShipsList { get; set; } = new List<Ships>();
+        public List<Ships> ComputerShipsList { get; set; } = new List<Ships>();
         public ObservableCollection<GameGrid> PlayerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
         public ObservableCollection<GameGrid> ComputerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
         public Highscore NewHighscore { get; set; }
         public int NumberOfMoves { get; set; } = 0;
-        public int PlayerShipsToPlace { get; set; } = 3;
         #endregion
         public GameEngine()
         {
@@ -25,12 +25,11 @@ namespace Sup20_12.ViewModels
             FillComputerShips();
         }
         
-        public bool FillPlayerShips(string button)
+        public bool FillPlayerShips(int longitude, int latitude)
         {
-            if(PlayerShipsToPlace != 0 && !PlayerShips.ContainsKey(button))
+            if(PlayerShipsList.Count < 3)
             {
-                PlayerShips.Add(button, true);
-                PlayerShipsToPlace--;
+                PlayerShipsList.Add(new Submarine(longitude, latitude));
                 return true;
             }
             else
@@ -40,77 +39,102 @@ namespace Sup20_12.ViewModels
         }
         public void FillComputerShips()
         {
-            Random random;
-            int numberFromRandom;
-            for (int i = 0; i < 3; i++)
+            Random random = new Random() ;
+            int longitude;
+            int latitude;
+            longitude = random.Next(0, 5);
+            latitude = random.Next(0, 5);
+            ComputerShipsList.Add(new Submarine(longitude, latitude));
+            for (int i = 0; i < 2; i++)
             {
-                random = new Random();
-                numberFromRandom = random.Next(0, 24);
-                while (ComputerShips.ContainsKey(numberFromRandom.ToString()))
+                longitude = random.Next(0, 5);
+                latitude = random.Next(0, 5);
+                while (ComputerShipsList[i].Latitude == longitude && ComputerShipsList[i].Longitude == latitude)
                 {
-                    numberFromRandom = random.Next(0, 24);
+                    longitude = random.Next(0, 5);
+                    latitude = random.Next(0, 5);
                 }
-                ComputerShips.Add(numberFromRandom.ToString(), true);
+                ComputerShipsList.Add(new Submarine(longitude, latitude));
             }
 
         }
         public void CreatePlayerGrid()
         {
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 5; i++)
             {
-                GameGrid square = new GameGrid(i, "");
-                PlayerButtonsInGame.Add(square);
+                for (int j = 0; j < 5; j++)
+                {
+                   GameGrid square = new GameGrid(i,j,""); 
+                   PlayerButtonsInGame.Add(square);
+                }
             }
         }
         public void CreateComputerGrid()
         {
-            for (int i = 0; i < 25; i++)
+            for (int i = 0; i < 5; i++)
             {
-                GameGrid square = new GameGrid(i, "");
-                ComputerButtonsInGame.Add(square);
+                for (int j = 0; j < 5; j++)
+                {
+                    GameGrid square = new GameGrid(i, j, "");
+                    ComputerButtonsInGame.Add(square);
+                }
             }
         }
-        public bool PlayerCheckHitOrMiss(string button, Dictionary<string, bool> ButtonsAndShips)
+        public bool PlayerCheckHitOrMiss(int longitude, int latitude)
         {
             NumberOfMoves++;
-            if (ComputerShips.ContainsKey(button.ToString()))
+            foreach (var c in ComputerShipsList)
             {
-                ComputerShips.Remove(button);
-                return true;
-
+                if(c.Longitude == longitude && c.Latitude == latitude)
+                {
+                    ComputerShipsList.Remove(c); 
+                    return true;
+                }
             }
-            else
-            {
-                return false;
-            }
+            return false;
+           
         }
-        public bool ComputerCheckHitOrMiss(string button, Dictionary<string, bool> ButtonsAndShips)
+        public bool ComputerCheckHitOrMiss(int latitude, int longitude)
         {
-            if (PlayerShips.ContainsKey(button.ToString()))
+            for (int i = 0; i < PlayerShipsList.Count; i++)
             {
-                PlayerShips.Remove(button);
-                return true;
-
+                if (PlayerShipsList[i].Longitude == longitude && PlayerShipsList[i].Latitude == latitude)
+                {
+                    PlayerShipsList.RemoveAt(i);
+                    return true;
+                }
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
-        public int ComputerRandomShotFired(ObservableCollection<GameGrid> PlayerButtonsInGame)
+        public int[] ComputerRandomShotFired()
         {
             Random random = new Random();
-            int numberFromRandom = random.Next(0, 24);
+            int longitude = random.Next(0, 5);
+            int latitude = random.Next(0, 5);
 
-            while (PlayerButtonsInGame[numberFromRandom].HitOrMiss == "Träff" || PlayerButtonsInGame[numberFromRandom].HitOrMiss == "Miss") // Ful lösning 
+            while (HasGridBeenShot(PlayerButtonsInGame, longitude, latitude) == true)
             {
-                numberFromRandom = random.Next(0, 24);
+                longitude = random.Next(0, 5);
+                latitude = random.Next(0, 5);
             }
-            return numberFromRandom;
+                int[] coordinates = { longitude, latitude };
+                return coordinates;
+        }
+
+        public bool HasGridBeenShot(ObservableCollection<GameGrid> gameGrid, int longitude, int latitude)
+        {
+            foreach (var c in gameGrid)
+            {
+                if (c.Latitude == latitude && c.Longitude == longitude && c.IsClicked == true)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         public bool HasWon()
         {
-            if(ComputerShips.Count == 0)
+            if(ComputerShipsList.Count == 0)
             {
                 
                 return true;
@@ -122,7 +146,7 @@ namespace Sup20_12.ViewModels
         }
         public bool HasLost()
         {
-            if (PlayerShips.Count == 0)
+            if (PlayerShipsList.Count == 0)
             {
                 return true;
             }

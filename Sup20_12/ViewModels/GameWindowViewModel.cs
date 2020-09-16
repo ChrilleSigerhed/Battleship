@@ -23,20 +23,18 @@ namespace Sup20_12.ViewModels
         public int Ships { get; set; } = 3;
         public ObservableCollection<GameGrid> PlayerButtonsInGame { get; set; }  = new ObservableCollection<GameGrid>();
         public ObservableCollection<GameGrid> ComputerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
-        public Dictionary<string, bool> PlayerShips { get; set; } = new Dictionary<string, bool>();
-        public Dictionary<string, bool> ComputerShips { get; set; } = new Dictionary<string, bool>();
+        public List<int> PlayerShootsFired { get; set; } = new List<int>();
 
         public MainWindow win = (MainWindow)Application.Current.MainWindow;
         public GameEngine gameEngine { get; set; } = new GameEngine();
         public Player Player { get; set; }
-        public bool PlayerTurn { get; set; } = true;
+        public bool PlayerTurn { get; set; } = false;
         #endregion 
         public GameWindowViewModel(Player player)
         {
             Player = player;
             ComputerButtonsInGame = gameEngine.ComputerButtonsInGame;
             PlayerButtonsInGame = gameEngine.PlayerButtonsInGame;
-            ComputerShips = gameEngine.ComputerShips;
             PlaceShip = new RelayPropertyCommand(PlayerPlaceShips);
             CheckIfShip = new RelayPropertyCommand(PlayerCheckHitOrMiss);
             GoToMainPageCommand = new RelayCommand(AskIfExitCurrentRound);
@@ -45,13 +43,15 @@ namespace Sup20_12.ViewModels
       
         public void PlayerPlaceShips(string button)
         {
-            if (gameEngine.FillPlayerShips(button) == true)
+            
+            int buttonToNumber = int.Parse(button);
+            if (gameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Latitude, PlayerButtonsInGame[buttonToNumber].Longitude) == true)
             {
                 Ships--;
-                int buttonToNumber = int.Parse(button);
                 PlayerButtonsInGame[buttonToNumber].HitOrMiss = "Skepp";
                 if(Ships == 0)
                 {
+                    PlayerTurn = true;
                     MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen");
                 }
             }
@@ -63,18 +63,19 @@ namespace Sup20_12.ViewModels
         
         public void PlayerCheckHitOrMiss(string button)
         {
+            
             if (PlayerTurn == true)
             {
 
                 int buttonToNumber = int.Parse(button);
-                if(ComputerButtonsInGame[buttonToNumber].HitOrMiss != "")
+                if (PlayerShootsFired.Contains(buttonToNumber))
                 {
                     MessageBox.Show("Du har redan skjutit där!");
                 }
-
-                else if(gameEngine.PlayerCheckHitOrMiss(button, ComputerShips) == true)
+                else if(gameEngine.PlayerCheckHitOrMiss(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude) == true)
                 {
                     ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
+                    PlayerShootsFired.Add(buttonToNumber);
                     PlayerTurn = false;
                     Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
                     if (gameEngine.HasWon() == true)
@@ -99,13 +100,22 @@ namespace Sup20_12.ViewModels
                     Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
                 }
             }
+            
         }
         public void ComputerHitOrMiss()
         {
-            int shoot = gameEngine.ComputerRandomShotFired(PlayerButtonsInGame);
-            if(gameEngine.ComputerCheckHitOrMiss(shoot.ToString(), PlayerShips) == true)
+            int[] shoot = gameEngine.ComputerRandomShotFired();
+
+            if(gameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]) == true)
             {
-                PlayerButtonsInGame[shoot].HitOrMiss = "Träff";
+                foreach (var c in PlayerButtonsInGame)
+                {
+                    if(c.Longitude == shoot[0] && c.Latitude == shoot[1])
+                    {
+                        c.HitOrMiss = "Träff!";
+                        c.IsClicked = true;
+                    }
+                }
                 PlayerTurn = true;
                 if(gameEngine.HasLost() == true)
                 {
@@ -130,7 +140,14 @@ namespace Sup20_12.ViewModels
             }
             else
             {
-                PlayerButtonsInGame[shoot].HitOrMiss = "Miss";
+                foreach (var c in PlayerButtonsInGame)
+                {
+                    if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
+                    {
+                        c.HitOrMiss = "Miss!";
+                        c.IsClicked = true;
+                    }
+                }
                 PlayerTurn = true;
             }
         }
