@@ -2,6 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Sup20_12.ResourceDictionaries">
 
+    <!-- Text i Labels -->
+    <Style x:Key="fontz">
+        <Setter Property="TextElement.FontFamily" Value="/Assets/Fonts/#STENCIL" />
+    </Style>
+    
     <!-- TextBoxar-->
     <Style TargetType="TextBox">
         <Setter Property="Template">
