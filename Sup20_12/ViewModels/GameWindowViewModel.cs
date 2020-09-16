@@ -17,6 +17,9 @@ namespace Sup20_12.ViewModels
         #region Properties
         public ICommand PlaceShip { get; set; }
         public ICommand CheckIfShip { get; set; }
+        public ICommand GoToMainPageCommand { get; set; }
+        public int ShowNumberOfMoves { get; set; }
+        public string ShowPlayerNickname { get; set; }
         public int Ships { get; set; } = 3;
         public ObservableCollection<GameGrid> PlayerButtonsInGame { get; set; }  = new ObservableCollection<GameGrid>();
         public ObservableCollection<GameGrid> ComputerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
@@ -34,6 +37,8 @@ namespace Sup20_12.ViewModels
             PlayerButtonsInGame = gameEngine.PlayerButtonsInGame;
             PlaceShip = new RelayPropertyCommand(PlayerPlaceShips);
             CheckIfShip = new RelayPropertyCommand(PlayerCheckHitOrMiss);
+            GoToMainPageCommand = new RelayCommand(AskIfExitCurrentRound);
+            ShowPlayerNickname = player.Nickname;
         }
       
         public void PlayerPlaceShips(string button)
@@ -146,5 +151,22 @@ namespace Sup20_12.ViewModels
                 PlayerTurn = true;
             }
         }
-   }
+
+        private void AskIfExitCurrentRound()
+        {
+            MessageBoxResult result = MessageBox.Show("Vill du verkligen avsluta pågående spel?", "Avsluta", MessageBoxButton.YesNo);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    GoToMainPage();
+                    break;
+                case MessageBoxResult.No:
+                    break;
+            }
+        }
+        private void GoToMainPage()
+        {
+            win.frame.Content = new MainMenuPage();
+        }
+    }
 }
