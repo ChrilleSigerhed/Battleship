@@ -17,6 +17,7 @@ namespace Sup20_12.ViewModels
         public ObservableCollection<GameGrid> ComputerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
         public Highscore NewHighscore { get; set; }
         public int NumberOfMoves { get; set; } = 0;
+        public int ShipsPlaced { get; set; } = 3;
         #endregion
         public GameEngine()
         {
@@ -24,12 +25,21 @@ namespace Sup20_12.ViewModels
             CreateComputerGrid();
             FillComputerShips();
         }
-        
-        public bool FillPlayerShips(int longitude, int latitude)
+
+        public bool FillPlayerDestroyer(int longitude, int latitude)
         {
-            if(PlayerShipsList.Count < 3)
+            if (ShipsPlaced > 0)
             {
-                PlayerShipsList.Add(new Submarine(longitude, latitude));
+                
+                for (int i = 0; i < PlayerShipsList.Count; i++)
+                {
+                    if (PlayerShipsList[i].Longitude.Contains(longitude) && PlayerShipsList[i].Latitude.Contains(latitude))
+                    {
+                        return false;
+                    }
+                }
+                ShipsPlaced--;
+                PlayerShipsList.Add(new Destroyer(longitude, latitude));
                 return true;
             }
             else
@@ -37,24 +47,97 @@ namespace Sup20_12.ViewModels
                 return false;
             }
         }
+        public bool FillPlayerBattleShip(int longitude, int latitude)
+        {
+            if (longitude != 0)
+            {
+                if (ShipsPlaced > 0)
+                {
+                    
+                    BattleShip battleship = new BattleShip(longitude, latitude, true);
+                    foreach (var c in PlayerShipsList)
+                    {
+                        foreach (var x in battleship.Longitude)
+                        {
+                            if (c.Longitude.Contains(x) && c.Latitude.Contains(latitude))
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                    ShipsPlaced--;
+                    PlayerShipsList.Add(battleship);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        public bool FillPlayerSubmarineShip(int longitude, int latitude)
+        {
+            if (longitude != 0 && longitude != 4)
+            {
+                if (ShipsPlaced > 0)
+                {
+                    
+                    SubmarineShip submarine = new SubmarineShip(longitude, latitude, true);
+                    foreach (var c in PlayerShipsList)
+                    {
+                        foreach (var x in submarine.Longitude)
+                        {
+                            if(c.Longitude.Contains(x) && c.Latitude.Contains(latitude))
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                    ShipsPlaced--;
+                    PlayerShipsList.Add(submarine);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+                return false;
+        }
         public void FillComputerShips()
         {
             Random random = new Random() ;
             int longitude;
             int latitude;
-            longitude = random.Next(0, 5);
-            latitude = random.Next(0, 5);
-            ComputerShipsList.Add(new Submarine(longitude, latitude));
+            longitude = random.Next(0, 4);
+            latitude = random.Next(0, 4);
+            ComputerShipsList.Add(new Destroyer(longitude, latitude));
             for (int i = 0; i < 2; i++)
             {
-                longitude = random.Next(0, 5);
-                latitude = random.Next(0, 5);
-                while (ComputerShipsList[i].Latitude == longitude && ComputerShipsList[i].Longitude == latitude)
+                if (i == 0)
                 {
-                    longitude = random.Next(0, 5);
-                    latitude = random.Next(0, 5);
+                longitude = random.Next(1, 4);
+                latitude = random.Next(0, 4);
+                while (ComputerShipsList[i].Latitude.Contains(longitude) && ComputerShipsList[i].Longitude.Contains(latitude))
+                {
+                    longitude = random.Next(1, 4);
+                    latitude = random.Next(0, 4);
                 }
-                ComputerShipsList.Add(new Submarine(longitude, latitude));
+                    ComputerShipsList.Add(new BattleShip(longitude, latitude, true));
+                }
+                else
+                {
+                    longitude = random.Next(1, 3);
+                    latitude = random.Next(0, 4);
+                    while (ComputerShipsList[i].Latitude.Contains(longitude) && ComputerShipsList[i].Longitude.Contains(latitude))
+                    {
+                        longitude = random.Next(1, 3);
+                        latitude = random.Next(0, 4);
+                    }
+                    ComputerShipsList.Add(new SubmarineShip(longitude, latitude, true));
+                }
             }
 
         }
@@ -83,26 +166,57 @@ namespace Sup20_12.ViewModels
         public bool PlayerCheckHitOrMiss(int longitude, int latitude)
         {
             NumberOfMoves++;
-            foreach (var c in ComputerShipsList)
+            //foreach (var c in ComputerShipsList)
+            //{
+            //    if(c.Longitude.Contains(longitude) && c.Latitude.Contains(latitude))
+            //    {
+            //        ComputerShipsList.Remove(c); 
+            //        return true;
+            //    }
+            //}
+            for (int i = 0; i < ComputerShipsList.Count; i++)
             {
-                if(c.Longitude == longitude && c.Latitude == latitude)
+                if (ComputerShipsList[i].Longitude.Contains(longitude) && ComputerShipsList[i].Latitude.Contains(latitude))
                 {
-                    ComputerShipsList.Remove(c); 
+                    ComputerShipsList[i].HitsTaken++;
+                    if (ComputerShipsList[i].HitsTaken == 3 && ComputerShipsList[i].ShipType == "SubmarineShip")
+                    {
+                        ComputerShipsList.RemoveAt(i);
+                    }
+                    else if (ComputerShipsList[i].HitsTaken == 2 && ComputerShipsList[i].ShipType == "BattleShip")
+                    {
+                        ComputerShipsList.RemoveAt(i);
+                    } else if (ComputerShipsList[i].HitsTaken == 1 && ComputerShipsList[i].ShipType == "Destroyer")
+                    {
+                        ComputerShipsList.RemoveAt(i);
+                    }
                     return true;
                 }
+
             }
             return false;
            
         }
-        public bool ComputerCheckHitOrMiss(int latitude, int longitude)
+        public bool ComputerCheckHitOrMiss(int longitude, int latitude)
         {
             for (int i = 0; i < PlayerShipsList.Count; i++)
             {
-                if (PlayerShipsList[i].Longitude == longitude && PlayerShipsList[i].Latitude == latitude)
+                if (PlayerShipsList[i].Longitude.Contains(longitude) && PlayerShipsList[i].Latitude.Contains(latitude))
                 {
+                    PlayerShipsList[i].HitsTaken++;
+                    if (PlayerShipsList[i].HitsTaken == 3 && PlayerShipsList[i].ShipType == "SubmarineShip")
+                    {
                     PlayerShipsList.RemoveAt(i);
+                    } else if (PlayerShipsList[i].HitsTaken == 2 && PlayerShipsList[i].ShipType == "BattleShip")
+                    {
+                        PlayerShipsList.RemoveAt(i);
+                    } else if (PlayerShipsList[i].HitsTaken == 1 && PlayerShipsList[i].ShipType == "Destroyer")
+                    {
+                        PlayerShipsList.RemoveAt(i);
+                    }
                     return true;
                 }
+                
             }
             return false;
         }

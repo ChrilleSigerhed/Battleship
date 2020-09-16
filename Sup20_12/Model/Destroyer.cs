@@ -5,14 +5,14 @@ using System.Text;
 
 namespace Sup20_12.Model
 {
-    class Submarine : Ships
+    public class Destroyer : Ships
     {
-
-        public Submarine(int longitude, int latitude)
+        public Destroyer(int longitude, int latitude)
         {
-            ShipType = "Submarine";
+            ShipType = "Destroyer";
+            HitsTaken = 0;
+            Longitude = new int[] { longitude };
             Latitude = new int[] { latitude };
-            Longitude = new int [] {longitude};
         }
     }
 }

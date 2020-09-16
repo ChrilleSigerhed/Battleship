@@ -17,6 +17,7 @@ namespace Sup20_12.ViewModels
         #region Properties
         public ICommand PlaceShip { get; set; }
         public ICommand CheckIfShip { get; set; }
+        public ICommand SwitchShip { get; set; }
         public int Ships { get; set; } = 3;
         public ObservableCollection<GameGrid> PlayerButtonsInGame { get; set; }  = new ObservableCollection<GameGrid>();
         public ObservableCollection<GameGrid> ComputerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
@@ -26,24 +27,89 @@ namespace Sup20_12.ViewModels
         public GameEngine gameEngine { get; set; } = new GameEngine();
         public Player Player { get; set; }
         public bool PlayerTurn { get; set; } = false;
+
+        public string ShipSelected { get; set; } = "Destroyer";
         #endregion 
         public GameWindowViewModel(Player player)
         {
             Player = player;
             ComputerButtonsInGame = gameEngine.ComputerButtonsInGame;
             PlayerButtonsInGame = gameEngine.PlayerButtonsInGame;
-            PlaceShip = new RelayPropertyCommand(PlayerPlaceShips);
+            SwitchShip = new RelayCommand(SwitchShipsToPlace);
+            PlaceShip = new RelayPropertyCommand(PlayerPlaceDestroyer);
             CheckIfShip = new RelayPropertyCommand(PlayerCheckHitOrMiss);
         }
-      
-        public void PlayerPlaceShips(string button)
+        
+        public void SwitchShipsToPlace()
+        {
+            if(ShipSelected == "Destroyer")
+            {
+                PlaceShip = new RelayPropertyCommand(PlayerPlaceBattleShip);
+                ShipSelected = "BattleShip";
+            } else if (ShipSelected == "BattleShip")
+            {
+                PlaceShip = new RelayPropertyCommand(PlayerPlaceSubmarineShip);
+                ShipSelected = "Submarine";
+            } else if (ShipSelected == "Submarine")
+            {
+                PlaceShip = new RelayPropertyCommand(PlayerPlaceDestroyer);
+                ShipSelected = "Destroyer";
+            }
+        }
+
+        public void PlayerPlaceDestroyer(string button)
+        {
+            int buttonToNumber = int.Parse(button);
+            if (gameEngine.FillPlayerDestroyer(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude) == true)
+            {
+                Ships--;
+
+                foreach (var c in gameEngine.PlayerShipsList)
+                {
+                    foreach (var x in PlayerButtonsInGame)
+                    {
+                        if (c.Latitude.Contains(x.Latitude) && c.Longitude.Contains(x.Longitude))
+                        {
+                            x.HitOrMiss = "Skepp";
+                        }
+                    }
+                }
+                {
+
+                }
+                if (Ships == 0)
+                {
+                    PlayerTurn = true;
+                    MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Du har redan placerat ett skepp där");
+            }
+        }
+
+        public void PlayerPlaceBattleShip(string button)
         {
             
             int buttonToNumber = int.Parse(button);
-            if (gameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Latitude, PlayerButtonsInGame[buttonToNumber].Longitude) == true)
+            if (gameEngine.FillPlayerBattleShip(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude) == true)
             {
                 Ships--;
-                PlayerButtonsInGame[buttonToNumber].HitOrMiss = "Skepp";
+                
+                foreach (var c in gameEngine.PlayerShipsList)
+                {
+                    foreach (var x in PlayerButtonsInGame)
+                    {
+                        if(c.Latitude.Contains(x.Latitude) && c.Longitude.Contains(x.Longitude))
+                        {
+                            x.HitOrMiss = "Skepp";
+                        }
+                    }
+                }
+                {
+
+                }
                 if(Ships == 0)
                 {
                     PlayerTurn = true;
@@ -55,7 +121,39 @@ namespace Sup20_12.ViewModels
                 MessageBox.Show("Du har redan placerat ett skepp där");
             }
         }
-        
+
+        public void PlayerPlaceSubmarineShip(string button)
+        {
+
+            int buttonToNumber = int.Parse(button);
+            if (gameEngine.FillPlayerSubmarineShip(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude) == true)
+            {
+                Ships--;
+
+                foreach (var c in gameEngine.PlayerShipsList)
+                {
+                    foreach (var x in PlayerButtonsInGame)
+                    {
+                        if (c.Latitude.Contains(x.Latitude) && c.Longitude.Contains(x.Longitude))
+                        {
+                            x.HitOrMiss = "Skepp";
+                        }
+                    }
+                }
+                {
+
+                }
+                if (Ships == 0)
+                {
+                    PlayerTurn = true;
+                    MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Du har redan placerat ett skepp där");
+            }
+        }
         public void PlayerCheckHitOrMiss(string button)
         {
             
@@ -72,7 +170,6 @@ namespace Sup20_12.ViewModels
                     ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
                     PlayerShootsFired.Add(buttonToNumber);
                     PlayerTurn = false;
-                    Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
                     if (gameEngine.HasWon() == true)
                     {
                         gameEngine.AddNewHighscoreWin(Player.Id);
@@ -87,6 +184,7 @@ namespace Sup20_12.ViewModels
                                 break;
                         }
                     }
+                    Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
                 }
                 else
                 {
@@ -111,7 +209,6 @@ namespace Sup20_12.ViewModels
                         c.IsClicked = true;
                     }
                 }
-                PlayerTurn = true;
                 if(gameEngine.HasLost() == true)
                 {
                     gameEngine.AddNewHighscoreLost(Player.Id);
@@ -132,6 +229,7 @@ namespace Sup20_12.ViewModels
                             break;
                     }
                 }
+                PlayerTurn = true;
             }
             else
             {
