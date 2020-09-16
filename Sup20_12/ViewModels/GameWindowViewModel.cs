@@ -97,6 +97,7 @@ namespace Sup20_12.ViewModels
                 }
                 else
                 {
+                    PlayerShootsFired.Add(buttonToNumber);
                     ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
                     PlayerTurn = false;
                     Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
