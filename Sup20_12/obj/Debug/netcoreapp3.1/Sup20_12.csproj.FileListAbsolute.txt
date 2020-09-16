@@ -137,3 +137,4 @@ C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.g
 C:\Users\gusta\source\repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Assets\Fonts\STENCIL.TTF
 C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12_Content.g.cs
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Assets\Fonts\STENCIL.TTF
+C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12_Content.g.cs

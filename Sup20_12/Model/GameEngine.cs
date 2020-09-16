@@ -17,6 +17,7 @@ namespace Sup20_12.ViewModels
         public ObservableCollection<GameGrid> ComputerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
         public Highscore NewHighscore { get; set; }
         public int NumberOfMoves { get; set; } = 0;
+        public int ShipsPlaced { get; set; } = 3;
         #endregion
         public GameEngine()
         {
@@ -27,9 +28,17 @@ namespace Sup20_12.ViewModels
         
         public bool FillPlayerShips(int longitude, int latitude)
         {
-            if(PlayerShipsList.Count < 3)
+            if(ShipsPlaced > 0)
             {
+                for (int i = 0; i < PlayerShipsList.Count; i++)
+                {
+                    if (PlayerShipsList[i].Longitude == longitude && PlayerShipsList[i].Latitude == latitude)
+                    {
+                        return false;
+                    }
+                }
                 PlayerShipsList.Add(new Submarine(longitude, latitude));
+                ShipsPlaced--;
                 return true;
             }
             else
