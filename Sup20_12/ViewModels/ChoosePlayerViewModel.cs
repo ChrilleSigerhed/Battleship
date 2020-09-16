@@ -30,7 +30,11 @@ namespace Sup20_12.ViewModels
         }
         public void AddPlayer()
         {
-            if(this.PlayerName != null)
+            if (this.PlayerName == null)
+                MessageBox.Show("Du har inte valt något nickname. Välj från listan eller skriv in ett nytt i rutan.");
+            else if (!DbConnection.IsPlayerNicknameUniqueInDb(this.PlayerName))
+                MessageBox.Show("Nickname finns redan. Om det är ditt kan du välja det från listan nedan, annars skriv in ett unikt nickname i rutan och klicka - Lägg till spelare");
+            else
             {
                 Player = new Player(this.PlayerName);
                 ClearTextBox();
@@ -38,6 +42,7 @@ namespace Sup20_12.ViewModels
                 UpdatePlayerList();
             }
         }
+        
         public void UpdatePlayerList()
         {
             GetPlayersFromDb();
@@ -52,7 +57,6 @@ namespace Sup20_12.ViewModels
         }
         public void SelectedPlayerForGame()
         {
-            
             this.Player = Player;
             win.frame.Content = new GameWindowPage(Player);
         }

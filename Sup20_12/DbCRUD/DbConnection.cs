@@ -100,10 +100,6 @@ namespace Sup20_12
 
         #region READ
 
-
-
-
-
         ///<summary>
         ///Returnerar en List på alla player objekt i databasen med nickname, id och List med Highscore.
         ///</summary>
@@ -211,7 +207,6 @@ namespace Sup20_12
 
             using (var conn = new NpgsqlConnection(connectionString))
             {
-                //Highscore myHighscore = null;
                 List<Player> myThreeFrequentPlayers = new List<Player>();
                 conn.Open();
 
@@ -233,6 +228,37 @@ namespace Sup20_12
                 }
                 conn.Close();
                 return myThreeFrequentPlayers;
+            }
+        }
+
+        public static bool IsPlayerNicknameUniqueInDb(string playerNickname)
+        {
+            bool result = false;
+            string playerNicknameFromDb = "";
+            playerNickname = playerNickname.ToUpper();
+            string stmt = $"SELECT nickname FROM player WHERE UPPER (nickname) = '{playerNickname}'";
+
+            using (var conn = new NpgsqlConnection(connectionString))
+            {
+                conn.Open();
+                using (var command = new NpgsqlCommand(stmt, conn))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            
+                            {
+                                playerNicknameFromDb = (string)reader["nickname"];
+                            };
+                        }
+                    }
+                }
+                conn.Close();
+
+                if (playerNicknameFromDb == "")
+                    result = true;
+                return result;
             }
         }
         #endregion
