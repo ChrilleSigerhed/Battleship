@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sup20_12.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,9 @@ namespace Sup20_12
     {
         public MainWindow()
         {
+
             InitializeComponent();
+
         }
     }
 }
