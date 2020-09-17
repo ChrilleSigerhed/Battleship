@@ -134,3 +134,4 @@ C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.c
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.dll
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.pdb
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.genruntimeconfig.cache
+C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12_Content.g.cs

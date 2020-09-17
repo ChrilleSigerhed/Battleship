@@ -20,23 +20,27 @@ namespace Sup20_12.View
     public partial class GameWindowPage : Page
     {
         public Player Player { get; set; }
-        
+        public GameWindowViewModel gameWindowViewModel { get; set; }
+
         public GameWindowPage(Player player)
         {
             Player = player;
             InitializeComponent();
-            DataContext = new GameWindowViewModel(Player);
+            gameWindowViewModel = new GameWindowViewModel(Player);
+            DataContext = gameWindowViewModel;
+           
         }
         private void Target_Drop(object sender, DragEventArgs e)
         {
-            Style colorBrush = (Style)e.Data.GetData(typeof(Style));
-            Target.Style = colorBrush;
+            Button button = (Button)sender;
+            gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
+            button.Background = Ship;
         }
 
         private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Button r = (Button)sender;
-            DataObject dataObject = new DataObject(r.Style);
+            Rectangle r = (Rectangle)sender;
+            DataObject dataObject = new DataObject(r);
             DragDrop.DoDragDrop(r, dataObject, DragDropEffects.Move);
         }
     }
