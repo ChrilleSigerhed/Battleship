@@ -33,18 +33,14 @@ namespace Sup20_12.ViewModels
                 for (int i = 0; i < PlayerShipsList.Count; i++)
                 {
                     if (PlayerShipsList[i].Longitude == longitude && PlayerShipsList[i].Latitude == latitude)
-                    {
                         return false;
-                    }
                 }
                 PlayerShipsList.Add(new Submarine(longitude, latitude));
                 ShipsPlaced--;
                 return true;
             }
             else
-            {
                 return false;
-            }
         }
         public void FillComputerShips()
         {
@@ -54,6 +50,7 @@ namespace Sup20_12.ViewModels
             longitude = random.Next(0, 5);
             latitude = random.Next(0, 5);
             ComputerShipsList.Add(new Submarine(longitude, latitude));
+
             for (int i = 0; i < 2; i++)
             {
                 longitude = random.Next(0, 5);
@@ -135,35 +132,25 @@ namespace Sup20_12.ViewModels
             foreach (var c in gameGrid)
             {
                 if (c.Latitude == latitude && c.Longitude == longitude && c.IsClicked == true)
-                {
                     return true;
-                }
             }
             return false;
         }
         public bool HasWon()
         {
             if(ComputerShipsList.Count == 0)
-            {
-                
                 return true;
-            }
             else
-            {
                 return false;
-            }
         }
         public bool HasLost()
         {
             if (PlayerShipsList.Count == 0)
-            {
                 return true;
-            }
             else
-            {
                 return false;
-            }
         }
+
         public void AddNewHighscoreWin(int playerId)
         {
             NewHighscore = new Highscore(true, NumberOfMoves, playerId );

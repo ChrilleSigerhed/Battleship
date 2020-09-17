@@ -38,7 +38,7 @@
 
   <ItemGroup>
     <Content Include="Assets\Fonts\STENCIL.TTF">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Assets\Images\animationFire.png" />
     <Resource Include="Assets\Images\bgChoosePlayerPage.jpg" />
@@ -61,6 +61,10 @@
     <Resource Include="Assets\Sounds\buttonDown.wav" />
     <Resource Include="Assets\Sounds\buttonUp.wav" />
     <Resource Include="Assets\Sounds\mouseOverButton.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\Images\boat\" />
   </ItemGroup>
 
 </Project>
