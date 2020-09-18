@@ -100,7 +100,15 @@ namespace Sup20_12.ViewModels
                 {
                     ShowNumberOfMoves = gameEngine.NumberOfMoves;
                     PlayerShootsFired.Add(buttonToNumber);
-                    ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
+                    if(gameEngine.PlayerCheckCloseOrNot(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude) == true)
+                    {
+                        ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Nära";
+                    }
+                    else
+                    {
+                      ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
+                    }
+
                     PlayerTurn = false;
                     Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
                 }
