@@ -141,6 +141,33 @@ namespace Sup20_12.ViewModels
             }
 
         }
+
+        public bool IsColliding(Ships ship)
+        {
+            for (int i = 0; i < ComputerShipsList.Count; i++)
+            {
+                for (int j = 0; j < ComputerShipsList[i].Longitude.Length; j++)
+                {
+                    for (int y = 0; y < ship.Longitude.Length; y++)
+                    {
+                        if(ComputerShipsList[i].Longitude[j] == ship.Longitude[y])
+                        {
+                            for (int a = 0; a < ComputerShipsList[i].Latitude.Length; a++)
+                            {
+                                for (int c = 0; c < ship.Latitude.Length; c++)
+                                {
+                                    if(ComputerShipsList[i].Latitude[a] == ship.Latitude[c])
+                                    {
+                                    return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
         public void CreatePlayerGrid()
         {
             for (int i = 0; i < 5; i++)
