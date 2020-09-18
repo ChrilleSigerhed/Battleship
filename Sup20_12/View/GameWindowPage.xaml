@@ -5,9 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sup20_12.View"
       mc:Ignorable="d" 
-      d:DesignHeight="440" d:DesignWidth="785"
+      d:DesignHeight="450" d:DesignWidth="800"
       Title="GameWindowPage">
-
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -16,154 +15,135 @@
         </ResourceDictionary>
     </Page.Resources>
 
-    <Grid x:Name="MainGrid">
+    <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/Images/bgGameWindowPage.jpg" Stretch="Uniform"/>
         </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120*"/>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="257*" />
+            <RowDefinition Height="54*"/>
+        </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="168"/>
-            <ColumnDefinition Width="278"/>
-            <ColumnDefinition Width="23"/>
-            <ColumnDefinition Width="278"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="183*"/>
+            <ColumnDefinition Width="261*"/>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="259*"/>
+            <ColumnDefinition Width="51*"/>
         </Grid.ColumnDefinitions>
+        <Button Style="{StaticResource BtnAddPlayer}"  Grid.Column="0" Grid.Row="2" MouseLeftButtonDown="Button_MouseLeftButtonDown" > </Button>
+        <Rectangle x:Name="button1" Height="23" Width="35" Grid.Column="0" Grid.Row="3" MouseLeftButtonDown="Button_MouseLeftButtonDown">
+            <Rectangle.Fill>
+                <ImageBrush x:Name="Ship" ImageSource="/Assets/Images/destroyerImg.png"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Label Content="{Binding Player.Nickname}" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="3">
+            <Label Content="Computer" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        </Grid>
 
-        <Grid x:Name="LeftGridHarbour" Grid.Column="0">
+
+        <Grid Grid.Row="2" Grid.Column="1" AllowDrop="True">
+            <Grid.Resources>
+                <ImageBrush x:Key="Ship" ImageSource="/Assets/Images/destroyerImg.png"/>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="130"/>
-                <!-- Rubrik -->
-                <RowDefinition Height="135"/>
-                <RowDefinition Height="35"/>
-                <RowDefinition Height="25"/>
-                <RowDefinition Height="68"/>
-                <!-- Antal drag -->
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="54"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="53"/>
             </Grid.RowDefinitions>
+
+            <Button Content="{Binding PlayerButtonsInGame[0].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="0" Grid.Column="0" Grid.Row="0" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[1].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="1" Grid.Column="1" Grid.Row="0" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[2].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="2" Grid.Column="2" Grid.Row="0" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[3].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="3" Grid.Column="3" Grid.Row="0" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[4].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="4" Grid.Column="4" Grid.Row="0" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[5].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="5" Grid.Column="0" Grid.Row="1" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[6].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="6" Grid.Column="1" Grid.Row="1" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[7].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="7" Grid.Column="2" Grid.Row="1" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[8].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="8" Grid.Column="3" Grid.Row="1" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[9].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="9" Grid.Column="4" Grid.Row="1" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[10].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="10" Grid.Column="0" Grid.Row="2" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[11].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="11" Grid.Column="1" Grid.Row="2" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[12].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="12" Grid.Column="2" Grid.Row="2" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[13].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="13" Grid.Column="3" Grid.Row="2" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[14].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="14" Grid.Column="4" Grid.Row="2" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[15].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="15" Grid.Column="0" Grid.Row="3" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[16].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="16" Grid.Column="1" Grid.Row="3" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[17].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="17" Grid.Column="2" Grid.Row="3" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[18].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="18" Grid.Column="3" Grid.Row="3" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[19].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="19" Grid.Column="4" Grid.Row="3" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[20].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="20" Grid.Column="0" Grid.Row="4" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[21].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="21" Grid.Column="1" Grid.Row="4" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[22].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="22" Grid.Column="2" Grid.Row="4" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[23].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="23" Grid.Column="3" Grid.Row="4" Drop="Target_Drop"/>
+            <Button Content="{Binding PlayerButtonsInGame[24].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="24" Grid.Column="4" Grid.Row="4" Drop="Target_Drop"/>
+        </Grid>
+
+
+        <Grid Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Margin="47,0,0,0">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="84"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53*"/>
+                <ColumnDefinition Width="53"/>
             </Grid.ColumnDefinitions>
-
-            <Label Name="RubrikHamn" Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" Content="Hamn" Style="{StaticResource fontz}" FontSize="20" Foreground="White" />
-            <Label Name="RubrikAntalDrag" Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" Content="Antal drag" Style="{StaticResource fontz}" FontSize="12" Foreground="White" Height="29" />
-                <Label Name="NumberOfMoves" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" Content="{Binding ShowNumberOfMoves}" Style="{StaticResource fontz}" FontSize="12"/>
-            <Button Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Width="120"  Style="{StaticResource BtnBack}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Command="{Binding GoToMainPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}"/>
-        </Grid>
-
-        <Grid x:Name="PlayerGameBoard" Grid.Column="1">
             <Grid.RowDefinitions>
-                <!-- Rubrik spelare -->
-                <RowDefinition Height="126"/>
-                <!-- Spelarbrädet -->
-                <RowDefinition Height="271"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="54"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="54"/>
             </Grid.RowDefinitions>
-
-            <Label Name="PlayerNickname" Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="{Binding ShowPlayerNickname}" Style="{StaticResource fontz}" FontSize="20" Foreground="White" />
-
-            <Grid Grid.Row="1" Grid.Column="1" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                <Button Content="{Binding PlayerButtonsInGame[0].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="0" Grid.Column="0" Grid.Row="0"/>
-                <Button Content="{Binding PlayerButtonsInGame[1].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="1" Grid.Column="1" Grid.Row="0"/>
-                <Button Content="{Binding PlayerButtonsInGame[2].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="2" Grid.Column="2" Grid.Row="0"/>
-                <Button Content="{Binding PlayerButtonsInGame[3].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="3" Grid.Column="3" Grid.Row="0"/>
-                <Button Content="{Binding PlayerButtonsInGame[4].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="4" Grid.Column="4" Grid.Row="0"/>
-                <Button Content="{Binding PlayerButtonsInGame[5].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="5" Grid.Column="0" Grid.Row="1"/>
-                <Button Content="{Binding PlayerButtonsInGame[6].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="6" Grid.Column="1" Grid.Row="1"/>
-                <Button Content="{Binding PlayerButtonsInGame[7].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="7" Grid.Column="2" Grid.Row="1"/>
-                <Button Content="{Binding PlayerButtonsInGame[8].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="8" Grid.Column="3" Grid.Row="1"/>
-                <Button Content="{Binding PlayerButtonsInGame[9].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="9" Grid.Column="4" Grid.Row="1"/>
-                <Button Content="{Binding PlayerButtonsInGame[10].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="10" Grid.Column="0" Grid.Row="2"/>
-                <Button Content="{Binding PlayerButtonsInGame[11].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="11" Grid.Column="1" Grid.Row="2"/>
-                <Button Content="{Binding PlayerButtonsInGame[12].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="12" Grid.Column="2" Grid.Row="2"/>
-                <Button Content="{Binding PlayerButtonsInGame[13].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="13" Grid.Column="3" Grid.Row="2"/>
-                <Button Content="{Binding PlayerButtonsInGame[14].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="14" Grid.Column="4" Grid.Row="2"/>
-                <Button Content="{Binding PlayerButtonsInGame[15].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="15" Grid.Column="0" Grid.Row="3"/>
-                <Button Content="{Binding PlayerButtonsInGame[16].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="16" Grid.Column="1" Grid.Row="3"/>
-                <Button Content="{Binding PlayerButtonsInGame[17].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="17" Grid.Column="2" Grid.Row="3"/>
-                <Button Content="{Binding PlayerButtonsInGame[18].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="18" Grid.Column="3" Grid.Row="3"/>
-                <Button Content="{Binding PlayerButtonsInGame[19].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="19" Grid.Column="4" Grid.Row="3"/>
-                <Button Content="{Binding PlayerButtonsInGame[20].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="20" Grid.Column="0" Grid.Row="4"/>
-                <Button Content="{Binding PlayerButtonsInGame[21].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="21" Grid.Column="1" Grid.Row="4"/>
-                <Button Content="{Binding PlayerButtonsInGame[22].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="22" Grid.Column="2" Grid.Row="4"/>
-                <Button Content="{Binding PlayerButtonsInGame[23].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="23" Grid.Column="3" Grid.Row="4"/>
-                <Button Content="{Binding PlayerButtonsInGame[24].HitOrMiss,Mode=TwoWay}" Command="{Binding PlaceShip}" CommandParameter="24" Grid.Column="4" Grid.Row="4"/>
-            </Grid>
-        </Grid>
-
-        <Grid x:Name="ComputerGameBoard" Grid.Column="3">
-            <Grid.RowDefinitions>
-                <!-- Rubrik Dator -->
-                <RowDefinition Height="126"/>
-                <!-- Datorbrädet -->
-                <RowDefinition Height="271"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Label Name="RubrikDator" Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="Sofistikerad Ai" Style="{StaticResource fontz}" FontSize="20" Foreground="White" />
-
-            <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                <Button Content="{Binding ComputerButtonsInGame[0].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="0" Grid.Column="0" Grid.Row="0"/>
-                <Button Content="{Binding ComputerButtonsInGame[1].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="1" Grid.Column="1" Grid.Row="0"/>
-                <Button Content="{Binding ComputerButtonsInGame[2].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="2" Grid.Column="2" Grid.Row="0"/>
-                <Button Content="{Binding ComputerButtonsInGame[3].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="3" Grid.Column="3" Grid.Row="0"/>
-                <Button Content="{Binding ComputerButtonsInGame[4].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="4" Grid.Column="4" Grid.Row="0"/>
-                <Button Content="{Binding ComputerButtonsInGame[5].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="5" Grid.Column="0" Grid.Row="1"/>
-                <Button Content="{Binding ComputerButtonsInGame[6].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="6" Grid.Column="1" Grid.Row="1"/>
-                <Button Content="{Binding ComputerButtonsInGame[7].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="7" Grid.Column="2" Grid.Row="1"/>
-                <Button Content="{Binding ComputerButtonsInGame[8].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="8" Grid.Column="3" Grid.Row="1"/>
-                <Button Content="{Binding ComputerButtonsInGame[9].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="9" Grid.Column="4" Grid.Row="1"/>
-                <Button Content="{Binding ComputerButtonsInGame[10].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="10" Grid.Column="0" Grid.Row="2"/>
-                <Button Content="{Binding ComputerButtonsInGame[11].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="11" Grid.Column="1" Grid.Row="2"/>
-                <Button Content="{Binding ComputerButtonsInGame[12].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="12" Grid.Column="2" Grid.Row="2"/>
-                <Button Content="{Binding ComputerButtonsInGame[13].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="13" Grid.Column="3" Grid.Row="2"/>
-                <Button Content="{Binding ComputerButtonsInGame[14].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="14" Grid.Column="4" Grid.Row="2"/>
-                <Button Content="{Binding ComputerButtonsInGame[15].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="15" Grid.Column="0" Grid.Row="3"/>
-                <Button Content="{Binding ComputerButtonsInGame[16].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="16" Grid.Column="1" Grid.Row="3"/>
-                <Button Content="{Binding ComputerButtonsInGame[17].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="17" Grid.Column="2" Grid.Row="3"/>
-                <Button Content="{Binding ComputerButtonsInGame[18].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="18" Grid.Column="3" Grid.Row="3"/>
-                <Button Content="{Binding ComputerButtonsInGame[19].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="19" Grid.Column="4" Grid.Row="3"/>
-                <Button Content="{Binding ComputerButtonsInGame[20].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="20" Grid.Column="0" Grid.Row="4"/>
-                <Button Content="{Binding ComputerButtonsInGame[21].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="21" Grid.Column="1" Grid.Row="4"/>
-                <Button Content="{Binding ComputerButtonsInGame[22].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="22" Grid.Column="2" Grid.Row="4"/>
-                <Button Content="{Binding ComputerButtonsInGame[23].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="23" Grid.Column="3" Grid.Row="4"/>
-                <Button Content="{Binding ComputerButtonsInGame[24].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="24" Grid.Column="4" Grid.Row="4"/>
-            </Grid>
-            
+            <Button Content="{Binding ComputerButtonsInGame[0].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="0" Grid.Column="0" Grid.Row="0"/>
+            <Button Content="{Binding ComputerButtonsInGame[1].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="1" Grid.Column="1" Grid.Row="0"/>
+            <Button Content="{Binding ComputerButtonsInGame[2].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="2" Grid.Column="2" Grid.Row="0"/>
+            <Button Content="{Binding ComputerButtonsInGame[3].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="3" Grid.Column="3" Grid.Row="0"/>
+            <Button Content="{Binding ComputerButtonsInGame[4].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="4" Grid.Column="4" Grid.Row="0"/>
+            <Button Content="{Binding ComputerButtonsInGame[5].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="5" Grid.Column="0" Grid.Row="1"/>
+            <Button Content="{Binding ComputerButtonsInGame[6].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="6" Grid.Column="1" Grid.Row="1"/>
+            <Button Content="{Binding ComputerButtonsInGame[7].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="7" Grid.Column="2" Grid.Row="1"/>
+            <Button Content="{Binding ComputerButtonsInGame[8].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="8" Grid.Column="3" Grid.Row="1"/>
+            <Button Content="{Binding ComputerButtonsInGame[9].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="9" Grid.Column="4" Grid.Row="1"/>
+            <Button Content="{Binding ComputerButtonsInGame[10].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="10" Grid.Column="0" Grid.Row="2"/>
+            <Button Content="{Binding ComputerButtonsInGame[11].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="11" Grid.Column="1" Grid.Row="2"/>
+            <Button Content="{Binding ComputerButtonsInGame[12].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="12" Grid.Column="2" Grid.Row="2"/>
+            <Button Content="{Binding ComputerButtonsInGame[13].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="13" Grid.Column="3" Grid.Row="2"/>
+            <Button Content="{Binding ComputerButtonsInGame[14].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="14" Grid.Column="4" Grid.Row="2"/>
+            <Button Content="{Binding ComputerButtonsInGame[15].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="15" Grid.Column="0" Grid.Row="3"/>
+            <Button Content="{Binding ComputerButtonsInGame[16].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="16" Grid.Column="1" Grid.Row="3"/>
+            <Button Content="{Binding ComputerButtonsInGame[17].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="17" Grid.Column="2" Grid.Row="3"/>
+            <Button Content="{Binding ComputerButtonsInGame[18].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="18" Grid.Column="3" Grid.Row="3"/>
+            <Button Content="{Binding ComputerButtonsInGame[19].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="19" Grid.Column="4" Grid.Row="3"/>
+            <Button Content="{Binding ComputerButtonsInGame[20].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="20" Grid.Column="0" Grid.Row="4"/>
+            <Button Content="{Binding ComputerButtonsInGame[21].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="21" Grid.Column="1" Grid.Row="4"/>
+            <Button Content="{Binding ComputerButtonsInGame[22].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="22" Grid.Column="2" Grid.Row="4"/>
+            <Button Content="{Binding ComputerButtonsInGame[23].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="23" Grid.Column="3" Grid.Row="4"/>
+            <Button Content="{Binding ComputerButtonsInGame[24].HitOrMiss,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="24" Grid.Column="4" Grid.Row="4"/>
         </Grid>
 
 
 
-
+        <!--<StackPanel>
+            <Button Height="50"  Content="{Binding PlayerButtonsInGame[0]}" Command="{Binding ShootCanon}" CommandParameter="0"></Button>
+            <Button Height="50"  Content="{Binding PlayerButtonsInGame[1]}" Command="{Binding ShootCanon}" CommandParameter="1"></Button>
+            <Button Height="50"  Content="{Binding PlayerButtonsInGame[2], FallbackValue=1}" Command="{Binding ShootCanon}" CommandParameter="1"></Button>
+            <Button Height="50"  Content="{Binding PlayerButtonsInGame[3], FallbackValue=2}" Command="{Binding ShootCanon}" CommandParameter="2"></Button>
+        </StackPanel>-->
     </Grid>
 </Page>

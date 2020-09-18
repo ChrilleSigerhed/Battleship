@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Sup20_12.ViewModels
 {
@@ -29,7 +30,7 @@ namespace Sup20_12.ViewModels
         public GameEngine gameEngine { get; set; } = new GameEngine();
         public Player Player { get; set; }
         public bool PlayerTurn { get; set; } = false;
-        #endregion 
+        #endregion
         public GameWindowViewModel(Player player)
         {
             Player = player;
@@ -53,6 +54,7 @@ namespace Sup20_12.ViewModels
                 {
                     PlayerTurn = true;
                     MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen");
+                    
                 }
             }
             else
