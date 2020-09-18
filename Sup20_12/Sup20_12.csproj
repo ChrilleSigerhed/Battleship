@@ -6,4 +6,68 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Assets\Fonts\STENCIL.TTF" />
+    <None Remove="Assets\Images\animationFire.png" />
+    <None Remove="Assets\Images\bgChoosePlayerPage.jpg" />
+    <None Remove="Assets\Images\bgGameWindowPage.jpg" />
+    <None Remove="Assets\Images\bgHighscorePage.jpg" />
+    <None Remove="Assets\Images\bgMainMenuPage.jpg" />
+    <None Remove="Assets\Images\btnAddPlayerImg.png" />
+    <None Remove="Assets\Images\btnAddPlayerImgPressed.png" />
+    <None Remove="Assets\Images\btnBack.png" />
+    <None Remove="Assets\Images\btnBackPressed.png" />
+    <None Remove="Assets\Images\btnHighscoreImg.png" />
+    <None Remove="Assets\Images\btnHighscoreImgPressed.png" />
+    <None Remove="Assets\Images\btnNewGameImg.png" />
+    <None Remove="Assets\Images\btnNewGameImgPressed.png" />
+    <None Remove="Assets\Images\btnQuitGameImg.png" />
+    <None Remove="Assets\Images\btnQuitGameImgPressed.png" />
+    <None Remove="Assets\Images\btnStartGame.png" />
+    <None Remove="Assets\Images\btnStartGamePressed.png" />
+    <None Remove="Assets\Images\destroyerImg.png" />
+    <None Remove="Assets\Images\water.jpg" />
+    <None Remove="Assets\Sounds\buttonDown.wav" />
+    <None Remove="Assets\Sounds\buttonUp.wav" />
+    <None Remove="Assets\Sounds\mouseOverButton.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Win32.Primitives" Version="4.3.0" />
+    <PackageReference Include="Npgsql" Version="4.1.4" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.2.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assets\Fonts\STENCIL.TTF">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Assets\Images\animationFire.png" />
+    <Resource Include="Assets\Images\bgChoosePlayerPage.jpg" />
+    <Resource Include="Assets\Images\bgGameWindowPage.jpg" />
+    <Resource Include="Assets\Images\bgHighscorePage.jpg" />
+    <Resource Include="Assets\Images\bgMainMenuPage.jpg" />
+    <Resource Include="Assets\Images\btnAddPlayerImg.png" />
+    <Resource Include="Assets\Images\btnAddPlayerImgPressed.png" />
+    <Resource Include="Assets\Images\btnBack.png" />
+    <Resource Include="Assets\Images\btnBackPressed.png" />
+    <Resource Include="Assets\Images\btnHighscoreImg.png" />
+    <Resource Include="Assets\Images\btnHighscoreImgPressed.png" />
+    <Resource Include="Assets\Images\btnNewGameImg.png" />
+    <Resource Include="Assets\Images\btnNewGameImgPressed.png" />
+    <Resource Include="Assets\Images\btnQuitGameImg.png" />
+    <Resource Include="Assets\Images\btnQuitGameImgPressed.png" />
+    <Resource Include="Assets\Images\btnStartGame.png" />
+    <Resource Include="Assets\Images\btnStartGamePressed.png" />
+    <Resource Include="Assets\Images\destroyerImg.png" />
+    <Resource Include="Assets\Images\water.jpg" />
+    <Resource Include="Assets\Sounds\buttonDown.wav" />
+    <Resource Include="Assets\Sounds\buttonUp.wav" />
+    <Resource Include="Assets\Sounds\mouseOverButton.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\Images\boat\" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,29 @@
+﻿HIGHSCORE
+
+CREATE TABLE public.highscore
+(
+    id serial PRIMARY KEY,
+    win boolean NOT NULL,
+    date DATE NOT NULL DEFAULT CURRENT_DATE,
+    number_of_moves integer NOT NULL,
+    player_id integer NOT NULL,
+	CONSTRAINT fk_player_id
+    FOREIGN KEY(player_id) 
+	REFERENCES public.player(id)
+	ON DELETE CASCADE
+);
+
+PLAYER
+
+CREATE TABLE public.player
+(
+    id serial PRIMARY KEY,
+    nickname character varying(15)
+);
+
+HÄMTA FREKVENTA SPELARE
+SELECT player.nickname, COUNT(*)
+FROM player 
+INNER JOIN highscore on player.id = highscore.player_id 
+GROUP BY player.nickname, player.id 
+ORDER BY COUNT(*) DESC LIMIT 3;

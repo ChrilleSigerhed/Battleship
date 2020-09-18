@@ -1,0 +1,59 @@
+﻿<Page x:Class="Sup20_12.View.ChoosePlayerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Sup20_12.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ChoosePlayerPage">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/ResourceDictionaries/Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid>
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="/Assets/Images/bgChoosePlayerPage.jpg" Stretch="Uniform"/>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="226"/>
+                <ColumnDefinition Width="206" />
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="102"/>
+                <RowDefinition Height="43"/>
+                <RowDefinition Height="89"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBox Name="txtNickname" MaxLength="14" Text="{Binding PlayerNickname}" Width="230" Height="34" FontSize="20" BorderBrush="{x:Null}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0"/>
+            <ComboBox ItemsSource="{Binding ListOfPlayersInListBox}" SelectedItem="{Binding MyPlayer}" x:Name="lstboxAllPlayers" FontSize="15" BorderThickness="0" Grid.Row="3" Grid.Column="2" Height="25" Width="245" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+            <Grid Grid.Column="2" Grid.Row="2" Margin="0,0,103,0">
+                <Button Style="{StaticResource BtnAddPlayer}" Command="{Binding AddNewPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Height="37" Margin="0,10,0,0" Width="138">
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="2" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="164" Width="146">
+
+                <StackPanel Margin="0,0,0,10">
+                    <Button Style="{StaticResource BtnStartGame}" Grid.Row="1" Grid.Column="1" Command="{Binding StartGameWithSelectedPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="44" Margin="0,10,10,0" Width="136" IsEnabled="{Binding EnableBtnStartGame}">
+                    </Button>
+
+                    <Button Style="{StaticResource BtnBack}" Grid.Row="1" Grid.Column="1" Command="{Binding GoToMainPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="44" Margin="0,4,10,0" Width="136">
+                    </Button>
+                </StackPanel>
+
+            </Grid>
+
+
+        </Grid>
+    </Grid>
+</Page>

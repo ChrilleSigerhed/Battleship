@@ -7,7 +7,42 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="TESTING\TestWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ChoosePlayerPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\GameWindowPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\HighScorePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\MainMenuPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ResourceDictionaries\Style.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TESTING\TestWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ChoosePlayerPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\GameWindowPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\HighScorePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\MainMenuPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
