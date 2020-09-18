@@ -32,7 +32,7 @@ namespace Sup20_12.ViewModels
             {
                 for (int i = 0; i < PlayerShipsList.Count; i++)
                 {
-                    if (PlayerShipsList[i].Longitude == longitude && PlayerShipsList[i].Latitude == latitude)
+                    if (PlayerShipsList[i].Longitude.Contains(longitude) && PlayerShipsList[i].Latitude.Contains(latitude))
                         return false;
                 }
                 PlayerShipsList.Add(new Submarine(longitude, latitude));
@@ -55,14 +55,43 @@ namespace Sup20_12.ViewModels
             {
                 longitude = random.Next(0, 5);
                 latitude = random.Next(0, 5);
-                while (ComputerShipsList[i].Latitude == longitude && ComputerShipsList[i].Longitude == latitude)
+                Submarine submarine = new Submarine(longitude, latitude);
+                while (IsColliding(submarine) == true)
                 {
                     longitude = random.Next(0, 5);
                     latitude = random.Next(0, 5);
+                    submarine = new Submarine(longitude, latitude);
                 }
-                ComputerShipsList.Add(new Submarine(longitude, latitude));
+                ComputerShipsList.Add(submarine);
             }
 
+        }
+
+        public bool IsColliding(Ships ship)
+        {
+            for (int i = 0; i < ComputerShipsList.Count; i++)
+            {
+                for (int j = 0; j < ComputerShipsList[i].Longitude.Length; j++)
+                {
+                    for (int y = 0; y < ship.Longitude.Length; y++)
+                    {
+                        if (ComputerShipsList[i].Longitude[j] == ship.Longitude[y])
+                        {
+                            for (int a = 0; a < ComputerShipsList[i].Latitude.Length; a++)
+                            {
+                                for (int c = 0; c < ship.Latitude.Length; c++)
+                                {
+                                    if (ComputerShipsList[i].Latitude[a] == ship.Latitude[c])
+                                    {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
         }
         public void CreatePlayerGrid()
         {
@@ -91,7 +120,7 @@ namespace Sup20_12.ViewModels
             NumberOfMoves++;
             foreach (var c in ComputerShipsList)
             {
-                if(c.Longitude == longitude && c.Latitude == latitude)
+                if(c.Longitude.Contains(longitude) && c.Latitude.Contains(latitude))
                 {
                     ComputerShipsList.Remove(c); 
                     return true;
@@ -104,9 +133,9 @@ namespace Sup20_12.ViewModels
         {
             foreach (var ship in ComputerShipsList)
             {
-                if(ship.Longitude + 1 == longitude || ship.Longitude - 1 == longitude || ship.Longitude == longitude)
+                if(ship.Longitude.Contains(longitude +1) || ship.Longitude.Contains(longitude-1) || ship.Longitude.Contains(longitude))
                 {
-                    if(ship.Latitude + 1 == latitude || ship.Latitude -1 == latitude || ship.Latitude == latitude)
+                    if(ship.Latitude.Contains(latitude+1) || ship.Latitude.Contains(latitude-1) || ship.Latitude.Contains(latitude))
                     {
                         return true;
                     }
@@ -118,7 +147,7 @@ namespace Sup20_12.ViewModels
         {
             for (int i = 0; i < PlayerShipsList.Count; i++)
             {
-                if (PlayerShipsList[i].Longitude == longitude && PlayerShipsList[i].Latitude == latitude)
+                if (PlayerShipsList[i].Longitude.Contains(longitude) && PlayerShipsList[i].Latitude.Contains(latitude))
                 {
                     PlayerShipsList.RemoveAt(i);
                     return true;

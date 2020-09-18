@@ -34,10 +34,10 @@ namespace Sup20_12.View
         private void Target_Drop(object sender, DragEventArgs e)
         {
             Button button = (Button)sender;
-            gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
             button.Background = Ship;
             button.Background = Ship2;
             button.Background = Ship3;
+            gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
 
         }
 

@@ -41,6 +41,7 @@ namespace Sup20_12.ViewModels
             GoToMainPageCommand = new RelayCommand(AskIfExitCurrentRound);
             ShowPlayerNickname = player.Nickname;
             ShowNumberOfMoves = gameEngine.NumberOfMoves;
+            InitialGameInstructions();
         }
       
         public void PlayerPlaceShips(string button)
@@ -60,6 +61,11 @@ namespace Sup20_12.ViewModels
             {
                 MessageBox.Show("Du har redan placerat ett skepp där");
             }
+        }
+
+        public void InitialGameInstructions()
+        {
+            MessageBox.Show("Börja spelet genom att dra 3 stycken skepp från hamnen till 3 olika rutor på den vänstra spelplanen!");
         }
         
         public void PlayerCheckHitOrMiss(string button)
