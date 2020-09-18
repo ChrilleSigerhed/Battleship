@@ -100,6 +100,20 @@ namespace Sup20_12.ViewModels
             return false;
            
         }
+        public bool PlayerCheckCloseOrNot(int longitude, int latitude)
+        {
+            foreach (var ship in ComputerShipsList)
+            {
+                if(ship.Longitude + 1 == longitude || ship.Longitude - 1 == longitude || ship.Longitude == longitude)
+                {
+                    if(ship.Latitude + 1 == latitude || ship.Latitude -1 == latitude || ship.Latitude == latitude)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
         public bool ComputerCheckHitOrMiss(int longitude , int latitude)
         {
             for (int i = 0; i < PlayerShipsList.Count; i++)
