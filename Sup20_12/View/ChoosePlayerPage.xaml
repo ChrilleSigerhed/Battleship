@@ -34,7 +34,7 @@
             </Grid.RowDefinitions>
 
             <TextBox Name="txtNickname" MaxLength="14" Text="{Binding PlayerNickname}" Width="230" Height="34" FontSize="20" BorderBrush="{x:Null}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0"/>
-            <ComboBox ItemsSource="{Binding ListOfPlayersInListBox}" x:Name="lstboxAllPlayers" FontSize="15" BorderThickness="0" Grid.Row="3" Grid.Column="2" SelectedItem="{Binding MyPlayer, Mode=TwoWay}" Height="25" Width="245" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <ComboBox ItemsSource="{Binding ListOfPlayersInListBox}" SelectedItem="{Binding MyPlayer}" x:Name="lstboxAllPlayers" FontSize="15" BorderThickness="0" Grid.Row="3" Grid.Column="2" Height="25" Width="245" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
             <Grid Grid.Column="2" Grid.Row="2" Margin="0,0,103,0">
                 <Button Style="{StaticResource BtnAddPlayer}" Command="{Binding AddNewPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Height="37" Margin="0,10,0,0" Width="138">

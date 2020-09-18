@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Text;
 
@@ -92,7 +93,7 @@ namespace Sup20_12
             }
             return myHighscore = GetOneHighscoreById(myHighscore.Id);
         }
-       
+
 
 
 
@@ -103,35 +104,38 @@ namespace Sup20_12
         ///<summary>
         ///Returnerar en List på alla player objekt i databasen med nickname, id och List med Highscore.
         ///</summary>
-        public static IEnumerable<Player> GetPlayers() 
+        public static ObservableCollection<Player> Players
         {
-            string stmt = "SELECT id, nickname FROM player ORDER BY nickname";
-
-            using (var conn = new NpgsqlConnection(connectionString))
+            get
             {
-                //Player myPlayer = null;
-                List<Player> LstAllPlayers = new List<Player>();
-                conn.Open();
+                string stmt = "SELECT id, nickname FROM player ORDER BY nickname";
 
-                using (var command = new NpgsqlCommand(stmt, conn))
+                using (var conn = new NpgsqlConnection(connectionString))
                 {
+                    //Player myPlayer = null;
+                    ObservableCollection<Player> LstAllPlayers = new ObservableCollection<Player>();
+                    conn.Open();
 
-                    using (var reader = command.ExecuteReader())
+                    using (var command = new NpgsqlCommand(stmt, conn))
                     {
-                        while (reader.Read())
-                        {
-                            Player myPlayer = new Player("")
-                            {
-                                Id = (int)reader["id"],
-                                Nickname = (string)reader["nickname"]
 
-                            };
-                            LstAllPlayers.Add(myPlayer);
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Player myPlayer = new Player("")
+                                {
+                                    Id = (int)reader["id"],
+                                    Nickname = (string)reader["nickname"]
+
+                                };
+                                LstAllPlayers.Add(myPlayer);
+                            }
                         }
                     }
+                    conn.Close();
+                    return LstAllPlayers;
                 }
-                conn.Close();
-                return LstAllPlayers;
             }
         }
 

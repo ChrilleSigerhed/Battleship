@@ -2,6 +2,8 @@
 using Sup20_12.ViewModels.Base;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -17,7 +19,7 @@ namespace Sup20_12.ViewModels
         public ICommand AddNewPlayerCommand { get; set; }
         public ICommand StartGameWithSelectedPlayerCommand { get; set; }
         public ICommand GoToMainPageCommand { get; set; }
-        public List<Player> ListOfPlayersInListBox { get; set; }
+        public ObservableCollection<Player> ListOfPlayersInListBox { get; set; }
 
         public MainWindow win = (MainWindow)Application.Current.MainWindow;
         #endregion
@@ -27,8 +29,10 @@ namespace Sup20_12.ViewModels
             StartGameWithSelectedPlayerCommand = new RelayCommand(SelectedPlayerForGame);
             AddNewPlayerCommand = new RelayCommand(AddPlayer);
             GoToMainPageCommand = new RelayCommand(GoToMainPage);
-            GetPlayersFromDb();
+            GetPlayersFromDb(MyPlayer);
         }
+
+
         public void AddPlayer()
         {
             if (this.PlayerNickname == null)
@@ -40,30 +44,18 @@ namespace Sup20_12.ViewModels
                 Player myTempPlayer = new Player(PlayerNickname);
                 ClearTextBox();
                 myTempPlayer = DbConnection.AddNewPlayerToDb(myTempPlayer);
-                UpdatePlayerList(myTempPlayer);
+                GetPlayersFromDb(myTempPlayer);
             }
-        }
-        
-        public void UpdatePlayerList(Player myTempPlayer)
-        {
-            GetPlayersFromDb();
-            MyPlayer = myTempPlayer;
-            SelectActivePlayerInComboBox();
-        }
-
-        private void SelectActivePlayerInComboBox()
-        {
-
         }
 
         public void ClearTextBox()
         {
             this.PlayerNickname = "";
         }
-        public void GetPlayersFromDb()
+        public void GetPlayersFromDb(Player myTempPlayer)
         {
-           ListOfPlayersInListBox = (List<Player>)DbConnection.GetPlayers();
-
+           ListOfPlayersInListBox = DbConnection.Players;
+           
         }
         public void SelectedPlayerForGame()
         {
