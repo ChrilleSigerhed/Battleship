@@ -49,7 +49,6 @@ namespace Sup20_12.ViewModels
             if (gameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Longitude , PlayerButtonsInGame[buttonToNumber].Latitude) == true)
             {
                 Ships--;
-                PlayerButtonsInGame[buttonToNumber].HitOrMiss = "Skepp";
                 if(Ships == 0)
                 {
                     PlayerTurn = true;

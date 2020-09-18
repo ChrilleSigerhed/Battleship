@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\App.xaml
-11151548125
-
-5222249131
-1921654412462
-MainWindow.xaml;
+7-660432970
+1525805314
+28-1735304580
+194-1726896428
+MainWindow.xaml;ResourceDictionaries\Style.xaml;TESTING\TestWindow.xaml;View\ChoosePlayerPage.xaml;View\GameWindowPage.xaml;View\HighScorePage.xaml;View\MainMenuPage.xaml;
 
 False
 

@@ -25,6 +25,7 @@
     <None Remove="Assets\Images\btnQuitGameImgPressed.png" />
     <None Remove="Assets\Images\btnStartGame.png" />
     <None Remove="Assets\Images\btnStartGamePressed.png" />
+    <None Remove="Assets\Images\destroyerImg.png" />
     <None Remove="Assets\Images\water.jpg" />
     <None Remove="Assets\Sounds\buttonDown.wav" />
     <None Remove="Assets\Sounds\buttonUp.wav" />
@@ -57,6 +58,7 @@
     <Resource Include="Assets\Images\btnQuitGameImgPressed.png" />
     <Resource Include="Assets\Images\btnStartGame.png" />
     <Resource Include="Assets\Images\btnStartGamePressed.png" />
+    <Resource Include="Assets\Images\destroyerImg.png" />
     <Resource Include="Assets\Images\water.jpg" />
     <Resource Include="Assets\Sounds\buttonDown.wav" />
     <Resource Include="Assets\Sounds\buttonUp.wav" />

@@ -17,15 +17,37 @@ namespace Sup20_12.View
     /// <summary>
     /// Interaction logic for GameWindowPage.xaml
     /// </summary>
+
     public partial class GameWindowPage : Page
     {
         public Player Player { get; set; }
-        
+        public GameWindowViewModel gameWindowViewModel { get; set; }
+
         public GameWindowPage(Player player)
         {
             Player = player;
             InitializeComponent();
-            DataContext = new GameWindowViewModel(Player);
+            gameWindowViewModel = new GameWindowViewModel(Player);
+            DataContext = gameWindowViewModel;
+
         }
+        private void Target_Drop(object sender, DragEventArgs e)
+        {
+            Button button = (Button)sender;
+            gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
+            button.Background = Ship;
+            button.Background = Ship2;
+            button.Background = Ship3;
+
+        }
+
+        private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Rectangle r = (Rectangle)sender;
+            DataObject dataObject = new DataObject(r);
+            DragDrop.DoDragDrop(r, dataObject, DragDropEffects.Move);
+        }
+
     }
+
 }
