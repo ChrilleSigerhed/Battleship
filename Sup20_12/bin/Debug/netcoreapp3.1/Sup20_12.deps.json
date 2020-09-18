@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v3.1": {
       "Sup20_12/1.0.0": {
         "dependencies": {
+          "Microsoft.Win32.Primitives": "4.3.0",
           "Npgsql": "4.1.4",
           "PropertyChanged.Fody": "3.2.9"
         },
