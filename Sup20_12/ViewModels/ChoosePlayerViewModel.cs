@@ -15,6 +15,7 @@ namespace Sup20_12.ViewModels
     {
         #region Properties
         public Player MyPlayer { get; set; }
+        public int SelectedId { get; set; }
         public string PlayerNickname { get; set; }
         public ICommand AddNewPlayerCommand { get; set; }
         public ICommand StartGameWithSelectedPlayerCommand { get; set; }
@@ -45,6 +46,7 @@ namespace Sup20_12.ViewModels
                 ClearTextBox();
                 myTempPlayer = DbConnection.AddNewPlayerToDb(myTempPlayer);
                 GetPlayersFromDb(myTempPlayer);
+                HighlightSelectedPlayer(myTempPlayer.Nickname);
             }
         }
 
@@ -83,6 +85,23 @@ namespace Sup20_12.ViewModels
             }
             else
                 return true;
+        }
+
+        private void SetActivePlayer(Player myPlayer)
+        {
+            MyPlayer = myPlayer;
+        }
+
+        private void HighlightSelectedPlayer(string PlayerNickname)
+        {
+            for (int i = 0; i < ListOfPlayersInListBox.Count; i++)
+            {
+                if (ListOfPlayersInListBox[i].Nickname == PlayerNickname)
+                {
+                    SelectedId = ListOfPlayersInListBox[i].Id;
+                    SetActivePlayer(ListOfPlayersInListBox[i]);
+                }
+            }
         }
     }
 }
