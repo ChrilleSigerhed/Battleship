@@ -99,7 +99,6 @@ C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.c
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.dll
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.pdb
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.genruntimeconfig.cache
-C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.csprojAssemblyReference.cache
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Sup20_12.exe
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Sup20_12.dll.config
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Sup20_12.deps.json
@@ -142,3 +141,4 @@ C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Assets\Fon
 C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12_Content.g.cs
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12_Content.g.cs
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Assets\Fonts\STENCIL.TTF
+C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.csprojAssemblyReference.cache

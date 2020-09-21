@@ -19,18 +19,5 @@ namespace Sup20_12
             NumberOfMoves = numberOfMoves;
             PlayerId = playerId;
         }
-
-        /*public override string ToString()
-        {
-            return $"{Nickname}{AddTabToHighscoreList()}{NumberOfMoves}";
-        }
-
-        private string AddTabToHighscoreList()
-        {
-            if (Nickname.Length < 10)
-                return "\t\t\t";
-            else
-                return "\t\t";
-        }*/
     }
 }
