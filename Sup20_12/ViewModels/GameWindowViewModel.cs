@@ -175,12 +175,12 @@ namespace Sup20_12.ViewModels
                         c.IsClicked = true;
                     }
                 }
-                PlayerTurn = true;
                 if(gameEngine.HasLost())
                 {
                     gameEngine.AddNewHighscore(false, Player.Id);
                     ShowLosingDialogueBox();
                 }
+                PlayerTurn = true;
             }
             else
             {
