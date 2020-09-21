@@ -57,7 +57,7 @@ namespace Sup20_12.ViewModels
                 {
                     PlayerTurn = true;
                     MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen");
-                    
+
                 }
             }
             else

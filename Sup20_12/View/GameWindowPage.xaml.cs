@@ -35,8 +35,8 @@ namespace Sup20_12.View
         private void Target_Drop(object sender, DragEventArgs e)
         {
             Button button = (Button)sender;
-            gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
             button.Background = Ship;
+            gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
         }
 
         private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
