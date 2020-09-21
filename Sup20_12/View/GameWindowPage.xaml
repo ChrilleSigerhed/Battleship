@@ -11,7 +11,7 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/ResourceDictionaries/Style.xaml"/>
+                <ResourceDictionary Source="/ResourceDictionaries/Style.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -53,14 +53,12 @@
             <Label Name="NumberOfMoves" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" Content="{Binding ShowNumberOfMoves}" Style="{StaticResource fontz}" FontSize="12"/>
             <Button Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Width="120"  Style="{StaticResource BtnBack}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Command="{Binding GoToMainPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}"/>
             <StackPanel Grid.Column="1" Grid.Row="1">
-                <local:SingleBoatUC x:Name="rectangleUI" Grid.Column="2" ></local:SingleBoatUC>
+                <local:SingleBoatUC x:Name="rectangleUI" Grid.Column="2"></local:SingleBoatUC>
                 <Rectangle Visibility="Hidden" x:Name="button1" Height="35" Width="55" Margin="5,2.5,5,5" MouseLeftButtonDown="Button_MouseLeftButtonDown">
                     <Rectangle.Fill>
                         <ImageBrush x:Name="Ship" ImageSource="/Assets/Images/destroyerImg.png" Stretch="None"/>
                     </Rectangle.Fill>
                 </Rectangle>
-               
-                
             </StackPanel>
         </Grid>
 

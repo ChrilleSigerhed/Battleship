@@ -85,7 +85,7 @@ namespace Sup20_12.ViewModels
                     
                     PlayerTurn = false;
                     
-                    Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
+                    
                     if (gameEngine.HasWon() == true)
                     {
                         gameEngine.AddNewHighscoreWin(Player.Id);
@@ -99,6 +99,10 @@ namespace Sup20_12.ViewModels
                                 win.frame.Content = new MainMenuPage();
                                 break;
                         }
+                    }
+                    else
+                    {
+                      Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
                     }
                 }
                 else
