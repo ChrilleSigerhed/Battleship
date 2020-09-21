@@ -179,6 +179,7 @@ namespace Sup20_12.ViewModels
             }
             return false;
         }
+
         public bool HasWon()
         {
             if(ComputerShipsList.Count == 0)
@@ -194,14 +195,9 @@ namespace Sup20_12.ViewModels
                 return false;
         }
 
-        public void AddNewHighscoreWin(int playerId)
+        public void AddNewHighscore(bool hasWon, int playerId)
         {
-            NewHighscore = new Highscore(true, NumberOfMoves, playerId );
-            DbConnection.AddOneHighscoreToDb(NewHighscore);
-        }
-        public void AddNewHighscoreLost(int playerId)
-        {
-            NewHighscore = new Highscore(false, NumberOfMoves, playerId);
+            NewHighscore = new Highscore(hasWon, NumberOfMoves, playerId);
             DbConnection.AddOneHighscoreToDb(NewHighscore);
         }
 

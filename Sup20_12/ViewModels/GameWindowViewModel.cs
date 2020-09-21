@@ -94,7 +94,7 @@ namespace Sup20_12.ViewModels
                     Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
                     if (gameEngine.HasWon() == true)
                     {
-                        gameEngine.AddNewHighscoreWin(Player.Id);
+                        gameEngine.AddNewHighscore(true, Player.Id);
                         MessageBoxResult result = MessageBox.Show($"Grattis {Player.Nickname} du vann, vill du spela igen?", "Avsluta", MessageBoxButton.YesNo);
                         switch (result)
                         {
@@ -142,7 +142,7 @@ namespace Sup20_12.ViewModels
                 PlayerTurn = true;
                 if(gameEngine.HasLost() == true)
                 {
-                    gameEngine.AddNewHighscoreLost(Player.Id);
+                    gameEngine.AddNewHighscore(false, Player.Id);
                     MessageBoxResult result = MessageBox.Show($"Ops {Player.Nickname}, du förlorade... mot en dator... vill du försöka igen?", "Avsluta", MessageBoxButton.YesNo);
                     switch (result)
                     {
