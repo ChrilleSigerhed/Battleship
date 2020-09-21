@@ -26,7 +26,7 @@ namespace Sup20_12.ViewModels
         public ObservableCollection<GameGrid> PlayerButtonsInGame { get; set; }  = new ObservableCollection<GameGrid>();
         public ObservableCollection<GameGrid> ComputerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
         public List<int> PlayerShotsFired { get; set; } = new List<int>();
-
+        private int noMoreShipsToUse = 0;
         public MainWindow win = (MainWindow)Application.Current.MainWindow;
         public SingleBoatUC SingleBoat { get; set; }
         public GameEngine gameEngine { get; set; } = new GameEngine();
@@ -49,21 +49,27 @@ namespace Sup20_12.ViewModels
         public void PlayerPlaceShips(string button)
         {
             int buttonToNumber = int.Parse(button);
-            if (gameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Longitude , PlayerButtonsInGame[buttonToNumber].Latitude) == true)
+            if (PlayerHasShipsLeftToPlace(buttonToNumber))
             {
                 SingleBoat.PlacedBoats--;
                 Ships--;
-                if (Ships == 0)
+                if (Ships == noMoreShipsToUse)
                 {
-                    PlayerTurn = true;
-                    MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen");
-
+                    ChangePlayerTurn();
+                    MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen.");
                 }
             }
             else
-            {
-                MessageBox.Show("Det går inte att placera skepp där");
-            }
+                MessageBox.Show("Det går inte att placera skepp där.");
+        }
+
+
+        private bool PlayerHasShipsLeftToPlace(int buttonToNumber)
+        {
+            bool result = false;
+            if (gameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude))
+                result = true;
+            return result;
         }
 
         public void PlayerCheckHitOrMiss(string button)
@@ -159,7 +165,7 @@ namespace Sup20_12.ViewModels
         {
             int[] shoot = gameEngine.ComputerRandomShotFired();
 
-            if(gameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]) == true)
+            if(gameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
             {
                 foreach (var c in PlayerButtonsInGame)
                 {
@@ -170,25 +176,10 @@ namespace Sup20_12.ViewModels
                     }
                 }
                 PlayerTurn = true;
-                if(gameEngine.HasLost() == true)
+                if(gameEngine.HasLost())
                 {
                     gameEngine.AddNewHighscore(false, Player.Id);
-                    MessageBoxResult result = MessageBox.Show($"Ops {Player.Nickname}, du förlorade... mot en dator... vill du försöka igen?", "Avsluta", MessageBoxButton.YesNo);
-                    switch (result)
-                    {
-                        case MessageBoxResult.Yes:
-                            Application.Current.Dispatcher.Invoke((Action)delegate
-                            {
-                                win.frame.Content = new GameWindowPage(Player);
-                            });
-                            break;
-                        case MessageBoxResult.No:
-                            Application.Current.Dispatcher.Invoke((Action)delegate
-                            {
-                                win.frame.Content = new MainMenuPage();
-                            });
-                            break;
-                    }
+                    ShowLosingDialogueBox();
                 }
             }
             else
@@ -202,6 +193,26 @@ namespace Sup20_12.ViewModels
                     }
                 }
                 PlayerTurn = true;
+            }
+        }
+
+        private void ShowLosingDialogueBox()
+        {
+            MessageBoxResult result = MessageBox.Show($"Ops {Player.Nickname}, du förlorade... mot en dator... vill du försöka igen?", "Avsluta", MessageBoxButton.YesNo);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    Application.Current.Dispatcher.Invoke((Action)delegate
+                    {
+                        win.frame.Content = new GameWindowPage(Player);
+                    });
+                    break;
+                case MessageBoxResult.No:
+                    Application.Current.Dispatcher.Invoke((Action)delegate
+                    {
+                        win.frame.Content = new MainMenuPage();
+                    });
+                    break;
             }
         }
 
