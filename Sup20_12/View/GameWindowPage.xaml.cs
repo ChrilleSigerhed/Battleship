@@ -29,7 +29,6 @@ namespace Sup20_12.View
             InitializeComponent();
             gameWindowViewModel = new GameWindowViewModel(Player);
             DataContext = gameWindowViewModel;
-
         }
         private void Target_Drop(object sender, DragEventArgs e)
         {
