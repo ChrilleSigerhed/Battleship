@@ -12,8 +12,8 @@ namespace Sup20_12.Model
         public Submarine(int longitude, int latitude)
         {
             ShipType = "Submarine";
-            Latitude = latitude;
-            Longitude = longitude;
+            Latitude = new int[] { latitude };
+            Longitude = new int[] { longitude };
         }
     }
 }

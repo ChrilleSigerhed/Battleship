@@ -74,6 +74,7 @@
 
   <ItemGroup>
     <Folder Include="Assets\Images\boat\" />
+    <Folder Include="View\Base\" />
   </ItemGroup>
 
 </Project>

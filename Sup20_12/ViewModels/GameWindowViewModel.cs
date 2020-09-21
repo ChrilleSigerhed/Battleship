@@ -3,6 +3,7 @@ using Sup20_12.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,13 +28,15 @@ namespace Sup20_12.ViewModels
         public List<int> PlayerShootsFired { get; set; } = new List<int>();
 
         public MainWindow win = (MainWindow)Application.Current.MainWindow;
+        public SingleBoatUC SingleBoat { get; set; }
         public GameEngine gameEngine { get; set; } = new GameEngine();
         public Player Player { get; set; }
         public bool PlayerTurn { get; set; } = false;
         #endregion
-        public GameWindowViewModel(Player player)
+        public GameWindowViewModel(Player player, SingleBoatUC boat)
         {
             Player = player;
+            SingleBoat = boat;
             ComputerButtonsInGame = gameEngine.ComputerButtonsInGame;
             PlayerButtonsInGame = gameEngine.PlayerButtonsInGame;
             PlaceShip = new RelayPropertyCommand(PlayerPlaceShips);
@@ -48,20 +51,21 @@ namespace Sup20_12.ViewModels
             int buttonToNumber = int.Parse(button);
             if (gameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Longitude , PlayerButtonsInGame[buttonToNumber].Latitude) == true)
             {
+                SingleBoat.PlacedBoats--;
                 Ships--;
-                if(Ships == 0)
+                if (Ships == 0)
                 {
                     PlayerTurn = true;
                     MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen");
-                    
+
                 }
             }
             else
             {
-                MessageBox.Show("Du har redan placerat ett skepp där");
+                MessageBox.Show("Det går inte att placera skepp där");
             }
         }
-        
+
         public void PlayerCheckHitOrMiss(string button)
         {
             
@@ -78,6 +82,7 @@ namespace Sup20_12.ViewModels
                     ShowNumberOfMoves = gameEngine.NumberOfMoves;
                     ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
                     PlayerShootsFired.Add(buttonToNumber);
+                    
                     PlayerTurn = false;
                     
                     Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
