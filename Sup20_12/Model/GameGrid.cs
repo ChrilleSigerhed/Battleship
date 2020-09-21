@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Windows.Media;
 
 namespace Sup20_12.ViewModels
 {
@@ -11,6 +12,7 @@ namespace Sup20_12.ViewModels
         public int Longitude { get; set; }
         public int Latitude { get; set; }
         public string HitOrMiss { get; set; }
+        public ImageBrush backgroundImage { get; set; } = new ImageBrush();
         public bool IsClicked { get; set; } = false;
 
         public GameGrid(int longitude, int latitude, string hitormiss)

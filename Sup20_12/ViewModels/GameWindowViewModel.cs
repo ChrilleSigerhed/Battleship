@@ -3,20 +3,27 @@ using Sup20_12.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Printing;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Sup20_12.ViewModels
 {
    public class GameWindowViewModel : BaseViewModel
     {
         #region Properties
+        public ICommand ChangeToExplosionCommand { get; set; }
         public ICommand PlaceShip { get; set; }
         public ICommand CheckIfShip { get; set; }
         public ICommand GoToMainPageCommand { get; set; }
@@ -32,6 +39,9 @@ namespace Sup20_12.ViewModels
         public GameEngine gameEngine { get; set; } = new GameEngine();
         public Player Player { get; set; }
         public bool PlayerTurn { get; set; } = false;
+        public Uri Explosion { get; set; } = new Uri(@"Pack://Application:,,,/Assets/Images/explosion.png", UriKind.Absolute);
+        public Uri Splash { get; set; } = new Uri(@"Pack://Application:,,,/Assets/Images/splash.png", UriKind.Absolute);
+        public Uri SplashSonar { get; set; } = new Uri(@"Pack://Application:,,,/Assets/Images/splashSonar.png", UriKind.Absolute);
         #endregion
         public GameWindowViewModel(Player player, SingleBoatUC boat)
         {
@@ -46,6 +56,7 @@ namespace Sup20_12.ViewModels
             ShowNumberOfMoves = gameEngine.NumberOfMoves;
         }
       
+
         public void PlayerPlaceShips(string button)
         {
             int buttonToNumber = int.Parse(button);
@@ -80,7 +91,10 @@ namespace Sup20_12.ViewModels
                 else if(gameEngine.PlayerCheckHitOrMiss(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude) == true)
                 {
                     ShowNumberOfMoves = gameEngine.NumberOfMoves;
-                    ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
+                    Application.Current.Dispatcher.Invoke((Action)(() => {
+                        ComputerButtonsInGame[buttonToNumber].backgroundImage.ImageSource = BitmapFrame.Create(Explosion);
+                    }));
+
                     PlayerShootsFired.Add(buttonToNumber);
                     
                     PlayerTurn = false;
@@ -107,11 +121,20 @@ namespace Sup20_12.ViewModels
                     PlayerShootsFired.Add(buttonToNumber);
                     if(gameEngine.PlayerCheckCloseOrNot(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude) == true)
                     {
-                        ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Nära";
+                        //ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Nära";
+
+                        Application.Current.Dispatcher.Invoke((Action)(() => {
+                            ComputerButtonsInGame[buttonToNumber].backgroundImage.ImageSource = BitmapFrame.Create(SplashSonar);
+                        }));
+                        
                     }
                     else
                     {
-                      ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
+                        Application.Current.Dispatcher.Invoke((Action)(() => {
+                            ComputerButtonsInGame[buttonToNumber].backgroundImage.ImageSource = BitmapFrame.Create(Splash);
+                        }));
+
+                        //ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
                     }
 
                     PlayerTurn = false;
@@ -129,8 +152,12 @@ namespace Sup20_12.ViewModels
                 {
                     if(c.Longitude == shoot[0] && c.Latitude == shoot[1])
                     {
-                        c.HitOrMiss = "Träff!";
+                        //c.HitOrMiss = "Träff!";
+                        Application.Current.Dispatcher.Invoke((Action)(() => {
+                            c.backgroundImage.ImageSource = BitmapFrame.Create(Explosion);
+                        }));
                         c.IsClicked = true;
+
                     }
                 }
                 PlayerTurn = true;
@@ -161,13 +188,17 @@ namespace Sup20_12.ViewModels
                 {
                     if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
                     {
-                        c.HitOrMiss = "Miss!";
+                        //c.HitOrMiss = "Miss!";
+                        Application.Current.Dispatcher.Invoke((Action)(() => {
+                            c.backgroundImage.ImageSource = BitmapFrame.Create(Splash);
+                        }));
                         c.IsClicked = true;
                     }
                 }
                 PlayerTurn = true;
             }
         }
+
 
         private void AskIfExitCurrentRound()
         {

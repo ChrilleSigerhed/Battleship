@@ -146,3 +146,7 @@ C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.c
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.dll
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.pdb
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.genruntimeconfig.cache
+C:\Users\Jeppe\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SingleBoatUC.baml
+C:\Users\Jeppe\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SingleBoatUC.g.cs
+C:\Users\Jeppe\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
+C:\Users\Jeppe\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\App.baml
