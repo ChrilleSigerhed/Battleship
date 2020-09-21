@@ -25,7 +25,7 @@ namespace Sup20_12.ViewModels
         public int Ships { get; set; } = 3;
         public ObservableCollection<GameGrid> PlayerButtonsInGame { get; set; }  = new ObservableCollection<GameGrid>();
         public ObservableCollection<GameGrid> ComputerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
-        public List<int> PlayerShootsFired { get; set; } = new List<int>();
+        public List<int> PlayerShotsFired { get; set; } = new List<int>();
 
         public MainWindow win = (MainWindow)Application.Current.MainWindow;
         public SingleBoatUC SingleBoat { get; set; }
@@ -73,52 +73,88 @@ namespace Sup20_12.ViewModels
             {
                 
                 int buttonToNumber = int.Parse(button);
-                if (PlayerShootsFired.Contains(buttonToNumber))
-                {
+                if (HasBeenShotAtAlready(buttonToNumber))
                     MessageBox.Show("Du har redan skjutit där!");
-                }
-                else if(gameEngine.PlayerCheckHitOrMiss(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude) == true)
+                else if(HitComputerShip(buttonToNumber))
                 {
-                    ShowNumberOfMoves = gameEngine.NumberOfMoves;
-                    ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
-                    PlayerShootsFired.Add(buttonToNumber);
-                    
-                    PlayerTurn = false;
+                    AddHitOnComputerBoard(buttonToNumber);
+                    ChangePlayerTurn();
                     
                     Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
-                    if (gameEngine.HasWon() == true)
+                    if (gameEngine.HasWon())
                     {
                         gameEngine.AddNewHighscore(true, Player.Id);
-                        MessageBoxResult result = MessageBox.Show($"Grattis {Player.Nickname} du vann, vill du spela igen?", "Avsluta", MessageBoxButton.YesNo);
-                        switch (result)
-                        {
-                            case MessageBoxResult.Yes:
-                                win.frame.Content = new GameWindowPage(Player);
-                                break;
-                            case MessageBoxResult.No:
-                                win.frame.Content = new MainMenuPage();
-                                break;
-                        }
+                        ShowWinDialogueBox();
                     }
                 }
                 else
                 {
-                    ShowNumberOfMoves = gameEngine.NumberOfMoves;
-                    PlayerShootsFired.Add(buttonToNumber);
-                    if(gameEngine.PlayerCheckCloseOrNot(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude) == true)
-                    {
-                        ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Nära";
-                    }
-                    else
-                    {
-                      ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
-                    }
-
+                    AddCloseOrMissOnComputerBoard(buttonToNumber);
                     PlayerTurn = false;
                     Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
                 }
             }
         }
+
+        private void ShowWinDialogueBox()
+        {
+            MessageBoxResult result = MessageBox.Show($"Grattis {Player.Nickname} du vann, vill du spela igen?", "Avsluta", MessageBoxButton.YesNo);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    win.frame.Content = new GameWindowPage(Player);
+                    break;
+                case MessageBoxResult.No:
+                    win.frame.Content = new MainMenuPage();
+                    break;
+            }
+        }
+
+        private void AddCloseOrMissOnComputerBoard(int buttonToNumber)
+        {
+            UpdateNumberOfMovesOnGameboard();
+            PlayerShotsFired.Add(buttonToNumber);
+            if (gameEngine.PlayerCheckCloseOrNot(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude) == true)
+                ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Nära";
+            else
+                ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
+        }
+
+        private void UpdateNumberOfMovesOnGameboard()
+        {
+            ShowNumberOfMoves = gameEngine.NumberOfMoves;
+        }
+
+        private void AddHitOnComputerBoard(int buttonToNumber)
+        {
+            UpdateNumberOfMovesOnGameboard();
+            ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
+            PlayerShotsFired.Add(buttonToNumber);
+        }
+        private void ChangePlayerTurn()
+        {
+            if (PlayerTurn == true)
+                PlayerTurn = false;
+            else
+                PlayerTurn = true;
+        }
+
+        private bool HitComputerShip(int buttonToNumber)
+        {
+            if (gameEngine.PlayerCheckHitOrMiss(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude))
+                return true;
+            else
+                return false;
+        }
+
+        private bool HasBeenShotAtAlready(int buttonToNumber)
+        {
+            if (PlayerShotsFired.Contains(buttonToNumber))
+                return true;
+            else
+                return false;
+        }
+
         public void ComputerHitOrMiss()
         {
             int[] shoot = gameEngine.ComputerRandomShotFired();
