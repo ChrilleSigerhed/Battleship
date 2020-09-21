@@ -37,8 +37,6 @@ namespace Sup20_12.View
             Button button = (Button)sender;
             gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
             button.Background = Ship;
-           
-
         }
 
         private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
