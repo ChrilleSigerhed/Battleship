@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:Sup20_12"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ImageBrush x:Key="imgDestroyer" ImageSource="Assets/Images/destroyerImg.png"/>
     </Application.Resources>
 </Application>

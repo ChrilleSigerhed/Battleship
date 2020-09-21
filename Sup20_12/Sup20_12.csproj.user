@@ -22,6 +22,9 @@
     <Compile Update="View\MainMenuPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\SingleBoatUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -43,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\MainMenuPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SingleBoatUC.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
