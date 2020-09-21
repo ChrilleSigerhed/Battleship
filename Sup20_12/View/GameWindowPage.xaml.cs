@@ -27,8 +27,9 @@ namespace Sup20_12.View
         {
             Player = player;
             InitializeComponent();
-            gameWindowViewModel = new GameWindowViewModel(Player);
+            gameWindowViewModel = new GameWindowViewModel(Player, rectangleUI);
             DataContext = gameWindowViewModel;
+            
 
         }
         private void Target_Drop(object sender, DragEventArgs e)
@@ -36,8 +37,7 @@ namespace Sup20_12.View
             Button button = (Button)sender;
             gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
             button.Background = Ship;
-            button.Background = Ship2;
-            button.Background = Ship3;
+           
 
         }
 

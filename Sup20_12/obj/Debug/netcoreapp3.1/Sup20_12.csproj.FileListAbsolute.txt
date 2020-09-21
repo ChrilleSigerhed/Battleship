@@ -140,3 +140,7 @@ C:\Users\chris\Source\Repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Assets\Fon
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12_Content.g.cs
 C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Assets\Fonts\STENCIL.TTF
 C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12_Content.g.cs
+C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SingleBoatUC.baml
+C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SingleBoatUC.g.cs
+C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\App.baml
+C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs

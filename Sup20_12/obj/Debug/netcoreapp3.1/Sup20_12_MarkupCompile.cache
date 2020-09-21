@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\chris\Source\Repos\sup20_12\Sup20_12\App.xaml
-7-660432970
+8-1889638374
 1525805314
-261419702874
+27603813644
 194-956495530
-MainWindow.xaml;ResourceDictionaries\Style.xaml;TESTING\TestWindow.xaml;View\ChoosePlayerPage.xaml;View\GameWindowPage.xaml;View\HighScorePage.xaml;View\MainMenuPage.xaml;
+MainWindow.xaml;ResourceDictionaries\Style.xaml;TESTING\TestWindow.xaml;View\ChoosePlayerPage.xaml;View\GameWindowPage.xaml;View\HighScorePage.xaml;View\MainMenuPage.xaml;View\SingleBoatUC.xaml;
 
 False
 
