@@ -92,8 +92,8 @@ namespace Sup20_12.ViewModels
 
                     if (gameEngine.HasWon())
                     {
-                        gameEngine.AddNewHighscore(true, MyPlayer.Id);
-                        ShowWinDialogueBox();
+                        Highscore myHighscore = gameEngine.AddNewHighscore(true, MyPlayer.Id);
+                        ShowWinDialogueBox(myHighscore);
                     }
                 }
                 else
@@ -107,9 +107,9 @@ namespace Sup20_12.ViewModels
             }
         }
 
-        private void ShowWinDialogueBox()
+        private void ShowWinDialogueBox(Highscore myHighscore)
         {
-            MessageBoxResult result = MessageBox.Show($"Grattis {MyPlayer.Nickname}, du vann{DidPlayerMakeTheHighscoreString()}", "Avsluta", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show($"Grattis {MyPlayer.Nickname}, du vann{DidPlayerMakeTheHighscoreString(myHighscore)}", "Avsluta", MessageBoxButton.YesNo);
             switch (result)
             {
                 case MessageBoxResult.Yes:
@@ -120,23 +120,25 @@ namespace Sup20_12.ViewModels
                     break;
             }
         }
-        private string DidPlayerMakeTheHighscoreString()
+        private string DidPlayerMakeTheHighscoreString(Highscore myHighscore)
         {
             string returnString = "";
             IEnumerable<Highscore> myHighscoreList = DbConnection.GetThreeWinnersFromHighscore();
-            if (PlayerHasHigherScoreThanTheLastPositionInList(myHighscoreList))
+            if (IsPlayersHighscoreIdOnTheList(myHighscoreList, myHighscore))
                 returnString = " och tog dig dessutom in på highscorelistan! Vill du spela igen?";
             else
                 returnString = "! Vill du spela igen?";
             return returnString;
         }
 
-        private bool PlayerHasHigherScoreThanTheLastPositionInList(IEnumerable<Highscore> myHighscoreList)
+        private bool IsPlayersHighscoreIdOnTheList(IEnumerable<Highscore> myHighscoreList, Highscore myHighscore)
         {
-            int lastInHighscoreList = myHighscoreList.Last().NumberOfMoves;
             bool result = false;
-            if (gameEngine.NumberOfMoves < lastInHighscoreList)
-                result = true;
+            foreach (Highscore highscore in myHighscoreList)
+            {
+                if (myHighscore.Id == highscore.Id)
+                    result = true;
+            }
             return result;
         }
 
