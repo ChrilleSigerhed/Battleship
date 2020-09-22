@@ -7,10 +7,22 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Rectangle x:Name="rectangleUI"
+        <StackPanel>
+            <Rectangle x:Name="rectangleUI"
                    Width="55" 
                    Height="35" 
                    Fill="{DynamicResource imgDestroyer}">
-        </Rectangle>
+            </Rectangle>
+            <Rectangle x:Name="rectangle2"
+                   Width="55" 
+                   Height="35" 
+                   Fill="{DynamicResource imgDestroyer}">
+            </Rectangle>
+            <Rectangle x:Name="rectangle3"
+                   Width="55" 
+                   Height="35" 
+                   Fill="{DynamicResource imgDestroyer}">
+            </Rectangle>
+        </StackPanel>
     </Grid>
 </UserControl>
