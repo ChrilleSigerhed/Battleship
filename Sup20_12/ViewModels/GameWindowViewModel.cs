@@ -198,22 +198,22 @@ namespace Sup20_12.ViewModels
 
         private void ShowLosingDialogueBox()
         {
-            MessageBoxResult result = MessageBox.Show($"Ops {Player.Nickname}, du förlorade... mot en dator... vill du försöka igen?", "Avsluta", MessageBoxButton.YesNo);
-            switch (result)
-            {
-                case MessageBoxResult.Yes:
-                    Application.Current.Dispatcher.Invoke((Action)delegate
-                    {
-                        win.frame.Content = new GameWindowPage(Player);
-                    });
-                    break;
-                case MessageBoxResult.No:
-                    Application.Current.Dispatcher.Invoke((Action)delegate
-                    {
-                        win.frame.Content = new MainMenuPage();
-                    });
-                    break;
-            }
+                MessageBoxResult result = MessageBox.Show($"Ops {Player.Nickname}, du förlorade... mot en dator... vill du försöka igen?", "Avsluta", MessageBoxButton.YesNo);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        Application.Current.Dispatcher.Invoke((Action)delegate
+                        {
+                            win.frame.Content = new GameWindowPage(Player);
+                        });
+                        break;
+                    case MessageBoxResult.No:
+                        Application.Current.Dispatcher.Invoke((Action)delegate
+                        {
+                            GoToMainPage();
+                        });
+                        break;
+                }
         }
 
         private void AskIfExitCurrentRound()
