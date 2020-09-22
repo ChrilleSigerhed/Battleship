@@ -35,6 +35,7 @@ namespace Sup20_12.View
         private void Target_Drop(object sender, DragEventArgs e)
         {
             Button button = (Button)sender;
+            button.Background = Brushes.Transparent;
             button.Background = Ship;
             gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
         }
