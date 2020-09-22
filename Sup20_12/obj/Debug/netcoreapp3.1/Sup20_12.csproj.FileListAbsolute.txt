@@ -154,3 +154,7 @@ C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\Singl
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SingleBoatUC.g.cs
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\App.baml
+C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SingleBoatUC.baml
+C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SingleBoatUC.g.cs
+C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
+C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\App.baml
