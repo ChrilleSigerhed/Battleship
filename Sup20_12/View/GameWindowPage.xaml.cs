@@ -45,9 +45,14 @@ namespace Sup20_12.View
         private ImageBrush GetImageSingleBoat()
         {
             ImageBrush bitmap = new ImageBrush();
-            bitmap.Stretch = Stretch.None;
+            bitmap.Stretch = Stretch.Uniform;
             bitmap.ImageSource = BitmapFrame.Create(new Uri(@"pack://Application:,,,/Assets/Images/destroyerImg.png", UriKind.Absolute));
             return bitmap;
+        }
+
+        private void rectangleUI_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

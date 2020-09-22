@@ -53,9 +53,10 @@
             <Label Name="NumberOfMoves" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" Content="{Binding ShowNumberOfMoves}" Style="{StaticResource fontz}" FontSize="12"/>
             <Button Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Width="120"  Style="{StaticResource BtnBack}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Command="{Binding GoToMainPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}"/>
             <StackPanel Grid.Column="1" Grid.Row="1">
-                <local:SingleBoatUC x:Name="rectangleUI" Grid.Column="2"></local:SingleBoatUC>
-                
+                <local:SingleBoatUC x:Name="rectangleUI" Grid.Column="2" Loaded="rectangleUI_Loaded"></local:SingleBoatUC>
             </StackPanel>
+
+
         </Grid>
 
         <Grid x:Name="PlayerGameBoard" Grid.Column="1" >

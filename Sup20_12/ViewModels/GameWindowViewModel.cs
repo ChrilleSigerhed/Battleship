@@ -79,7 +79,6 @@ namespace Sup20_12.ViewModels
 
             if (PlayerTurn == true)
             {
-
                 int buttonToNumber = int.Parse(button);
                 if (HasBeenShotAtAlready(buttonToNumber))
                     MessageBox.Show("Du har redan skjutit där!");
@@ -235,7 +234,7 @@ namespace Sup20_12.ViewModels
             {
                 BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/explosion.png", UriKind.Absolute));
                 grid.backgroundImage.ImageSource = image;
-                grid.backgroundImage.Stretch = Stretch.None;
+                grid.backgroundImage.Stretch = Stretch.Uniform;
             });
         }
 
@@ -245,7 +244,7 @@ namespace Sup20_12.ViewModels
             {
                 BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/splashSonar.png", UriKind.Absolute));
                 grid.backgroundImage.ImageSource = image;
-                grid.backgroundImage.Stretch = Stretch.None;
+                grid.backgroundImage.Stretch = Stretch.Uniform;
             });
         }
 
@@ -255,7 +254,7 @@ namespace Sup20_12.ViewModels
             {
                 BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/splash.png", UriKind.Absolute));
                 grid.backgroundImage.ImageSource = image;
-                grid.backgroundImage.Stretch = Stretch.None;
+                grid.backgroundImage.Stretch = Stretch.Uniform;
             });
         }
 
