@@ -23,9 +23,7 @@ namespace Sup20_12
     {
         public MainWindow()
         {
-
             InitializeComponent();
-
         }
     }
 }

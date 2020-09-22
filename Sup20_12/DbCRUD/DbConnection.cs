@@ -171,7 +171,7 @@ namespace Sup20_12
 
         public static IEnumerable<Highscore> GetThreeWinnersFromHighscore()
         {
-            string stmt = $"SELECT highscore.id, win, date, number_of_moves, player_id, player.nickname FROM highscore INNER JOIN player on highscore.player_id = player.id WHERE win = true ORDER BY number_of_moves ASC LIMIT 3";
+            string stmt = $"SELECT highscore.id, win, date, number_of_moves, player_id, player.nickname FROM highscore INNER JOIN player on highscore.player_id = player.id WHERE win = true ORDER BY number_of_moves ASC, date DESC LIMIT 3";
 
 
             using (var conn = new NpgsqlConnection(connectionString))
