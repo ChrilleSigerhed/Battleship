@@ -135,7 +135,7 @@ namespace Sup20_12.ViewModels
         {
             int lastInHighscoreList = myHighscoreList.Last().NumberOfMoves;
             bool result = false;
-            if (gameEngine.NumberOfMoves > lastInHighscoreList)
+            if (gameEngine.NumberOfMoves < lastInHighscoreList)
                 result = true;
             return result;
         }
