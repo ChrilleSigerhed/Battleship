@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Sup20_12.ViewModels
 {
@@ -86,12 +87,12 @@ namespace Sup20_12.ViewModels
                     AddHitOnComputerBoard(buttonToNumber);
                     ChangePlayerTurn();
                     
-                    Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
                     if (gameEngine.HasWon())
                     {
                         gameEngine.AddNewHighscore(true, Player.Id);
                         ShowWinDialogueBox();
                     }
+                    Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
                 }
                 else
                 {
@@ -121,9 +122,15 @@ namespace Sup20_12.ViewModels
             UpdateNumberOfMovesOnGameboard();
             PlayerShotsFired.Add(buttonToNumber);
             if (gameEngine.PlayerCheckCloseOrNot(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude) == true)
+            {
                 ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Nära";
+                ChangeGridSquareToSplashSonarImage(ComputerButtonsInGame[buttonToNumber]);
+            }
             else
+            {
                 ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
+                ChangeToSplashImage(ComputerButtonsInGame[buttonToNumber]);
+            }
         }
 
         private void UpdateNumberOfMovesOnGameboard()
@@ -135,6 +142,7 @@ namespace Sup20_12.ViewModels
         {
             UpdateNumberOfMovesOnGameboard();
             ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Träff";
+            ChangeGridSquareToExplosionImage(ComputerButtonsInGame[buttonToNumber]);
             PlayerShotsFired.Add(buttonToNumber);
         }
         private void ChangePlayerTurn()
@@ -163,6 +171,7 @@ namespace Sup20_12.ViewModels
 
         public void ComputerHitOrMiss()
         {
+            
             int[] shoot = gameEngine.ComputerRandomShotFired();
 
             if(gameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
@@ -172,6 +181,7 @@ namespace Sup20_12.ViewModels
                     if(c.Longitude == shoot[0] && c.Latitude == shoot[1])
                     {
                         c.HitOrMiss = "Träff!";
+                        ChangeGridSquareToExplosionImage(c);                        
                         c.IsClicked = true;
                     }
                 }
@@ -189,11 +199,39 @@ namespace Sup20_12.ViewModels
                     if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
                     {
                         c.HitOrMiss = "Miss!";
+                        ChangeToSplashImage(c);
                         c.IsClicked = true;
                     }
                 }
                 PlayerTurn = true;
             }
+        }
+
+        public void ChangeGridSquareToExplosionImage(GameGrid grid)
+        {
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/explosion.png", UriKind.Absolute));
+                grid.backgroundImage.ImageSource = image;
+            });
+        }
+
+        public void ChangeGridSquareToSplashSonarImage(GameGrid grid)
+        {
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/splashSonar.png", UriKind.Absolute));
+                grid.backgroundImage.ImageSource = image;
+            });
+        }
+
+        public void ChangeToSplashImage(GameGrid grid)
+        {
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/splash.png", UriKind.Absolute));
+                grid.backgroundImage.ImageSource = image;
+            });
         }
 
         private void ShowLosingDialogueBox()
