@@ -76,18 +76,18 @@ namespace Sup20_12.ViewModels
 
         public void PlayerCheckHitOrMiss(string button)
         {
-            
+
             if (PlayerTurn == true)
             {
-                
+
                 int buttonToNumber = int.Parse(button);
                 if (HasBeenShotAtAlready(buttonToNumber))
                     MessageBox.Show("Du har redan skjutit där!");
-                else if(HitComputerShip(buttonToNumber))
+                else if (HitComputerShip(buttonToNumber))
                 {
                     AddHitOnComputerBoard(buttonToNumber);
                     ChangePlayerTurn();
-                    
+
                     if (gameEngine.HasWon())
                     {
                         Highscore myHighscore = gameEngine.AddNewHighscore(true, MyPlayer.Id);
@@ -99,9 +99,7 @@ namespace Sup20_12.ViewModels
                 {
                     AddCloseOrMissOnComputerBoard(buttonToNumber);
                     PlayerTurn = false;
-                    
-                    //Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
-                    ComputerHitOrMiss();                                            //ÄNDRAT DELAY HÄR
+                    Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
                 }
             }
         }
@@ -267,16 +265,16 @@ namespace Sup20_12.ViewModels
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
-                        //Application.Current.Dispatcher.Invoke((Action)delegate
+                        Application.Current.Dispatcher.Invoke((Action)delegate
                         {
                             win.frame.Content = new GameWindowPage(MyPlayer);
-                        };
+                        });
                         break;
                     case MessageBoxResult.No:
-                        //Application.Current.Dispatcher.Invoke((Action)delegate
+                        Application.Current.Dispatcher.Invoke((Action)delegate
                         {
                             GoToMainPage();
-                        };
+                        });
                         break;
                 }
         }
