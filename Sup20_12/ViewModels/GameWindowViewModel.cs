@@ -235,6 +235,7 @@ namespace Sup20_12.ViewModels
             {
                 BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/explosion.png", UriKind.Absolute));
                 grid.backgroundImage.ImageSource = image;
+                grid.backgroundImage.Stretch = Stretch.None;
             });
         }
 
@@ -244,6 +245,7 @@ namespace Sup20_12.ViewModels
             {
                 BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/splashSonar.png", UriKind.Absolute));
                 grid.backgroundImage.ImageSource = image;
+                grid.backgroundImage.Stretch = Stretch.None;
             });
         }
 
@@ -253,6 +255,7 @@ namespace Sup20_12.ViewModels
             {
                 BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/splash.png", UriKind.Absolute));
                 grid.backgroundImage.ImageSource = image;
+                grid.backgroundImage.Stretch = Stretch.None;
             });
         }
 
