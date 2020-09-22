@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Cursor\destroyerImg.cur" />
     <None Remove="Assets\Fonts\STENCIL.TTF" />
     <None Remove="Assets\Images\animationFire.png" />
     <None Remove="Assets\Images\bgChoosePlayerPage.jpg" />
@@ -45,6 +46,7 @@
     <Content Include="Assets\Fonts\STENCIL.TTF">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Assets\Cursor\destroyerImg.cur" />
     <Resource Include="Assets\Images\animationFire.png" />
     <Resource Include="Assets\Images\bgChoosePlayerPage.jpg" />
     <Resource Include="Assets\Images\bgGameWindowPage.jpg" />

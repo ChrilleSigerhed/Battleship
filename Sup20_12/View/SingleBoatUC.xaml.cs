@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Resources;
 using System.Windows.Shapes;
 
 namespace Sup20_12.View
@@ -55,6 +56,26 @@ namespace Sup20_12.View
             {
                 rectangle3.Visibility = Visibility.Hidden;
             }
+        }
+
+        protected override void OnGiveFeedback(GiveFeedbackEventArgs e)
+        {
+           // base.OnGiveFeedback(e);
+            
+           // These Effects values are set in the drop target's
+           // DragOver event handler.
+
+           if (e.Effects.HasFlag(DragDropEffects.Move)) //&& e.OriginalSource is DESTROYER ---> byter skepp
+           {
+               StreamResourceInfo sriCurs = Application.GetResourceStream(new Uri("Assets/Cursor/destroyerImg.cur", UriKind.Relative));
+               Mouse.SetCursor(new Cursor(sriCurs.Stream));
+                
+           }
+           e.Handled = true;
+           //else
+           //{
+           //    Mouse.SetCursor(Cursors.No);
+           //}
         }
     }
 }
