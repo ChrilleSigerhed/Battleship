@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,19 +31,19 @@ namespace Sup20_12.ViewModels
         public MainWindow win = (MainWindow)Application.Current.MainWindow;
         public SingleBoatUC SingleBoat { get; set; }
         public GameEngine gameEngine { get; set; } = new GameEngine();
-        public Player Player { get; set; }
+        public Player MyPlayer { get; set; }
         public bool PlayerTurn { get; set; } = false;
         #endregion
-        public GameWindowViewModel(Player player, SingleBoatUC boat)
+        public GameWindowViewModel(Player myPlayer, SingleBoatUC boat)
         {
-            Player = player;
+            MyPlayer = myPlayer;
             SingleBoat = boat;
             ComputerButtonsInGame = gameEngine.ComputerButtonsInGame;
             PlayerButtonsInGame = gameEngine.PlayerButtonsInGame;
             PlaceShip = new RelayPropertyCommand(PlayerPlaceShips);
             CheckIfShip = new RelayPropertyCommand(PlayerCheckHitOrMiss);
             GoToMainPageCommand = new RelayCommand(AskIfExitCurrentRound);
-            ShowPlayerNickname = player.Nickname;
+            ShowPlayerNickname = myPlayer.Nickname;
             ShowNumberOfMoves = gameEngine.NumberOfMoves;
         }
       
@@ -85,11 +86,13 @@ namespace Sup20_12.ViewModels
                 {
                     AddHitOnComputerBoard(buttonToNumber);
                     ChangePlayerTurn();
-                    
-                    Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
+
+                    //Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
+                    ComputerHitOrMiss();                                            //ÄNDRAT DELAY HÄR
+
                     if (gameEngine.HasWon())
                     {
-                        gameEngine.AddNewHighscore(true, Player.Id);
+                        gameEngine.AddNewHighscore(true, MyPlayer.Id);
                         ShowWinDialogueBox();
                     }
                 }
@@ -97,23 +100,44 @@ namespace Sup20_12.ViewModels
                 {
                     AddCloseOrMissOnComputerBoard(buttonToNumber);
                     PlayerTurn = false;
-                    Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
+                    
+                    //Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
+                    ComputerHitOrMiss();                                            //ÄNDRAT DELAY HÄR
                 }
             }
         }
 
         private void ShowWinDialogueBox()
         {
-            MessageBoxResult result = MessageBox.Show($"Grattis {Player.Nickname} du vann, vill du spela igen?", "Avsluta", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show($"Grattis {MyPlayer.Nickname}, du vann{DidPlayerMakeTheHighscoreString()}", "Avsluta", MessageBoxButton.YesNo);
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    win.frame.Content = new GameWindowPage(Player);
+                    win.frame.Content = new GameWindowPage(MyPlayer);
                     break;
                 case MessageBoxResult.No:
                     win.frame.Content = new MainMenuPage();
                     break;
             }
+        }
+        private string DidPlayerMakeTheHighscoreString()
+        {
+            string returnString = "";
+            IEnumerable<Highscore> myHighscoreList = DbConnection.GetThreeWinnersFromHighscore();
+            if (PlayerHasHigherScoreThanTheLastPositionInList(myHighscoreList))
+                returnString = " och tog dig dessutom in på highscorelistan! Vill du spela igen?";
+            else
+                returnString = "! Vill du spela igen?";
+            return returnString;
+        }
+
+        private bool PlayerHasHigherScoreThanTheLastPositionInList(IEnumerable<Highscore> myHighscoreList)
+        {
+            int lastInHighscoreList = myHighscoreList.Last().NumberOfMoves;
+            bool result = false;
+            if (gameEngine.NumberOfMoves > lastInHighscoreList)
+                result = true;
+            return result;
         }
 
         private void AddCloseOrMissOnComputerBoard(int buttonToNumber)
@@ -177,7 +201,7 @@ namespace Sup20_12.ViewModels
                 }
                 if(gameEngine.HasLost())
                 {
-                    gameEngine.AddNewHighscore(false, Player.Id);
+                    gameEngine.AddNewHighscore(false, MyPlayer.Id);
                     ShowLosingDialogueBox();
                 }
                 PlayerTurn = true;
@@ -198,20 +222,20 @@ namespace Sup20_12.ViewModels
 
         private void ShowLosingDialogueBox()
         {
-                MessageBoxResult result = MessageBox.Show($"Ops {Player.Nickname}, du förlorade... mot en dator... vill du försöka igen?", "Avsluta", MessageBoxButton.YesNo);
+                MessageBoxResult result = MessageBox.Show($"Ops {MyPlayer.Nickname}, du förlorade... mot en dator... vill du försöka igen?", "Avsluta", MessageBoxButton.YesNo);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
-                        Application.Current.Dispatcher.Invoke((Action)delegate
+                        //Application.Current.Dispatcher.Invoke((Action)delegate
                         {
-                            win.frame.Content = new GameWindowPage(Player);
-                        });
+                            win.frame.Content = new GameWindowPage(MyPlayer);
+                        };
                         break;
                     case MessageBoxResult.No:
-                        Application.Current.Dispatcher.Invoke((Action)delegate
+                        //Application.Current.Dispatcher.Invoke((Action)delegate
                         {
                             GoToMainPage();
-                        });
+                        };
                         break;
                 }
         }
