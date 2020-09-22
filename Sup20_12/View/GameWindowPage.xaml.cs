@@ -35,10 +35,10 @@ namespace Sup20_12.View
         {
             bitmap = GetImageSingleBoat();
             Button button = (Button)sender;
-            if(button.Background == bitmap) // Genom att kontrollera bakgrunden på vad det är vi droppar så kan vi köra olika metoder för olika båtar... om vi väljer att implementera det
+            button.Background = Brushes.Transparent;
+            button.Background = bitmap;
+            if (button.Background == bitmap) // Genom att kontrollera bakgrunden på vad det är vi droppar så kan vi köra olika metoder för olika båtar... om vi väljer att implementera det
             {
-                button.Background = Brushes.Transparent;
-                button.Background = bitmap;
                 gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
             }
         }
