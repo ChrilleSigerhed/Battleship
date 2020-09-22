@@ -22,6 +22,7 @@ namespace Sup20_12.View
     {
         public Player Player { get; set; }
         public GameWindowViewModel gameWindowViewModel { get; set; }
+        public ImageBrush bitmap { get; set; }
 
         public GameWindowPage(Player player)
         {
@@ -29,24 +30,24 @@ namespace Sup20_12.View
             InitializeComponent();
             gameWindowViewModel = new GameWindowViewModel(Player, rectangleUI);
             DataContext = gameWindowViewModel;
-            
-
         }
         private void Target_Drop(object sender, DragEventArgs e)
         {
+            bitmap = GetImageSingleBoat();
             Button button = (Button)sender;
-            button.Background = Brushes.Transparent;
-            button.Background = Ship;
-            gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
+            if(button.Background == bitmap) // Genom att kontrollera bakgrunden på vad det är vi droppar så kan vi köra olika metoder för olika båtar... om vi väljer att implementera det
+            {
+                button.Background = Brushes.Transparent;
+                button.Background = bitmap;
+                gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
+            }
         }
-
-        private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private ImageBrush GetImageSingleBoat()
         {
-            Rectangle r = (Rectangle)sender;
-            DataObject dataObject = new DataObject(r);
-            DragDrop.DoDragDrop(r, dataObject, DragDropEffects.Move);
+            ImageBrush bitmap = new ImageBrush();
+            bitmap.Stretch = Stretch.None;
+            bitmap.ImageSource = BitmapFrame.Create(new Uri(@"pack://Application:,,,/Assets/Images/destroyerImg.png", UriKind.Absolute));
+            return bitmap;
         }
-
     }
-
 }

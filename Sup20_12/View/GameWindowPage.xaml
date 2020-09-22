@@ -54,15 +54,11 @@
             <Button Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Width="120"  Style="{StaticResource BtnBack}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Command="{Binding GoToMainPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}"/>
             <StackPanel Grid.Column="1" Grid.Row="1">
                 <local:SingleBoatUC x:Name="rectangleUI" Grid.Column="2"></local:SingleBoatUC>
-                <Rectangle Visibility="Hidden" x:Name="button1" Height="35" Width="55" Margin="5,2.5,5,5" MouseLeftButtonDown="Button_MouseLeftButtonDown">
-                    <Rectangle.Fill>
-                        <ImageBrush x:Name="Ship" ImageSource="/Assets/Images/destroyerImg.png" Stretch="None"/>
-                    </Rectangle.Fill>
-                </Rectangle>
+                
             </StackPanel>
         </Grid>
 
-        <Grid x:Name="PlayerGameBoard" Grid.Column="1">
+        <Grid x:Name="PlayerGameBoard" Grid.Column="1" >
             <Grid.RowDefinitions>
                 <!-- Rubrik spelare -->
                 <RowDefinition Height="126"/>
@@ -73,7 +69,8 @@
 
             <Label Name="PlayerNickname" Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="{Binding ShowPlayerNickname}" Style="{StaticResource fontz}" FontSize="20" Foreground="White" />
 
-            <Grid Grid.Row="1" Grid.Column="1" AllowDrop="True">
+            <Grid Grid.Row="1" Grid.Column="1" AllowDrop="True" >
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -88,7 +85,7 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <Button Background="{Binding PlayerButtonsInGame[0].backgroundImage,Mode=TwoWay}" CommandParameter="0" Grid.Column="0" Grid.Row="0" Drop="Target_Drop" FontWeight="Bold"/>
+                <Button Background="{Binding PlayerButtonsInGame[0].backgroundImage,Mode=TwoWay}" CommandParameter="0" Grid.Column="0" Grid.Row="0" Drop="Target_Drop" FontWeight="Bold" />
                 <Button Background="{Binding PlayerButtonsInGame[1].backgroundImage,Mode=TwoWay}" CommandParameter="1" Grid.Column="1" Grid.Row="0" Drop="Target_Drop" FontWeight="Bold" />
                 <Button Background="{Binding PlayerButtonsInGame[2].backgroundImage,Mode=TwoWay}" CommandParameter="2" Grid.Column="2" Grid.Row="0" Drop="Target_Drop" FontWeight="Bold" />
                 <Button Background="{Binding PlayerButtonsInGame[3].backgroundImage,Mode=TwoWay}" CommandParameter="3" Grid.Column="3" Grid.Row="0" Drop="Target_Drop" FontWeight="Bold" />
