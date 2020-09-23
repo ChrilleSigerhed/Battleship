@@ -9,20 +9,20 @@
     <Grid>
         <StackPanel>
             <Rectangle x:Name="rectangleUI"
-                   Width="55" 
-                   Height="35" 
+                   Width="35" 
+                   Height="23" 
                    Margin="0,0,0,7"
                    Fill="{DynamicResource imgDestroyer}">
             </Rectangle>
             <Rectangle x:Name="rectangle2"
-                   Width="55" 
-                   Height="35"
+                   Width="35" 
+                   Height="23"
                    Margin="0,0,0,7"
                    Fill="{DynamicResource imgDestroyer}">
             </Rectangle>
             <Rectangle x:Name="rectangle3"
-                   Width="55" 
-                   Height="35" 
+                   Width="35" 
+                   Height="23" 
                    Fill="{DynamicResource imgDestroyer}">
             </Rectangle>
         </StackPanel>

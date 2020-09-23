@@ -60,22 +60,13 @@ namespace Sup20_12.View
 
         protected override void OnGiveFeedback(GiveFeedbackEventArgs e)
         {
-           // base.OnGiveFeedback(e);
-            
-           // These Effects values are set in the drop target's
-           // DragOver event handler.
 
-           if (e.Effects.HasFlag(DragDropEffects.Move)) //&& e.OriginalSource is DESTROYER ---> byter skepp
+           if (e.Effects.HasFlag(DragDropEffects.Move)) //&& e.OriginalSource is Destroyer ---> om/när vi har flera skepp
            {
                StreamResourceInfo sriCurs = Application.GetResourceStream(new Uri("Assets/Cursor/destroyerImg.cur", UriKind.Relative));
                Mouse.SetCursor(new Cursor(sriCurs.Stream));
-                
            }
            e.Handled = true;
-           //else
-           //{
-           //    Mouse.SetCursor(Cursors.No);
-           //}
         }
     }
 }

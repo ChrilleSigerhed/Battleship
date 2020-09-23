@@ -39,7 +39,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Win32.Primitives" Version="4.3.0" />
     <PackageReference Include="Npgsql" Version="4.1.4" />
-    <PackageReference Include="PropertyChanged.Fody" Version="3.2.9" />
   </ItemGroup>
 
   <ItemGroup>
@@ -77,6 +76,10 @@
   <ItemGroup>
     <Folder Include="Assets\Images\boat\" />
     <Folder Include="View\Base\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
 </Project>

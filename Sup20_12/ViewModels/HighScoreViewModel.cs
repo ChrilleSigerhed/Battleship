@@ -1,9 +1,6 @@
 ﻿using Sup20_12.View;
 using Sup20_12.ViewModels.Base;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Windows;
 using System.Windows.Input;
 
 
@@ -11,12 +8,12 @@ namespace Sup20_12
 {
     public class HighScoreViewModel : BaseViewModel
     {
+        #region Propertys
         public int MyProperty { get; set; }
-
         public string HighScoreLst { get; set; }
         public string FrequentPlayers { get; set; }
-
         public ICommand GoToMainPage { get; set; }
+        #endregion
 
         public HighScoreViewModel()
         {
@@ -41,8 +38,7 @@ namespace Sup20_12
 
         public void GoToMain()
         {
-            MainWindow win = (MainWindow)Application.Current.MainWindow;
-            win.frame.Content = new MainMenuPage();
+            MyWin.frame.Content = new MainMenuPage();
         }
 
         private string ConvertFrequentPlayerListToString(List<Player> myTempPlayerList)
