@@ -59,7 +59,6 @@ namespace Sup20_12.ViewModels
                 MessageBox.Show("Det går inte att placera skepp där.");
         }
 
-
         private bool PlayerHasShipsLeftToPlace(int buttonToNumber)
         {
             bool result = false;
