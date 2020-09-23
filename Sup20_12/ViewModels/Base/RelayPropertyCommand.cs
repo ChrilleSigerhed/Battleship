@@ -1,7 +1,4 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 
 namespace Sup20_12.ViewModels.Base
@@ -9,10 +6,10 @@ namespace Sup20_12.ViewModels.Base
     public class RelayPropertyCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
-        public Action<string> action { get; set; }
+        public Action<string> MyAction { get; set; }
         public RelayPropertyCommand(Action<string> action)
         {
-            this.action = action;
+            MyAction = action;
         }
         public bool CanExecute(object parameter)
         {
@@ -21,7 +18,7 @@ namespace Sup20_12.ViewModels.Base
 
         public void Execute(object parameter)
         {
-            action.Invoke(parameter as string);
+            MyAction.Invoke(parameter as string);
         }
     }
 }

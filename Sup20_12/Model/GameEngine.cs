@@ -47,19 +47,19 @@ namespace Sup20_12.ViewModels
             Random random = new Random() ;
             int longitude;
             int latitude;
-            longitude = random.Next(0, 5);
-            latitude = random.Next(0, 5);
+            longitude = random.Next(0, 7);
+            latitude = random.Next(0, 7);
             ComputerShipsList.Add(new Submarine(longitude, latitude));
 
             for (int i = 0; i < 2; i++)
             {
-                longitude = random.Next(0, 5);
-                latitude = random.Next(0, 5);
+                longitude = random.Next(0, 7);
+                latitude = random.Next(0, 7);
                 Submarine submarine = new Submarine(longitude, latitude);
                 while (IsColliding(submarine) == true)
                 {
-                    longitude = random.Next(0, 5);
-                    latitude = random.Next(0, 5);
+                    longitude = random.Next(0, 7);
+                    latitude = random.Next(0, 7);
                     submarine = new Submarine(longitude, latitude);
                 }
                 ComputerShipsList.Add(submarine);
@@ -125,9 +125,9 @@ namespace Sup20_12.ViewModels
         }
         public void CreatePlayerGrid()
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 7; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < 7; j++)
                 {
                    GameGrid square = new GameGrid(i,j,""); 
                    PlayerButtonsInGame.Add(square);
@@ -136,9 +136,9 @@ namespace Sup20_12.ViewModels
         }
         public void CreateComputerGrid()
         {
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 7; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < 7; j++)
                 {
                     GameGrid square = new GameGrid(i, j, "");
                     ComputerButtonsInGame.Add(square);
@@ -188,13 +188,13 @@ namespace Sup20_12.ViewModels
         public int[] ComputerRandomShotFired()
         {
             Random random = new Random();
-            int longitude = random.Next(0, 5);
-            int latitude = random.Next(0, 5);
+            int longitude = random.Next(0, 7);
+            int latitude = random.Next(0, 7);
 
             while (HasGridBeenShot(PlayerButtonsInGame, longitude, latitude) == true)
             {
-                longitude = random.Next(0, 5);
-                latitude = random.Next(0, 5);
+                longitude = random.Next(0, 7);
+                latitude = random.Next(0, 7);
             }
                 int[] coordinates = { longitude, latitude };
                 return coordinates;

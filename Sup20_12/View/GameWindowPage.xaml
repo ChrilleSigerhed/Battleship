@@ -69,11 +69,13 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Label Name="PlayerNickname" Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="{Binding ShowPlayerNickname}" Style="{StaticResource fontz}" FontSize="20" Foreground="White" />
+            <Label Name="PlayerNickname" Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="{Binding ShowPlayerNickname}" Style="{StaticResource fontz}" FontSize="30" Foreground="White" />
 
             <Grid Grid.Row="1" Grid.Column="1" AllowDrop="True" >
-                
+
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -81,6 +83,8 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
@@ -92,26 +96,50 @@
                 <Button Background="{Binding PlayerButtonsInGame[2].backgroundImage,Mode=TwoWay}" CommandParameter="2" Grid.Column="2" Grid.Row="0" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
                 <Button Background="{Binding PlayerButtonsInGame[3].backgroundImage,Mode=TwoWay}" CommandParameter="3" Grid.Column="3" Grid.Row="0" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
                 <Button Background="{Binding PlayerButtonsInGame[4].backgroundImage,Mode=TwoWay}" CommandParameter="4" Grid.Column="4" Grid.Row="0" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[5].backgroundImage,Mode=TwoWay}" CommandParameter="5" Grid.Column="0" Grid.Row="1" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[6].backgroundImage,Mode=TwoWay}" CommandParameter="6" Grid.Column="1" Grid.Row="1" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[7].backgroundImage,Mode=TwoWay}" CommandParameter="7" Grid.Column="2" Grid.Row="1" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[8].backgroundImage,Mode=TwoWay}" CommandParameter="8" Grid.Column="3" Grid.Row="1" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[9].backgroundImage,Mode=TwoWay}" CommandParameter="9" Grid.Column="4" Grid.Row="1" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[10].backgroundImage,Mode=TwoWay}" CommandParameter="10" Grid.Column="0" Grid.Row="2" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[11].backgroundImage,Mode=TwoWay}" CommandParameter="11" Grid.Column="1" Grid.Row="2" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[12].backgroundImage,Mode=TwoWay}" CommandParameter="12" Grid.Column="2" Grid.Row="2" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[13].backgroundImage,Mode=TwoWay}" CommandParameter="13" Grid.Column="3" Grid.Row="2" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[14].backgroundImage,Mode=TwoWay}" CommandParameter="14" Grid.Column="4" Grid.Row="2" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[15].backgroundImage,Mode=TwoWay}" CommandParameter="15" Grid.Column="0" Grid.Row="3" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[16].backgroundImage,Mode=TwoWay}" CommandParameter="16" Grid.Column="1" Grid.Row="3" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[17].backgroundImage,Mode=TwoWay}" CommandParameter="17" Grid.Column="2" Grid.Row="3" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[18].backgroundImage,Mode=TwoWay}" CommandParameter="18" Grid.Column="3" Grid.Row="3" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[19].backgroundImage,Mode=TwoWay}" CommandParameter="19" Grid.Column="4" Grid.Row="3" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[20].backgroundImage,Mode=TwoWay}" CommandParameter="20" Grid.Column="0" Grid.Row="4" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[21].backgroundImage,Mode=TwoWay}" CommandParameter="21" Grid.Column="1" Grid.Row="4" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[22].backgroundImage,Mode=TwoWay}" CommandParameter="22" Grid.Column="2" Grid.Row="4" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[23].backgroundImage,Mode=TwoWay}" CommandParameter="23" Grid.Column="3" Grid.Row="4" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding PlayerButtonsInGame[24].backgroundImage,Mode=TwoWay}" CommandParameter="24" Grid.Column="4" Grid.Row="4" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[5].backgroundImage,Mode=TwoWay}" CommandParameter="5" Grid.Column="5" Grid.Row="0" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[6].backgroundImage,Mode=TwoWay}" CommandParameter="6" Grid.Column="6" Grid.Row="0" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[7].backgroundImage,Mode=TwoWay}" CommandParameter="7" Grid.Column="0" Grid.Row="1" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[8].backgroundImage,Mode=TwoWay}" CommandParameter="8" Grid.Column="1" Grid.Row="1" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[9].backgroundImage,Mode=TwoWay}" CommandParameter="9" Grid.Column="2" Grid.Row="1" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[10].backgroundImage,Mode=TwoWay}" CommandParameter="10" Grid.Column="3" Grid.Row="1" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[11].backgroundImage,Mode=TwoWay}" CommandParameter="11" Grid.Column="4" Grid.Row="1" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[12].backgroundImage,Mode=TwoWay}" CommandParameter="12" Grid.Column="5" Grid.Row="1" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[13].backgroundImage,Mode=TwoWay}" CommandParameter="13" Grid.Column="6" Grid.Row="1" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[14].backgroundImage,Mode=TwoWay}" CommandParameter="14" Grid.Column="0" Grid.Row="2" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[15].backgroundImage,Mode=TwoWay}" CommandParameter="15" Grid.Column="1" Grid.Row="2" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[16].backgroundImage,Mode=TwoWay}" CommandParameter="16" Grid.Column="2" Grid.Row="2" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[17].backgroundImage,Mode=TwoWay}" CommandParameter="17" Grid.Column="3" Grid.Row="2" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[18].backgroundImage,Mode=TwoWay}" CommandParameter="18" Grid.Column="4" Grid.Row="2" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[19].backgroundImage,Mode=TwoWay}" CommandParameter="19" Grid.Column="5" Grid.Row="2" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[20].backgroundImage,Mode=TwoWay}" CommandParameter="20" Grid.Column="6" Grid.Row="2" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[21].backgroundImage,Mode=TwoWay}" CommandParameter="21" Grid.Column="0" Grid.Row="3" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[22].backgroundImage,Mode=TwoWay}" CommandParameter="22" Grid.Column="1" Grid.Row="3" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[23].backgroundImage,Mode=TwoWay}" CommandParameter="23" Grid.Column="2" Grid.Row="3" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[24].backgroundImage,Mode=TwoWay}" CommandParameter="24" Grid.Column="3" Grid.Row="3" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[25].backgroundImage,Mode=TwoWay}" CommandParameter="25" Grid.Column="4" Grid.Row="3" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[26].backgroundImage,Mode=TwoWay}" CommandParameter="26" Grid.Column="5" Grid.Row="3" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[27].backgroundImage,Mode=TwoWay}" CommandParameter="27" Grid.Column="6" Grid.Row="3" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[28].backgroundImage,Mode=TwoWay}" CommandParameter="28" Grid.Column="0" Grid.Row="4" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[29].backgroundImage,Mode=TwoWay}" CommandParameter="29" Grid.Column="1" Grid.Row="4" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[30].backgroundImage,Mode=TwoWay}" CommandParameter="30" Grid.Column="2" Grid.Row="4" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[31].backgroundImage,Mode=TwoWay}" CommandParameter="31" Grid.Column="3" Grid.Row="4" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[32].backgroundImage,Mode=TwoWay}" CommandParameter="32" Grid.Column="4" Grid.Row="4" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[33].backgroundImage,Mode=TwoWay}" CommandParameter="33" Grid.Column="5" Grid.Row="4" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[34].backgroundImage,Mode=TwoWay}" CommandParameter="34" Grid.Column="6" Grid.Row="4" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[35].backgroundImage,Mode=TwoWay}" CommandParameter="35" Grid.Column="0" Grid.Row="5" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[36].backgroundImage,Mode=TwoWay}" CommandParameter="36" Grid.Column="1" Grid.Row="5" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[37].backgroundImage,Mode=TwoWay}" CommandParameter="37" Grid.Column="2" Grid.Row="5" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[38].backgroundImage,Mode=TwoWay}" CommandParameter="38" Grid.Column="3" Grid.Row="5" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[39].backgroundImage,Mode=TwoWay}" CommandParameter="39" Grid.Column="4" Grid.Row="5" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[40].backgroundImage,Mode=TwoWay}" CommandParameter="40" Grid.Column="5" Grid.Row="5" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[41].backgroundImage,Mode=TwoWay}" CommandParameter="41" Grid.Column="6" Grid.Row="5" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[42].backgroundImage,Mode=TwoWay}" CommandParameter="42" Grid.Column="0" Grid.Row="6" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[43].backgroundImage,Mode=TwoWay}" CommandParameter="43" Grid.Column="1" Grid.Row="6" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[44].backgroundImage,Mode=TwoWay}" CommandParameter="44" Grid.Column="2" Grid.Row="6" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[45].backgroundImage,Mode=TwoWay}" CommandParameter="45" Grid.Column="3" Grid.Row="6" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[46].backgroundImage,Mode=TwoWay}" CommandParameter="46" Grid.Column="4" Grid.Row="6" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[47].backgroundImage,Mode=TwoWay}" CommandParameter="47" Grid.Column="5" Grid.Row="6" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding PlayerButtonsInGame[48].backgroundImage,Mode=TwoWay}" CommandParameter="48" Grid.Column="6" Grid.Row="6" Drop="Target_Drop" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
             </Grid>
         </Grid>
 
@@ -123,11 +151,13 @@
                 <RowDefinition Height="271"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Name="RubrikDator" Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="Sofistikerad Ai" Style="{StaticResource fontz}" FontSize="20" Foreground="White" />
+            <Label Name="RubrikDator" Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="Computer" Style="{StaticResource fontz}" FontSize="30" Foreground="White" />
 
             <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
 
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
@@ -140,32 +170,58 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Button Background="{Binding ComputerButtonsInGame[0].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="0" Grid.Column="0" Grid.Row="0" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
                 <Button Background="{Binding ComputerButtonsInGame[1].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="1" Grid.Column="1" Grid.Row="0" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
                 <Button Background="{Binding ComputerButtonsInGame[2].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="2" Grid.Column="2" Grid.Row="0" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
                 <Button Background="{Binding ComputerButtonsInGame[3].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="3" Grid.Column="3" Grid.Row="0" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
                 <Button Background="{Binding ComputerButtonsInGame[4].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="4" Grid.Column="4" Grid.Row="0" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[5].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="5" Grid.Column="0" Grid.Row="1" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[6].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="6" Grid.Column="1" Grid.Row="1" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[7].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="7" Grid.Column="2" Grid.Row="1" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[8].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="8" Grid.Column="3" Grid.Row="1" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[9].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="9" Grid.Column="4" Grid.Row="1" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[10].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="10" Grid.Column="0" Grid.Row="2" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[11].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="11" Grid.Column="1" Grid.Row="2" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[12].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="12" Grid.Column="2" Grid.Row="2" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[13].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="13" Grid.Column="3" Grid.Row="2" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[14].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="14" Grid.Column="4" Grid.Row="2" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[15].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="15" Grid.Column="0" Grid.Row="3" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[16].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="16" Grid.Column="1" Grid.Row="3" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[17].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="17" Grid.Column="2" Grid.Row="3" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[18].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="18" Grid.Column="3" Grid.Row="3" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[19].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="19" Grid.Column="4" Grid.Row="3" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[20].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="20" Grid.Column="0" Grid.Row="4" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[21].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="21" Grid.Column="1" Grid.Row="4" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[22].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="22" Grid.Column="2" Grid.Row="4" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[23].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="23" Grid.Column="3" Grid.Row="4" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
-                <Button Background="{Binding ComputerButtonsInGame[24].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="24" Grid.Column="4" Grid.Row="4" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[5].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="5" Grid.Column="5" Grid.Row="0" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[6].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="6" Grid.Column="6" Grid.Row="0" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[7].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="7" Grid.Column="0" Grid.Row="1" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[8].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="8" Grid.Column="1" Grid.Row="1" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[9].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="9" Grid.Column="2" Grid.Row="1" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[10].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="10" Grid.Column="3" Grid.Row="1" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[11].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="11" Grid.Column="4" Grid.Row="1" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[12].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="12" Grid.Column="5" Grid.Row="1" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[13].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="13" Grid.Column="6" Grid.Row="1" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[14].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="14" Grid.Column="0" Grid.Row="2" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[15].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="15" Grid.Column="1" Grid.Row="2" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[16].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="16" Grid.Column="2" Grid.Row="2" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[17].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="17" Grid.Column="3" Grid.Row="2" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[18].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="18" Grid.Column="4" Grid.Row="2" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[19].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="19" Grid.Column="5" Grid.Row="2" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[20].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="20" Grid.Column="6" Grid.Row="2" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[21].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="21" Grid.Column="0" Grid.Row="3" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[22].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="22" Grid.Column="1" Grid.Row="3" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[23].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="23" Grid.Column="2" Grid.Row="3" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[24].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="24" Grid.Column="3" Grid.Row="3" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[25].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="25" Grid.Column="4" Grid.Row="3" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[26].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="26" Grid.Column="5" Grid.Row="3" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[27].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="27" Grid.Column="6" Grid.Row="3" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[28].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="28" Grid.Column="0" Grid.Row="4" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[29].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="29" Grid.Column="1" Grid.Row="4" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[30].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="30" Grid.Column="2" Grid.Row="4" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[31].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="31" Grid.Column="3" Grid.Row="4" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[32].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="32" Grid.Column="4" Grid.Row="4" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[33].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="33" Grid.Column="5" Grid.Row="4" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[34].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="34" Grid.Column="6" Grid.Row="4" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[35].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="35" Grid.Column="0" Grid.Row="5" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[36].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="36" Grid.Column="1" Grid.Row="5" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[37].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="37" Grid.Column="2" Grid.Row="5" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[38].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="38" Grid.Column="3" Grid.Row="5" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[39].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="39" Grid.Column="4" Grid.Row="5" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[40].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="40" Grid.Column="5" Grid.Row="5" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[41].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="41" Grid.Column="6" Grid.Row="5" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[42].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="42" Grid.Column="0" Grid.Row="6" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[43].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="43" Grid.Column="1" Grid.Row="6" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[44].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="44" Grid.Column="2" Grid.Row="6" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[45].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="45" Grid.Column="3" Grid.Row="6" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[46].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="46" Grid.Column="4" Grid.Row="6" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[47].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="47" Grid.Column="5" Grid.Row="6" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
+                <Button Background="{Binding ComputerButtonsInGame[48].backgroundImage,Mode=TwoWay}" Command="{Binding CheckIfShip}" CommandParameter="48" Grid.Column="6" Grid.Row="6" FontWeight="Bold" Style="{StaticResource GridBtns}"/>
             </Grid>
 
         </Grid>
