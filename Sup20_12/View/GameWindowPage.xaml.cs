@@ -54,5 +54,10 @@ namespace Sup20_12.View
         {
 
         }
+
+        private void RemoveBoats(object sender, RoutedEventArgs e)
+        {
+            rectangleUI.Visibility = Visibility.Hidden;
+        }
     }
 }

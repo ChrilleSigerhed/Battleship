@@ -18,12 +18,13 @@ namespace Sup20_12.ViewModels
         public ICommand CheckIfShip { get; set; }
         public ICommand GoToMainPageCommand { get; set; }
         public ICommand PlaceRandomBoats { get; set; }
-        public int ShowNumberOfMoves { get; set; } 
+        public int ShowNumberOfMoves { get; set; }
         public string ShowPlayerNickname { get; set; }
         public int Ships { get; set; } = 3;
         public ObservableCollection<GameGrid> PlayerButtonsInGame { get; set; }  = new ObservableCollection<GameGrid>();
         public ObservableCollection<GameGrid> ComputerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
         public List<int> PlayerShotsFired { get; set; } = new List<int>();
+
         private int noMoreShipsToUse = 0;
         public SingleBoatUC SingleBoat { get; set; }
         public GameEngine MyGameEngine { get; set; } = new GameEngine();
@@ -71,22 +72,17 @@ namespace Sup20_12.ViewModels
         }
         public void RandomPlacePlayerShips()
         {
-            if(Ships == noMoreShipsToUse) 
-            {
-                MessageBox.Show("Du har redan slumpat fram dina skepp");
-            }
-            else
+            if (Ships != noMoreShipsToUse)
             {
                 int[] PlacedShips = MyGameEngine.RandomFillPlayerShips();
+
                 foreach (var button in PlayerButtonsInGame)
                 {
-                    for (int i = 0; i < 6; i++)
+                    for (int i = 0; i < PlacedShips.Length - 1; i++)
                     {
                         if (button.Longitude == PlacedShips[i] && button.Latitude == PlacedShips[i + 1])
                         {
                             ChangePlayerGridToSingleBoat(button);
-                            SingleBoat.PlacedBoats--;
-
                         }
                         i += 1;
                     }
@@ -95,8 +91,11 @@ namespace Sup20_12.ViewModels
                 ChangePlayerTurn();
                 MessageBox.Show("Nu kan spelet börja, du spelar på den högra spelplanen.");
             }
+            else
+            {
+                MessageBox.Show("Du har redan slumpat fram dina skepp");
+            }
         }
-
         public void PlayerCheckHitOrMiss(string button)
         {
 

@@ -56,6 +56,7 @@ namespace Sup20_12.View
             {
                 rectangle3.Visibility = Visibility.Hidden;
             }
+            
         }
 
         protected override void OnGiveFeedback(GiveFeedbackEventArgs e)
