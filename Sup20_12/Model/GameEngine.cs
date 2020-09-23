@@ -64,9 +64,39 @@ namespace Sup20_12.ViewModels
                 }
                 ComputerShipsList.Add(submarine);
             }
-
         }
+        public int[] RandomFillPlayerShips()
+        {
+            int[] buttonsLongitudeLatitude = new int[6];
+            int counter = 2;
+            Random random = new Random();
+            int longitude;
+            int latitude;
+            longitude = random.Next(0, 7);
+            latitude = random.Next(0, 7);
+            buttonsLongitudeLatitude[0] = longitude;
+            buttonsLongitudeLatitude[1] = latitude;
+            
+            PlayerShipsList.Add(new Submarine(longitude, latitude));
 
+            for (int i = 0; i < 2; i++)
+            {
+                longitude = random.Next(0, 7);
+                latitude = random.Next(0, 7);
+                Submarine submarine = new Submarine(longitude, latitude);
+                while (IsColliding(submarine) == true)
+                {
+                    longitude = random.Next(0, 7);
+                    latitude = random.Next(0, 7);
+                    submarine = new Submarine(longitude, latitude);
+                }
+                buttonsLongitudeLatitude[counter] = longitude;
+                buttonsLongitudeLatitude[counter+1] = latitude;
+                counter += 2;
+                PlayerShipsList.Add(submarine);
+            }
+            return buttonsLongitudeLatitude;
+        }
         public bool IsColliding(Ships ship)
         {
             for (int i = 0; i < ComputerShipsList.Count; i++)
@@ -143,6 +173,21 @@ namespace Sup20_12.ViewModels
             }
             return false;
         }
+
+        public bool ComputerCheckCloseOrNot(int longitude, int latitude)
+        {
+            foreach (var ship in PlayerShipsList)
+            {
+                if (ship.Longitude.Contains(longitude + 1) || ship.Longitude.Contains(longitude - 1) || ship.Longitude.Contains(longitude))
+                {
+                    if (ship.Latitude.Contains(latitude + 1) || ship.Latitude.Contains(latitude - 1) || ship.Latitude.Contains(latitude))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
         public bool ComputerCheckHitOrMiss(int longitude , int latitude)
         {
             for (int i = 0; i < PlayerShipsList.Count; i++)
@@ -155,6 +200,72 @@ namespace Sup20_12.ViewModels
             }
             return false;
         }
+
+        public int[] ComputerShotCloseToSplashSonar(int longitude, int latitude)
+        {
+            
+            Random rand = new Random();
+            int randomNumber;
+            int newLongitude = 100;
+            int newLatitude = 100;
+            bool GridHasBeenShot = true;
+
+
+
+            while (newLongitude < 0 || newLongitude > 6 || newLatitude < 0 || newLatitude > 6 || GridHasBeenShot == true)
+            {
+                    randomNumber = rand.Next(0, 8);
+
+                    if (randomNumber == 0)
+                    {
+                        newLongitude = longitude + 1;
+                        newLatitude = latitude + 1;
+                    }
+                    else if (randomNumber == 1)
+                    {
+                        newLongitude = longitude;
+                        newLatitude = latitude + 1;
+                    }
+                    else if (randomNumber == 2)
+                    {
+                        newLongitude = longitude - 1;
+                        newLatitude = latitude + 1;
+                    }
+                    else if (randomNumber == 3)
+                    {
+                        newLongitude = longitude - 1;
+                        newLatitude = latitude;
+                    }
+                    else if (randomNumber == 4)
+                    {
+                        newLongitude = longitude - 1;
+                        newLatitude = latitude - 1;
+                    }
+                    else if (randomNumber == 5)
+                    {
+                        newLongitude = longitude;
+                        newLatitude = latitude - 1;
+                    }
+                    else if (randomNumber == 6)
+                    {
+                        newLongitude = longitude + 1;
+                        newLatitude = latitude - 1;
+                    }
+                    else if (randomNumber == 7)
+                    {
+                        newLongitude = longitude + 1;
+                        newLatitude = latitude;
+                    }
+                if (HasGridBeenShot(PlayerButtonsInGame, newLongitude, newLatitude) == false)
+                {
+                    GridHasBeenShot = false;
+                }
+
+            }
+            int[] newShot = new int[] { newLongitude, newLatitude };
+            return newShot;
+        }
+
         public int[] ComputerRandomShotFired()
         {
             Random random = new Random();
@@ -175,7 +286,12 @@ namespace Sup20_12.ViewModels
             foreach (var c in gameGrid)
             {
                 if (c.Latitude == latitude && c.Longitude == longitude && c.IsClicked == true)
+                {
                     return true;
+                } else if (latitude > 6 || latitude < 0 || longitude < 0 || longitude > 6)
+                {
+                    return true;
+                }
             }
             return false;
         }

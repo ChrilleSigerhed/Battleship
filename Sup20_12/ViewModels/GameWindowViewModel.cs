@@ -17,6 +17,7 @@ namespace Sup20_12.ViewModels
         public ICommand PlaceShip { get; set; }
         public ICommand CheckIfShip { get; set; }
         public ICommand GoToMainPageCommand { get; set; }
+        public ICommand PlaceRandomBoats { get; set; }
         public int ShowNumberOfMoves { get; set; } 
         public string ShowPlayerNickname { get; set; }
         public int Ships { get; set; } = 3;
@@ -26,17 +27,23 @@ namespace Sup20_12.ViewModels
         private int noMoreShipsToUse = 0;
         public SingleBoatUC SingleBoat { get; set; }
         public GameEngine MyGameEngine { get; set; } = new GameEngine();
+        public Player MyPlayer { get; set; }
         public bool PlayerTurn { get; set; } = false;
+        public bool WasCloseToShip { get; set; } = false;
+        public int[] CoordinatesCloseToShip { get; set; }
         #endregion
-        public GameWindowViewModel(SingleBoatUC boat)
+        public GameWindowViewModel(Player myPlayer, SingleBoatUC boat)
         {
+            MyPlayer = myPlayer;
             SingleBoat = boat;
             ComputerButtonsInGame = MyGameEngine.ComputerButtonsInGame;
             PlayerButtonsInGame = MyGameEngine.PlayerButtonsInGame;
             PlaceShip = new RelayPropertyCommand(PlayerPlaceShips);
             CheckIfShip = new RelayPropertyCommand(PlayerCheckHitOrMiss);
             GoToMainPageCommand = new RelayCommand(AskIfExitCurrentRound);
-            ShowPlayerNickname = MyPlayer.Nickname;
+            PlaceRandomBoats = new RelayCommand(RandomPlacePlayerShips);
+
+            ShowPlayerNickname = myPlayer.Nickname;
             ShowNumberOfMoves = MyGameEngine.NumberOfMoves;
         }
       
@@ -50,7 +57,7 @@ namespace Sup20_12.ViewModels
                 if (Ships == noMoreShipsToUse)
                 {
                     ChangePlayerTurn();
-                    MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen.");
+                    MessageBox.Show("Nu kan spelet börja, du spelar på den högra spelplanen.");
                 }
             }
             else
@@ -63,6 +70,33 @@ namespace Sup20_12.ViewModels
             if (MyGameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude))
                 result = true;
             return result;
+        }
+        public void RandomPlacePlayerShips()
+        {
+            if(Ships == noMoreShipsToUse) 
+            {
+                MessageBox.Show("Du har redan slumpat fram dina skepp");
+            }
+            else
+            {
+                int[] PlacedShips = MyGameEngine.RandomFillPlayerShips();
+                foreach (var button in PlayerButtonsInGame)
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        if (button.Longitude == PlacedShips[i] && button.Latitude == PlacedShips[i + 1])
+                        {
+                            ChangePlayerGridToSingleBoat(button);
+                            SingleBoat.PlacedBoats--;
+
+                        }
+                        i += 1;
+                    }
+                }
+                Ships = 0;
+                ChangePlayerTurn();
+                MessageBox.Show("Nu kan spelet börja, du spelar på den högra spelplanen.");
+            }
         }
 
         public void PlayerCheckHitOrMiss(string button)
@@ -145,6 +179,113 @@ namespace Sup20_12.ViewModels
             }
         }
 
+        private void AddCloseOnPlayerBoard(int longitude, int latitude)
+        {
+            if(MyGameEngine.ComputerCheckCloseOrNot(longitude, latitude) == true)
+            {
+                foreach (var c in PlayerButtonsInGame)
+                {
+                    if(c.Longitude == longitude && c.Latitude == latitude)
+                    {
+                        ChangeGridSquareToSplashSonarImage(c);
+                        
+                        WasCloseToShip = true;
+                        PlayerTurn = true;
+                        c.IsClicked = true;
+                    }
+                }
+            }
+        }
+        
+
+        private void ComputerShootAroundSplashSonar()
+        {
+            int[] shoot = MyGameEngine.ComputerShotCloseToSplashSonar(CoordinatesCloseToShip[0], CoordinatesCloseToShip[1]);
+
+            if (MyGameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
+            {
+                foreach (var c in PlayerButtonsInGame)
+                {
+                    if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
+                    {
+                        c.HitOrMiss = "Träff!";
+                        ChangeGridSquareToExplosionImage(c);
+                        c.IsClicked = true;
+                        WasCloseToShip = false;
+                    }
+                }
+                if (MyGameEngine.HasLost())
+                {
+                    MyGameEngine.AddNewHighscore(false, MyPlayer.Id);
+                    ShowLosingDialogueBox();
+                }
+                PlayerTurn = true;
+            } else if (MyGameEngine.ComputerCheckCloseOrNot(shoot[0], shoot[1]))
+            {
+                AddCloseOnPlayerBoard(shoot[0], shoot[1]);
+            }
+            else
+            {
+                foreach (var c in PlayerButtonsInGame)
+                {
+                    if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
+                    {
+                        c.HitOrMiss = "Miss!";
+                        ChangeToSplashImage(c);
+                        c.IsClicked = true;
+                    }
+                }
+                PlayerTurn = true;
+            }
+        }
+        public void ComputerHitOrMiss()
+        {
+            
+            int[] shoot = MyGameEngine.ComputerRandomShotFired();
+
+            if (WasCloseToShip == false)
+            {
+                if (MyGameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
+                {
+                    foreach (var c in PlayerButtonsInGame)
+                    {
+                        if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
+                        {
+                            c.HitOrMiss = "Träff!";
+                            ChangeGridSquareToExplosionImage(c);
+                            c.IsClicked = true;
+                        }
+                    }
+                    if (MyGameEngine.HasLost())
+                    {
+                        MyGameEngine.AddNewHighscore(false, MyPlayer.Id);
+                        ShowLosingDialogueBox();
+                    }
+                    PlayerTurn = true;
+                }
+                else if (MyGameEngine.ComputerCheckCloseOrNot(shoot[0], shoot[1]))
+                {
+                    CoordinatesCloseToShip = new int[] { shoot[0], shoot[1] };
+                    AddCloseOnPlayerBoard(shoot[0], shoot[1]);
+                }
+                else
+                {
+                    foreach (var c in PlayerButtonsInGame)
+                    {
+                        if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
+                        {
+                            c.HitOrMiss = "Miss!";
+                            ChangeToSplashImage(c);
+                            c.IsClicked = true;
+                        }
+                    }
+                    PlayerTurn = true;
+                }
+            } else if (WasCloseToShip == true)
+            {
+                ComputerShootAroundSplashSonar();
+            }
+        }
         private void UpdateNumberOfMovesOnGameboard()
         {
             ShowNumberOfMoves = MyGameEngine.NumberOfMoves;
@@ -177,46 +318,18 @@ namespace Sup20_12.ViewModels
         {
             if (PlayerShotsFired.Contains(buttonToNumber))
                 return true;
-            else
+            else { 
                 return false;
+            }
         }
-
-        public void ComputerHitOrMiss()
+        public void ChangePlayerGridToSingleBoat(GameGrid grid)
         {
-            
-            int[] shoot = MyGameEngine.ComputerRandomShotFired();
-
-            if(MyGameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
+            Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                foreach (var c in PlayerButtonsInGame)
-                {
-                    if(c.Longitude == shoot[0] && c.Latitude == shoot[1])
-                    {
-                        c.HitOrMiss = "Träff!";
-                        ChangeGridSquareToExplosionImage(c);                        
-                        c.IsClicked = true;
-                    }
-                }
-                if(MyGameEngine.HasLost())
-                {
-                    MyGameEngine.AddNewHighscore(false, MyPlayer.Id);
-                    ShowLosingDialogueBox();
-                }
-                PlayerTurn = true;
-            }
-            else
-            {
-                foreach (var c in PlayerButtonsInGame)
-                {
-                    if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
-                    {
-                        c.HitOrMiss = "Miss!";
-                        ChangeToSplashImage(c);
-                        c.IsClicked = true;
-                    }
-                }
-                PlayerTurn = true;
-            }
+                BitmapFrame image = BitmapFrame.Create(new Uri(@"pack://Application:,,,/Assets/Images/destroyerImg.png", UriKind.Absolute));
+                grid.backgroundImage.ImageSource = image;
+                grid.backgroundImage.Stretch = Stretch.Uniform;
+            });
         }
 
         public void ChangeGridSquareToExplosionImage(GameGrid grid)

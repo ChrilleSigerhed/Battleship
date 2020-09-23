@@ -54,6 +54,7 @@
             <Button Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Width="120"  Style="{StaticResource BtnBack}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Command="{Binding GoToMainPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}"/>
             <StackPanel Grid.Column="1" Grid.Row="1">
                 <local:SingleBoatUC x:Name="rectangleUI" Grid.Column="2" Loaded="rectangleUI_Loaded"></local:SingleBoatUC>
+                <Button Width="50" Height="20" Content="SLUMPA" Command="{Binding PlaceRandomBoats}" />
             </StackPanel>
 
 
