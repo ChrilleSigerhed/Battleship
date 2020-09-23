@@ -72,8 +72,8 @@ namespace Sup20_12.ViewModels
             Random random = new Random();
             int longitude;
             int latitude;
-            longitude = random.Next(0, 5);
-            latitude = random.Next(0, 5);
+            longitude = random.Next(0, 7);
+            latitude = random.Next(0, 7);
             buttonsLongitudeLatitude[0] = longitude;
             buttonsLongitudeLatitude[1] = latitude;
             
@@ -81,13 +81,13 @@ namespace Sup20_12.ViewModels
 
             for (int i = 0; i < 2; i++)
             {
-                longitude = random.Next(0, 5);
-                latitude = random.Next(0, 5);
+                longitude = random.Next(0, 7);
+                latitude = random.Next(0, 7);
                 Submarine submarine = new Submarine(longitude, latitude);
                 while (IsColliding(submarine) == true)
                 {
-                    longitude = random.Next(0, 5);
-                    latitude = random.Next(0, 5);
+                    longitude = random.Next(0, 7);
+                    latitude = random.Next(0, 7);
                     submarine = new Submarine(longitude, latitude);
                 }
                 buttonsLongitudeLatitude[counter] = longitude;
