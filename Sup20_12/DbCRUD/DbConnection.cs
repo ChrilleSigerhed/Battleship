@@ -21,7 +21,7 @@ namespace Sup20_12
             conn.Close();
         }
 
-       
+
         //KLAR
         #region CREATE
 
@@ -82,7 +82,7 @@ namespace Sup20_12
                             myHighscore.Id = id;
                         }
                         trans.Commit();
-                       
+
                     }
                     catch (PostgresException)
                     {
@@ -102,17 +102,18 @@ namespace Sup20_12
         #region READ
 
         ///<summary>
-        ///Returnerar en List på alla player objekt i databasen med nickname, id och List med Highscore.
+        ///Returnerar en O.C på alla player objekt i databasen med nickname, id samt en bool på vilken spelare som spelade klart en runda sist.
         ///</summary>
         public static ObservableCollection<Player> Players
         {
             get
             {
                 string stmt = "SELECT id, nickname FROM player ORDER BY nickname";
+                string getLastestPlayerSqlString = "SELECT highscore.id, player_id, nickname FROM highscore INNER JOIN player on highscore.player_id = player.id ORDER BY id DESC LIMIT 1";
+
 
                 using (var conn = new NpgsqlConnection(connectionString))
                 {
-                    //Player myPlayer = null;
                     ObservableCollection<Player> LstAllPlayers = new ObservableCollection<Player>();
                     conn.Open();
 
@@ -126,18 +127,47 @@ namespace Sup20_12
                                 Player myPlayer = new Player("")
                                 {
                                     Id = (int)reader["id"],
-                                    Nickname = (string)reader["nickname"]
-
+                                    Nickname = (string)reader["nickname"],
                                 };
                                 LstAllPlayers.Add(myPlayer);
                             }
                         }
                     }
-                    conn.Close();
+                    MarkLastPlayerInList(GetIdOfLatestPlayer(conn), LstAllPlayers);
                     return LstAllPlayers;
                 }
             }
         }
+
+        private static int GetIdOfLatestPlayer(NpgsqlConnection conn)
+        {
+            int lastPlayerId = 0;
+            string getLastestPlayerSqlString = "SELECT highscore.id, player_id, nickname FROM highscore INNER JOIN player on highscore.player_id = player.id ORDER BY id DESC LIMIT 1";
+            
+            using (var command = new NpgsqlCommand(getLastestPlayerSqlString, conn))
+            {
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        lastPlayerId = (int)reader["player_id"];
+                    };
+                }
+            }
+            return lastPlayerId;
+        }
+
+        private static ObservableCollection<Player> MarkLastPlayerInList(int id, ObservableCollection<Player> myList)
+        {
+            foreach (Player myPlayer in myList)
+            {
+                if (myPlayer.Id == id)
+                    myPlayer.LastPlayer = true;
+            }
+            return myList;
+        }
+
+
 
         private static Highscore GetOneHighscoreById(int id)
         {
