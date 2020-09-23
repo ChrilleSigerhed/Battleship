@@ -77,7 +77,7 @@ namespace Sup20_12.ViewModels
             }
             else
             {
-                int[] PlacedShips = gameEngine.RandomFillPlayerShips();
+                int[] PlacedShips = MyGameEngine.RandomFillPlayerShips();
                 foreach (var button in PlayerButtonsInGame)
                 {
                     for (int i = 0; i < 6; i++)
