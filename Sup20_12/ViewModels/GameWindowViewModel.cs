@@ -22,6 +22,7 @@ namespace Sup20_12.ViewModels
         public ICommand PlaceShip { get; set; }
         public ICommand CheckIfShip { get; set; }
         public ICommand GoToMainPageCommand { get; set; }
+        public ICommand PlaceRandomBoats { get; set; }
         public int ShowNumberOfMoves { get; set; } 
         public string ShowPlayerNickname { get; set; }
         public int Ships { get; set; } = 3;
@@ -44,6 +45,8 @@ namespace Sup20_12.ViewModels
             PlaceShip = new RelayPropertyCommand(PlayerPlaceShips);
             CheckIfShip = new RelayPropertyCommand(PlayerCheckHitOrMiss);
             GoToMainPageCommand = new RelayCommand(AskIfExitCurrentRound);
+            PlaceRandomBoats = new RelayCommand(RandomPlacePlayerShips);
+
             ShowPlayerNickname = myPlayer.Nickname;
             ShowNumberOfMoves = gameEngine.NumberOfMoves;
         }
@@ -58,13 +61,12 @@ namespace Sup20_12.ViewModels
                 if (Ships == noMoreShipsToUse)
                 {
                     ChangePlayerTurn();
-                    MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen.");
+                    MessageBox.Show("Nu kan spelet börja, du spelar på den högra spelplanen.");
                 }
             }
             else
                 MessageBox.Show("Det går inte att placera skepp där.");
         }
-
 
         private bool PlayerHasShipsLeftToPlace(int buttonToNumber)
         {
@@ -72,6 +74,33 @@ namespace Sup20_12.ViewModels
             if (gameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude))
                 result = true;
             return result;
+        }
+        public void RandomPlacePlayerShips()
+        {
+            if(Ships == noMoreShipsToUse) 
+            {
+                MessageBox.Show("Du har redan slumpat fram dina skepp");
+            }
+            else
+            {
+                int[] PlacedShips = gameEngine.RandomFillPlayerShips();
+                foreach (var button in PlayerButtonsInGame)
+                {
+                    for (int i = 0; i < 6; i++)
+                    {
+                        if (button.Longitude == PlacedShips[i] && button.Latitude == PlacedShips[i + 1])
+                        {
+                            ChangePlayerGridToSingleBoat(button);
+
+                        }
+                        i += 1;
+                    }
+                }
+                SingleBoat.PlacedBoats = 0;
+                Ships = 0;
+                ChangePlayerTurn();
+                MessageBox.Show("Nu kan spelet börja, du spelar på den högra spelplanen.");
+            }
         }
 
         public void PlayerCheckHitOrMiss(string button)
@@ -153,7 +182,6 @@ namespace Sup20_12.ViewModels
                 ChangeToSplashImage(ComputerButtonsInGame[buttonToNumber]);
             }
         }
-
         private void UpdateNumberOfMovesOnGameboard()
         {
             ShowNumberOfMoves = gameEngine.NumberOfMoves;
@@ -227,7 +255,15 @@ namespace Sup20_12.ViewModels
                 PlayerTurn = true;
             }
         }
-
+        public void ChangePlayerGridToSingleBoat(GameGrid grid)
+        {
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                BitmapFrame image = BitmapFrame.Create(new Uri(@"pack://Application:,,,/Assets/Images/destroyerImg.png", UriKind.Absolute));
+                grid.backgroundImage.ImageSource = image;
+                grid.backgroundImage.Stretch = Stretch.Uniform;
+            });
+        }
         public void ChangeGridSquareToExplosionImage(GameGrid grid)
         {
             Application.Current.Dispatcher.InvokeAsync(() =>

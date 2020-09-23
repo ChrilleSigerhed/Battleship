@@ -64,9 +64,39 @@ namespace Sup20_12.ViewModels
                 }
                 ComputerShipsList.Add(submarine);
             }
-
         }
+        public int[] RandomFillPlayerShips()
+        {
+            int[] buttonsLongitudeLatitude = new int[6];
+            int counter = 2;
+            Random random = new Random();
+            int longitude;
+            int latitude;
+            longitude = random.Next(0, 5);
+            latitude = random.Next(0, 5);
+            buttonsLongitudeLatitude[0] = longitude;
+            buttonsLongitudeLatitude[1] = latitude;
+            
+            PlayerShipsList.Add(new Submarine(longitude, latitude));
 
+            for (int i = 0; i < 2; i++)
+            {
+                longitude = random.Next(0, 5);
+                latitude = random.Next(0, 5);
+                Submarine submarine = new Submarine(longitude, latitude);
+                while (IsColliding(submarine) == true)
+                {
+                    longitude = random.Next(0, 5);
+                    latitude = random.Next(0, 5);
+                    submarine = new Submarine(longitude, latitude);
+                }
+                buttonsLongitudeLatitude[counter] = longitude;
+                buttonsLongitudeLatitude[counter+1] = latitude;
+                counter += 2;
+                PlayerShipsList.Add(submarine);
+            }
+            return buttonsLongitudeLatitude;
+        }
         public bool IsColliding(Ships ship)
         {
             for (int i = 0; i < ComputerShipsList.Count; i++)
