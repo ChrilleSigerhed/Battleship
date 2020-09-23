@@ -85,12 +85,12 @@ namespace Sup20_12.ViewModels
                         if (button.Longitude == PlacedShips[i] && button.Latitude == PlacedShips[i + 1])
                         {
                             ChangePlayerGridToSingleBoat(button);
+                            SingleBoat.PlacedBoats--;
 
                         }
                         i += 1;
                     }
                 }
-                SingleBoat.PlacedBoats = 0;
                 Ships = 0;
                 ChangePlayerTurn();
                 MessageBox.Show("Nu kan spelet börja, du spelar på den högra spelplanen.");
