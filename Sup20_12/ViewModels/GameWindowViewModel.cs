@@ -34,6 +34,8 @@ namespace Sup20_12.ViewModels
         public GameEngine gameEngine { get; set; } = new GameEngine();
         public Player MyPlayer { get; set; }
         public bool PlayerTurn { get; set; } = false;
+        public bool WasCloseToShip { get; set; } = false;
+        public int[] CoordinatesCloseToShip { get; set; }
         #endregion
         public GameWindowViewModel(Player myPlayer, SingleBoatUC boat)
         {
@@ -154,6 +156,113 @@ namespace Sup20_12.ViewModels
             }
         }
 
+        private void AddCloseOnPlayerBoard(int longitude, int latitude)
+        {
+            if(gameEngine.ComputerCheckCloseOrNot(longitude, latitude) == true)
+            {
+                foreach (var c in PlayerButtonsInGame)
+                {
+                    if(c.Longitude == longitude && c.Latitude == latitude)
+                    {
+                        ChangeGridSquareToSplashSonarImage(c);
+                        
+                        WasCloseToShip = true;
+                        PlayerTurn = true;
+                        c.IsClicked = true;
+                    }
+                }
+            }
+        }
+        
+
+        private void ComputerShootAroundSplashSonar()
+        {
+            int[] shoot = gameEngine.ComputerShotCloseToSplashSonar(CoordinatesCloseToShip[0], CoordinatesCloseToShip[1]);
+
+            if (gameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
+            {
+                foreach (var c in PlayerButtonsInGame)
+                {
+                    if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
+                    {
+                        c.HitOrMiss = "Träff!";
+                        ChangeGridSquareToExplosionImage(c);
+                        c.IsClicked = true;
+                        WasCloseToShip = false;
+                    }
+                }
+                if (gameEngine.HasLost())
+                {
+                    gameEngine.AddNewHighscore(false, MyPlayer.Id);
+                    ShowLosingDialogueBox();
+                }
+                PlayerTurn = true;
+            } else if (gameEngine.ComputerCheckCloseOrNot(shoot[0], shoot[1]))
+            {
+                AddCloseOnPlayerBoard(shoot[0], shoot[1]);
+            }
+            else
+            {
+                foreach (var c in PlayerButtonsInGame)
+                {
+                    if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
+                    {
+                        c.HitOrMiss = "Miss!";
+                        ChangeToSplashImage(c);
+                        c.IsClicked = true;
+                    }
+                }
+                PlayerTurn = true;
+            }
+        }
+        public void ComputerHitOrMiss()
+        {
+            
+            int[] shoot = gameEngine.ComputerRandomShotFired();
+
+            if (WasCloseToShip == false)
+            {
+                if (gameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
+                {
+                    foreach (var c in PlayerButtonsInGame)
+                    {
+                        if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
+                        {
+                            c.HitOrMiss = "Träff!";
+                            ChangeGridSquareToExplosionImage(c);
+                            c.IsClicked = true;
+                        }
+                    }
+                    if (gameEngine.HasLost())
+                    {
+                        gameEngine.AddNewHighscore(false, MyPlayer.Id);
+                        ShowLosingDialogueBox();
+                    }
+                    PlayerTurn = true;
+                }
+                else if (gameEngine.ComputerCheckCloseOrNot(shoot[0], shoot[1]))
+                {
+                    CoordinatesCloseToShip = new int[] { shoot[0], shoot[1] };
+                    AddCloseOnPlayerBoard(shoot[0], shoot[1]);
+                }
+                else
+                {
+                    foreach (var c in PlayerButtonsInGame)
+                    {
+                        if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
+                        {
+                            c.HitOrMiss = "Miss!";
+                            ChangeToSplashImage(c);
+                            c.IsClicked = true;
+                        }
+                    }
+                    PlayerTurn = true;
+                }
+            } else if (WasCloseToShip == true)
+            {
+                ComputerShootAroundSplashSonar();
+            }
+        }
         private void UpdateNumberOfMovesOnGameboard()
         {
             ShowNumberOfMoves = gameEngine.NumberOfMoves;
@@ -190,43 +299,6 @@ namespace Sup20_12.ViewModels
                 return false;
         }
 
-        public void ComputerHitOrMiss()
-        {
-            
-            int[] shoot = gameEngine.ComputerRandomShotFired();
-
-            if(gameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
-            {
-                foreach (var c in PlayerButtonsInGame)
-                {
-                    if(c.Longitude == shoot[0] && c.Latitude == shoot[1])
-                    {
-                        c.HitOrMiss = "Träff!";
-                        ChangeGridSquareToExplosionImage(c);                        
-                        c.IsClicked = true;
-                    }
-                }
-                if(gameEngine.HasLost())
-                {
-                    gameEngine.AddNewHighscore(false, MyPlayer.Id);
-                    ShowLosingDialogueBox();
-                }
-                PlayerTurn = true;
-            }
-            else
-            {
-                foreach (var c in PlayerButtonsInGame)
-                {
-                    if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
-                    {
-                        c.HitOrMiss = "Miss!";
-                        ChangeToSplashImage(c);
-                        c.IsClicked = true;
-                    }
-                }
-                PlayerTurn = true;
-            }
-        }
 
         public void ChangeGridSquareToExplosionImage(GameGrid grid)
         {
