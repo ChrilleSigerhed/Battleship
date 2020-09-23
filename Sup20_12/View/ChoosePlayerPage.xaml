@@ -33,22 +33,18 @@
                 <RowDefinition Height="89"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
+            <Button Style="{StaticResource BtnBack}" Grid.Row="3" Grid.Column="0" Command="{Binding GoToMainPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,10,40" Width="140" TabIndex="400"/>
             <TextBox Name="txtNickname" MaxLength="14" Text="{Binding PlayerNickname}" Width="230" Height="34" FontSize="20" BorderBrush="{x:Null}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0" TabIndex="50"/>
             <ComboBox ItemsSource="{Binding ListOfPlayersInListBox}" SelectedValuePath="Id" SelectedValue="{Binding SelectedId}" SelectedItem="{Binding MyPlayer}" x:Name="lstboxAllPlayers" FontSize="15" BorderThickness="0" Grid.Row="3" Grid.Column="2" Height="25" Width="245" HorizontalAlignment="Left" VerticalAlignment="Top" TabIndex="200"/>
 
             <Grid Grid.Column="2" Grid.Row="2" Margin="0,0,103,0">
-                <Button Style="{StaticResource BtnAddPlayer}" Command="{Binding AddNewPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Height="37" Margin="0,10,0,0" Width="138" IsDefault="True" TabIndex="100">
+                <Button Style="{StaticResource BtnAddPlayer}" Command="{Binding AddNewPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,0,0" Width="138" IsDefault="True" TabIndex="100">
                 </Button>
             </Grid>
 
-            <Grid Grid.Column="2" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="164" Width="146">
+            <Grid Grid.Column="2" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="164" Width="250">
 
-                <StackPanel Margin="0,0,0,10">
-                    <Button Style="{StaticResource BtnStartGame}" Grid.Row="1" Grid.Column="1" Command="{Binding StartGameWithSelectedPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="44" Margin="0,10,10,0" Width="136" IsEnabled="{Binding EnableBtnStartGame}" TabIndex="300"/>
-
-                    <Button Style="{StaticResource BtnBack}" Grid.Row="1" Grid.Column="1" Command="{Binding GoToMainPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="44" Margin="0,4,10,0" Width="136" TabIndex="400"/>
-                </StackPanel>
+                    <Button Style="{StaticResource BtnStartGame}" Grid.Row="1" Grid.Column="1" Command="{Binding StartGameWithSelectedPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Height="44" Width="180" IsEnabled="{Binding EnableBtnStartGame}" TabIndex="300"/>
 
             </Grid>
 
