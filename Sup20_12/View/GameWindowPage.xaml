@@ -68,7 +68,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Label Name="PlayerNickname" Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="{Binding ShowPlayerNickname}" Style="{StaticResource fontz}" FontSize="20" Foreground="White" />
+            <Label Name="PlayerNickname" Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="{Binding ShowPlayerNickname}" Style="{StaticResource fontz}" FontSize="30" Foreground="White" />
 
             <Grid Grid.Row="1" Grid.Column="1" AllowDrop="True" >
 
@@ -150,7 +150,7 @@
                 <RowDefinition Height="271"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Name="RubrikDator" Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="Sofistikerad Ai" Style="{StaticResource fontz}" FontSize="20" Foreground="White" />
+            <Label Name="RubrikDator" Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Content="Computer" Style="{StaticResource fontz}" FontSize="30" Foreground="White" />
 
             <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">
 
