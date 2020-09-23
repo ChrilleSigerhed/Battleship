@@ -21,8 +21,6 @@ namespace Sup20_12.ViewModels
         public ICommand StartGameWithSelectedPlayerCommand { get; set; }
         public ICommand GoToMainPageCommand { get; set; }
         public ObservableCollection<Player> ListOfPlayersInListBox { get; set; }
-
-        public MainWindow win = (MainWindow)Application.Current.MainWindow;
         #endregion
 
         public ChoosePlayerViewModel()
@@ -32,7 +30,6 @@ namespace Sup20_12.ViewModels
             GoToMainPageCommand = new RelayCommand(GoToMainPage);
             GetPlayersFromDb();
         }
-
 
         public void AddPlayer()
         {
@@ -67,7 +64,7 @@ namespace Sup20_12.ViewModels
         {
             if (IsThereAnActivePlayer())
             {
-                win.frame.Content = new GameWindowPage(MyPlayer);
+                MyWin.frame.Content = new GameWindowPage(MyPlayer);
                 InitialGameInstructions();
             }
         }
@@ -78,7 +75,7 @@ namespace Sup20_12.ViewModels
 
         public void GoToMainPage()
         {
-            win.frame.Content = new MainMenuPage();
+            MyWin.frame.Content = new MainMenuPage();
         }
 
         private bool IsThereAnActivePlayer()

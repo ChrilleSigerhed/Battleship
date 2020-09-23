@@ -16,8 +16,6 @@ namespace Sup20_12
         public ICommand ChoosePlayerPageCommand { get; set; }
         public ICommand HighscorePageCommand { get; set; }
         public ICommand ExitGameCommand { get; set; }
-
-        public MainWindow win = (MainWindow)Application.Current.MainWindow;
         #endregion
         public MainMenuViewModel()
         {
@@ -28,11 +26,11 @@ namespace Sup20_12
         }
         public void GoToChoosePlayer()
         {
-            win.frame.Content = new ChoosePlayerPage();
+            MyWin.frame.Content = new ChoosePlayerPage();
         }
         public void GoToHighscorePage()
         {
-            win.frame.Content = new HighScorePage();
+            MyWin.frame.Content = new HighScorePage();
         }
         public void ExitGame()
         {
@@ -40,7 +38,7 @@ namespace Sup20_12
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    win.Close();
+                    MyWin.Close();
                     break;
                 case MessageBoxResult.No:
                     break;

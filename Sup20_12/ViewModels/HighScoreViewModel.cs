@@ -41,8 +41,7 @@ namespace Sup20_12
 
         public void GoToMain()
         {
-            MainWindow win = (MainWindow)Application.Current.MainWindow;
-            win.frame.Content = new MainMenuPage();
+            MyWin.frame.Content = new MainMenuPage();
         }
 
         private string ConvertFrequentPlayerListToString(List<Player> myTempPlayerList)

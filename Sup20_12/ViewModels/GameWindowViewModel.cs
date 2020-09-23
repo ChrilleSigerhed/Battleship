@@ -29,7 +29,6 @@ namespace Sup20_12.ViewModels
         public ObservableCollection<GameGrid> ComputerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
         public List<int> PlayerShotsFired { get; set; } = new List<int>();
         private int noMoreShipsToUse = 0;
-        public MainWindow win = (MainWindow)Application.Current.MainWindow;
         public SingleBoatUC SingleBoat { get; set; }
         public GameEngine gameEngine { get; set; } = new GameEngine();
         public Player MyPlayer { get; set; }
@@ -109,10 +108,10 @@ namespace Sup20_12.ViewModels
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    win.frame.Content = new GameWindowPage(MyPlayer);
+                    MyWin.frame.Content = new GameWindowPage(MyPlayer);
                     break;
                 case MessageBoxResult.No:
-                    win.frame.Content = new MainMenuPage();
+                    MyWin.frame.Content = new MainMenuPage();
                     break;
             }
         }
@@ -266,7 +265,7 @@ namespace Sup20_12.ViewModels
                     case MessageBoxResult.Yes:
                         Application.Current.Dispatcher.Invoke((Action)delegate
                         {
-                            win.frame.Content = new GameWindowPage(MyPlayer);
+                            MyWin.frame.Content = new GameWindowPage(MyPlayer);
                         });
                         break;
                     case MessageBoxResult.No:
@@ -292,7 +291,7 @@ namespace Sup20_12.ViewModels
         }
         private void GoToMainPage()
         {
-            win.frame.Content = new MainMenuPage();
+            MyWin.frame.Content = new MainMenuPage();
         }
     }
 }
