@@ -9,7 +9,6 @@ namespace Sup20_12.ViewModels
     public class ChoosePlayerViewModel : BaseViewModel
     {
         #region Properties
-        public Player MyPlayer { get; set; }
         public int SelectedId { get; set; }
         public string PlayerNickname { get; set; }
         public ICommand AddNewPlayerCommand { get; set; }
@@ -24,6 +23,7 @@ namespace Sup20_12.ViewModels
             AddNewPlayerCommand = new RelayCommand(AddPlayer);
             GoToMainPageCommand = new RelayCommand(GoToMainPage);
             GetPlayersFromDb();
+            HighlightLastPlayerFromPreviousSessionInList();
         }
 
         public void AddPlayer()
@@ -44,8 +44,7 @@ namespace Sup20_12.ViewModels
                 HighlightSelectedPlayer(myTempPlayer.Nickname);
             }
         }
-
-        public void ClearTextBox()
+        private void ClearTextBox()
         {
             PlayerNickname = "";
         }
@@ -54,8 +53,7 @@ namespace Sup20_12.ViewModels
         {
            ListOfPlayersInListBox = DbConnection.Players;
         }
-
-        public void SelectedPlayerForGame()
+        private void SelectedPlayerForGame()
         {
             if (IsThereAnActivePlayer())
             {
@@ -63,12 +61,12 @@ namespace Sup20_12.ViewModels
                 InitialGameInstructions();
             }
         }
-        public void InitialGameInstructions()
+        private void InitialGameInstructions()
         {
             MessageBox.Show("Börja spelet genom att dra 3 stycken skepp från hamnen till 3 olika rutor på den vänstra spelplanen.");
         }
 
-        public void GoToMainPage()
+        private void GoToMainPage()
         {
             MyWin.frame.Content = new MainMenuPage();
         }
@@ -100,5 +98,27 @@ namespace Sup20_12.ViewModels
                 }
             }
         }
+
+        private void HighlightLastPlayerFromPreviousSessionInList()
+        {
+            if (MyPlayer != null)
+                HighlightSelectedPlayer(MyPlayer.Nickname);
+            else
+                FindLastPlayerInHighscoreList();
+
+        }
+
+        private void FindLastPlayerInHighscoreList()
+        {
+            foreach (Player myPlayer in ListOfPlayersInListBox)
+            {
+                if (myPlayer.LastPlayer == true)
+                {
+                    MyPlayer = myPlayer;
+                    HighlightSelectedPlayer(MyPlayer.Nickname);
+                }
+            }
+        }
+
     }
 }

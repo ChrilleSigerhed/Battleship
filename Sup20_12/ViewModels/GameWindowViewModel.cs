@@ -26,19 +26,17 @@ namespace Sup20_12.ViewModels
         private int noMoreShipsToUse = 0;
         public SingleBoatUC SingleBoat { get; set; }
         public GameEngine MyGameEngine { get; set; } = new GameEngine();
-        public Player MyPlayer { get; set; }
         public bool PlayerTurn { get; set; } = false;
         #endregion
-        public GameWindowViewModel(Player myPlayer, SingleBoatUC boat)
+        public GameWindowViewModel(SingleBoatUC boat)
         {
-            MyPlayer = myPlayer;
             SingleBoat = boat;
             ComputerButtonsInGame = MyGameEngine.ComputerButtonsInGame;
             PlayerButtonsInGame = MyGameEngine.PlayerButtonsInGame;
             PlaceShip = new RelayPropertyCommand(PlayerPlaceShips);
             CheckIfShip = new RelayPropertyCommand(PlayerCheckHitOrMiss);
             GoToMainPageCommand = new RelayCommand(AskIfExitCurrentRound);
-            ShowPlayerNickname = myPlayer.Nickname;
+            ShowPlayerNickname = MyPlayer.Nickname;
             ShowNumberOfMoves = MyGameEngine.NumberOfMoves;
         }
       
