@@ -34,7 +34,6 @@ namespace Sup20_12.ViewModels
         #endregion
         public GameWindowViewModel(SingleBoatUC boat)
         {
-            
             SingleBoat = boat;
             ComputerButtonsInGame = MyGameEngine.ComputerButtonsInGame;
             PlayerButtonsInGame = MyGameEngine.PlayerButtonsInGame;
