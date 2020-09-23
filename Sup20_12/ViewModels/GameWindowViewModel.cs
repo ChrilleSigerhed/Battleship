@@ -3,13 +3,8 @@ using Sup20_12.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -30,7 +25,7 @@ namespace Sup20_12.ViewModels
         public List<int> PlayerShotsFired { get; set; } = new List<int>();
         private int noMoreShipsToUse = 0;
         public SingleBoatUC SingleBoat { get; set; }
-        public GameEngine gameEngine { get; set; } = new GameEngine();
+        public GameEngine MyGameEngine { get; set; } = new GameEngine();
         public Player MyPlayer { get; set; }
         public bool PlayerTurn { get; set; } = false;
         #endregion
@@ -38,13 +33,13 @@ namespace Sup20_12.ViewModels
         {
             MyPlayer = myPlayer;
             SingleBoat = boat;
-            ComputerButtonsInGame = gameEngine.ComputerButtonsInGame;
-            PlayerButtonsInGame = gameEngine.PlayerButtonsInGame;
+            ComputerButtonsInGame = MyGameEngine.ComputerButtonsInGame;
+            PlayerButtonsInGame = MyGameEngine.PlayerButtonsInGame;
             PlaceShip = new RelayPropertyCommand(PlayerPlaceShips);
             CheckIfShip = new RelayPropertyCommand(PlayerCheckHitOrMiss);
             GoToMainPageCommand = new RelayCommand(AskIfExitCurrentRound);
             ShowPlayerNickname = myPlayer.Nickname;
-            ShowNumberOfMoves = gameEngine.NumberOfMoves;
+            ShowNumberOfMoves = MyGameEngine.NumberOfMoves;
         }
       
         public void PlayerPlaceShips(string button)
@@ -68,7 +63,7 @@ namespace Sup20_12.ViewModels
         private bool PlayerHasShipsLeftToPlace(int buttonToNumber)
         {
             bool result = false;
-            if (gameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude))
+            if (MyGameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude))
                 result = true;
             return result;
         }
@@ -86,9 +81,9 @@ namespace Sup20_12.ViewModels
                     AddHitOnComputerBoard(buttonToNumber);
                     ChangePlayerTurn();
 
-                    if (gameEngine.HasWon())
+                    if (MyGameEngine.HasWon())
                     {
-                        Highscore myHighscore = gameEngine.AddNewHighscore(true, MyPlayer.Id);
+                        Highscore myHighscore = MyGameEngine.AddNewHighscore(true, MyPlayer.Id);
                         ShowWinDialogueBox(myHighscore);
                     }
                     Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
@@ -117,7 +112,7 @@ namespace Sup20_12.ViewModels
         }
         private string DidPlayerMakeTheHighscoreString(Highscore myHighscore)
         {
-            string returnString = "";
+            string returnString;
             IEnumerable<Highscore> myHighscoreList = DbConnection.GetThreeWinnersFromHighscore();
             if (IsPlayersHighscoreIdOnTheList(myHighscoreList, myHighscore))
                 returnString = " och tog dig dessutom in på highscorelistan! Vill du spela igen?";
@@ -141,7 +136,7 @@ namespace Sup20_12.ViewModels
         {
             UpdateNumberOfMovesOnGameboard();
             PlayerShotsFired.Add(buttonToNumber);
-            if (gameEngine.PlayerCheckCloseOrNot(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude) == true)
+            if (MyGameEngine.PlayerCheckCloseOrNot(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude) == true)
             {
                 ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Nära";
                 ChangeGridSquareToSplashSonarImage(ComputerButtonsInGame[buttonToNumber]);
@@ -155,7 +150,7 @@ namespace Sup20_12.ViewModels
 
         private void UpdateNumberOfMovesOnGameboard()
         {
-            ShowNumberOfMoves = gameEngine.NumberOfMoves;
+            ShowNumberOfMoves = MyGameEngine.NumberOfMoves;
         }
 
         private void AddHitOnComputerBoard(int buttonToNumber)
@@ -175,7 +170,7 @@ namespace Sup20_12.ViewModels
 
         private bool HitComputerShip(int buttonToNumber)
         {
-            if (gameEngine.PlayerCheckHitOrMiss(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude))
+            if (MyGameEngine.PlayerCheckHitOrMiss(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude))
                 return true;
             else
                 return false;
@@ -192,9 +187,9 @@ namespace Sup20_12.ViewModels
         public void ComputerHitOrMiss()
         {
             
-            int[] shoot = gameEngine.ComputerRandomShotFired();
+            int[] shoot = MyGameEngine.ComputerRandomShotFired();
 
-            if(gameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
+            if(MyGameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
             {
                 foreach (var c in PlayerButtonsInGame)
                 {
@@ -205,9 +200,9 @@ namespace Sup20_12.ViewModels
                         c.IsClicked = true;
                     }
                 }
-                if(gameEngine.HasLost())
+                if(MyGameEngine.HasLost())
                 {
-                    gameEngine.AddNewHighscore(false, MyPlayer.Id);
+                    MyGameEngine.AddNewHighscore(false, MyPlayer.Id);
                     ShowLosingDialogueBox();
                 }
                 PlayerTurn = true;

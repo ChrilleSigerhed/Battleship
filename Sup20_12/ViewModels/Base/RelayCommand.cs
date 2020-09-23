@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
+
 /// <summary>
 /// Definerar vilken action (metod) som ska köra på givet kommando
 /// </summary>
