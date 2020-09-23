@@ -28,8 +28,8 @@ namespace Sup20_12.ViewModels
 
         public void AddPlayer()
         {
-            if (PlayerNickname == null)
-                MessageBox.Show("Du har inte valt något nickname. Välj från listan eller skriv in ett nytt i rutan.");
+            if (PlayerNickname == null || NicknameContainBlankSpaces(PlayerNickname))
+                MessageBox.Show("Du har inte skrivit något nickname eller valt ett felaktigt namn (blanksteg är inte tillåtna). Välj från listan eller skriv in ett i rutan.");
             else if (!DbConnection.IsPlayerNicknameUniqueInDb(PlayerNickname))
             {
                 MessageBox.Show("Detta nickname finns redan. Om det är ditt kan du klicka på -Starta Spelet- direkt för att spela med detta nickname eller skriv in ett unikt nickname i rutan och klicka - Lägg till spelare");
@@ -43,6 +43,14 @@ namespace Sup20_12.ViewModels
                 GetPlayersFromDb();
                 HighlightSelectedPlayer(myTempPlayer.Nickname);
             }
+        }
+
+        private bool NicknameContainBlankSpaces(string PlayerNickname)
+        {
+            if (PlayerNickname.Contains(" "))
+                return true;
+            else
+                return false;
         }
         private void ClearTextBox()
         {
