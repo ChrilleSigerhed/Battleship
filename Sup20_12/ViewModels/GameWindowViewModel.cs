@@ -181,7 +181,7 @@ namespace Sup20_12.ViewModels
 
         private void AddCloseOnPlayerBoard(int longitude, int latitude)
         {
-            if(gameEngine.ComputerCheckCloseOrNot(longitude, latitude) == true)
+            if(MyGameEngine.ComputerCheckCloseOrNot(longitude, latitude) == true)
             {
                 foreach (var c in PlayerButtonsInGame)
                 {
@@ -200,9 +200,9 @@ namespace Sup20_12.ViewModels
 
         private void ComputerShootAroundSplashSonar()
         {
-            int[] shoot = gameEngine.ComputerShotCloseToSplashSonar(CoordinatesCloseToShip[0], CoordinatesCloseToShip[1]);
+            int[] shoot = MyGameEngine.ComputerShotCloseToSplashSonar(CoordinatesCloseToShip[0], CoordinatesCloseToShip[1]);
 
-            if (gameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
+            if (MyGameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
             {
                 foreach (var c in PlayerButtonsInGame)
                 {
@@ -214,13 +214,13 @@ namespace Sup20_12.ViewModels
                         WasCloseToShip = false;
                     }
                 }
-                if (gameEngine.HasLost())
+                if (MyGameEngine.HasLost())
                 {
-                    gameEngine.AddNewHighscore(false, MyPlayer.Id);
+                    MyGameEngine.AddNewHighscore(false, MyPlayer.Id);
                     ShowLosingDialogueBox();
                 }
                 PlayerTurn = true;
-            } else if (gameEngine.ComputerCheckCloseOrNot(shoot[0], shoot[1]))
+            } else if (MyGameEngine.ComputerCheckCloseOrNot(shoot[0], shoot[1]))
             {
                 AddCloseOnPlayerBoard(shoot[0], shoot[1]);
             }
@@ -245,7 +245,7 @@ namespace Sup20_12.ViewModels
 
             if (WasCloseToShip == false)
             {
-                if (gameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
+                if (MyGameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
                 {
                     foreach (var c in PlayerButtonsInGame)
                     {
@@ -256,14 +256,14 @@ namespace Sup20_12.ViewModels
                             c.IsClicked = true;
                         }
                     }
-                    if (gameEngine.HasLost())
+                    if (MyGameEngine.HasLost())
                     {
-                        gameEngine.AddNewHighscore(false, MyPlayer.Id);
+                        MyGameEngine.AddNewHighscore(false, MyPlayer.Id);
                         ShowLosingDialogueBox();
                     }
                     PlayerTurn = true;
                 }
-                else if (gameEngine.ComputerCheckCloseOrNot(shoot[0], shoot[1]))
+                else if (MyGameEngine.ComputerCheckCloseOrNot(shoot[0], shoot[1]))
                 {
                     CoordinatesCloseToShip = new int[] { shoot[0], shoot[1] };
                     AddCloseOnPlayerBoard(shoot[0], shoot[1]);
@@ -288,7 +288,7 @@ namespace Sup20_12.ViewModels
         }
         private void UpdateNumberOfMovesOnGameboard()
         {
-            ShowNumberOfMoves = gameEngine.NumberOfMoves;
+            ShowNumberOfMoves = MyGameEngine.NumberOfMoves;
         }
 
         private void AddHitOnComputerBoard(int buttonToNumber)
@@ -308,7 +308,7 @@ namespace Sup20_12.ViewModels
 
         private bool HitComputerShip(int buttonToNumber)
         {
-            if (gameEngine.PlayerCheckHitOrMiss(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude))
+            if (MyGameEngine.PlayerCheckHitOrMiss(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude))
                 return true;
             else
                 return false;
@@ -318,7 +318,7 @@ namespace Sup20_12.ViewModels
         {
             if (PlayerShotsFired.Contains(buttonToNumber))
                 return true;
-            else
+            else { 
                 return false;
             }
         }
