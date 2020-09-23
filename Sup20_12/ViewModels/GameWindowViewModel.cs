@@ -28,14 +28,13 @@ namespace Sup20_12.ViewModels
         private int noMoreShipsToUse = 0;
         public SingleBoatUC SingleBoat { get; set; }
         public GameEngine MyGameEngine { get; set; } = new GameEngine();
-        public Player MyPlayer { get; set; }
         public bool PlayerTurn { get; set; } = false;
         public bool WasCloseToShip { get; set; } = false;
         public int[] CoordinatesCloseToShip { get; set; }
         #endregion
-        public GameWindowViewModel(Player myPlayer, SingleBoatUC boat)
+        public GameWindowViewModel(SingleBoatUC boat)
         {
-            MyPlayer = myPlayer;
+            
             SingleBoat = boat;
             ComputerButtonsInGame = MyGameEngine.ComputerButtonsInGame;
             PlayerButtonsInGame = MyGameEngine.PlayerButtonsInGame;
@@ -44,7 +43,7 @@ namespace Sup20_12.ViewModels
             GoToMainPageCommand = new RelayCommand(AskIfExitCurrentRound);
             PlaceRandomBoats = new RelayCommand(RandomPlacePlayerShips);
 
-            ShowPlayerNickname = myPlayer.Nickname;
+            ShowPlayerNickname = MyPlayer.Nickname;
             ShowNumberOfMoves = MyGameEngine.NumberOfMoves;
         }
       
