@@ -68,61 +68,28 @@ namespace Sup20_12.ViewModels
         public int[] RandomFillPlayerShips()
         {
             Random random = new Random();
-            int[] buttonsLongitudeLatitude = new int[6];
             int counter = 0;
             int longitude;
             int latitude;
-            
-            if(PlayerShipsList.Count > 0)
-            {
-                int[] buttonsLongitudeLatitude2 = new int[6 - PlayerShipsList.Count * 2];
-                for (int i = PlayerShipsList.Count; i < 3; i++)
-                {
-                    longitude = random.Next(0, 7);
-                    latitude = random.Next(0, 7);
-                    Submarine submarine = new Submarine(longitude, latitude);
-                    while (IsCollidingPlayer(submarine) == true)
-                    {
-                        longitude = random.Next(0, 7);
-                        latitude = random.Next(0, 7);
-                        submarine = new Submarine(longitude, latitude);
-                    }
-                    buttonsLongitudeLatitude2[counter] = longitude;
-                    buttonsLongitudeLatitude2[counter + 1] = latitude;
-                    counter += 2;
-                    PlayerShipsList.Add(submarine);
-                }
-                return buttonsLongitudeLatitude2;
-                
-            }
-            else
+
+            int[] buttonsLongitudeLatitude = new int[6 - PlayerShipsList.Count * 2];
+            for (int i = PlayerShipsList.Count; i < 3; i++)
             {
                 longitude = random.Next(0, 7);
-                latitude = random.Next(0, 7);
-                buttonsLongitudeLatitude[0] = longitude;
-                buttonsLongitudeLatitude[1] = latitude;
-                PlayerShipsList.Add(new Submarine(longitude, latitude));
-
-                for (int i = 0; i < 2; i++)
+                latitude = random.Next(0,7);
+                Submarine submarine = new Submarine(longitude, latitude);
+                while (IsCollidingPlayer(submarine) == true)
                 {
                     longitude = random.Next(0, 7);
                     latitude = random.Next(0, 7);
-                    Submarine submarine = new Submarine(longitude, latitude);
-                    while (IsCollidingPlayer(submarine) == true)
-                    {
-                        longitude = random.Next(0, 7);
-                        latitude = random.Next(0, 7);
-                        submarine = new Submarine(longitude, latitude);
-                    }
-                    buttonsLongitudeLatitude[counter] = longitude;
-                    buttonsLongitudeLatitude[counter + 1] = latitude;
-                    counter += 2;
-                    PlayerShipsList.Add(submarine);
+                    submarine = new Submarine(longitude, latitude);
                 }
-               
+                buttonsLongitudeLatitude[counter] = longitude;
+                buttonsLongitudeLatitude[counter + 1] = latitude;
+                counter += 2;
+                PlayerShipsList.Add(submarine);
             }
             return buttonsLongitudeLatitude;
-
         }
         public bool IsCollidingPlayer(Ships ship)
         {

@@ -43,19 +43,19 @@
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="84"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="105"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-           
 
-            <Label Name="RubrikHamn" Grid.Column="1" Grid.Row="0" VerticalAlignment="Bottom" Content="Hamn" Style="{StaticResource fontz}" FontSize="20" Foreground="White" />
-            <Label Name="RubrikAntalDrag" Grid.Column="1" Grid.Row="2" VerticalAlignment="Bottom" Content="Antal drag" Style="{StaticResource fontz}" FontSize="12" Foreground="White" Height="29" />
-            <Label Name="NumberOfMoves" Grid.Column="1" Grid.Row="3" VerticalAlignment="Bottom" Content="{Binding ShowNumberOfMoves}" Style="{StaticResource fontz}" FontSize="12"/>
-            <Button Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Width="120"  Style="{StaticResource BtnBack}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Command="{Binding GoToMainPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}"/>
+
+            <Label Name="RubrikHamn" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" Content="Hamn" Style="{StaticResource fontz}" FontSize="20" Foreground="White" Height="34" Margin="0,96,0,0" />
+            <Label Name="RubrikAntalDrag" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Content="Antal drag" Style="{StaticResource fontz}" FontSize="12" Foreground="White" Height="29" Margin="0,6,0,0" />
+            <Label Name="NumberOfMoves" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Right" Content="{Binding ShowNumberOfMoves}" Style="{StaticResource fontz}" FontSize="14" Height="25" Width="40"/>
+            <Button Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Width="120" Height="28" Style="{StaticResource BtnBack}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Command="{Binding GoToMainPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" />
             <StackPanel Grid.Column="1" Grid.Row="1">
                 <local:SingleBoatUC x:Name="rectangleUI" Grid.Column="2" Loaded="rectangleUI_Loaded"></local:SingleBoatUC>
-                <Button Width="50" Height="20" Content="SLUMPA" Command="{Binding PlaceRandomBoats}" Click="RemoveBoats" />
             </StackPanel>
+            <Button Grid.Column="1" Grid.Row="1" Width="100" Height="25" HorizontalAlignment="Center" Margin="0,90,3,0" Content="Slumpa skepp" Command="{Binding PlaceRandomBoats}" Click="RemoveBoats" Style="{StaticResource BtnSlump}" FontFamily="Stencil" />
 
 
         </Grid>
