@@ -76,7 +76,7 @@ namespace Sup20_12.ViewModels
             for (int i = PlayerShipsList.Count; i < 3; i++)
             {
                 longitude = random.Next(0, 7);
-                latitude = random.Next(0, 7);
+                latitude = random.Next(0,7);
                 Submarine submarine = new Submarine(longitude, latitude);
                 while (IsCollidingPlayer(submarine) == true)
                 {

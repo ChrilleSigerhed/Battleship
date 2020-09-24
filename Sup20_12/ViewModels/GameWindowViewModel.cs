@@ -193,8 +193,6 @@ namespace Sup20_12.ViewModels
                 }
             }
         }
-        
-
         private void ComputerShootAroundSplashSonar()
         {
             int[] shoot = MyGameEngine.ComputerShotCloseToSplashSonar(CoordinatesCloseToShip[0], CoordinatesCloseToShip[1]);
