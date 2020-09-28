@@ -12,6 +12,9 @@
     <Compile Update="TESTING\TestWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\BattleShipUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\ChoosePlayerPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -27,6 +30,9 @@
     <Compile Update="View\SingleBoatUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\SubmarineUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -36,6 +42,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TESTING\TestWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\BattleShipUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\ChoosePlayerPage.xaml">
@@ -51,6 +60,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\SingleBoatUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SubmarineUC.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

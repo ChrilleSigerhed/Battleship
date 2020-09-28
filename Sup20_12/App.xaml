@@ -5,5 +5,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ImageBrush x:Key="imgDestroyer" ImageSource="Assets/Images/destroyerImg.png"/>
+        <ImageBrush x:Key="imgBattleShip" ImageSource="Assets/Images/battleshipImg.png"/>
+        <ImageBrush x:Key="imgSubmarine" ImageSource="Assets/Images/submarineImg.png"/>
     </Application.Resources>
 </Application>
