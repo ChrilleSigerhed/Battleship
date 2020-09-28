@@ -18,6 +18,7 @@ namespace Sup20_12.ViewModels
         public Highscore NewHighscore { get; set; }
         public int NumberOfMoves { get; set; } = 0;
         public int ShipsPlaced { get; set; } = 3;
+        private int gridSize = 7;
         #endregion
         public GameEngine()
         {
@@ -47,19 +48,19 @@ namespace Sup20_12.ViewModels
             Random random = new Random() ;
             int longitude;
             int latitude;
-            longitude = random.Next(0, 7);
-            latitude = random.Next(0, 7);
+            longitude = random.Next(0, gridSize);
+            latitude = random.Next(0, gridSize);
             ComputerShipsList.Add(new Submarine(longitude, latitude));
 
             for (int i = 0; i < 2; i++)
             {
-                longitude = random.Next(0, 7);
-                latitude = random.Next(0, 7);
+                longitude = random.Next(0, gridSize);
+                latitude = random.Next(0, gridSize);
                 Submarine submarine = new Submarine(longitude, latitude);
                 while (IsColliding(submarine) == true)
                 {
-                    longitude = random.Next(0, 7);
-                    latitude = random.Next(0, 7);
+                    longitude = random.Next(0, gridSize);
+                    latitude = random.Next(0, gridSize);
                     submarine = new Submarine(longitude, latitude);
                 }
                 ComputerShipsList.Add(submarine);
@@ -75,13 +76,13 @@ namespace Sup20_12.ViewModels
             int[] buttonsLongitudeLatitude = new int[6 - PlayerShipsList.Count * 2];
             for (int i = PlayerShipsList.Count; i < 3; i++)
             {
-                longitude = random.Next(0, 7);
-                latitude = random.Next(0,7);
+                longitude = random.Next(0, gridSize);
+                latitude = random.Next(0, gridSize);
                 Submarine submarine = new Submarine(longitude, latitude);
                 while (IsCollidingPlayer(submarine) == true)
                 {
-                    longitude = random.Next(0, 7);
-                    latitude = random.Next(0, 7);
+                    longitude = random.Next(0, gridSize);
+                    latitude = random.Next(0, gridSize);
                     submarine = new Submarine(longitude, latitude);
                 }
                 buttonsLongitudeLatitude[counter] = longitude;
@@ -145,9 +146,9 @@ namespace Sup20_12.ViewModels
         }
         public void CreatePlayerGrid()
         {
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < gridSize; i++)
             {
-                for (int j = 0; j < 7; j++)
+                for (int j = 0; j < gridSize; j++)
                 {
                    GameGrid square = new GameGrid(i,j,""); 
                    PlayerButtonsInGame.Add(square);
@@ -156,9 +157,9 @@ namespace Sup20_12.ViewModels
         }
         public void CreateComputerGrid()
         {
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < gridSize; i++)
             {
-                for (int j = 0; j < 7; j++)
+                for (int j = 0; j < gridSize; j++)
                 {
                     GameGrid square = new GameGrid(i, j, "");
                     ComputerButtonsInGame.Add(square);
@@ -183,9 +184,9 @@ namespace Sup20_12.ViewModels
         {
             foreach (var ship in ComputerShipsList)
             {
-                if(ship.Longitude.Contains(longitude +1) || ship.Longitude.Contains(longitude-1) || ship.Longitude.Contains(longitude))
+                if(ship.Longitude.Contains(longitude + 1) || ship.Longitude.Contains(longitude - 1) || ship.Longitude.Contains(longitude))
                 {
-                    if(ship.Latitude.Contains(latitude+1) || ship.Latitude.Contains(latitude-1) || ship.Latitude.Contains(latitude))
+                    if(ship.Latitude.Contains(latitude + 1) || ship.Latitude.Contains(latitude - 1) || ship.Latitude.Contains(latitude))
                     {
                         return true;
                     }
@@ -223,18 +224,15 @@ namespace Sup20_12.ViewModels
 
         public int[] ComputerShotCloseToSplashSonar(int longitude, int latitude)
         {
-            
             Random rand = new Random();
             int randomNumber;
             int newLongitude = 100;
             int newLatitude = 100;
             bool GridHasBeenShot = true;
 
-
-
-            while (newLongitude < 0 || newLongitude > 6 || newLatitude < 0 || newLatitude > 6 || GridHasBeenShot == true)
+            while (newLongitude < 0 || newLongitude > (gridSize-1) || newLatitude < 0 || newLatitude > (gridSize-1) || GridHasBeenShot == true)
             {
-                    randomNumber = rand.Next(0, 8);
+                    randomNumber = rand.Next(0, (gridSize+1));
 
                     if (randomNumber == 0)
                     {
@@ -280,7 +278,6 @@ namespace Sup20_12.ViewModels
                 {
                     GridHasBeenShot = false;
                 }
-
             }
             int[] newShot = new int[] { newLongitude, newLatitude };
             return newShot;
@@ -289,16 +286,16 @@ namespace Sup20_12.ViewModels
         public int[] ComputerRandomShotFired()
         {
             Random random = new Random();
-            int longitude = random.Next(0, 7);
-            int latitude = random.Next(0, 7);
+            int longitude = random.Next(0, gridSize);
+            int latitude = random.Next(0, gridSize);
 
             while (HasGridBeenShot(PlayerButtonsInGame, longitude, latitude) == true)
             {
-                longitude = random.Next(0, 7);
-                latitude = random.Next(0, 7);
+                longitude = random.Next(0, gridSize);
+                latitude = random.Next(0, gridSize);
             }
-                int[] coordinates = { longitude, latitude };
-                return coordinates;
+            int[] coordinates = { longitude, latitude };
+            return coordinates;
         }
 
         public bool HasGridBeenShot(ObservableCollection<GameGrid> gameGrid, int longitude, int latitude)
@@ -306,12 +303,9 @@ namespace Sup20_12.ViewModels
             foreach (var c in gameGrid)
             {
                 if (c.Latitude == latitude && c.Longitude == longitude && c.IsClicked == true)
-                {
                     return true;
-                } else if (latitude > 6 || latitude < 0 || longitude < 0 || longitude > 6)
-                {
+                else if (latitude > (gridSize-1) || latitude < 0 || longitude < 0 || longitude > (gridSize-1))
                     return true;
-                }
             }
             return false;
         }

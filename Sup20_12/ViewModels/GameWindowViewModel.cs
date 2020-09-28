@@ -41,7 +41,6 @@ namespace Sup20_12.ViewModels
             CheckIfShip = new RelayPropertyCommand(PlayerCheckHitOrMiss);
             GoToMainPageCommand = new RelayCommand(AskIfExitCurrentRound);
             PlaceRandomBoats = new RelayCommand(RandomPlacePlayerShips);
-
             ShowPlayerNickname = MyPlayer.Nickname;
             ShowNumberOfMoves = MyGameEngine.NumberOfMoves;
         }

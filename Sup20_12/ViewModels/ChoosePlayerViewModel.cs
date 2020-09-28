@@ -113,7 +113,6 @@ namespace Sup20_12.ViewModels
                 HighlightSelectedPlayer(MyPlayer.Nickname);
             else
                 FindLastPlayerInHighscoreList();
-
         }
 
         private void FindLastPlayerInHighscoreList()
