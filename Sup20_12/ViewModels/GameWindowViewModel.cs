@@ -1,8 +1,10 @@
-﻿using Sup20_12.View;
+﻿using Microsoft.VisualBasic;
+using Sup20_12.View;
 using Sup20_12.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -358,22 +360,26 @@ namespace Sup20_12.ViewModels
 
         private void ShowLosingDialogueBox()
         {
-                MessageBoxResult result = MessageBox.Show($"Ops {MyPlayer.Nickname}, du förlorade... mot en dator... vill du försöka igen?", "Avsluta", MessageBoxButton.YesNo);
-                switch (result)
+            Task.Run(() =>
+            {
+                Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    case MessageBoxResult.Yes:
-                        Application.Current.Dispatcher.Invoke((Action)delegate
-                        {
-                            MyWin.frame.Content = new GameWindowPage(MyPlayer);
-                        });
-                        break;
-                    case MessageBoxResult.No:
-                        Application.Current.Dispatcher.Invoke((Action)delegate
-                        {
-                            GoToMainPage();
-                        });
-                        break;
-                }
+                    MessageBoxResult result = MessageBox.Show($"Ops {MyPlayer.Nickname}, du förlorade... mot en dator... vill du försöka igen?", "Avsluta", MessageBoxButton.YesNo);
+                    switch (result)
+                    {
+                        case MessageBoxResult.Yes:
+                            {
+                                MyWin.frame.Content = new GameWindowPage(MyPlayer);
+                            };
+                            break;
+                        case MessageBoxResult.No:
+                            {
+                                GoToMainPage();
+                            };
+                            break;
+                    }
+                }), null);
+            });
         }
 
         private void AskIfExitCurrentRound()
