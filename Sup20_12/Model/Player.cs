@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-
+﻿
 namespace Sup20_12
 {
    public class Player : IPlayer

@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="View\Base\**" />
+    <EmbeddedResource Remove="View\Base\**" />
+    <None Remove="View\Base\**" />
+    <Page Remove="View\Base\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Assets\Cursor\battleshipImg.cur" />
     <None Remove="Assets\Cursor\destroyerImg.cur" />
     <None Remove="Assets\Cursor\submarineImg.cur" />
@@ -96,7 +103,6 @@
 
   <ItemGroup>
     <Folder Include="Assets\Images\boat\" />
-    <Folder Include="View\Base\" />
   </ItemGroup>
 
   <ItemGroup>
