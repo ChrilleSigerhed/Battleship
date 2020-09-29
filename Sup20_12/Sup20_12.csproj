@@ -7,13 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Cursor\battleshipImg.cur" />
     <None Remove="Assets\Cursor\destroyerImg.cur" />
+    <None Remove="Assets\Cursor\submarineImg.cur" />
     <None Remove="Assets\Fonts\STENCIL.TTF" />
     <None Remove="Assets\Images\animationFire.png" />
+    <None Remove="Assets\Images\battleshipImg.png" />
     <None Remove="Assets\Images\bgChoosePlayerPage.jpg" />
     <None Remove="Assets\Images\bgGameWindowPage.jpg" />
     <None Remove="Assets\Images\bgHighscorePage.jpg" />
     <None Remove="Assets\Images\bgMainMenuPage.jpg" />
+    <None Remove="Assets\Images\boatTreeBowVerticalImg.png" />
+    <None Remove="Assets\Images\boatTreeMiddleVerticalImg.png" />
+    <None Remove="Assets\Images\boatTreeSternVerticalImg.png" />
+    <None Remove="Assets\Images\boatTwoBowVerticalImg.png" />
+    <None Remove="Assets\Images\boatTwoSternVerticalImg.png" />
     <None Remove="Assets\Images\btnAddPlayerImg.png" />
     <None Remove="Assets\Images\btnAddPlayerImgPressed.png" />
     <None Remove="Assets\Images\btnBack.png" />
@@ -30,6 +38,7 @@
     <None Remove="Assets\Images\explosion.png" />
     <None Remove="Assets\Images\splash.png" />
     <None Remove="Assets\Images\splashSonar.png" />
+    <None Remove="Assets\Images\submarineImg.png" />
     <None Remove="Assets\Images\water.jpg" />
     <None Remove="Assets\Sounds\buttonDown.wav" />
     <None Remove="Assets\Sounds\buttonUp.wav" />
@@ -39,18 +48,27 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Win32.Primitives" Version="4.3.0" />
     <PackageReference Include="Npgsql" Version="4.1.4" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.2.9" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\Fonts\STENCIL.TTF">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Assets\Cursor\battleshipImg.cur" />
     <Resource Include="Assets\Cursor\destroyerImg.cur" />
+    <Resource Include="Assets\Cursor\submarineImg.cur" />
     <Resource Include="Assets\Images\animationFire.png" />
+    <Resource Include="Assets\Images\battleshipImg.png" />
     <Resource Include="Assets\Images\bgChoosePlayerPage.jpg" />
     <Resource Include="Assets\Images\bgGameWindowPage.jpg" />
     <Resource Include="Assets\Images\bgHighscorePage.jpg" />
     <Resource Include="Assets\Images\bgMainMenuPage.jpg" />
+    <Resource Include="Assets\Images\boatTreeBowVerticalImg.png" />
+    <Resource Include="Assets\Images\boatTreeMiddleVerticalImg.png" />
+    <Resource Include="Assets\Images\boatTreeSternVerticalImg.png" />
+    <Resource Include="Assets\Images\boatTwoBowVerticalImg.png" />
+    <Resource Include="Assets\Images\boatTwoSternVerticalImg.png" />
     <Resource Include="Assets\Images\btnAddPlayerImg.png" />
     <Resource Include="Assets\Images\btnAddPlayerImgPressed.png" />
     <Resource Include="Assets\Images\btnBack.png" />
@@ -67,6 +85,7 @@
     <Resource Include="Assets\Images\explosion.png" />
     <Resource Include="Assets\Images\splash.png" />
     <Resource Include="Assets\Images\splashSonar.png" />
+    <Resource Include="Assets\Images\submarineImg.png" />
     <Resource Include="Assets\Images\water.jpg" />
     <Resource Include="Assets\Sounds\buttonDown.wav" />
     <Resource Include="Assets\Sounds\buttonUp.wav" />

@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup />
+  <PropertyGroup>
+    <_LastSelectedProfileId>C:\Users\gusta\source\repos\sup20_12\Sup20_12\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
   <ItemGroup>
     <ApplicationDefinition Update="App.xaml">
       <SubType>Designer</SubType>
@@ -8,6 +10,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Update="TESTING\TestWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\BattleShipUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\ChoosePlayerPage.xaml.cs">
@@ -25,6 +30,9 @@
     <Compile Update="View\SingleBoatUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\SubmarineUC.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -34,6 +42,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TESTING\TestWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\BattleShipUC.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\ChoosePlayerPage.xaml">
@@ -49,6 +60,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\SingleBoatUC.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\SubmarineUC.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

@@ -22,37 +22,53 @@ namespace Sup20_12.View
     {
         public Player Player { get; set; }
         public GameWindowViewModel gameWindowViewModel { get; set; }
-        public ImageBrush bitmap { get; set; }
 
         public GameWindowPage(Player player)
         {
             Player = player;
             InitializeComponent();
-            gameWindowViewModel = new GameWindowViewModel(Player, rectangleUI);
+            gameWindowViewModel = new GameWindowViewModel(rectangleUI);
             DataContext = gameWindowViewModel;
         }
         private void Target_Drop(object sender, DragEventArgs e)
         {
-            bitmap = GetImageSingleBoat();
             Button button = (Button)sender;
-            button.Background = Brushes.Transparent;
-            button.Background = bitmap;
-            if (button.Background == bitmap) // Genom att kontrollera bakgrunden på vad det är vi droppar så kan vi köra olika metoder för olika båtar... om vi väljer att implementera det
+            if (gameWindowViewModel.Ships == 3)
             {
                 gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
             }
+            else if (gameWindowViewModel.Ships == 2)
+            {
+                gameWindowViewModel.PlayerPlaceBattleShip(button.CommandParameter.ToString());
+            }
+            else if(gameWindowViewModel.Ships == 1)
+            {
+                gameWindowViewModel.PlayerPlaceSubmarineShip(button.CommandParameter.ToString());
+            }
+           if(gameWindowViewModel.Ships == 2)
+            {
+                rectangleUI.Visibility = Visibility.Hidden;
+            }
+           else if(gameWindowViewModel.Ships == 1)
+            {
+                rectangleBS.Visibility = Visibility.Hidden;
+            }
+            else if(gameWindowViewModel.Ships == 0)
+            {
+                rectangleSub.Visibility = Visibility.Hidden;
+            }
+                
         }
-        private ImageBrush GetImageSingleBoat()
-        {
-            ImageBrush bitmap = new ImageBrush();
-            bitmap.Stretch = Stretch.Uniform;
-            bitmap.ImageSource = BitmapFrame.Create(new Uri(@"pack://Application:,,,/Assets/Images/destroyerImg.png", UriKind.Absolute));
-            return bitmap;
-        }
-
         private void rectangleUI_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void RemoveBoatsAfterRandomPlacedShips(object sender, RoutedEventArgs e)
+        {
+            rectangleUI.Visibility = Visibility.Hidden;
+            rectangleBS.Visibility = Visibility.Hidden;
+            rectangleSub.Visibility = Visibility.Hidden;
         }
     }
 }
