@@ -135,28 +135,29 @@ namespace Sup20_12.ViewModels
         }
         public void RandomPlacePlayerShips()
         {
-            if (Ships != noMoreShipsToUse)
+            
+            if (Ships == 3)
             {
-                int[] PlacedShips = MyGameEngine.RandomFillPlayerShips();
-
+                int[] longitudeShips = MyGameEngine.GetLongitudesForRandomShip();
+                int[] latitudeShips = MyGameEngine.GetLatitudesForRandomShip();
                 foreach (var button in PlayerButtonsInGame)
                 {
-                    for (int i = 0; i < PlacedShips.Length - 1; i++)
+                    if (button.Longitude == longitudeShips[0] && button.Latitude == latitudeShips[0])
                     {
-                        if (button.Longitude == PlacedShips[i] && button.Latitude == PlacedShips[i + 1])
-                        {
-                            ChangePlayerGridToSingleBoat(button);
-                        }
-                        i += 1;
+                        ChangePlayerGridToSingleBoat(button);
+                    }
+                    else if (button.Longitude == longitudeShips[1] && button.Latitude == latitudeShips[1])
+                    {
+                        ChangePlayerGridToBattleShip(button.Longitude, button.Latitude, button);
+                    }
+                    else if (button.Longitude == longitudeShips[2] && button.Latitude == latitudeShips[2])
+                    {
+                        ChangePlayerGridToSubmarine(button.Longitude, button.Latitude, button);
                     }
                 }
                 Ships = 0;
                 ChangePlayerTurn();
                 MessageBox.Show("Nu kan spelet börja, du spelar på den högra spelplanen.");
-            }
-            else
-            {
-                MessageBox.Show("Du har redan slumpat fram dina skepp");
             }
         }
         public void PlayerCheckHitOrMiss(string button)

@@ -45,11 +45,11 @@ namespace Sup20_12.View
             {
                 gameWindowViewModel.PlayerPlaceSubmarineShip(button.CommandParameter.ToString());
             }
-           if(gameWindowViewModel.Ships == 2)
+            if(gameWindowViewModel.Ships == 2)
             {
                 rectangleUI.Visibility = Visibility.Hidden;
             }
-           else if(gameWindowViewModel.Ships == 1)
+            else if(gameWindowViewModel.Ships == 1)
             {
                 rectangleBS.Visibility = Visibility.Hidden;
             }
@@ -57,7 +57,9 @@ namespace Sup20_12.View
             {
                 rectangleSub.Visibility = Visibility.Hidden;
             }
-                
+            BtnSlump.IsEnabled = false;
+            BtnSlump.Background = Brushes.Gray;
+            BtnSlump.Content = "";    
         }
         private void rectangleUI_Loaded(object sender, RoutedEventArgs e)
         {

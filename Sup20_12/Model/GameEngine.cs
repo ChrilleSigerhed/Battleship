@@ -117,7 +117,8 @@ namespace Sup20_12.ViewModels
                 {
                     longitude = random.Next(0, 6);
                     latitude = random.Next(0, 7);
-                    while (ComputerShipsList[i].Latitude.Contains(latitude) && ComputerShipsList[i].Longitude.Contains(longitude))
+                    while (ComputerShipsList[i].Latitude.Contains(latitude) && ComputerShipsList[i].Longitude.Contains(longitude) ||
+                        ComputerShipsList[i].Latitude.Contains(latitude) && ComputerShipsList[i].Longitude.Contains(longitude +1))
                     {
                         longitude = random.Next(0, 6);
                         latitude = random.Next(0, 7);
@@ -128,7 +129,7 @@ namespace Sup20_12.ViewModels
                 {
                     longitude = random.Next(1, 6);
                     latitude = random.Next(0, 7);
-                    while (ComputerShipsList[i].Latitude.Contains(latitude) && ComputerShipsList[i].Longitude.Contains(longitude))
+                    while (CheckIfShipCanBePlaced(longitude,latitude, ComputerShipsList) == true)
                     {
                         longitude = random.Next(1, 6);
                         latitude = random.Next(0, 7);
@@ -137,31 +138,82 @@ namespace Sup20_12.ViewModels
                 }
             }
         }
-        public int[] RandomFillPlayerShips()
+        private bool CheckIfShipCanBePlaced(int longitude, int latitude, List<Ships> ships)
+        {
+            if(         (ships[0].Latitude.Contains(latitude) && ships[0].Longitude.Contains(longitude)) ||
+                        (ships[1].Latitude.Contains(latitude) && ships[1].Longitude.Contains(longitude)) ||
+                        (ships[0].Longitude.Contains(longitude + 1) && ships[0].Latitude.Contains(latitude)) ||
+                        (ships[0].Longitude.Contains(longitude - 1) && ships[0].Latitude.Contains(latitude)) ||
+                        (ships[1].Longitude.Contains(longitude + 1) && ships[1].Latitude.Contains(latitude)) ||
+                        (ships[1].Longitude.Contains(longitude - 1) && ships[1].Latitude.Contains(latitude)))
+            {
+                return true;
+            }
+            return false;
+        }
+        public void RandomFillPlayerShips()
         {
             Random random = new Random();
-            int counter = 0;
             int longitude;
             int latitude;
 
-            int[] buttonsLongitudeLatitude = new int[6 - PlayerShipsList.Count * 2];
-            for (int i = PlayerShipsList.Count; i < 3; i++)
+            longitude = random.Next(0, 7);
+            latitude = random.Next(0, 7);
+            PlayerShipsList.Add(new Destroyer(longitude, latitude));
+            for (int i = 0; i < 2; i++)
             {
-                longitude = random.Next(0, gridSize);
-                latitude = random.Next(0, gridSize);
-                Submarine submarine = new Submarine(longitude, latitude);
-                while (IsCollidingPlayer(submarine) == true)
+                if (i == 0)
                 {
-                    longitude = random.Next(0, gridSize);
-                    latitude = random.Next(0, gridSize);
-                    submarine = new Submarine(longitude, latitude);
+                    longitude = random.Next(0, 6);
+                    latitude = random.Next(0, 7);
+                    while (PlayerShipsList[i].Latitude.Contains(latitude) && PlayerShipsList[i].Longitude.Contains(longitude) ||
+                        PlayerShipsList[i].Latitude.Contains(latitude) && PlayerShipsList[i].Longitude.Contains(longitude+1))
+                    {
+                        longitude = random.Next(0, 6);
+                        latitude = random.Next(0, 7);
+                    }
+                    PlayerShipsList.Add(new BattleShip(longitude, latitude));
                 }
-                buttonsLongitudeLatitude[counter] = longitude;
-                buttonsLongitudeLatitude[counter + 1] = latitude;
-                counter += 2;
-                PlayerShipsList.Add(submarine);
+                else
+                {
+                    longitude = random.Next(1, 6);
+                    latitude = random.Next(0, 7);
+                    while (CheckIfShipCanBePlaced(longitude, latitude, PlayerShipsList) == true)
+                    {
+                        longitude = random.Next(1, 6);
+                        latitude = random.Next(0, 7);
+                    }
+                    PlayerShipsList.Add(new Submarine(longitude, latitude));
+                }
             }
-            return buttonsLongitudeLatitude;
+        }
+        public int[] GetLongitudesForRandomShip()
+        {
+            RandomFillPlayerShips();
+            int[] longitudeShip = new int[3];
+            for (int i = 0; i < PlayerShipsList.Count; i++)
+            {
+               
+                if (i == 2)
+                {
+                    longitudeShip[i] = PlayerShipsList[i].Longitude[1];
+                }
+                else
+                {
+                    longitudeShip[i] = PlayerShipsList[i].Longitude[0];
+                }
+                
+            }
+            return longitudeShip;
+        }
+        public int[] GetLatitudesForRandomShip()
+        {
+            int[] latitudeShip = new int[3];
+            for (int i = 0; i < PlayerShipsList.Count; i++)
+            {
+                latitudeShip[i] = PlayerShipsList[i].Latitude[0];
+            }
+            return latitudeShip;
         }
         public bool IsCollidingPlayer(Ships ship)
         {
