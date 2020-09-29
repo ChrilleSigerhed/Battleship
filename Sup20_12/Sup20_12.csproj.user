@@ -10,9 +10,6 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="TESTING\TestWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="View\BattleShipUC.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -40,9 +37,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ResourceDictionaries\Style.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="TESTING\TestWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\BattleShipUC.xaml">

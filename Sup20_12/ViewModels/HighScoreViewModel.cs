@@ -22,7 +22,7 @@ namespace Sup20_12
             GoToMainPage = new RelayCommand(GoToMain);
         }
 
-        public void GetHighScores()
+        private void GetHighScores()
         {
             List<Highscore> myTempHighscoreList;
             myTempHighscoreList = (List<Highscore>)DbConnection.GetThreeWinnersFromHighscore();
@@ -36,7 +36,7 @@ namespace Sup20_12
             FrequentPlayers = ConvertFrequentPlayerListToString(myTempPlayerList);
         }
 
-        public void GoToMain()
+        private void GoToMain()
         {
             MyWin.frame.Content = new MainMenuPage();
         }
