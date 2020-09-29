@@ -133,7 +133,7 @@ namespace Sup20_12.ViewModels
                 result = true;
             return result;
         }
-        public void RandomPlacePlayerShips()
+        private void RandomPlacePlayerShips()
         {
             if (Ships != noMoreShipsToUse)
             {
@@ -159,7 +159,7 @@ namespace Sup20_12.ViewModels
                 MessageBox.Show("Du har redan slumpat fram dina skepp");
             }
         }
-        public void PlayerCheckHitOrMiss(string button)
+        private void PlayerCheckHitOrMiss(string button)
         {
 
             if (PlayerTurn == true)
@@ -296,7 +296,7 @@ namespace Sup20_12.ViewModels
                 PlayerTurn = true;
             }
         }
-        public void ComputerHitOrMiss()
+        private void ComputerHitOrMiss()
         {
             
             int[] shoot = MyGameEngine.ComputerRandomShotFired();
@@ -444,7 +444,7 @@ namespace Sup20_12.ViewModels
             });
         }
 
-        public void ChangeGridSquareToExplosionImage(GameGrid grid)
+        private void ChangeGridSquareToExplosionImage(GameGrid grid)
         {
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
@@ -454,7 +454,7 @@ namespace Sup20_12.ViewModels
             });
         }
 
-        public void ChangeGridSquareToSplashSonarImage(GameGrid grid)
+        private void ChangeGridSquareToSplashSonarImage(GameGrid grid)
         {
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
@@ -464,7 +464,7 @@ namespace Sup20_12.ViewModels
             });
         }
 
-        public void ChangeToSplashImage(GameGrid grid)
+        private void ChangeToSplashImage(GameGrid grid)
         {
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
