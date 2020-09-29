@@ -135,7 +135,7 @@ namespace Sup20_12.ViewModels
                 result = true;
             return result;
         }
-        public void RandomPlacePlayerShips()
+        private void RandomPlacePlayerShips()
         {
             if (Ships != noMoreShipsToUse)
             {
@@ -161,7 +161,7 @@ namespace Sup20_12.ViewModels
                 MessageBox.Show("Du har redan slumpat fram dina skepp");
             }
         }
-        public void PlayerCheckHitOrMiss(string button)
+        private void PlayerCheckHitOrMiss(string button)
         {
 
             if (PlayerTurn == true)
@@ -560,32 +560,32 @@ namespace Sup20_12.ViewModels
             });
         }
 
-        public void ChangeGridSquareToExplosionImage(GameGrid grid)
+        private void ChangeGridSquareToExplosionImage(GameGrid grid)
         {
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                BitmapFrame explosionImage = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/explosion.png", UriKind.Absolute));
-                grid.backgroundImage.ImageSource = explosionImage;
+                BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/explosion.png", UriKind.Absolute));
+                grid.backgroundImage.ImageSource = image;
                 grid.backgroundImage.Stretch = Stretch.Uniform;
             });
         }
 
-        public void ChangeGridSquareToSplashSonarImage(GameGrid grid)
+        private void ChangeGridSquareToSplashSonarImage(GameGrid grid)
         {
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                BitmapFrame sonarImage = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/splashSonar.png", UriKind.Absolute));
-                grid.backgroundImage.ImageSource = sonarImage;
+                BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/splashSonar.png", UriKind.Absolute));
+                grid.backgroundImage.ImageSource = image;
                 grid.backgroundImage.Stretch = Stretch.Uniform;
             });
         }
 
-        public void ChangeToSplashImage(GameGrid grid)
+        private void ChangeToSplashImage(GameGrid grid)
         {
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                BitmapFrame splashImage = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/splash.png", UriKind.Absolute));
-                grid.backgroundImage.ImageSource = splashImage;
+                BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/splash.png", UriKind.Absolute));
+                grid.backgroundImage.ImageSource = image;
                 grid.backgroundImage.Stretch = Stretch.Uniform;
             });
         }

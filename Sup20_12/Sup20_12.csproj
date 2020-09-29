@@ -36,6 +36,7 @@
     <None Remove="Assets\Images\btnStartGamePressed.png" />
     <None Remove="Assets\Images\destroyerImg.png" />
     <None Remove="Assets\Images\explosion.png" />
+    <None Remove="Assets\Images\fireTwo.png" />
     <None Remove="Assets\Images\splash.png" />
     <None Remove="Assets\Images\splashSonar.png" />
     <None Remove="Assets\Images\submarineImg.png" />
@@ -83,6 +84,7 @@
     <Resource Include="Assets\Images\btnStartGamePressed.png" />
     <Resource Include="Assets\Images\destroyerImg.png" />
     <Resource Include="Assets\Images\explosion.png" />
+    <Resource Include="Assets\Images\fireTwo.png" />
     <Resource Include="Assets\Images\splash.png" />
     <Resource Include="Assets\Images\splashSonar.png" />
     <Resource Include="Assets\Images\submarineImg.png" />

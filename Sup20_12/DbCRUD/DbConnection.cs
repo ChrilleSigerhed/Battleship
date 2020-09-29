@@ -9,11 +9,8 @@ namespace Sup20_12
 {
     class DbConnection
     {
-
-
         private static string connectionString = ConfigurationManager.ConnectionStrings["universitetet"].ConnectionString;
 
-        //CRUD
         public static void InitializeDbPooling()
         {
             NpgsqlConnection conn = new NpgsqlConnection(connectionString);
@@ -21,8 +18,6 @@ namespace Sup20_12
             conn.Close();
         }
 
-
-        //KLAR
         #region CREATE
 
         ///<summary>
@@ -55,6 +50,7 @@ namespace Sup20_12
                         throw;
                     }
                 }
+                conn.Close();
             }
         }
 
@@ -90,6 +86,7 @@ namespace Sup20_12
                         throw;
                     }
                 }
+                conn.Close();
             }
             return myHighscore = GetOneHighscoreById(myHighscore.Id);
         }
@@ -109,8 +106,6 @@ namespace Sup20_12
             get
             {
                 string stmt = "SELECT id, nickname FROM player ORDER BY nickname";
-                string getLastestPlayerSqlString = "SELECT highscore.id, player_id, nickname FROM highscore INNER JOIN player on highscore.player_id = player.id ORDER BY id DESC LIMIT 1";
-
 
                 using (var conn = new NpgsqlConnection(connectionString))
                 {
@@ -134,6 +129,7 @@ namespace Sup20_12
                         }
                     }
                     MarkLastPlayerInList(GetIdOfLatestPlayer(conn), LstAllPlayers);
+                    conn.Close();
                     return LstAllPlayers;
                 }
             }
@@ -297,7 +293,6 @@ namespace Sup20_12
         }
         #endregion
 
-
         #region UPDATE
 
         public static Player UpdateHighscoreListToDb(Player myPlayer)
@@ -305,7 +300,6 @@ namespace Sup20_12
             return null;
         }
         #endregion
-
         
         #region DELETE
         private static void Delete()

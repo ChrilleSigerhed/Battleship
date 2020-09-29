@@ -26,7 +26,7 @@ namespace Sup20_12.ViewModels
             HighlightLastPlayerFromPreviousSessionInList();
         }
 
-        public void AddPlayer()
+        private void AddPlayer()
         {
             if (PlayerNickname == null || NicknameContainBlankSpaces(PlayerNickname))
                 MessageBox.Show("Du har inte skrivit något nickname eller valt ett felaktigt namn (blanksteg är inte tillåtna). Välj från listan eller skriv in ett i rutan.");
@@ -57,7 +57,7 @@ namespace Sup20_12.ViewModels
             PlayerNickname = "";
         }
 
-        public void GetPlayersFromDb()
+        private void GetPlayersFromDb()
         {
            ListOfPlayersInListBox = DbConnection.Players;
         }
