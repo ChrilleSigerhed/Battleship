@@ -97,6 +97,8 @@ C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.c
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.dll
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.pdb
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.genruntimeconfig.cache
+C:\Users\gusta\source\repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Assets\Fonts\STENCIL.TTF
+C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12_Content.g.cs
 C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Assets\Fonts\STENCIL.TTF
 C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12_Content.g.cs
 C:\Users\Jeppe\source\repos\Sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12_Content.g.cs
@@ -159,9 +161,7 @@ C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\Battl
 C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SubmarineUC.g.cs
 C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\BattleShipUC.baml
 C:\Users\sandr\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SubmarineUC.baml
-C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\BattleShipUC.g.cs
-C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SubmarineUC.g.cs
-C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\BattleShipUC.baml
-C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SubmarineUC.baml
-C:\Users\gusta\source\repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Assets\Fonts\STENCIL.TTF
-C:\Users\gusta\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12_Content.g.cs
+C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\BattleShipUC.g.cs
+C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SubmarineUC.g.cs
+C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\BattleShipUC.baml
+C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SubmarineUC.baml
