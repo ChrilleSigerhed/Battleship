@@ -33,7 +33,9 @@ namespace Sup20_12.ViewModels
         public GameEngine MyGameEngine { get; set; } = new GameEngine();
         public bool PlayerTurn { get; set; } = false;
         public bool WasCloseToShip { get; set; } = false;
+        public bool ComputerHitShip { get; set; } = false;
         public int[] CoordinatesCloseToShip { get; set; }
+        public int [] CoordinatesHitShip { get; set; }
         #endregion
         public GameWindowViewModel(SingleBoatUC boat)
         {
@@ -267,9 +269,11 @@ namespace Sup20_12.ViewModels
                     if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
                     {
                         c.HitOrMiss = "Träff!";
+                        CoordinatesHitShip = new int[] { shoot[0], shoot[1] };
                         ChangeGridSquareToExplosionImage(c);
                         c.IsClicked = true;
                         WasCloseToShip = false;
+                        ComputerHitShip = true;
                     }
                 }
                 if (MyGameEngine.HasLost())
@@ -296,12 +300,116 @@ namespace Sup20_12.ViewModels
                 PlayerTurn = true;
             }
         }
+
+        public void ComputerShootToSinkShip(int[] shoot)
+        {
+            if (MyGameEngine.ComputerCheckIfShipStillFloating(shoot[0], shoot[1]) == true)
+            {
+                int[] newShot = MyGameEngine.ComputerShootToSinkShip(shoot[0], shoot[1]);
+
+                if (MyGameEngine.ComputerCheckHitOrMiss(newShot[0], newShot[1]))
+                {
+                    foreach (var c in PlayerButtonsInGame)
+                    {
+                        if (c.Longitude == newShot[0] && c.Latitude == newShot[1])
+                        {
+                            c.HitOrMiss = "Träff!";
+                            CoordinatesHitShip = new int[] { shoot[0], shoot[1] };
+                            ChangeGridSquareToExplosionImage(c);
+                            c.IsClicked = true;
+                            WasCloseToShip = false;
+                        }
+                    }
+                    if (MyGameEngine.HasLost())
+                    {
+                        MyGameEngine.AddNewHighscore(false, MyPlayer.Id);
+                        ShowLosingDialogueBox();
+                    }
+                    PlayerTurn = true;
+                }
+                else if (MyGameEngine.ComputerCheckCloseOrNot(newShot[0], newShot[1]))
+                {
+                    AddCloseOnPlayerBoard(newShot[0], newShot[1]);
+                }
+                else
+                {
+                    foreach (var c in PlayerButtonsInGame)
+                    {
+                        if (c.Longitude == newShot[0] && c.Latitude == newShot[1])
+                        {
+                            c.HitOrMiss = "Miss!";
+                            ChangeToSplashImage(c);
+                            c.IsClicked = true;
+                        }
+                    }
+                    PlayerTurn = true;
+                }
+            }else if(MyGameEngine.ComputerCheckIfShipStillFloating(shoot[0], shoot[1]) == false)
+            {
+                ComputerHitShip = false;
+                ComputerHitOrMiss();
+            }
+        
+    }
+        public void ShootCloseToAShipAlreadyHit()
+        {
+            
+            int[] shot = MyGameEngine.GetCoordinatesOfPlayerShipAlreadyHit();
+
+            if (MyGameEngine.ComputerCheckIfShipStillFloating(shot[0], shot[1]) == true)
+            {
+                int[] newShot = MyGameEngine.ComputerShootToSinkShip(shot[0], shot[1]);
+
+                if (MyGameEngine.ComputerCheckHitOrMiss(newShot[0], newShot[1]))
+                {
+                    foreach (var c in PlayerButtonsInGame)
+                    {
+                        if (c.Longitude == newShot[0] && c.Latitude == newShot[1])
+                        {
+                            c.HitOrMiss = "Träff!";
+                            CoordinatesHitShip = new int[] { shot[0], shot[1] };
+                            ChangeGridSquareToExplosionImage(c);
+                            c.IsClicked = true;
+                            WasCloseToShip = false;
+                        }
+                    }
+                    if (MyGameEngine.HasLost())
+                    {
+                        MyGameEngine.AddNewHighscore(false, MyPlayer.Id);
+                        ShowLosingDialogueBox();
+                    }
+                    PlayerTurn = true;
+                }
+                else if (MyGameEngine.ComputerCheckCloseOrNot(newShot[0], newShot[1]))
+                {
+                    AddCloseOnPlayerBoard(newShot[0], newShot[1]);
+                }
+                else
+                {
+                    foreach (var c in PlayerButtonsInGame)
+                    {
+                        if (c.Longitude == newShot[0] && c.Latitude == newShot[1])
+                        {
+                            c.HitOrMiss = "Miss!";
+                            ChangeToSplashImage(c);
+                            c.IsClicked = true;
+                        }
+                    }
+                    PlayerTurn = true;
+                }
+            }
+            else if (MyGameEngine.ComputerCheckIfShipStillFloating(shot[0], shot[1]) == false)
+            {
+                ComputerHitShip = false;
+                ComputerHitOrMiss();
+            }
+        }
         public void ComputerHitOrMiss()
         {
             
             int[] shoot = MyGameEngine.ComputerRandomShotFired();
 
-            if (WasCloseToShip == false)
+            if (WasCloseToShip == false && ComputerHitShip == false && MyGameEngine.CheckIfAPlayerShipHasBeenHit() == false)
             {
                 if (MyGameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
                 {
@@ -309,8 +417,10 @@ namespace Sup20_12.ViewModels
                     {
                         if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
                         {
+                            CoordinatesHitShip = new int[] { shoot[0], shoot[1] };
                             c.HitOrMiss = "Träff!";
                             ChangeGridSquareToExplosionImage(c);
+                            ComputerHitShip = true;
                             c.IsClicked = true;
                         }
                     }
@@ -339,9 +449,15 @@ namespace Sup20_12.ViewModels
                     }
                     PlayerTurn = true;
                 }
-            } else if (WasCloseToShip == true)
+            } else if (WasCloseToShip == true && ComputerHitShip == false && MyGameEngine.CheckIfAPlayerShipHasBeenHit() == false)
             {
                 ComputerShootAroundSplashSonar();
+            } else if (ComputerHitShip == true && MyGameEngine.CheckIfAPlayerShipHasBeenHit() == false)
+            {
+                ComputerShootToSinkShip(CoordinatesHitShip);
+            } else if (MyGameEngine.CheckIfAPlayerShipHasBeenHit() == true)
+            {
+                ShootCloseToAShipAlreadyHit();
             }
         }
         private void UpdateNumberOfMovesOnGameboard()
@@ -448,8 +564,8 @@ namespace Sup20_12.ViewModels
         {
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/explosion.png", UriKind.Absolute));
-                grid.backgroundImage.ImageSource = image;
+                BitmapFrame explosionImage = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/explosion.png", UriKind.Absolute));
+                grid.backgroundImage.ImageSource = explosionImage;
                 grid.backgroundImage.Stretch = Stretch.Uniform;
             });
         }
@@ -458,8 +574,8 @@ namespace Sup20_12.ViewModels
         {
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/splashSonar.png", UriKind.Absolute));
-                grid.backgroundImage.ImageSource = image;
+                BitmapFrame sonarImage = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/splashSonar.png", UriKind.Absolute));
+                grid.backgroundImage.ImageSource = sonarImage;
                 grid.backgroundImage.Stretch = Stretch.Uniform;
             });
         }
@@ -468,8 +584,8 @@ namespace Sup20_12.ViewModels
         {
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/splash.png", UriKind.Absolute));
-                grid.backgroundImage.ImageSource = image;
+                BitmapFrame splashImage = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/splash.png", UriKind.Absolute));
+                grid.backgroundImage.ImageSource = splashImage;
                 grid.backgroundImage.Stretch = Stretch.Uniform;
             });
         }

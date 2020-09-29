@@ -4,7 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace Sup20_12.ViewModels
 {
@@ -26,10 +30,10 @@ namespace Sup20_12.ViewModels
             CreateComputerGrid();
             FillComputerShips();
         }
-        
+
         public bool FillPlayerShips(int longitude, int latitude)
         {
-            if(ShipsPlaced > 0)
+            if (ShipsPlaced > 0)
             {
                 for (int i = 0; i < PlayerShipsList.Count; i++)
                 {
@@ -221,8 +225,8 @@ namespace Sup20_12.ViewModels
             {
                 for (int j = 0; j < gridSize; j++)
                 {
-                   GameGrid square = new GameGrid(i,j,""); 
-                   PlayerButtonsInGame.Add(square);
+                    GameGrid square = new GameGrid(i, j, "");
+                    PlayerButtonsInGame.Add(square);
                 }
             }
         }
@@ -269,9 +273,9 @@ namespace Sup20_12.ViewModels
         {
             foreach (var ship in ComputerShipsList)
             {
-                if(ship.Longitude.Contains(longitude + 1) || ship.Longitude.Contains(longitude - 1) || ship.Longitude.Contains(longitude))
+                if (ship.Longitude.Contains(longitude + 1) || ship.Longitude.Contains(longitude - 1) || ship.Longitude.Contains(longitude))
                 {
-                    if(ship.Latitude.Contains(latitude + 1) || ship.Latitude.Contains(latitude - 1) || ship.Latitude.Contains(latitude))
+                    if (ship.Latitude.Contains(latitude + 1) || ship.Latitude.Contains(latitude - 1) || ship.Latitude.Contains(latitude))
                     {
                         return true;
                     }
@@ -294,7 +298,7 @@ namespace Sup20_12.ViewModels
             }
             return false;
         }
-        public bool ComputerCheckHitOrMiss(int longitude , int latitude)
+        public bool ComputerCheckHitOrMiss(int longitude, int latitude)
         {
             //for (int i = 0; i < PlayerShipsList.Count; i++)
             //{
@@ -329,6 +333,106 @@ namespace Sup20_12.ViewModels
             return false;
         }
 
+        public bool ComputerCheckIfShipStillFloating(int longitude, int latitude)
+        {
+            foreach (var c in PlayerShipsList)
+            {
+                if (c.Longitude.Contains(longitude) && c.Latitude.Contains(latitude) && c.HitsTaken != 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool CheckIfAPlayerShipHasBeenHit()
+        {
+            foreach (var c in PlayerShipsList)
+            {
+                if(c.HitsTaken != 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public int[] GetCoordinatesOfPlayerShipAlreadyHit()
+        {
+            int[] TileShot;
+            foreach (var c in PlayerShipsList)
+            {
+                if(c.HitsTaken != 0)
+                {
+                    foreach (var x in PlayerButtonsInGame)
+                    {
+                        if (c.Longitude.Contains(x.Longitude) && c.Latitude.Contains(x.Latitude) && x.HitOrMiss == "Träff!")
+                        {
+                            TileShot = new int[] { x.Longitude, x.Latitude };
+                            return TileShot;
+                        }
+                    } 
+                }
+            }
+            return null;
+        }
+
+        public bool CheckIfPlayerGridTileIsHit(int longitude, int latitude)
+        {
+            foreach (var c in PlayerButtonsInGame)
+            {
+                if (c.Longitude == longitude && c.Latitude == latitude && c.HitOrMiss == "Träff!")
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        
+        
+        public int[] ComputerShootToSinkShip(int longitude, int latitude)
+        {
+            Random rand = new Random();
+            int randomNumber;
+            int newLongitude = 100;
+            int newLatitude = 100;
+            int[] newShot;
+            bool GridHasBeenShot = true;
+
+            while (newLongitude < 0 || newLongitude > 6 || newLatitude < 0 || newLatitude > 6 || GridHasBeenShot == true)
+
+            {
+                randomNumber = rand.Next(0, 4);
+
+                if (randomNumber == 0)
+                {
+                    newLongitude = longitude + 1;
+                    newLatitude = latitude;
+                }
+                else if (randomNumber == 1)
+                {
+                    newLongitude = longitude - 1;
+                    newLatitude = latitude ;
+                }else if (randomNumber == 2)
+                {
+                    newLongitude = longitude - 2;
+                    newLatitude = latitude;
+                } else if (randomNumber == 3)
+                {
+                    newLongitude = longitude + 2;
+                    newLatitude = latitude;
+                }
+              
+                if (HasGridBeenShot(PlayerButtonsInGame, newLongitude, newLatitude) == false)
+                {
+                    GridHasBeenShot = false;
+                }
+
+            }
+            newShot = new int[] { newLongitude, newLatitude };
+            return newShot;
+        }
         public int[] ComputerShotCloseToSplashSonar(int longitude, int latitude)
         {
             Random rand = new Random();

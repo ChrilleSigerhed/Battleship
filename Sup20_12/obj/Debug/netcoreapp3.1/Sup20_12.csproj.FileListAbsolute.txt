@@ -137,3 +137,10 @@ C:\Users\chris\Source\Repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12.g
 C:\Users\Jeppe\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\App.baml
 C:\Users\Jeppe\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\Sup20_12_Content.g.cs
 C:\Users\Jeppe\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
+C:\Users\Jeppe\source\repos\sup20_12\Sup20_12\bin\Debug\netcoreapp3.1\Assets\Fonts\STENCIL.TTF
+C:\Users\Jeppe\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SingleBoatUC.baml
+C:\Users\Jeppe\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\BattleShipUC.g.cs
+C:\Users\Jeppe\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SingleBoatUC.g.cs
+C:\Users\Jeppe\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SubmarineUC.g.cs
+C:\Users\Jeppe\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\BattleShipUC.baml
+C:\Users\Jeppe\source\repos\sup20_12\Sup20_12\obj\Debug\netcoreapp3.1\View\SubmarineUC.baml
