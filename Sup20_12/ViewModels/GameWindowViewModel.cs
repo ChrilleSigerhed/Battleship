@@ -4,11 +4,8 @@ using Sup20_12.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-<<<<<<< HEAD
 using System.Net.Http;
-=======
 using System.Linq;
->>>>>>> Feature3
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;

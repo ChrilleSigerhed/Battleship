@@ -45,7 +45,18 @@ namespace Sup20_12.View
             {
                 gameWindowViewModel.PlayerPlaceSubmarineShip(button.CommandParameter.ToString());
             }
-           
+           if(gameWindowViewModel.Ships == 2)
+            {
+                rectangleUI.Visibility = Visibility.Hidden;
+            }
+           else if(gameWindowViewModel.Ships == 1)
+            {
+                rectangleBS.Visibility = Visibility.Hidden;
+            }
+            else if(gameWindowViewModel.Ships == 0)
+            {
+                rectangleSub.Visibility = Visibility.Hidden;
+            }
                 
         }
         private void rectangleUI_Loaded(object sender, RoutedEventArgs e)
@@ -53,9 +64,11 @@ namespace Sup20_12.View
 
         }
 
-        private void RemoveBoats(object sender, RoutedEventArgs e)
+        private void RemoveBoatsAfterRandomPlacedShips(object sender, RoutedEventArgs e)
         {
             rectangleUI.Visibility = Visibility.Hidden;
+            rectangleBS.Visibility = Visibility.Hidden;
+            rectangleSub.Visibility = Visibility.Hidden;
         }
     }
 }

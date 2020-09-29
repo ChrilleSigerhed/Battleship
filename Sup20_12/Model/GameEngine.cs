@@ -107,22 +107,7 @@ namespace Sup20_12.ViewModels
             Random random = new Random();
             int longitude;
             int latitude;
-<<<<<<< HEAD
-            longitude = random.Next(0, gridSize);
-            latitude = random.Next(0, gridSize);
-            ComputerShipsList.Add(new Submarine(longitude, latitude));
 
-            for (int i = 0; i < 2; i++)
-            {
-                longitude = random.Next(0, gridSize);
-                latitude = random.Next(0, gridSize);
-                Submarine submarine = new Submarine(longitude, latitude);
-                while (IsColliding(submarine) == true)
-                {
-                    longitude = random.Next(0, gridSize);
-                    latitude = random.Next(0, gridSize);
-                    submarine = new Submarine(longitude, latitude);
-=======
             longitude = random.Next(0, 7);
             latitude = random.Next(0, 7);
             ComputerShipsList.Add(new Destroyer(longitude, latitude));
@@ -149,7 +134,6 @@ namespace Sup20_12.ViewModels
                         latitude = random.Next(0, 7);
                     }
                     ComputerShipsList.Add(new Submarine(longitude, latitude));
->>>>>>> Feature3
                 }
             }
         }
@@ -352,16 +336,13 @@ namespace Sup20_12.ViewModels
             int newLongitude = 100;
             int newLatitude = 100;
             bool GridHasBeenShot = true;
-<<<<<<< HEAD
 
-            while (newLongitude < 0 || newLongitude > (gridSize-1) || newLatitude < 0 || newLatitude > (gridSize-1) || GridHasBeenShot == true)
-=======
             int counter = 0;
             int[] newShot;
 
 
             while (newLongitude < 0 || newLongitude > 6 || newLatitude < 0 || newLatitude > 6 || GridHasBeenShot == true)
->>>>>>> Feature3
+
             {
                     randomNumber = rand.Next(0, (gridSize+1));
 
@@ -409,8 +390,7 @@ namespace Sup20_12.ViewModels
                 {
                     GridHasBeenShot = false;
                 }
-<<<<<<< HEAD
-=======
+
                 counter++;
                 if(counter == 8)
                 {
@@ -418,7 +398,7 @@ namespace Sup20_12.ViewModels
                     return newShot;
                 }
 
->>>>>>> Feature3
+
             }
             newShot = new int[] { newLongitude, newLatitude };
             return newShot;
