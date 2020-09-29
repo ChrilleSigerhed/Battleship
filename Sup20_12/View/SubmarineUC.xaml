@@ -8,11 +8,11 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Rectangle x:Name="rectangleSub"
-                   Width="100" 
-                   Height="30"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Bottom"
-                   Margin="0,0,5,5"
+                   Width="30" 
+                   Height="90"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="10,-90,0,-60"
                    Fill="{DynamicResource imgSubmarine}">
             <!--Margin="0,0,0,7"-->
         </Rectangle>    
