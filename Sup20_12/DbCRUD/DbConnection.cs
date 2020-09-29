@@ -55,6 +55,7 @@ namespace Sup20_12
                         throw;
                     }
                 }
+                conn.Close();
             }
         }
 
@@ -90,6 +91,7 @@ namespace Sup20_12
                         throw;
                     }
                 }
+                conn.Close();
             }
             return myHighscore = GetOneHighscoreById(myHighscore.Id);
         }
@@ -134,6 +136,7 @@ namespace Sup20_12
                         }
                     }
                     MarkLastPlayerInList(GetIdOfLatestPlayer(conn), LstAllPlayers);
+                    conn.Close();
                     return LstAllPlayers;
                 }
             }
