@@ -13,6 +13,7 @@ namespace Sup20_12.ViewModels
 {
    public class GameWindowViewModel : BaseViewModel
     {
+
         #region Properties
         public ICommand PlaceShip { get; set; }
         public ICommand CheckIfShip { get; set; }
