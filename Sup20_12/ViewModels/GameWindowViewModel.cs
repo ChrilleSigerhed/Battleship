@@ -1,11 +1,8 @@
-﻿using Microsoft.VisualBasic;
-using Sup20_12.View;
+﻿using Sup20_12.View;
 using Sup20_12.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Net.Http;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -16,6 +13,7 @@ namespace Sup20_12.ViewModels
 {
    public class GameWindowViewModel : BaseViewModel
     {
+
         #region Properties
         public ICommand PlaceShip { get; set; }
         public ICommand CheckIfShip { get; set; }

@@ -22,6 +22,7 @@ CREATE TABLE public.player
 );
 
 HÄMTA FREKVENTA SPELARE
+
 SELECT player.nickname, COUNT(*)
 FROM player 
 INNER JOIN highscore on player.id = highscore.player_id 

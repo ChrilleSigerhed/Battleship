@@ -1,8 +1,4 @@
 ﻿using Sup20_12.ViewModels.Base;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using System.Windows.Media;
 
 namespace Sup20_12.ViewModels
