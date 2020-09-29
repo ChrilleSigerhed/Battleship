@@ -1,7 +1,5 @@
-﻿using Sup20_12.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,47 +15,46 @@ using System.Windows.Shapes;
 namespace Sup20_12.View
 {
     /// <summary>
-    /// Interaction logic for SingleBoatUC.xaml
+    /// Interaction logic for SubmarineUC.xaml
     /// </summary>
-    public partial class SingleBoatUC : UserControl
+    public partial class SubmarineUC : UserControl
     {
         public int PlacedBoats { get; set; } = 1;
-        
-        public SingleBoatUC()
+
+        public SubmarineUC()
         {
             InitializeComponent();
         }
-        public SingleBoatUC(System.Windows.Shapes.Rectangle rectangle)
+        public SubmarineUC(System.Windows.Shapes.Rectangle rectangle)
         {
             InitializeComponent();
-            this.rectangleUI = rectangle;
+            this.rectangleSub = rectangle;
         }
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            if(PlacedBoats > 0)
+            if (PlacedBoats > 0)
             {
                 base.OnMouseMove(e);
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {
                     DataObject data = new DataObject();
-                    data.SetData(DataFormats.StringFormat, rectangleUI.Fill.ToString());
+                    data.SetData(DataFormats.StringFormat, rectangleSub.Fill.ToString());
                     DragDrop.DoDragDrop(this, data, DragDropEffects.Move);
                 }
             }
             else
             {
-                rectangleUI.Visibility = Visibility.Hidden;
+                rectangleSub.Visibility = Visibility.Hidden;
             }
         }
-
         protected override void OnGiveFeedback(GiveFeedbackEventArgs e)
         {
-           if (e.Effects.HasFlag(DragDropEffects.Move))
-           {
-               StreamResourceInfo shipCurs = Application.GetResourceStream(new Uri("Assets/Cursor/destroyerImg.cur", UriKind.Relative));
-               Mouse.SetCursor(new Cursor(shipCurs.Stream));
-           }
-           e.Handled = true;
+            if (e.Effects.HasFlag(DragDropEffects.Move)) 
+            {
+                StreamResourceInfo shipCurs = Application.GetResourceStream(new Uri("Assets/Cursor/submarineImg.cur", UriKind.Relative));
+                Mouse.SetCursor(new Cursor(shipCurs.Stream));
+            }
+            e.Handled = true;
         }
     }
 }
