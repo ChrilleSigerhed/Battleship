@@ -42,6 +42,7 @@ namespace Sup20_12
                             myPlayer.Id = id;
                         }
                         trans.Commit();
+                        conn.Close();
                         return myPlayer;
                     }
                     catch (PostgresException)
@@ -50,7 +51,6 @@ namespace Sup20_12
                         throw;
                     }
                 }
-                conn.Close();
             }
         }
 
