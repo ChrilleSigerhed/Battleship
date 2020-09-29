@@ -14,6 +14,11 @@
     <None Remove="Assets\Images\bgGameWindowPage.jpg" />
     <None Remove="Assets\Images\bgHighscorePage.jpg" />
     <None Remove="Assets\Images\bgMainMenuPage.jpg" />
+    <None Remove="Assets\Images\boatTreeBowVerticalImg.png" />
+    <None Remove="Assets\Images\boatTreeMiddleVerticalImg.png" />
+    <None Remove="Assets\Images\boatTreeSternVerticalImg.png" />
+    <None Remove="Assets\Images\boatTwoBowVerticalImg.png" />
+    <None Remove="Assets\Images\boatTwoSternVerticalImg.png" />
     <None Remove="Assets\Images\btnAddPlayerImg.png" />
     <None Remove="Assets\Images\btnAddPlayerImgPressed.png" />
     <None Remove="Assets\Images\btnBack.png" />
@@ -52,6 +57,11 @@
     <Resource Include="Assets\Images\bgGameWindowPage.jpg" />
     <Resource Include="Assets\Images\bgHighscorePage.jpg" />
     <Resource Include="Assets\Images\bgMainMenuPage.jpg" />
+    <Resource Include="Assets\Images\boatTreeBowVerticalImg.png" />
+    <Resource Include="Assets\Images\boatTreeMiddleVerticalImg.png" />
+    <Resource Include="Assets\Images\boatTreeSternVerticalImg.png" />
+    <Resource Include="Assets\Images\boatTwoBowVerticalImg.png" />
+    <Resource Include="Assets\Images\boatTwoSternVerticalImg.png" />
     <Resource Include="Assets\Images\btnAddPlayerImg.png" />
     <Resource Include="Assets\Images\btnAddPlayerImgPressed.png" />
     <Resource Include="Assets\Images\btnBack.png" />

@@ -3,6 +3,7 @@ using Sup20_12.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -53,6 +54,14 @@ namespace Sup20_12.ViewModels
             {
                 SingleBoat.PlacedBoats--;
                 Ships--;
+                foreach (var x in PlayerButtonsInGame)
+                {
+                    if (PlayerButtonsInGame[buttonToNumber].Longitude == x.Longitude && PlayerButtonsInGame[buttonToNumber].Latitude == x.Latitude)
+                    {
+                        ChangePlayerGridToSingleBoat(x);
+                    }
+                }
+
                 if (Ships == noMoreShipsToUse)
                 {
                     ChangePlayerTurn();
@@ -61,6 +70,59 @@ namespace Sup20_12.ViewModels
             }
             else
                 MessageBox.Show("Det går inte att placera skepp där.");
+        }
+        public void PlayerPlaceSubmarineShip(string button)
+        {
+
+            int buttonToNumber = int.Parse(button);
+            if (MyGameEngine.FillPlayerSubmarineShip(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude) == true)
+            {
+                Ships--;
+
+                foreach (var x in PlayerButtonsInGame)
+                {
+                    if (PlayerButtonsInGame[buttonToNumber].Longitude == x.Longitude && PlayerButtonsInGame[buttonToNumber].Latitude == x.Latitude)
+                    {
+                        ChangePlayerGridToSubmarine(x.Longitude, x.Latitude, x);
+                    }
+                }
+                if (Ships == 0)
+                {
+                    PlayerTurn = true;
+                    MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Du har redan placerat ett skepp där");
+            }
+        }
+        public void PlayerPlaceBattleShip(string button)
+        {
+
+            int buttonToNumber = int.Parse(button);
+            if (MyGameEngine.FillPlayerBattleShip(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude) == true)
+            {
+                Ships--;
+
+                    foreach (var x in PlayerButtonsInGame)
+                    {
+                        if (PlayerButtonsInGame[buttonToNumber].Longitude == x.Longitude && PlayerButtonsInGame[buttonToNumber].Latitude == x.Latitude)
+                        {
+                            ChangePlayerGridToBattleShip(x.Longitude, x.Latitude, x);
+                        }
+                    }
+               
+                if (Ships == 0)
+                {
+                    PlayerTurn = true;
+                    MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Du har redan placerat ett skepp där");
+            }
         }
 
         private bool PlayerHasShipsLeftToPlace(int buttonToNumber)
@@ -324,6 +386,60 @@ namespace Sup20_12.ViewModels
                 BitmapFrame image = BitmapFrame.Create(new Uri(@"pack://Application:,,,/Assets/Images/destroyerImg.png", UriKind.Absolute));
                 grid.backgroundImage.ImageSource = image;
                 grid.backgroundImage.Stretch = Stretch.Uniform;
+            });
+        }
+        private void ChangePlayerGridToBattleShip(int longitude, int latitude, GameGrid grid)
+        {
+           
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                foreach (var c in PlayerButtonsInGame)
+                {
+                    if (c.Longitude == longitude + 1 && c.Latitude == latitude)
+                    {
+                        BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/boatTwoSternVerticalImg.png", UriKind.Absolute));
+                        c.backgroundImage.ImageSource = image;
+                        c.backgroundImage.Stretch = Stretch.Uniform;
+
+                    }
+                    if (c.Longitude == longitude && c.Latitude == latitude)
+                    {
+                        BitmapFrame image1 = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/boatTwoBowVerticalImg.png", UriKind.Absolute));
+                        c.backgroundImage.ImageSource = image1;
+                        c.backgroundImage.Stretch = Stretch.Uniform;
+                    }
+                }
+                
+            });
+        }
+        private void ChangePlayerGridToSubmarine(int longitude, int latitude, GameGrid grid)
+        {
+
+            Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                foreach (var c in PlayerButtonsInGame)
+                {
+                    if (c.Longitude == longitude - 1 && c.Latitude == latitude)
+                    {
+                        BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/boatTreeBowVerticalImg.png", UriKind.Absolute));
+                        c.backgroundImage.ImageSource = image;
+                        c.backgroundImage.Stretch = Stretch.Uniform;
+
+                    }
+                    if (c.Longitude == longitude + 1  && c.Latitude == latitude)
+                    {
+                        BitmapFrame image1 = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/boatTreeSternVerticalImg.png", UriKind.Absolute));
+                        c.backgroundImage.ImageSource = image1;
+                        c.backgroundImage.Stretch = Stretch.Uniform;
+                    }
+                    if (c.Longitude == longitude && c.Latitude == latitude)
+                    {
+                        BitmapFrame image1 = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/boatTreeMiddleVerticalImg.png", UriKind.Absolute));
+                        c.backgroundImage.ImageSource = image1;
+                        c.backgroundImage.Stretch = Stretch.Uniform;
+                    }
+                }
+
             });
         }
 
