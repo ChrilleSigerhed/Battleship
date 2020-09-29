@@ -21,17 +21,17 @@ namespace Sup20_12
             ExitGameCommand = new RelayCommand(ExitGame);
         }
 
-        public void GoToChoosePlayer()
+        private void GoToChoosePlayer()
         {
             MyWin.frame.Content = new ChoosePlayerPage();
         }
 
-        public void GoToHighscorePage()
+        private void GoToHighscorePage()
         {
             MyWin.frame.Content = new HighScorePage();
         }
 
-        public void ExitGame()
+        private void ExitGame()
         {
             MessageBoxResult result = MessageBox.Show("Vill du verkligen avsluta?", "Avsluta", MessageBoxButton.YesNo);
             switch (result)
