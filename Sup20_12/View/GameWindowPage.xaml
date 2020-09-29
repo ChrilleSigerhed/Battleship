@@ -57,7 +57,7 @@
                 <local:BattleShipUC x:Name="rectangleBS" Grid.Column="2" Loaded="rectangleUI_Loaded"></local:BattleShipUC>
                 <local:SubmarineUC x:Name="rectangleSub" Grid.Column="2" Loaded="rectangleUI_Loaded"></local:SubmarineUC>
             </StackPanel>
-            <Button Grid.Column="1" Grid.Row="1" Width="100" Height="25" HorizontalAlignment="Center" Margin="0,90,3,0" Content="Slumpa skepp" Command="{Binding PlaceRandomBoats}" Click="RemoveBoats" Style="{StaticResource BtnSlump}" FontFamily="Stencil" />
+            <Button Grid.Column="1" Grid.Row="1" Width="100" Height="25" HorizontalAlignment="Center" Margin="0,90,3,0" Content="Slumpa skepp" Command="{Binding PlaceRandomBoats}" Click="RemoveBoatsAfterRandomPlacedShips" Style="{StaticResource BtnSlump}" FontFamily="Stencil" />
 
 
         </Grid>
