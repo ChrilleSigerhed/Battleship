@@ -44,7 +44,7 @@ namespace Sup20_12.ViewModels
             CheckIfShip = new RelayPropertyCommand(PlayerCheckHitOrMiss);
             GoToMainPageCommand = new RelayCommand(AskIfExitCurrentRound);
             PlaceRandomBoats = new RelayCommand(RandomPlacePlayerShips);
-            ShowPlayerNickname = MyPlayer.Nickname;
+            ShowPlayerNickname = Global.MyPlayer.Nickname;
             ShowNumberOfMoves = MyGameEngine.NumberOfMoves;
         }
       
@@ -175,7 +175,7 @@ namespace Sup20_12.ViewModels
 
                     if (MyGameEngine.HasWon())
                     {
-                        Highscore myHighscore = MyGameEngine.AddNewHighscore(true, MyPlayer.Id);
+                        Highscore myHighscore = MyGameEngine.AddNewHighscore(true, Global.MyPlayer.Id);
                         ShowWinDialogueBox(myHighscore);
                     }
                     Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
@@ -191,11 +191,11 @@ namespace Sup20_12.ViewModels
 
         private void ShowWinDialogueBox(Highscore myHighscore)
         {
-            MessageBoxResult result = MessageBox.Show($"Grattis {MyPlayer.Nickname}, du vann{DidPlayerMakeTheHighscoreString(myHighscore)}", "Avsluta", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show($"Grattis {Global.MyPlayer.Nickname}, du vann{DidPlayerMakeTheHighscoreString(myHighscore)}", "Avsluta", MessageBoxButton.YesNo);
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    Global.MyWin.frame.Content = new GameWindowPage(MyPlayer);
+                    Global.MyWin.frame.Content = new GameWindowPage();
                     break;
                 case MessageBoxResult.No:
                     Global.MyWin.frame.Content = new MainMenuPage();
@@ -277,7 +277,7 @@ namespace Sup20_12.ViewModels
                 }
                 if (MyGameEngine.HasLost())
                 {
-                    MyGameEngine.AddNewHighscore(false, MyPlayer.Id);
+                    MyGameEngine.AddNewHighscore(false, Global.MyPlayer.Id);
                     ShowLosingDialogueBox();
                 }
                 PlayerTurn = true;
@@ -321,7 +321,7 @@ namespace Sup20_12.ViewModels
                     }
                     if (MyGameEngine.HasLost())
                     {
-                        MyGameEngine.AddNewHighscore(false, MyPlayer.Id);
+                        MyGameEngine.AddNewHighscore(false, Global.MyPlayer.Id);
                         ShowLosingDialogueBox();
                     }
                     PlayerTurn = true;
@@ -374,7 +374,7 @@ namespace Sup20_12.ViewModels
                     }
                     if (MyGameEngine.HasLost())
                     {
-                        MyGameEngine.AddNewHighscore(false, MyPlayer.Id);
+                        MyGameEngine.AddNewHighscore(false, Global.MyPlayer.Id);
                         ShowLosingDialogueBox();
                     }
                     PlayerTurn = true;
@@ -425,7 +425,7 @@ namespace Sup20_12.ViewModels
                     }
                     if (MyGameEngine.HasLost())
                     {
-                        MyGameEngine.AddNewHighscore(false, MyPlayer.Id);
+                        MyGameEngine.AddNewHighscore(false, Global.MyPlayer.Id);
                         ShowLosingDialogueBox();
                     }
                     PlayerTurn = true;
@@ -595,12 +595,12 @@ namespace Sup20_12.ViewModels
             {
                 Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    MessageBoxResult result = MessageBox.Show($"Ops {MyPlayer.Nickname}, du förlorade... mot en dator... vill du försöka igen?", "Avsluta", MessageBoxButton.YesNo);
+                    MessageBoxResult result = MessageBox.Show($"Ops {Global.MyPlayer.Nickname}, du förlorade... mot en dator... vill du försöka igen?", "Avsluta", MessageBoxButton.YesNo);
                     switch (result)
                     {
                         case MessageBoxResult.Yes:
                             {
-                                Global.MyWin.frame.Content = new GameWindowPage(MyPlayer);
+                                Global.MyWin.frame.Content = new GameWindowPage();
                             };
                             break;
                         case MessageBoxResult.No:

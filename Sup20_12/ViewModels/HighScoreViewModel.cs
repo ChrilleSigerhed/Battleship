@@ -4,8 +4,6 @@ using Sup20_12.ViewModels.Base;
 using System.Collections.Generic;
 using System.Windows.Input;
 
-
-
 namespace Sup20_12
 {
     public class HighScoreViewModel : BaseViewModel

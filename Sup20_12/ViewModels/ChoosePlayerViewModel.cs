@@ -15,10 +15,12 @@ namespace Sup20_12.ViewModels
         public ICommand StartGameWithSelectedPlayerCommand { get; set; }
         public ICommand GoToMainPageCommand { get; set; }
         public ObservableCollection<Player> ListOfPlayersInListBox { get; set; }
+        public Player MyTempPlayer { get; set; }
         #endregion
 
         public ChoosePlayerViewModel()
         {
+            MyTempPlayer = Global.MyPlayer;
             StartGameWithSelectedPlayerCommand = new RelayCommand(SelectedPlayerForGame);
             AddNewPlayerCommand = new RelayCommand(AddPlayer);
             GoToMainPageCommand = new RelayCommand(GoToMainPage);
@@ -45,9 +47,9 @@ namespace Sup20_12.ViewModels
             }
         }
 
-        private bool NicknameContainBlankSpaces(string PlayerNickname)
+        private bool NicknameContainBlankSpaces(string PlayerStringNickname)
         {
-            if (PlayerNickname.Contains(" "))
+            if (PlayerStringNickname.Contains(" "))
                 return true;
             else
                 return false;
@@ -65,7 +67,8 @@ namespace Sup20_12.ViewModels
         {
             if (IsThereAnActivePlayer())
             {
-                Global.MyWin.frame.Content = new GameWindowPage(MyPlayer);
+                Global.MyPlayer = MyTempPlayer;
+                Global.MyWin.frame.Content = new GameWindowPage();
                 InitialGameInstructions();
             }
         }
@@ -81,7 +84,7 @@ namespace Sup20_12.ViewModels
 
         private bool IsThereAnActivePlayer()
         {
-            if (MyPlayer == null)
+            if (Global.MyPlayer == null)
             {
                 MessageBox.Show("Du har inte valt någon spelare. Välj en i listan eller skriv in ett nytt nickname.");
                 return false;
@@ -90,9 +93,9 @@ namespace Sup20_12.ViewModels
                 return true;
         }
 
-        private void SetActivePlayer(Player myPlayer)
+        private void SetActivePlayer(Player myTempPlayer)
         {
-            MyPlayer = myPlayer;
+            Global.MyPlayer = myTempPlayer;
         }
 
         private void HighlightSelectedPlayer(string PlayerNickname)
@@ -109,20 +112,20 @@ namespace Sup20_12.ViewModels
 
         private void HighlightLastPlayerFromPreviousSessionInList()
         {
-            if (MyPlayer != null)
-                HighlightSelectedPlayer(MyPlayer.Nickname);
+            if (MyTempPlayer != null)
+                HighlightSelectedPlayer(MyTempPlayer.Nickname);
             else
                 FindLastPlayerInHighscoreList();
         }
 
         private void FindLastPlayerInHighscoreList()
         {
-            foreach (Player myPlayer in ListOfPlayersInListBox)
+            foreach (Player myTempPlayer in ListOfPlayersInListBox)
             {
-                if (myPlayer.LastPlayer == true)
+                if (myTempPlayer.LastPlayer == true)
                 {
-                    MyPlayer = myPlayer;
-                    HighlightSelectedPlayer(MyPlayer.Nickname);
+                    MyTempPlayer = myTempPlayer;
+                    HighlightSelectedPlayer(MyTempPlayer.Nickname);
                 }
             }
         }

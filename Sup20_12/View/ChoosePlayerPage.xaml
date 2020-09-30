@@ -57,7 +57,7 @@
             </Image>
             
             <TextBox Name="txtNickname" MaxLength="14" Text="{Binding PlayerNickname}" Width="283" Height="34" FontSize="23" BorderBrush="{x:Null}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0" TabIndex="50"/>
-            <ComboBox ItemsSource="{Binding ListOfPlayersInListBox}" SelectedValuePath="Id" SelectedValue="{Binding SelectedId}" SelectedItem="{Binding MyPlayer}" x:Name="lstboxAllPlayers" FontSize="15" BorderThickness="0" Grid.Row="3" Grid.Column="2" Height="25" Width="287" HorizontalAlignment="Left" VerticalAlignment="Top" TabIndex="200"/>
+            <ComboBox ItemsSource="{Binding ListOfPlayersInListBox}" SelectedValuePath="Id" SelectedValue="{Binding SelectedId}" SelectedItem="{Binding MyTempPlayer}" x:Name="lstboxAllPlayers" FontSize="15" BorderThickness="0" Grid.Row="3" Grid.Column="2" Height="25" Width="287" HorizontalAlignment="Left" VerticalAlignment="Top" TabIndex="200"/>
 
             <Grid Grid.Column="2" Grid.Row="2" Margin="0,0,61,36">
                 <Button Style="{StaticResource BtnAddPlayer}" Command="{Binding AddNewPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,7,0,0" Width="138" IsDefault="True" TabIndex="100">

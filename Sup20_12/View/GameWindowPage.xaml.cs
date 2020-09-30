@@ -11,12 +11,10 @@ namespace Sup20_12.View
 
     public partial class GameWindowPage : Page
     {
-        public Player Player { get; set; }
         public GameWindowViewModel gameWindowViewModel { get; set; }
 
-        public GameWindowPage(Player player)
+        public GameWindowPage()
         {
-            Player = player;
             InitializeComponent();
             gameWindowViewModel = new GameWindowViewModel(rectangleUI);
             DataContext = gameWindowViewModel;
