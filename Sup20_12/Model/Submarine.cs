@@ -1,8 +1,9 @@
 ﻿using Sup20_12.ViewModels;
+using Sup20_12.Interface;
 
 namespace Sup20_12.Model
 {
-    class Submarine : Ships
+    class Submarine : Ships, IShips
     {
         
 

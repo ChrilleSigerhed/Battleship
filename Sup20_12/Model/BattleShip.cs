@@ -1,8 +1,9 @@
 ﻿using Sup20_12.ViewModels;
+using Sup20_12.Interface;
 
 namespace Sup20_12.Model
 {
-   public class BattleShip : Ships
+   public class BattleShip : Ships, IShips
     {
         public BattleShip(int longitude, int latitude)
         {

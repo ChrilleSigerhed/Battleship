@@ -1,9 +1,10 @@
 ﻿using Sup20_12.ViewModels.Base;
 using System.Windows.Media;
+using Sup20_12.Interface;
 
 namespace Sup20_12.ViewModels
 {
-   public class GameGrid : BaseViewModel
+   public class GameGrid : BaseViewModel, IGameGrid
     {
         public int Longitude { get; set; }
         public int Latitude { get; set; }
