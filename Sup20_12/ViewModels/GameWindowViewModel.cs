@@ -182,7 +182,10 @@ namespace Sup20_12.ViewModels
                         Highscore myHighscore = MyGameEngine.AddNewHighscore(true, MyPlayer.Id);
                         ShowWinDialogueBox(myHighscore);
                     }
-                    Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
+                    else
+                    {
+                        Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
+                    }
                 }
                 else
                 {
