@@ -27,7 +27,9 @@ namespace Sup20_12.ViewModels
         public List<int> PlayerShotsFired { get; set; } = new List<int>();
 
         private int noMoreShipsToUse = 0;
-        public SingleBoatUC SingleBoat { get; set; }
+        public SingleBoatUC Destroyer { get; set; }
+        public BattleShipUC BattleShip { get; set; }
+        public SubmarineUC Submarine { get; set; }
         public GameEngine MyGameEngine { get; set; } = new GameEngine();
         public bool PlayerTurn { get; set; } = false;
         public bool WasCloseToShip { get; set; } = false;
@@ -35,9 +37,11 @@ namespace Sup20_12.ViewModels
         public int[] CoordinatesCloseToShip { get; set; }
         public int [] CoordinatesHitShip { get; set; }
         #endregion
-        public GameWindowViewModel(SingleBoatUC boat)
+        public GameWindowViewModel(SingleBoatUC destroyer, BattleShipUC battleship, SubmarineUC submarine)
         {
-            SingleBoat = boat;
+            Destroyer = destroyer;
+            BattleShip = battleship;
+            Submarine = submarine;
             ComputerButtonsInGame = MyGameEngine.ComputerButtonsInGame;
             PlayerButtonsInGame = MyGameEngine.PlayerButtonsInGame;
             PlaceShip = new RelayPropertyCommand(PlayerPlaceShips);
@@ -53,7 +57,7 @@ namespace Sup20_12.ViewModels
             int buttonToNumber = int.Parse(button);
             if (PlayerHasShipsLeftToPlace(buttonToNumber))
             {
-                SingleBoat.PlacedBoats--;
+                Destroyer.PlacedBoats--;
                 Ships--;
                 foreach (var x in PlayerButtonsInGame)
                 {
@@ -79,7 +83,7 @@ namespace Sup20_12.ViewModels
             if (MyGameEngine.FillPlayerSubmarineShip(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude) == true)
             {
                 Ships--;
-
+                Submarine.PlacedBoats--;
                 foreach (var x in PlayerButtonsInGame)
                 {
                     if (PlayerButtonsInGame[buttonToNumber].Longitude == x.Longitude && PlayerButtonsInGame[buttonToNumber].Latitude == x.Latitude)
@@ -105,7 +109,7 @@ namespace Sup20_12.ViewModels
             if (MyGameEngine.FillPlayerBattleShip(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude) == true)
             {
                 Ships--;
-
+                BattleShip.PlacedBoats--;
                     foreach (var x in PlayerButtonsInGame)
                     {
                         if (PlayerButtonsInGame[buttonToNumber].Longitude == x.Longitude && PlayerButtonsInGame[buttonToNumber].Latitude == x.Latitude)

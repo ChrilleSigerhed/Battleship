@@ -219,58 +219,6 @@ namespace Sup20_12.ViewModels
             }
             return latitudeShip;
         }
-        public bool IsCollidingPlayer(Ships ship)
-        {
-            for (int i = 0; i < PlayerShipsList.Count; i++)
-            {
-                for (int j = 0; j < PlayerShipsList[i].Longitude.Length; j++)
-                {
-                    for (int y = 0; y < ship.Longitude.Length; y++)
-                    {
-                        if (PlayerShipsList[i].Longitude[j] == ship.Longitude[y])
-                        {
-                            for (int a = 0; a < PlayerShipsList[i].Latitude.Length; a++)
-                            {
-                                for (int c = 0; c < ship.Latitude.Length; c++)
-                                {
-                                    if (PlayerShipsList[i].Latitude[a] == ship.Latitude[c])
-                                    {
-                                        return true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-        public bool IsColliding(Ships ship)
-        {
-            for (int i = 0; i < ComputerShipsList.Count; i++)
-            {
-                for (int j = 0; j < ComputerShipsList[i].Longitude.Length; j++)
-                {
-                    for (int y = 0; y < ship.Longitude.Length; y++)
-                    {
-                        if (ComputerShipsList[i].Longitude[j] == ship.Longitude[y])
-                        {
-                            for (int a = 0; a < ComputerShipsList[i].Latitude.Length; a++)
-                            {
-                                for (int c = 0; c < ship.Latitude.Length; c++)
-                                {
-                                    if (ComputerShipsList[i].Latitude[a] == ship.Latitude[c])
-                                    {
-                                        return true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            return false;
-        }
         public void CreatePlayerGrid()
         {
             for (int i = 0; i < gridSize; i++)
@@ -296,7 +244,6 @@ namespace Sup20_12.ViewModels
         public bool PlayerCheckHitOrMiss(int longitude, int latitude)
         {
             NumberOfMoves++;
-
             for (int i = 0; i < ComputerShipsList.Count; i++)
             {
                 if (ComputerShipsList[i].Longitude.Contains(longitude) && ComputerShipsList[i].Latitude.Contains(latitude))
@@ -316,10 +263,8 @@ namespace Sup20_12.ViewModels
                     }
                     return true;
                 }
-
             }
             return false;
-
         }
         public bool PlayerCheckCloseOrNot(int longitude, int latitude)
         {
@@ -352,15 +297,6 @@ namespace Sup20_12.ViewModels
         }
         public bool ComputerCheckHitOrMiss(int longitude, int latitude)
         {
-            //for (int i = 0; i < PlayerShipsList.Count; i++)
-            //{
-            //    if (PlayerShipsList[i].Longitude.Contains(longitude) && PlayerShipsList[i].Latitude.Contains(latitude))
-            //    {
-            //        PlayerShipsList.RemoveAt(i);
-            //        return true;
-            //    }
-            //}
-            //return false;
             for (int i = 0; i < PlayerShipsList.Count; i++)
             {
                 if (PlayerShipsList[i].Longitude.Contains(longitude) && PlayerShipsList[i].Latitude.Contains(latitude))
@@ -380,7 +316,6 @@ namespace Sup20_12.ViewModels
                     }
                     return true;
                 }
-
             }
             return false;
         }
@@ -394,7 +329,6 @@ namespace Sup20_12.ViewModels
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -429,20 +363,6 @@ namespace Sup20_12.ViewModels
             return null;
         }
 
-        public bool CheckIfPlayerGridTileIsHit(int longitude, int latitude)
-        {
-            foreach (var c in PlayerButtonsInGame)
-            {
-                if (c.Longitude == longitude && c.Latitude == latitude && c.HitOrMiss == "Träff!")
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        
-        
         public int[] ComputerShootToSinkShip(int longitude, int latitude)
         {
             Random rand = new Random();
@@ -480,7 +400,6 @@ namespace Sup20_12.ViewModels
                 {
                     GridHasBeenShot = false;
                 }
-
             }
             newShot = new int[] { newLongitude, newLatitude };
             return newShot;
@@ -495,7 +414,6 @@ namespace Sup20_12.ViewModels
 
             int counter = 0;
             int[] newShot;
-
 
             while (newLongitude < 0 || newLongitude > 6 || newLatitude < 0 || newLatitude > 6 || GridHasBeenShot == true)
 

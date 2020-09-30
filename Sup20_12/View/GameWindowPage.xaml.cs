@@ -1,7 +1,7 @@
 ﻿using Sup20_12.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Media;
 
 namespace Sup20_12.View
 {
@@ -18,7 +18,7 @@ namespace Sup20_12.View
         {
             Player = player;
             InitializeComponent();
-            gameWindowViewModel = new GameWindowViewModel(rectangleUI);
+            gameWindowViewModel = new GameWindowViewModel(rectangleUI, rectangleBS, rectangleSub);
             DataContext = gameWindowViewModel;
         }
         private void Target_Drop(object sender, DragEventArgs e)
@@ -52,11 +52,6 @@ namespace Sup20_12.View
             BtnSlump.Background = Brushes.Gray;
             BtnSlump.Content = "";    
         }
-        private void rectangleUI_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void RemoveBoatsAfterRandomPlacedShips(object sender, RoutedEventArgs e)
         {
             rectangleUI.Visibility = Visibility.Hidden;
