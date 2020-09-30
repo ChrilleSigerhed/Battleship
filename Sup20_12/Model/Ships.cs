@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Sup20_12.Interface;
 
 namespace Sup20_12.ViewModels
 {
-    public class Ships
+    public class Ships : IShips
     {
-
-        public int Longitude { get; set; }
-        public int Latitude { get; set; }
-
+        public string ShipType { get; set; }
+        public int HitsTaken { get; set; }
+        public int[] Longitude { get; set; }
+        public int[] Latitude { get; set; }
     }
 }

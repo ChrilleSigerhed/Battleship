@@ -1,11 +1,7 @@
 ﻿using Sup20_12.View;
+using Sup20_12.ViewModels;
 using Sup20_12.ViewModels.Base;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Sup20_12
@@ -16,36 +12,38 @@ namespace Sup20_12
         public ICommand ChoosePlayerPageCommand { get; set; }
         public ICommand HighscorePageCommand { get; set; }
         public ICommand ExitGameCommand { get; set; }
-
-        public MainWindow win = (MainWindow)Application.Current.MainWindow;
         #endregion
+
         public MainMenuViewModel()
         {
+            Global.MyWin = (MainWindow)Application.Current.MainWindow;
             DbConnection.InitializeDbPooling();
             ChoosePlayerPageCommand = new RelayCommand(GoToChoosePlayer);
             HighscorePageCommand = new RelayCommand(GoToHighscorePage);
             ExitGameCommand = new RelayCommand(ExitGame);
         }
-        public void GoToChoosePlayer()
+
+        private void GoToChoosePlayer()
         {
-            win.frame.Content = new ChoosePlayerPage();
+            Global.MyWin.frame.Content = new ChoosePlayerPage();
         }
-        public void GoToHighscorePage()
+
+        private void GoToHighscorePage()
         {
-            win.frame.Content = new HighScorePage();
+            Global.MyWin.frame.Content = new HighScorePage();
         }
-        public void ExitGame()
+
+        private void ExitGame()
         {
             MessageBoxResult result = MessageBox.Show("Vill du verkligen avsluta?", "Avsluta", MessageBoxButton.YesNo);
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    win.Close();
+                    Global.MyWin.Close();
                     break;
                 case MessageBoxResult.No:
                     break;
             }    
-            
         }
     }
 }

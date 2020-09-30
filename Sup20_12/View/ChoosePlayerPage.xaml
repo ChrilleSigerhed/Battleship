@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:Sup20_12.View"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      FocusManager.FocusedElement="{Binding ElementName=txtNickname}"
       Title="ChoosePlayerPage">
 
     <Page.Resources>
@@ -27,28 +28,46 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="102"/>
-                <RowDefinition Height="43"/>
-                <RowDefinition Height="89"/>
+                <RowDefinition Height="139"/>
+                <RowDefinition Height="47"/>
+                <RowDefinition Height="93"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+            
+            <!-- FIRE ANIMATION -->
+            <Image x:Name="MyImage" Source="/Assets/Images/FireTwo.png" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="4" RenderTransformOrigin="0.0,1.0" Opacity="0.4" VerticalAlignment="Bottom"  HorizontalAlignment="Left">
+                <Image.RenderTransform>
+                    <ScaleTransform x:Name="ImageScale" ScaleX="0.8" ScaleY="0.8" />
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" BeginTime="0:0:0.30" To="0.75" Duration="0:3:2.55"/>
+                                <DoubleAnimation Storyboard.TargetName="ImageScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" To="2.3" BeginTime="0:0:0.30" Duration="0:0:30.35" AutoReverse="false">
 
-            <TextBox Name="txtNickname" MaxLength="14" Text="{Binding PlayerNickname}" Width="230" Height="34" FontSize="20" BorderBrush="{x:Null}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0"/>
-            <ComboBox ItemsSource="{Binding ListOfPlayersInListBox}" SelectedItem="{Binding MyPlayer}" x:Name="lstboxAllPlayers" FontSize="15" BorderThickness="0" Grid.Row="3" Grid.Column="2" Height="25" Width="245" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                </DoubleAnimation>
+                                <DoubleAnimation Storyboard.TargetName="ImageScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" To="2.3" BeginTime="0:0:0.30" Duration="0:0:30.35" AutoReverse="false">
+                                    
+                                </DoubleAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+            
+            <TextBox Name="txtNickname" MaxLength="14" Text="{Binding PlayerNickname}" Width="283" Height="34" FontSize="23" BorderBrush="{x:Null}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0" TabIndex="50"/>
+            <ComboBox ItemsSource="{Binding ListOfPlayersInListBox}" SelectedValuePath="Id" SelectedValue="{Binding SelectedId}" SelectedItem="{Binding MyTempPlayer}" x:Name="lstboxAllPlayers" FontSize="15" BorderThickness="0" Grid.Row="3" Grid.Column="2" Height="25" Width="287" HorizontalAlignment="Left" VerticalAlignment="Top" TabIndex="200"/>
 
-            <Grid Grid.Column="2" Grid.Row="2" Margin="0,0,103,0">
-                <Button Style="{StaticResource BtnAddPlayer}" Command="{Binding AddNewPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Height="37" Margin="0,10,0,0" Width="138">
+            <Grid Grid.Column="2" Grid.Row="2" Margin="0,0,61,36">
+                <Button Style="{StaticResource BtnAddPlayer}" Command="{Binding AddNewPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,7,0,0" Width="138" IsDefault="True" TabIndex="100">
                 </Button>
             </Grid>
 
-            <Grid Grid.Column="2" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Height="164" Width="146">
-
-                <StackPanel Margin="0,0,0,10">
-                    <Button Style="{StaticResource BtnStartGame}" Grid.Row="1" Grid.Column="1" Command="{Binding StartGameWithSelectedPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="44" Margin="0,10,10,0" Width="136" IsEnabled="{Binding EnableBtnStartGame}">
-                    </Button>
-
-                    <Button Style="{StaticResource BtnBack}" Grid.Row="1" Grid.Column="1" Command="{Binding GoToMainPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="44" Margin="0,4,10,0" Width="136">
-                    </Button>
+            <Grid Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Height="164" Width="250">
+                <StackPanel Margin="0,48,-47,0">
+                    <Button Style="{StaticResource BtnStartGame}" Grid.Row="1" Grid.Column="1" Command="{Binding StartGameWithSelectedPlayerCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Height="44" Width="180" IsEnabled="{Binding EnableBtnStartGame}" TabIndex="300"/>
+                    <Button Style="{StaticResource BtnBack}" Command="{Binding GoToMainPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,10,0,40" Width="140" TabIndex="400"/>
                 </StackPanel>
 
             </Grid>

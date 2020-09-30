@@ -1,22 +1,19 @@
 ﻿using Sup20_12.View;
+using Sup20_12.ViewModels;
 using Sup20_12.ViewModels.Base;
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Windows;
 using System.Windows.Input;
-
 
 namespace Sup20_12
 {
     public class HighScoreViewModel : BaseViewModel
     {
+        #region Propertys
         public int MyProperty { get; set; }
-
         public string HighScoreLst { get; set; }
         public string FrequentPlayers { get; set; }
-
         public ICommand GoToMainPage { get; set; }
+        #endregion
 
         public HighScoreViewModel()
         {
@@ -25,7 +22,7 @@ namespace Sup20_12
             GoToMainPage = new RelayCommand(GoToMain);
         }
 
-        public void GetHighScores()
+        private void GetHighScores()
         {
             List<Highscore> myTempHighscoreList;
             myTempHighscoreList = (List<Highscore>)DbConnection.GetThreeWinnersFromHighscore();
@@ -39,10 +36,9 @@ namespace Sup20_12
             FrequentPlayers = ConvertFrequentPlayerListToString(myTempPlayerList);
         }
 
-        public void GoToMain()
+        private void GoToMain()
         {
-            MainWindow win = (MainWindow)Application.Current.MainWindow;
-            win.frame.Content = new MainMenuPage();
+            Global.MyWin.frame.Content = new MainMenuPage();
         }
 
         private string ConvertFrequentPlayerListToString(List<Player> myTempPlayerList)

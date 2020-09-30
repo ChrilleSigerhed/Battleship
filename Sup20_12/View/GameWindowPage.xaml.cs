@@ -1,16 +1,7 @@
 ﻿using Sup20_12.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Sup20_12.View
 {
@@ -20,34 +11,50 @@ namespace Sup20_12.View
 
     public partial class GameWindowPage : Page
     {
-        public Player Player { get; set; }
         public GameWindowViewModel gameWindowViewModel { get; set; }
 
-        public GameWindowPage(Player player)
+        public GameWindowPage()
         {
-            Player = player;
             InitializeComponent();
-            gameWindowViewModel = new GameWindowViewModel(Player);
+            gameWindowViewModel = new GameWindowViewModel(rectangleUI, rectangleBS, rectangleSub);
             DataContext = gameWindowViewModel;
-
         }
         private void Target_Drop(object sender, DragEventArgs e)
         {
             Button button = (Button)sender;
-            gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
-            button.Background = Ship;
-            button.Background = Ship2;
-            button.Background = Ship3;
-
+            if (gameWindowViewModel.Ships == 3)
+            {
+                gameWindowViewModel.PlayerPlaceShips(button.CommandParameter.ToString());
+            }
+            else if (gameWindowViewModel.Ships == 2)
+            {
+                gameWindowViewModel.PlayerPlaceBattleShip(button.CommandParameter.ToString());
+            }
+            else if(gameWindowViewModel.Ships == 1)
+            {
+                gameWindowViewModel.PlayerPlaceSubmarineShip(button.CommandParameter.ToString());
+            }
+            if(gameWindowViewModel.Ships == 2)
+            {
+                rectangleUI.Visibility = Visibility.Hidden;
+            }
+            else if(gameWindowViewModel.Ships == 1)
+            {
+                rectangleBS.Visibility = Visibility.Hidden;
+            }
+            else if(gameWindowViewModel.Ships == 0)
+            {
+                rectangleSub.Visibility = Visibility.Hidden;
+            }
+            BtnSlump.IsEnabled = false;
+            BtnSlump.Background = Brushes.Gray;
+            BtnSlump.Content = "";    
         }
-
-        private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void RemoveBoatsAfterRandomPlacedShips(object sender, RoutedEventArgs e)
         {
-            Rectangle r = (Rectangle)sender;
-            DataObject dataObject = new DataObject(r);
-            DragDrop.DoDragDrop(r, dataObject, DragDropEffects.Move);
+            rectangleUI.Visibility = Visibility.Hidden;
+            rectangleBS.Visibility = Visibility.Hidden;
+            rectangleSub.Visibility = Visibility.Hidden;
         }
-
     }
-
 }
