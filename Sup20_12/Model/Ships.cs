@@ -1,5 +1,4 @@
-﻿
-using Sup20_12.Interface;
+﻿using Sup20_12.Interface;
 
 namespace Sup20_12.ViewModels
 {

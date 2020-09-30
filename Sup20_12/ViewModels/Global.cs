@@ -1,5 +1,4 @@
 ﻿
-
 namespace Sup20_12.ViewModels
 {
     class Global
