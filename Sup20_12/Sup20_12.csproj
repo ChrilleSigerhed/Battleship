@@ -15,8 +15,10 @@
 
   <ItemGroup>
     <None Remove="Assets\Cursor\battleshipImg.cur" />
+    <None Remove="Assets\Cursor\battleshipImgTest2.cur" />
     <None Remove="Assets\Cursor\destroyerImg.cur" />
     <None Remove="Assets\Cursor\submarineImg.cur" />
+    <None Remove="Assets\Cursor\submarineImgTest3.cur" />
     <None Remove="Assets\Fonts\STENCIL.TTF" />
     <None Remove="Assets\Images\animationFire.png" />
     <None Remove="Assets\Images\battleshipImg.png" />
@@ -64,8 +66,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Assets\Cursor\battleshipImg.cur" />
+    <Resource Include="Assets\Cursor\battleshipImgTest2.cur" />
     <Resource Include="Assets\Cursor\destroyerImg.cur" />
     <Resource Include="Assets\Cursor\submarineImg.cur" />
+    <Resource Include="Assets\Cursor\submarineImgTest3.cur" />
     <Resource Include="Assets\Images\animationFire.png" />
     <Resource Include="Assets\Images\battleshipImg.png" />
     <Resource Include="Assets\Images\bgChoosePlayerPage.jpg" />

@@ -43,7 +43,7 @@ namespace Sup20_12.View
         {
             if (e.Effects.HasFlag(DragDropEffects.Move)) 
             {
-                StreamResourceInfo shipCurs = Application.GetResourceStream(new Uri("Assets/Cursor/submarineImg.cur", UriKind.Relative));
+                StreamResourceInfo shipCurs = Application.GetResourceStream(new Uri("Assets/Cursor/submarineImgTest3.cur", UriKind.Relative));
                 Mouse.SetCursor(new Cursor(shipCurs.Stream));
             }
             e.Handled = true;
