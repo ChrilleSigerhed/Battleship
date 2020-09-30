@@ -16,7 +16,7 @@ namespace Sup20_12.View
         public GameWindowPage()
         {
             InitializeComponent();
-            gameWindowViewModel = new GameWindowViewModel(rectangleUI);
+            gameWindowViewModel = new GameWindowViewModel(rectangleUI, rectangleBS, rectangleSub);
             DataContext = gameWindowViewModel;
         }
         private void Target_Drop(object sender, DragEventArgs e)
@@ -50,11 +50,6 @@ namespace Sup20_12.View
             BtnSlump.Background = Brushes.Gray;
             BtnSlump.Content = "";    
         }
-        private void rectangleUI_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void RemoveBoatsAfterRandomPlacedShips(object sender, RoutedEventArgs e)
         {
             rectangleUI.Visibility = Visibility.Hidden;
