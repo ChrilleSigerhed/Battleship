@@ -209,7 +209,19 @@ namespace Sup20_12.ViewModels
             }
             return latitudeShip;
         }
-        public void CreatePlayerGrid()
+
+
+        private void CreatePlayerGrid() 
+        { 
+            for (int i = 0; i < gridSize; i++) 
+            { for (int j = 0; j < gridSize; j++) 
+                { GameGrid square = new GameGrid(i, j, ""); 
+                    PlayerButtonsInGame.Add(square); 
+                } 
+            } 
+        }
+
+        private void CreateComputerGrid()
         {
             for (int i = 0; i < gridSize; i++)
             {
@@ -219,16 +231,6 @@ namespace Sup20_12.ViewModels
                     ComputerButtonsInGame.Add(square);
                 }
             }
-        }
-
-        public void CreatePlayerGrid() 
-        { 
-            for (int i = 0; i < gridSize; i++) 
-            { for (int j = 0; j < gridSize; j++) 
-                { GameGrid square = new GameGrid(i, j, ""); 
-                    PlayerButtonsInGame.Add(square); 
-                } 
-            } 
         }
 
         public bool PlayerCheckHitOrMiss(int longitude, int latitude)
@@ -256,6 +258,7 @@ namespace Sup20_12.ViewModels
             }
             return false;
         }
+
         public bool PlayerCheckCloseOrNot(int longitude, int latitude)
         {
             foreach (var ship in ComputerShipsList)
