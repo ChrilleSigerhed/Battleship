@@ -44,10 +44,10 @@
                         <BeginStoryboard>
                             <Storyboard>
                                 <DoubleAnimation Storyboard.TargetProperty="Opacity" BeginTime="0:0:0.30" To="0.75" Duration="0:3:2.55"/>
-                                <DoubleAnimation Storyboard.TargetName="ImageScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" To="2.3" BeginTime="0:0:0.30" Duration="0:0:50.35" AutoReverse="false">
+                                <DoubleAnimation Storyboard.TargetName="ImageScale" Storyboard.TargetProperty="(ScaleTransform.ScaleX)" To="2.3" BeginTime="0:0:0.30" Duration="0:0:30.35" AutoReverse="false">
 
                                 </DoubleAnimation>
-                                <DoubleAnimation Storyboard.TargetName="ImageScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" To="2.3" BeginTime="0:0:0.30" Duration="0:0:50.35" AutoReverse="false">
+                                <DoubleAnimation Storyboard.TargetName="ImageScale" Storyboard.TargetProperty="(ScaleTransform.ScaleY)" To="2.3" BeginTime="0:0:0.30" Duration="0:0:30.35" AutoReverse="false">
                                     
                                 </DoubleAnimation>
                             </Storyboard>
