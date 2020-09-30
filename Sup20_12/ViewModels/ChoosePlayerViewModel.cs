@@ -65,7 +65,7 @@ namespace Sup20_12.ViewModels
         {
             if (IsThereAnActivePlayer())
             {
-                MyWin.frame.Content = new GameWindowPage(MyPlayer);
+                Global.MyWin.frame.Content = new GameWindowPage(MyPlayer);
                 InitialGameInstructions();
             }
         }
@@ -76,7 +76,7 @@ namespace Sup20_12.ViewModels
 
         private void GoToMainPage()
         {
-            MyWin.frame.Content = new MainMenuPage();
+            Global.MyWin.frame.Content = new MainMenuPage();
         }
 
         private bool IsThereAnActivePlayer()

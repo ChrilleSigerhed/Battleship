@@ -1,7 +1,9 @@
 ﻿using Sup20_12.View;
+using Sup20_12.ViewModels;
 using Sup20_12.ViewModels.Base;
 using System.Collections.Generic;
 using System.Windows.Input;
+
 
 
 namespace Sup20_12
@@ -38,7 +40,7 @@ namespace Sup20_12
 
         private void GoToMain()
         {
-            MyWin.frame.Content = new MainMenuPage();
+            Global.MyWin.frame.Content = new MainMenuPage();
         }
 
         private string ConvertFrequentPlayerListToString(List<Player> myTempPlayerList)

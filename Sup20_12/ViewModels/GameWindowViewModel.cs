@@ -195,10 +195,10 @@ namespace Sup20_12.ViewModels
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    MyWin.frame.Content = new GameWindowPage(MyPlayer);
+                    Global.MyWin.frame.Content = new GameWindowPage(MyPlayer);
                     break;
                 case MessageBoxResult.No:
-                    MyWin.frame.Content = new MainMenuPage();
+                    Global.MyWin.frame.Content = new MainMenuPage();
                     break;
             }
         }
@@ -600,7 +600,7 @@ namespace Sup20_12.ViewModels
                     {
                         case MessageBoxResult.Yes:
                             {
-                                MyWin.frame.Content = new GameWindowPage(MyPlayer);
+                                Global.MyWin.frame.Content = new GameWindowPage(MyPlayer);
                             };
                             break;
                         case MessageBoxResult.No:
@@ -627,7 +627,7 @@ namespace Sup20_12.ViewModels
         }
         private void GoToMainPage()
         {
-            MyWin.frame.Content = new MainMenuPage();
+            Global.MyWin.frame.Content = new MainMenuPage();
         }
     }
 }

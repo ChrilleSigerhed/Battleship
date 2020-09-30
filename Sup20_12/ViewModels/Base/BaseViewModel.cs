@@ -6,7 +6,7 @@ namespace Sup20_12.ViewModels.Base
 {
    public class BaseViewModel : INotifyPropertyChanged
     {
-        public MainWindow MyWin { get; } = (MainWindow)Application.Current.MainWindow;
+        //public MainWindow MyWin { get; } = (MainWindow)Application.Current.MainWindow;
         public static Player MyPlayer { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 

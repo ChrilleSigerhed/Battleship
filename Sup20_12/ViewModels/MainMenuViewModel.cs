@@ -1,4 +1,5 @@
 ﻿using Sup20_12.View;
+using Sup20_12.ViewModels;
 using Sup20_12.ViewModels.Base;
 using System.Windows;
 using System.Windows.Input;
@@ -15,6 +16,7 @@ namespace Sup20_12
 
         public MainMenuViewModel()
         {
+            Global.MyWin = (MainWindow)Application.Current.MainWindow;
             DbConnection.InitializeDbPooling();
             ChoosePlayerPageCommand = new RelayCommand(GoToChoosePlayer);
             HighscorePageCommand = new RelayCommand(GoToHighscorePage);
@@ -23,12 +25,12 @@ namespace Sup20_12
 
         private void GoToChoosePlayer()
         {
-            MyWin.frame.Content = new ChoosePlayerPage();
+            Global.MyWin.frame.Content = new ChoosePlayerPage();
         }
 
         private void GoToHighscorePage()
         {
-            MyWin.frame.Content = new HighScorePage();
+            Global.MyWin.frame.Content = new HighScorePage();
         }
 
         private void ExitGame()
@@ -37,7 +39,7 @@ namespace Sup20_12
             switch (result)
             {
                 case MessageBoxResult.Yes:
-                    MyWin.Close();
+                    Global.MyWin.Close();
                     break;
                 case MessageBoxResult.No:
                     break;

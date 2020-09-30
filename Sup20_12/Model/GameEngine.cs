@@ -251,6 +251,17 @@ namespace Sup20_12.ViewModels
                 }
             }
         }
+
+        public void CreatePlayerGrid() 
+        { 
+            for (int i = 0; i < gridSize; i++) 
+            { for (int j = 0; j < gridSize; j++) 
+                { GameGrid square = new GameGrid(i, j, ""); 
+                    PlayerButtonsInGame.Add(square); 
+                } 
+            } 
+        }
+
         public bool PlayerCheckHitOrMiss(int longitude, int latitude)
         {
             NumberOfMoves++;
