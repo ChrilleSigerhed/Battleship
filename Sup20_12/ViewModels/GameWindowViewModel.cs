@@ -184,14 +184,14 @@ namespace Sup20_12.ViewModels
                     }
                     else
                     {
-                        Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
+                        Task.Delay(1000).ContinueWith(t => ComputerHitOrMiss());
                     }
                 }
                 else
                 {
                     AddCloseOrMissOnComputerBoard(buttonToNumber);
                     PlayerTurn = false;
-                    Task.Delay(500).ContinueWith(t => ComputerHitOrMiss());
+                    Task.Delay(1000).ContinueWith(t => ComputerHitOrMiss());
                 }
             }
         }
