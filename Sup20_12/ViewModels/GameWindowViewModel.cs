@@ -19,23 +19,23 @@ namespace Sup20_12.ViewModels
         public ICommand CheckIfShip { get; set; }
         public ICommand GoToMainPageCommand { get; set; }
         public ICommand PlaceRandomBoats { get; set; }
-        public int ShowNumberOfMoves { get; set; }
-        public string ShowPlayerNickname { get; set; }
-        public int Ships { get; set; } = 3;
+        public int ShowNumberOfMoves { get; private set; }
+        public string ShowPlayerNickname { get; private set; }
+        public int Ships { get; private set; } = 3;
         public ObservableCollection<GameGrid> PlayerButtonsInGame { get; set; }  = new ObservableCollection<GameGrid>();
         public ObservableCollection<GameGrid> ComputerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
         public List<int> PlayerShotsFired { get; set; } = new List<int>();
 
         private int noMoreShipsToUse = 0;
-        public SingleBoatUC Destroyer { get; set; }
-        public BattleShipUC BattleShip { get; set; }
-        public SubmarineUC Submarine { get; set; }
-        public GameEngine MyGameEngine { get; set; } = new GameEngine();
-        public bool PlayerTurn { get; set; } = false;
-        public bool WasCloseToShip { get; set; } = false;
-        public bool ComputerHitShip { get; set; } = false;
-        public int[] CoordinatesCloseToShip { get; set; }
-        public int [] CoordinatesHitShip { get; set; }
+        private SingleBoatUC Destroyer { get; set; }
+        private BattleShipUC BattleShip { get; set; }
+        private SubmarineUC Submarine { get; set; }
+        private GameEngine MyGameEngine { get; set; } = new GameEngine();
+        private bool PlayerTurn { get; set; } = false;
+        private bool WasCloseToShip { get; set; } = false;
+        private bool ComputerHitShip { get; set; } = false;
+        private int[] CoordinatesCloseToShip { get; set; }
+        private int [] CoordinatesHitShip { get; set; }
         #endregion
         public GameWindowViewModel(SingleBoatUC destroyer, BattleShipUC battleship, SubmarineUC submarine)
         {
@@ -57,51 +57,87 @@ namespace Sup20_12.ViewModels
             int buttonToNumber = int.Parse(button);
             if (PlayerHasShipsLeftToPlace(buttonToNumber))
             {
-                Destroyer.PlacedBoats--;
-                Ships--;
-                foreach (var x in PlayerButtonsInGame)
-                {
-                    if (PlayerButtonsInGame[buttonToNumber].Longitude == x.Longitude && PlayerButtonsInGame[buttonToNumber].Latitude == x.Latitude)
-                    {
-                        ChangePlayerGridToSingleBoat(x);
-                    }
-                }
-
-                if (Ships == noMoreShipsToUse)
-                {
-                    ChangePlayerTurn();
-                    MessageBox.Show("Nu kan spelet börja, du spelar på den högra spelplanen.");
-                }
+                SubtractDestroyerToPlace(buttonToNumber);
+                PlayerHasNoMoreShipsToPlace();
             }
             else
-                MessageBox.Show("Det går inte att placera skepp där.");
+                MessageBoxYouCantPlaceShipsThere();
         }
-        public void PlayerPlaceSubmarineShip(string button)
+
+        private void MessageBoxYouCantPlaceShipsThere()
+        {
+            MessageBox.Show("Det går inte att placera ett skepp där.");
+        }
+
+        private void MessageBoxYouCanNowPlay()
         {
 
+        }
+
+        private void SubtractDestroyerToPlace(int buttonToNumber)
+        {
+            Destroyer.PlacedBoats--;
+            Ships--;
+            foreach (var myGameButton in PlayerButtonsInGame)
+            {
+                PlayerPlaceDestroyer(myGameButton, buttonToNumber);
+            }
+        }
+        
+        private void PlayerPlaceDestroyer(GameGrid myGameButton, int buttonToNumber)
+        {
+            if (PlayerButtonsInGame[buttonToNumber].Longitude == myGameButton.Longitude && PlayerButtonsInGame[buttonToNumber].Latitude == myGameButton.Latitude)
+                ChangePlayerGridToSingleBoat(myGameButton);
+        }
+
+        private void PlayerHasNoMoreShipsToPlace()
+        {
+            if (Ships == noMoreShipsToUse)
+            {
+                ChangePlayerTurn();
+                MessageBoxYouCanNowPlay();
+            }
+        }
+
+        private bool PlayerHasShipsLeftToPlace(int buttonToNumber)
+        {
+            bool result = false;
+            if (MyGameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude))
+                result = true;
+            return result;
+        }
+
+        public void PlayerPlaceSubmarineShip(string button)
+        {
             int buttonToNumber = int.Parse(button);
             if (MyGameEngine.FillPlayerSubmarineShip(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude) == true)
             {
-                Ships--;
-                Submarine.PlacedBoats--;
-                foreach (var x in PlayerButtonsInGame)
-                {
-                    if (PlayerButtonsInGame[buttonToNumber].Longitude == x.Longitude && PlayerButtonsInGame[buttonToNumber].Latitude == x.Latitude)
-                    {
-                        ChangePlayerGridToSubmarine(x.Longitude, x.Latitude, x);
-                    }
-                }
-                if (Ships == 0)
-                {
-                    PlayerTurn = true;
-                    MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen");
-                }
+                SubtractSubmarineToPlace(buttonToNumber);
+                PlayerHasNoMoreShipsToPlace();
             }
             else
+                MessageBoxYouCantPlaceShipsThere();
+        }
+
+        private void SubtractSubmarineToPlace(int buttonToNumber)
+        {
+            Ships--;
+            Submarine.PlacedBoats--;
+            foreach (var myGameButton in PlayerButtonsInGame)
             {
-                MessageBox.Show("Du har redan placerat ett skepp där");
+                ShouldShipBeSubmarine(myGameButton, buttonToNumber);
             }
         }
+
+        private void ShouldShipBeSubmarine(GameGrid myGameButton, int buttonToNumber)
+        {
+            if (PlayerButtonsInGame[buttonToNumber].Longitude == myGameButton.Longitude && PlayerButtonsInGame[buttonToNumber].Latitude == myGameButton.Latitude)
+            {
+                ChangePlayerGridToSubmarine(myGameButton.Longitude, myGameButton.Latitude, myGameButton);
+            }
+        }
+
+        //FORTSÄTT HÄR!!! -------------------------------------------------------------------------------------------------
         public void PlayerPlaceBattleShip(string button)
         {
 
@@ -130,13 +166,7 @@ namespace Sup20_12.ViewModels
             }
         }
 
-        private bool PlayerHasShipsLeftToPlace(int buttonToNumber)
-        {
-            bool result = false;
-            if (MyGameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude))
-                result = true;
-            return result;
-        }
+
         private void RandomPlacePlayerShips()
         {
             

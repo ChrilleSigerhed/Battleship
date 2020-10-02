@@ -42,6 +42,8 @@ namespace Sup20_12.ViewModels
             else
                 return false;
         }
+
+        
         public bool FillPlayerBattleShip(int longitude, int latitude)
         {
             if (longitude != 6)
