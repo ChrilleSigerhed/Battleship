@@ -500,14 +500,14 @@ namespace Sup20_12.ViewModels
             return false;
         }
 
-        public bool HasWon()
+        public bool PlayerHasWon()
         {
             if(ComputerShipsList.Count == 0)
                 return true;
             else
                 return false;
         }
-        public bool HasLost()
+        public bool PlayerHasLost()
         {
             if (PlayerShipsList.Count == 0)
                 return true;

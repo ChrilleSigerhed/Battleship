@@ -212,7 +212,7 @@ namespace Sup20_12.ViewModels
 
         private void CheckIfPlayerHasWon()
         {
-            if (MyGameEngine.HasWon())
+            if (MyGameEngine.PlayerHasWon())
                 PlayerHasWon();
             else
                 DelayBeforeComputerMakesAMove();
@@ -270,9 +270,15 @@ namespace Sup20_12.ViewModels
             PlayerShotsFired.Add(buttonToNumber);
 
             if (MyGameEngine.PlayerCheckCloseOrNot(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude) == true)
+            {
+                ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Nära";
                 ChangeGridSquareToSplashSonarImage(ComputerButtonsInGame[buttonToNumber]);
+            }
             else
+            {
+                ComputerButtonsInGame[buttonToNumber].HitOrMiss = "Miss";
                 ChangeToSplashImage(ComputerButtonsInGame[buttonToNumber]);
+            }
         }
 
         private void AddCloseOnPlayerBoard(int longitude, int latitude)
@@ -307,7 +313,7 @@ namespace Sup20_12.ViewModels
             if (MyGameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
             {
                 CheckIfComputerHit(shoot);
-                CheckIfComputerLost();
+                CheckIfPlayerLost();
                 ChangePlayerTurn();
             } 
             else if (MyGameEngine.ComputerCheckCloseOrNot(shoot[0], shoot[1]))
@@ -340,9 +346,9 @@ namespace Sup20_12.ViewModels
                     ComputerHitPlayerShip(shoot, myPlayerButton);
             }
         }
-        private void CheckIfComputerLost()
+        private void CheckIfPlayerLost()
         {
-            if (MyGameEngine.HasLost())
+            if (MyGameEngine.PlayerHasLost())
             {
                 MyGameEngine.AddNewHighscore(false, Global.MyPlayer.Id);
                 ShowLosingDialogueBox();
@@ -362,46 +368,22 @@ namespace Sup20_12.ViewModels
         //-------------------------------------------------------------------------------------------
         public void ComputerShootToSinkShip(int[] shoot)
         {
-            if (MyGameEngine.ComputerCheckIfShipStillFloating(shoot[0], shoot[1]) == true)
+            if (MyGameEngine.ComputerCheckIfShipStillFloating(shoot[0], shoot[1]))
             {
                 int[] newShot = MyGameEngine.ComputerShootToSinkShip(shoot[0], shoot[1]);
 
                 if (MyGameEngine.ComputerCheckHitOrMiss(newShot[0], newShot[1]))
                 {
-                    foreach (var c in PlayerButtonsInGame)
-                    {
-                        if (c.Longitude == newShot[0] && c.Latitude == newShot[1])
-                        {
-                            c.HitOrMiss = "Träff!";
-                            CoordinatesHitShip = new int[] { shoot[0], shoot[1] };
-                            ChangeGridSquareToExplosionImage(c);
-                            c.IsClicked = true;
-                            WasCloseToShip = false;
-                        }
-                    }
-                    if (MyGameEngine.HasLost())
-                    {
-                        MyGameEngine.AddNewHighscore(false, Global.MyPlayer.Id);
-                        ShowLosingDialogueBox();
-                    }
-                    PlayerTurn = true;
+                    CheckShootCloseToShipHit(newShot, shoot);
+                    DidPlayerLoose();
+                    ChangePlayerTurn();
                 }
                 else if (MyGameEngine.ComputerCheckCloseOrNot(newShot[0], newShot[1]))
-                {
                     AddCloseOnPlayerBoard(newShot[0], newShot[1]);
-                }
                 else
                 {
-                    foreach (var c in PlayerButtonsInGame)
-                    {
-                        if (c.Longitude == newShot[0] && c.Latitude == newShot[1])
-                        {
-                            c.HitOrMiss = "Miss!";
-                            ChangeToSplashImage(c);
-                            c.IsClicked = true;
-                        }
-                    }
-                    PlayerTurn = true;
+                    CheckIfComputerMiss(newShot);
+                    ChangePlayerTurn();
                 }
             }
             else if(MyGameEngine.ComputerCheckIfShipStillFloating(shoot[0], shoot[1]) == false)
@@ -410,7 +392,32 @@ namespace Sup20_12.ViewModels
                 ComputerHitOrMiss();
             }
         
-    }
+        }
+
+        private void DidPlayerLoose()
+        {
+            if (MyGameEngine.PlayerHasLost())
+            {
+                MyGameEngine.AddNewHighscore(false, Global.MyPlayer.Id);
+                ShowLosingDialogueBox();
+            }
+        }
+
+        private void CheckShootCloseToShipHit(int[] newShot, int[] shoot)
+        {
+            foreach (var myPlayerButton in PlayerButtonsInGame)
+            {
+                if (myPlayerButton.Longitude == newShot[0] && myPlayerButton.Latitude == newShot[1])
+                {
+                    myPlayerButton.HitOrMiss = "Träff!";
+                    CoordinatesHitShip = new int[] { shoot[0], shoot[1] };
+                    ChangeGridSquareToExplosionImage(myPlayerButton);
+                    myPlayerButton.IsClicked = true;
+                    WasCloseToShip = false;
+                }
+            }
+        }
+
         public void ShootCloseToAShipAlreadyHit()
         {
             
@@ -433,7 +440,7 @@ namespace Sup20_12.ViewModels
                             WasCloseToShip = false;
                         }
                     }
-                    if (MyGameEngine.HasLost())
+                    if (MyGameEngine.PlayerHasLost())
                     {
                         MyGameEngine.AddNewHighscore(false, Global.MyPlayer.Id);
                         ShowLosingDialogueBox();
@@ -484,7 +491,7 @@ namespace Sup20_12.ViewModels
                             c.IsClicked = true;
                         }
                     }
-                    if (MyGameEngine.HasLost())
+                    if (MyGameEngine.PlayerHasLost())
                     {
                         MyGameEngine.AddNewHighscore(false, Global.MyPlayer.Id);
                         ShowLosingDialogueBox();
