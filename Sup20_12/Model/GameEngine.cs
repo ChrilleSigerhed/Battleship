@@ -244,17 +244,11 @@ namespace Sup20_12.ViewModels
                 {
                     ComputerShipsList[i].HitsTaken++;
                     if (ComputerShipsList[i].HitsTaken == 3 && ComputerShipsList[i].ShipType == "Submarine")
-                    {
                         ComputerShipsList.RemoveAt(i);
-                    }
                     else if (ComputerShipsList[i].HitsTaken == 2 && ComputerShipsList[i].ShipType == "BattleShip")
-                    {
                         ComputerShipsList.RemoveAt(i);
-                    }
                     else if (ComputerShipsList[i].HitsTaken == 1 && ComputerShipsList[i].ShipType == "Destroyer")
-                    {
                         ComputerShipsList.RemoveAt(i);
-                    }
                     return true;
                 }
             }
@@ -263,33 +257,36 @@ namespace Sup20_12.ViewModels
 
         public bool PlayerCheckCloseOrNot(int longitude, int latitude)
         {
+            bool result = true;
             foreach (var ship in ComputerShipsList)
             {
-                if (ship.Longitude.Contains(longitude + 1) || ship.Longitude.Contains(longitude - 1) || ship.Longitude.Contains(longitude))
+                result = IsCloseToAnotherShip(longitude, latitude, ship);
+            }
+            return result;
+        }
+
+        public bool ComputerCheckCloseOrNot(int longitude, int latitude)
+        {
+            bool result = true;
+            foreach (var ship in PlayerShipsList)
+            {
+                result = IsCloseToAnotherShip(longitude, latitude, ship);
+            }
+            return result;
+        }
+
+        private bool IsCloseToAnotherShip(int longitude, int latitude, Ships ship)
+        {
+            if (ship.Longitude.Contains(longitude + 1) || ship.Longitude.Contains(longitude - 1) || ship.Longitude.Contains(longitude))
+            {
+                if (ship.Latitude.Contains(latitude + 1) || ship.Latitude.Contains(latitude - 1) || ship.Latitude.Contains(latitude))
                 {
-                    if (ship.Latitude.Contains(latitude + 1) || ship.Latitude.Contains(latitude - 1) || ship.Latitude.Contains(latitude))
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
             return false;
         }
 
-        public bool ComputerCheckCloseOrNot(int longitude, int latitude)
-        {
-            foreach (var ship in PlayerShipsList)
-            {
-                if (ship.Longitude.Contains(longitude + 1) || ship.Longitude.Contains(longitude - 1) || ship.Longitude.Contains(longitude))
-                {
-                    if (ship.Latitude.Contains(latitude + 1) || ship.Latitude.Contains(latitude - 1) || ship.Latitude.Contains(latitude))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
         public bool ComputerCheckHitOrMiss(int longitude, int latitude)
         {
             for (int i = 0; i < PlayerShipsList.Count; i++)
