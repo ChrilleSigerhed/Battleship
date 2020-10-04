@@ -50,11 +50,11 @@ namespace Sup20_12.ViewModels
                 {
 
                     BattleShip battleship = new BattleShip(longitude, latitude);
-                    foreach (var c in PlayerShipsList)
+                    foreach (var myPlayerShip in PlayerShipsList)
                     {
                         foreach (var x in battleship.Longitude)
                         {
-                            if (c.Longitude.Contains(x) && c.Latitude.Contains(latitude))
+                            if (myPlayerShip.Longitude.Contains(x) && myPlayerShip.Latitude.Contains(latitude))
                             {
                                 return false;
                             }
@@ -77,11 +77,11 @@ namespace Sup20_12.ViewModels
                 {
 
                     Submarine submarine = new Submarine(longitude, latitude);
-                    foreach (var c in PlayerShipsList)
+                    foreach (var myPlayerShip in PlayerShipsList)
                     {
                         foreach (var x in submarine.Longitude)
                         {
-                            if (c.Longitude.Contains(x) && c.Latitude.Contains(latitude))
+                            if (myPlayerShip.Longitude.Contains(x) && myPlayerShip.Latitude.Contains(latitude))
                             {
                                 return false;
                             }
@@ -276,11 +276,11 @@ namespace Sup20_12.ViewModels
 
         public bool ComputerCheckCloseOrNot(int longitude, int latitude)
         {
-            foreach (var ship in PlayerShipsList)
+            foreach (var myPlayerShip in PlayerShipsList)
             {
-                if (ship.Longitude.Contains(longitude + 1) || ship.Longitude.Contains(longitude - 1) || ship.Longitude.Contains(longitude))
+                if (myPlayerShip.Longitude.Contains(longitude + 1) || myPlayerShip.Longitude.Contains(longitude - 1) || myPlayerShip.Longitude.Contains(longitude))
                 {
-                    if (ship.Latitude.Contains(latitude + 1) || ship.Latitude.Contains(latitude - 1) || ship.Latitude.Contains(latitude))
+                    if (myPlayerShip.Latitude.Contains(latitude + 1) || myPlayerShip.Latitude.Contains(latitude - 1) || myPlayerShip.Latitude.Contains(latitude))
                     {
                         return true;
                     }
@@ -315,9 +315,9 @@ namespace Sup20_12.ViewModels
 
         public bool ComputerCheckIfShipStillFloating(int longitude, int latitude)
         {
-            foreach (var c in PlayerShipsList)
+            foreach (var myPlayerShip in PlayerShipsList)
             {
-                if (c.Longitude.Contains(longitude) && c.Latitude.Contains(latitude) && c.HitsTaken != 0)
+                if (myPlayerShip.Longitude.Contains(longitude) && myPlayerShip.Latitude.Contains(latitude) && myPlayerShip.HitsTaken != 0)
                 {
                     return true;
                 }
@@ -330,24 +330,22 @@ namespace Sup20_12.ViewModels
             foreach (var c in PlayerShipsList)
             {
                 if(c.HitsTaken != 0)
-                {
                     return true;
-                }
             }
             return false;
         }
         public int[] GetCoordinatesOfPlayerShipAlreadyHit()
         {
             int[] TileShot;
-            foreach (var c in PlayerShipsList)
+            foreach (var myPlayerShip in PlayerShipsList)
             {
-                if(c.HitsTaken != 0)
+                if(myPlayerShip.HitsTaken != 0)
                 {
-                    foreach (var x in PlayerButtonsInGame)
+                    foreach (var myPlayerButton in PlayerButtonsInGame)
                     {
-                        if (c.Longitude.Contains(x.Longitude) && c.Latitude.Contains(x.Latitude) && x.HitOrMiss == "Träff!")
+                        if (myPlayerShip.Longitude.Contains(myPlayerButton.Longitude) && myPlayerShip.Latitude.Contains(myPlayerButton.Latitude) && myPlayerButton.HitOrMiss == "Träff!")
                         {
-                            TileShot = new int[] { x.Longitude, x.Latitude };
+                            TileShot = new int[] { myPlayerButton.Longitude, myPlayerButton.Latitude };
                             return TileShot;
                         }
                     } 
@@ -366,7 +364,6 @@ namespace Sup20_12.ViewModels
             bool GridHasBeenShot = true;
 
             while (newLongitude < 0 || newLongitude > 6 || newLatitude < 0 || newLatitude > 6 || GridHasBeenShot == true)
-
             {
                 randomNumber = rand.Next(0, 4);
 
@@ -390,9 +387,7 @@ namespace Sup20_12.ViewModels
                 }
               
                 if (HasGridBeenShot(PlayerButtonsInGame, newLongitude, newLatitude) == false)
-                {
                     GridHasBeenShot = false;
-                }
             }
             newShot = new int[] { newLongitude, newLatitude };
             return newShot;
@@ -409,7 +404,6 @@ namespace Sup20_12.ViewModels
             int[] newShot;
 
             while (newLongitude < 0 || newLongitude > 6 || newLatitude < 0 || newLatitude > 6 || GridHasBeenShot == true)
-
             {
                     randomNumber = rand.Next(0, (gridSize+1));
 
@@ -454,9 +448,7 @@ namespace Sup20_12.ViewModels
                         newLatitude = latitude;
                     }
                 if (HasGridBeenShot(PlayerButtonsInGame, newLongitude, newLatitude) == false)
-                {
                     GridHasBeenShot = false;
-                }
 
                 counter++;
                 if(counter == 8)
@@ -488,9 +480,9 @@ namespace Sup20_12.ViewModels
 
         public bool HasGridBeenShot(ObservableCollection<GameGrid> gameGrid, int longitude, int latitude)
         {
-            foreach (var c in gameGrid)
+            foreach (var myGameGrid in gameGrid)
             {
-                if (c.Latitude == latitude && c.Longitude == longitude && c.IsClicked == true)
+                if (myGameGrid.Latitude == latitude && myGameGrid.Longitude == longitude && myGameGrid.IsClicked == true)
                     return true;
                 else if (latitude > (gridSize-1) || latitude < 0 || longitude < 0 || longitude > (gridSize-1))
                     return true;
@@ -498,14 +490,14 @@ namespace Sup20_12.ViewModels
             return false;
         }
 
-        public bool HasWon()
+        public bool PlayerHasWon()
         {
             if(ComputerShipsList.Count == 0)
                 return true;
             else
                 return false;
         }
-        public bool HasLost()
+        public bool PlayerHasLost()
         {
             if (PlayerShipsList.Count == 0)
                 return true;
