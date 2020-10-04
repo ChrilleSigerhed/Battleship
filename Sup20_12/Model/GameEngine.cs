@@ -54,9 +54,9 @@ namespace Sup20_12.ViewModels
                     BattleShip battleship = new BattleShip(longitude, latitude);
                     foreach (var myPlayerShip in PlayerShipsList)
                     {
-                        foreach (var x in battleship.Longitude)
+                        foreach (var myBattleship in battleship.Longitude)
                         {
-                            if (myPlayerShip.Longitude.Contains(x) && myPlayerShip.Latitude.Contains(latitude))
+                            if (myPlayerShip.Longitude.Contains(myBattleship) && myPlayerShip.Latitude.Contains(latitude))
                             {
                                 return false;
                             }
@@ -81,9 +81,9 @@ namespace Sup20_12.ViewModels
                     Submarine submarine = new Submarine(longitude, latitude);
                     foreach (var myPlayerShip in PlayerShipsList)
                     {
-                        foreach (var x in submarine.Longitude)
+                        foreach (var mySubmarine in submarine.Longitude)
                         {
-                            if (myPlayerShip.Longitude.Contains(x) && myPlayerShip.Latitude.Contains(latitude))
+                            if (myPlayerShip.Longitude.Contains(mySubmarine) && myPlayerShip.Latitude.Contains(latitude))
                             {
                                 return false;
                             }
@@ -192,13 +192,9 @@ namespace Sup20_12.ViewModels
             {
                
                 if (i == 2)
-                {
                     longitudeShip[i] = PlayerShipsList[i].Longitude[1];
-                }
                 else
-                {
                     longitudeShip[i] = PlayerShipsList[i].Longitude[0];
-                }
             }
             return longitudeShip;
         }
@@ -206,9 +202,7 @@ namespace Sup20_12.ViewModels
         {
             int[] latitudeShip = new int[3];
             for (int i = 0; i < PlayerShipsList.Count; i++)
-            {
                 latitudeShip[i] = PlayerShipsList[i].Latitude[0];
-            }
             return latitudeShip;
         }
 
@@ -216,8 +210,10 @@ namespace Sup20_12.ViewModels
         private void CreatePlayerGrid() 
         { 
             for (int i = 0; i < gridSize; i++) 
-            { for (int j = 0; j < gridSize; j++) 
-                { GameGrid square = new GameGrid(i, j, ""); 
+            { 
+                for (int j = 0; j < gridSize; j++) 
+                { 
+                    GameGrid square = new GameGrid(i, j, ""); 
                     PlayerButtonsInGame.Add(square); 
                 } 
             } 
@@ -257,7 +253,7 @@ namespace Sup20_12.ViewModels
 
         public bool PlayerCheckCloseOrNot(int longitude, int latitude)
         {
-            bool result = true;
+            bool result = false;
             foreach (var myComputerShip in ComputerShipsList)
             {
                 result = IsCloseToAnotherShip(longitude, latitude, myComputerShip);
@@ -267,7 +263,7 @@ namespace Sup20_12.ViewModels
 
         public bool ComputerCheckCloseOrNot(int longitude, int latitude)
         {
-            bool result = true;
+            bool result = false;
             foreach (var myComputerShip in PlayerShipsList)
             {
                 result = IsCloseToAnotherShip(longitude, latitude, myComputerShip);
