@@ -406,7 +406,7 @@ namespace Sup20_12.ViewModels
                 }
             }
         }
-        //-------------------------------------------------------------------------------------------
+        
         public void ShootCloseToAShipAlreadyHit()
         {
             int[] shot = MyGameEngine.GetCoordinatesOfPlayerShipAlreadyHit();
@@ -421,61 +421,35 @@ namespace Sup20_12.ViewModels
                 ComputerHitOrMiss();
             }
         }
+
+        //------------------------------------------------------------
         public void ComputerHitOrMiss()
         {
-            
             int[] shoot = MyGameEngine.ComputerRandomShotFired();
 
             if (WasCloseToShip == false && ComputerHitShip == false && MyGameEngine.CheckIfAPlayerShipHasBeenHit() == false)
             {
-                if (MyGameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
-                {
-                    foreach (var c in PlayerButtonsInGame)
-                    {
-                        if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
-                        {
-                            CoordinatesHitShip = new int[] { shoot[0], shoot[1] };
-                            c.HitOrMiss = "Träff!";
-                            ChangeGridSquareToExplosionImage(c);
-                            ComputerHitShip = true;
-                            c.IsClicked = true;
-                        }
-                    }
-                    if (MyGameEngine.PlayerHasLost())
-                    {
-                        MyGameEngine.AddNewHighscore(false, Global.MyPlayer.Id);
-                        ShowLosingDialogueBox();
-                    }
-                    PlayerTurn = true;
-                }
-                else if (MyGameEngine.ComputerCheckCloseOrNot(shoot[0], shoot[1]))
+                CheckComputerTurn(shoot);
+                CheckIfPlayerLost();
+                ChangePlayerTurn();
+                
+                if (MyGameEngine.ComputerCheckCloseOrNot(shoot[0], shoot[1]))
                 {
                     CoordinatesCloseToShip = new int[] { shoot[0], shoot[1] };
                     AddCloseOnPlayerBoard(shoot[0], shoot[1]);
                 }
                 else
                 {
-                    foreach (var c in PlayerButtonsInGame)
-                    {
-                        if (c.Longitude == shoot[0] && c.Latitude == shoot[1])
-                        {
-                            c.HitOrMiss = "Miss!";
-                            ChangeToSplashImage(c);
-                            c.IsClicked = true;
-                        }
-                    }
-                    PlayerTurn = true;
+                    CheckIfComputerMiss(shoot);
+                    ChangePlayerTurn();
                 }
-            } else if (WasCloseToShip == true && ComputerHitShip == false && MyGameEngine.CheckIfAPlayerShipHasBeenHit() == false)
-            {
+            } 
+            else if (WasCloseToShip == true && ComputerHitShip == false && MyGameEngine.CheckIfAPlayerShipHasBeenHit() == false)
                 ComputerShootAroundSplashSonar();
-            } else if (ComputerHitShip == true && MyGameEngine.CheckIfAPlayerShipHasBeenHit() == false)
-            {
+            else if (ComputerHitShip == true && MyGameEngine.CheckIfAPlayerShipHasBeenHit() == false)
                 ComputerShootToSinkShip(CoordinatesHitShip);
-            } else if (MyGameEngine.CheckIfAPlayerShipHasBeenHit() == true)
-            {
+            else if (MyGameEngine.CheckIfAPlayerShipHasBeenHit() == true)
                 ShootCloseToAShipAlreadyHit();
-            }
         }
         private void UpdateNumberOfMovesOnGameboard()
         {
