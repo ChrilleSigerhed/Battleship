@@ -369,29 +369,31 @@ namespace Sup20_12.ViewModels
         public void ComputerShootToSinkShip(int[] shoot)
         {
             if (MyGameEngine.ComputerCheckIfShipStillFloating(shoot[0], shoot[1]))
-            {
-                int[] newShot = MyGameEngine.ComputerShootToSinkShip(shoot[0], shoot[1]);
-
-                if (MyGameEngine.ComputerCheckHitOrMiss(newShot[0], newShot[1]))
-                {
-                    CheckShootCloseToShipHit(newShot, shoot);
-                    DidPlayerLoose();
-                    ChangePlayerTurn();
-                }
-                else if (MyGameEngine.ComputerCheckCloseOrNot(newShot[0], newShot[1]))
-                    AddCloseOnPlayerBoard(newShot[0], newShot[1]);
-                else
-                {
-                    CheckIfComputerMiss(newShot);
-                    ChangePlayerTurn();
-                }
-            }
+                CheckComputerTurn(shoot);
             else if(MyGameEngine.ComputerCheckIfShipStillFloating(shoot[0], shoot[1]) == false)
             {
                 ComputerHitShip = false;
                 ComputerHitOrMiss();
             }
-        
+        }
+
+        private void CheckComputerTurn(int[] shoot)
+        {
+            int[] newShot = MyGameEngine.ComputerShootToSinkShip(shoot[0], shoot[1]);
+
+            if (MyGameEngine.ComputerCheckHitOrMiss(newShot[0], newShot[1]))
+            {
+                CheckShootCloseToShipHit(newShot, shoot);
+                DidPlayerLoose();
+                ChangePlayerTurn();
+            }
+            else if (MyGameEngine.ComputerCheckCloseOrNot(newShot[0], newShot[1]))
+                AddCloseOnPlayerBoard(newShot[0], newShot[1]);
+            else
+            {
+                CheckIfComputerMiss(newShot);
+                ChangePlayerTurn();
+            }
         }
 
         private void DidPlayerLoose()
@@ -409,11 +411,7 @@ namespace Sup20_12.ViewModels
             {
                 if (myPlayerButton.Longitude == newShot[0] && myPlayerButton.Latitude == newShot[1])
                 {
-                    myPlayerButton.HitOrMiss = "Träff!";
-                    CoordinatesHitShip = new int[] { shoot[0], shoot[1] };
-                    ChangeGridSquareToExplosionImage(myPlayerButton);
-                    myPlayerButton.IsClicked = true;
-                    WasCloseToShip = false;
+                    ComputerHitPlayerShip(newShot, myPlayerButton);
                 }
             }
         }
