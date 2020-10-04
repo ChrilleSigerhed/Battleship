@@ -12,7 +12,7 @@ namespace Sup20_12.View
     public partial class SingleBoatUC : UserControl
     {
         public int PlacedBoats { get; set; } = 1;
-        
+
         public SingleBoatUC()
         {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace Sup20_12.View
         }
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            if(PlacedBoats > 0)
+            if (PlacedBoats > 0)
             {
                 base.OnMouseMove(e);
                 if (e.LeftButton == MouseButtonState.Pressed)
@@ -42,12 +42,12 @@ namespace Sup20_12.View
 
         protected override void OnGiveFeedback(GiveFeedbackEventArgs e)
         {
-           if (e.Effects.HasFlag(DragDropEffects.Move))
-           {
-               StreamResourceInfo shipCurs = Application.GetResourceStream(new Uri("Assets/Cursor/destroyerImg.cur", UriKind.Relative));
-               Mouse.SetCursor(new Cursor(shipCurs.Stream));
-           }
-           e.Handled = true;
+            if (e.Effects.HasFlag(DragDropEffects.Move))
+            {
+                StreamResourceInfo shipCurs = Application.GetResourceStream(new Uri("Assets/Cursor/destroyerImg.cur", UriKind.Relative));
+                Mouse.SetCursor(new Cursor(shipCurs.Stream));
+            }
+            e.Handled = true;
         }
     }
 }

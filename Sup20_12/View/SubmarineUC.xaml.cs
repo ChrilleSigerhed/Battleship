@@ -41,7 +41,7 @@ namespace Sup20_12.View
         }
         protected override void OnGiveFeedback(GiveFeedbackEventArgs e)
         {
-            if (e.Effects.HasFlag(DragDropEffects.Move)) 
+            if (e.Effects.HasFlag(DragDropEffects.Move))
             {
                 StreamResourceInfo shipCurs = Application.GetResourceStream(new Uri("Assets/Cursor/submarineImgTest3.cur", UriKind.Relative));
                 Mouse.SetCursor(new Cursor(shipCurs.Stream));

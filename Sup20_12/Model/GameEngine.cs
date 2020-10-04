@@ -33,17 +33,21 @@ namespace Sup20_12.ViewModels
                 for (int i = 0; i < PlayerShipsList.Count; i++)
                 {
                     if (PlayerShipsList[i].Longitude.Contains(longitude) && PlayerShipsList[i].Latitude.Contains(latitude))
+                    {
                         return false;
+                    }
                 }
                 PlayerShipsList.Add(new Destroyer(longitude, latitude));
                 ShipsPlaced--;
                 return true;
             }
             else
+            {
                 return false;
+            }
         }
 
-        
+
         public bool FillPlayerBattleShip(int longitude, int latitude)
         {
             if (longitude != 6)
@@ -67,7 +71,9 @@ namespace Sup20_12.ViewModels
                     return true;
                 }
                 else
+                {
                     return false;
+                }
             }
             return false;
         }
@@ -94,7 +100,9 @@ namespace Sup20_12.ViewModels
                     return true;
                 }
                 else
+                {
                     return false;
+                }
             }
             return false;
         }
@@ -115,7 +123,7 @@ namespace Sup20_12.ViewModels
                     longitude = random.Next(0, 6);
                     latitude = random.Next(0, 7);
                     while (ComputerShipsList[i].Latitude.Contains(latitude) && ComputerShipsList[i].Longitude.Contains(longitude) ||
-                        ComputerShipsList[i].Latitude.Contains(latitude) && ComputerShipsList[i].Longitude.Contains(longitude +1))
+                        ComputerShipsList[i].Latitude.Contains(latitude) && ComputerShipsList[i].Longitude.Contains(longitude + 1))
                     {
                         longitude = random.Next(0, 6);
                         latitude = random.Next(0, 7);
@@ -126,7 +134,7 @@ namespace Sup20_12.ViewModels
                 {
                     longitude = random.Next(1, 6);
                     latitude = random.Next(0, 7);
-                    while (CheckIfShipCanBePlaced(longitude,latitude, ComputerShipsList) == true)
+                    while (CheckIfShipCanBePlaced(longitude, latitude, ComputerShipsList) == true)
                     {
                         longitude = random.Next(1, 6);
                         latitude = random.Next(0, 7);
@@ -137,7 +145,7 @@ namespace Sup20_12.ViewModels
         }
         private bool CheckIfShipCanBePlaced(int longitude, int latitude, List<Ships> ships)
         {
-            if(         (ships[0].Latitude.Contains(latitude) && ships[0].Longitude.Contains(longitude)) ||
+            if ((ships[0].Latitude.Contains(latitude) && ships[0].Longitude.Contains(longitude)) ||
                         (ships[1].Latitude.Contains(latitude) && ships[1].Longitude.Contains(longitude)) ||
                         (ships[0].Longitude.Contains(longitude + 1) && ships[0].Latitude.Contains(latitude)) ||
                         (ships[0].Longitude.Contains(longitude - 1) && ships[0].Latitude.Contains(latitude)) ||
@@ -164,7 +172,7 @@ namespace Sup20_12.ViewModels
                     longitude = random.Next(0, 6);
                     latitude = random.Next(0, 7);
                     while (PlayerShipsList[i].Latitude.Contains(latitude) && PlayerShipsList[i].Longitude.Contains(longitude) ||
-                        PlayerShipsList[i].Latitude.Contains(latitude) && PlayerShipsList[i].Longitude.Contains(longitude+1))
+                        PlayerShipsList[i].Latitude.Contains(latitude) && PlayerShipsList[i].Longitude.Contains(longitude + 1))
                     {
                         longitude = random.Next(0, 6);
                         latitude = random.Next(0, 7);
@@ -190,11 +198,15 @@ namespace Sup20_12.ViewModels
             int[] longitudeShip = new int[3];
             for (int i = 0; i < PlayerShipsList.Count; i++)
             {
-               
+
                 if (i == 2)
+                {
                     longitudeShip[i] = PlayerShipsList[i].Longitude[1];
+                }
                 else
+                {
                     longitudeShip[i] = PlayerShipsList[i].Longitude[0];
+                }
             }
             return longitudeShip;
         }
@@ -202,21 +214,24 @@ namespace Sup20_12.ViewModels
         {
             int[] latitudeShip = new int[3];
             for (int i = 0; i < PlayerShipsList.Count; i++)
+            {
                 latitudeShip[i] = PlayerShipsList[i].Latitude[0];
+            }
+
             return latitudeShip;
         }
 
 
-        private void CreatePlayerGrid() 
-        { 
-            for (int i = 0; i < gridSize; i++) 
-            { 
-                for (int j = 0; j < gridSize; j++) 
-                { 
-                    GameGrid square = new GameGrid(i, j, ""); 
-                    PlayerButtonsInGame.Add(square); 
-                } 
-            } 
+        private void CreatePlayerGrid()
+        {
+            for (int i = 0; i < gridSize; i++)
+            {
+                for (int j = 0; j < gridSize; j++)
+                {
+                    GameGrid square = new GameGrid(i, j, "");
+                    PlayerButtonsInGame.Add(square);
+                }
+            }
         }
 
         private void CreateComputerGrid()
@@ -240,11 +255,18 @@ namespace Sup20_12.ViewModels
                 {
                     ComputerShipsList[i].HitsTaken++;
                     if (ComputerShipsList[i].HitsTaken == 3 && ComputerShipsList[i].ShipType == "Submarine")
+                    {
                         ComputerShipsList.RemoveAt(i);
+                    }
                     else if (ComputerShipsList[i].HitsTaken == 2 && ComputerShipsList[i].ShipType == "BattleShip")
+                    {
                         ComputerShipsList.RemoveAt(i);
+                    }
                     else if (ComputerShipsList[i].HitsTaken == 1 && ComputerShipsList[i].ShipType == "Destroyer")
+                    {
                         ComputerShipsList.RemoveAt(i);
+                    }
+
                     return true;
                 }
             }
@@ -253,31 +275,29 @@ namespace Sup20_12.ViewModels
 
         public bool PlayerCheckCloseOrNot(int longitude, int latitude)
         {
-            bool result = false;
-            foreach (var myComputerShip in ComputerShipsList)
+            foreach (var ship in ComputerShipsList)
             {
-                result = IsCloseToAnotherShip(longitude, latitude, myComputerShip);
+                if (ship.Longitude.Contains(longitude + 1) || ship.Longitude.Contains(longitude - 1) || ship.Longitude.Contains(longitude))
+                {
+                    if (ship.Latitude.Contains(latitude + 1) || ship.Latitude.Contains(latitude - 1) || ship.Latitude.Contains(latitude))
+                    {
+                        return true;
+                    }
+                }
             }
-            return result;
+            return false;
         }
 
         public bool ComputerCheckCloseOrNot(int longitude, int latitude)
         {
-            bool result = false;
-            foreach (var myComputerShip in PlayerShipsList)
+            foreach (var ship in PlayerShipsList)
             {
-                result = IsCloseToAnotherShip(longitude, latitude, myComputerShip);
-            }
-            return result;
-        }
-
-        private bool IsCloseToAnotherShip(int longitude, int latitude, Ships ship)
-        {
-            if (ship.Longitude.Contains(longitude + 1) || ship.Longitude.Contains(longitude - 1) || ship.Longitude.Contains(longitude))
-            {
-                if (ship.Latitude.Contains(latitude + 1) || ship.Latitude.Contains(latitude - 1) || ship.Latitude.Contains(latitude))
+                if (ship.Longitude.Contains(longitude + 1) || ship.Longitude.Contains(longitude - 1) || ship.Longitude.Contains(longitude))
                 {
-                    return true;
+                    if (ship.Latitude.Contains(latitude + 1) || ship.Latitude.Contains(latitude - 1) || ship.Latitude.Contains(latitude))
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
@@ -291,17 +311,11 @@ namespace Sup20_12.ViewModels
                 {
                     PlayerShipsList[i].HitsTaken++;
                     if (PlayerShipsList[i].HitsTaken == 3 && PlayerShipsList[i].ShipType == "Submarine")
-                    {
                         PlayerShipsList.RemoveAt(i);
-                    }
                     else if (PlayerShipsList[i].HitsTaken == 2 && PlayerShipsList[i].ShipType == "BattleShip")
-                    {
                         PlayerShipsList.RemoveAt(i);
-                    }
                     else if (PlayerShipsList[i].HitsTaken == 1 && PlayerShipsList[i].ShipType == "Destroyer")
-                    {
                         PlayerShipsList.RemoveAt(i);
-                    }
                     return true;
                 }
             }
@@ -313,9 +327,7 @@ namespace Sup20_12.ViewModels
             foreach (var myPlayerShip in PlayerShipsList)
             {
                 if (myPlayerShip.Longitude.Contains(longitude) && myPlayerShip.Latitude.Contains(latitude) && myPlayerShip.HitsTaken != 0)
-                {
                     return true;
-                }
             }
             return false;
         }
@@ -324,7 +336,7 @@ namespace Sup20_12.ViewModels
         {
             foreach (var myPlayerShip in PlayerShipsList)
             {
-                if(myPlayerShip.HitsTaken != 0)
+                if (myPlayerShip.HitsTaken != 0)
                 {
                     return true;
                 }
@@ -336,7 +348,7 @@ namespace Sup20_12.ViewModels
             int[] TileShot;
             foreach (var myPlayerShip in PlayerShipsList)
             {
-                if(myPlayerShip.HitsTaken != 0)
+                if (myPlayerShip.HitsTaken != 0)
                 {
                     foreach (var myPlayerButton in PlayerButtonsInGame)
                     {
@@ -345,7 +357,7 @@ namespace Sup20_12.ViewModels
                             TileShot = new int[] { myPlayerButton.Longitude, myPlayerButton.Latitude };
                             return TileShot;
                         }
-                    } 
+                    }
                 }
             }
             return null;
@@ -373,17 +385,19 @@ namespace Sup20_12.ViewModels
                 else if (randomNumber == 1)
                 {
                     newLongitude = longitude - 1;
-                    newLatitude = latitude ;
-                }else if (randomNumber == 2)
+                    newLatitude = latitude;
+                }
+                else if (randomNumber == 2)
                 {
                     newLongitude = longitude - 2;
                     newLatitude = latitude;
-                } else if (randomNumber == 3)
+                }
+                else if (randomNumber == 3)
                 {
                     newLongitude = longitude + 2;
                     newLatitude = latitude;
                 }
-              
+
                 if (HasGridBeenShot(PlayerButtonsInGame, newLongitude, newLatitude) == false)
                 {
                     GridHasBeenShot = false;
@@ -406,57 +420,57 @@ namespace Sup20_12.ViewModels
             while (newLongitude < 0 || newLongitude > 6 || newLatitude < 0 || newLatitude > 6 || GridHasBeenShot == true)
 
             {
-                    randomNumber = rand.Next(0, (gridSize+1));
+                randomNumber = rand.Next(0, (gridSize + 1));
 
-                    if (randomNumber == 0)
-                    {
-                        newLongitude = longitude + 1;
-                        newLatitude = latitude + 1;
-                    }
-                    else if (randomNumber == 1)
-                    {
-                        newLongitude = longitude;
-                        newLatitude = latitude + 1;
-                    }
-                    else if (randomNumber == 2)
-                    {
-                        newLongitude = longitude - 1;
-                        newLatitude = latitude + 1;
-                    }
-                    else if (randomNumber == 3)
-                    {
-                        newLongitude = longitude - 1;
-                        newLatitude = latitude;
-                    }
-                    else if (randomNumber == 4)
-                    {
-                        newLongitude = longitude - 1;
-                        newLatitude = latitude - 1;
-                    }
-                    else if (randomNumber == 5)
-                    {
-                        newLongitude = longitude;
-                        newLatitude = latitude - 1;
-                    }
-                    else if (randomNumber == 6)
-                    {
-                        newLongitude = longitude + 1;
-                        newLatitude = latitude - 1;
-                    }
-                    else if (randomNumber == 7)
-                    {
-                        newLongitude = longitude + 1;
-                        newLatitude = latitude;
-                    }
+                if (randomNumber == 0)
+                {
+                    newLongitude = longitude + 1;
+                    newLatitude = latitude + 1;
+                }
+                else if (randomNumber == 1)
+                {
+                    newLongitude = longitude;
+                    newLatitude = latitude + 1;
+                }
+                else if (randomNumber == 2)
+                {
+                    newLongitude = longitude - 1;
+                    newLatitude = latitude + 1;
+                }
+                else if (randomNumber == 3)
+                {
+                    newLongitude = longitude - 1;
+                    newLatitude = latitude;
+                }
+                else if (randomNumber == 4)
+                {
+                    newLongitude = longitude - 1;
+                    newLatitude = latitude - 1;
+                }
+                else if (randomNumber == 5)
+                {
+                    newLongitude = longitude;
+                    newLatitude = latitude - 1;
+                }
+                else if (randomNumber == 6)
+                {
+                    newLongitude = longitude + 1;
+                    newLatitude = latitude - 1;
+                }
+                else if (randomNumber == 7)
+                {
+                    newLongitude = longitude + 1;
+                    newLatitude = latitude;
+                }
                 if (HasGridBeenShot(PlayerButtonsInGame, newLongitude, newLatitude) == false)
                 {
                     GridHasBeenShot = false;
                 }
 
                 counter++;
-                if(counter == 8)
+                if (counter == 8)
                 {
-                    newShot =  ComputerRandomShotFired();
+                    newShot = ComputerRandomShotFired();
                     return newShot;
                 }
 
@@ -486,26 +500,38 @@ namespace Sup20_12.ViewModels
             foreach (var myGrid in gameGrid)
             {
                 if (myGrid.Latitude == latitude && myGrid.Longitude == longitude && myGrid.IsClicked == true)
+                {
                     return true;
-                else if (latitude > (gridSize-1) || latitude < 0 || longitude < 0 || longitude > (gridSize-1))
+                }
+                else if (latitude > (gridSize - 1) || latitude < 0 || longitude < 0 || longitude > (gridSize - 1))
+                {
                     return true;
+                }
             }
             return false;
         }
 
         public bool PlayerHasWon()
         {
-            if(ComputerShipsList.Count == 0)
+            if (ComputerShipsList.Count == 0)
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
         public bool PlayerHasLost()
         {
             if (PlayerShipsList.Count == 0)
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
 
         public Highscore AddNewHighscore(bool hasWon, int playerId)

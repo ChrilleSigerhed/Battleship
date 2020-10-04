@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 
 namespace Sup20_12.ViewModels
 {
-   public class GameWindowViewModel : BaseViewModel
+    public class GameWindowViewModel : BaseViewModel
     {
 
         #region Properties
@@ -22,7 +22,7 @@ namespace Sup20_12.ViewModels
         public int ShowNumberOfMoves { get; private set; }
         public string ShowPlayerNickname { get; private set; }
         public int Ships { get; private set; } = 3;
-        public ObservableCollection<GameGrid> PlayerButtonsInGame { get; set; }  = new ObservableCollection<GameGrid>();
+        public ObservableCollection<GameGrid> PlayerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
         public ObservableCollection<GameGrid> ComputerButtonsInGame { get; set; } = new ObservableCollection<GameGrid>();
         public List<int> PlayerShotsFired { get; set; } = new List<int>();
 
@@ -35,7 +35,7 @@ namespace Sup20_12.ViewModels
         private bool WasCloseToShip { get; set; } = false;
         private bool ComputerHitShip { get; set; } = false;
         private int[] CoordinatesCloseToShip { get; set; }
-        private int [] CoordinatesHitShip { get; set; }
+        private int[] CoordinatesHitShip { get; set; }
         private int delayTime = 1000;
         #endregion
         public GameWindowViewModel(SingleBoatUC destroyer, BattleShipUC battleship, SubmarineUC submarine)
@@ -52,7 +52,7 @@ namespace Sup20_12.ViewModels
             ShowPlayerNickname = Global.MyPlayer.Nickname;
             ShowNumberOfMoves = MyGameEngine.NumberOfMoves;
         }
-      
+
         public void PlayerPlaceShips(string button)
         {
             int buttonToNumber = int.Parse(button);
@@ -62,7 +62,9 @@ namespace Sup20_12.ViewModels
                 PlayerHasNoMoreShipsToPlace();
             }
             else
+            {
                 MessageBoxYouCantPlaceShipsThere();
+            }
         }
 
         private void MessageBoxYouCantPlaceShipsThere()
@@ -73,7 +75,9 @@ namespace Sup20_12.ViewModels
         private void MessageBoxYouCanNowPlay()
         {
             if (Ships == 0)
+            {
                 MessageBox.Show("Nu kan spelet börja, du spelar på den högra skärmen");
+            }
         }
 
         private void SubtractDestroyerToPlace(int buttonToNumber)
@@ -85,11 +89,13 @@ namespace Sup20_12.ViewModels
                 PlayerPlaceDestroyer(myGameButton, buttonToNumber);
             }
         }
-        
+
         private void PlayerPlaceDestroyer(GameGrid myGameButton, int buttonToNumber)
         {
             if (PlayerButtonsInGame[buttonToNumber].Longitude == myGameButton.Longitude && PlayerButtonsInGame[buttonToNumber].Latitude == myGameButton.Latitude)
+            {
                 ChangePlayerGridToSingleBoat(myGameButton);
+            }
         }
 
         private void PlayerHasNoMoreShipsToPlace()
@@ -105,7 +111,10 @@ namespace Sup20_12.ViewModels
         {
             bool result = false;
             if (MyGameEngine.FillPlayerShips(PlayerButtonsInGame[buttonToNumber].Longitude, PlayerButtonsInGame[buttonToNumber].Latitude))
+            {
                 result = true;
+            }
+
             return result;
         }
 
@@ -118,7 +127,9 @@ namespace Sup20_12.ViewModels
                 PlayerHasNoMoreShipsToPlace();
             }
             else
+            {
                 MessageBoxYouCantPlaceShipsThere();
+            }
         }
 
         private void SubtractSubmarineToPlace(int buttonToNumber)
@@ -134,7 +145,9 @@ namespace Sup20_12.ViewModels
         private void ShouldShipBeSubmarine(GameGrid myGameButton, int buttonToNumber)
         {
             if (PlayerButtonsInGame[buttonToNumber].Longitude == myGameButton.Longitude && PlayerButtonsInGame[buttonToNumber].Latitude == myGameButton.Latitude)
+            {
                 ChangePlayerGridToSubmarine(myGameButton.Longitude, myGameButton.Latitude, myGameButton);
+            }
         }
 
         public void PlayerPlaceBattleShip(string button)
@@ -146,7 +159,9 @@ namespace Sup20_12.ViewModels
                 MessageBoxYouCanNowPlay();
             }
             else
+            {
                 MessageBoxYouCantPlaceShipsThere();
+            }
         }
 
         private void SubtractBattleShipToPlace(int buttonToNumber)
@@ -162,10 +177,11 @@ namespace Sup20_12.ViewModels
         private void ShouldShipBeBattleShip(GameGrid myGameButton, int buttonToNumber)
         {
             if (PlayerButtonsInGame[buttonToNumber].Longitude == myGameButton.Longitude && PlayerButtonsInGame[buttonToNumber].Latitude == myGameButton.Latitude)
+            {
                 ChangePlayerGridToBattleShip(myGameButton.Longitude, myGameButton.Latitude, myGameButton);
+            }
         }
 
-        //-------------------------------------------------------------------------------------------------
         private void RandomPlacePlayerShips()
         {
             if (Ships == 3)
@@ -184,18 +200,26 @@ namespace Sup20_12.ViewModels
         private void ChangeGridToAShip(GameGrid myGameButton, int[] latitudeShips, int[] longitudeShips)
         {
             if (myGameButton.Longitude == longitudeShips[0] && myGameButton.Latitude == latitudeShips[0])
+            {
                 ChangePlayerGridToSingleBoat(myGameButton);
+            }
             else if (myGameButton.Longitude == longitudeShips[1] && myGameButton.Latitude == latitudeShips[1])
+            {
                 ChangePlayerGridToBattleShip(myGameButton.Longitude, myGameButton.Latitude, myGameButton);
+            }
             else if (myGameButton.Longitude == longitudeShips[2] && myGameButton.Latitude == latitudeShips[2])
+            {
                 ChangePlayerGridToSubmarine(myGameButton.Longitude, myGameButton.Latitude, myGameButton);
+            }
         }
 
         private void PlayerCheckHitOrMiss(string button)
         {
             int buttonToNumber = int.Parse(button);
             if (HasBeenShotAtAlready(buttonToNumber) && PlayerTurn)
+            {
                 MessageBox.Show("Du har redan skjutit där!");
+            }
             else if (HitComputerShip(buttonToNumber) && PlayerTurn)
             {
                 AddHitOnComputerBoard(buttonToNumber);
@@ -213,9 +237,13 @@ namespace Sup20_12.ViewModels
         private void CheckIfPlayerHasWon()
         {
             if (MyGameEngine.PlayerHasWon())
+            {
                 PlayerHasWon();
+            }
             else
+            {
                 DelayBeforeComputerMakesAMove();
+            }
         }
 
         private void PlayerHasWon()
@@ -247,9 +275,14 @@ namespace Sup20_12.ViewModels
             string returnString;
             IEnumerable<Highscore> myHighscoreList = DbConnection.GetThreeWinnersFromHighscore();
             if (IsPlayersHighscoreIdOnTheList(myHighscoreList, myHighscore))
+            {
                 returnString = " och tog dig dessutom in på highscorelistan! Vill du spela igen?";
+            }
             else
+            {
                 returnString = "! Vill du spela igen?";
+            }
+
             return returnString;
         }
 
@@ -259,7 +292,9 @@ namespace Sup20_12.ViewModels
             foreach (Highscore highscore in myHighscoreList)
             {
                 if (myHighscore.Id == highscore.Id)
+                {
                     result = true;
+                }
             }
             return result;
         }
@@ -283,8 +318,10 @@ namespace Sup20_12.ViewModels
 
         private void AddCloseOnPlayerBoard(int longitude, int latitude)
         {
-            if(MyGameEngine.ComputerCheckCloseOrNot(longitude, latitude))
+            if (MyGameEngine.ComputerCheckCloseOrNot(longitude, latitude))
+            {
                 CheckGameGridForCloseHit(longitude, latitude);
+            }
         }
 
         private void CheckGameGridForCloseHit(int longitude, int latitude)
@@ -315,9 +352,11 @@ namespace Sup20_12.ViewModels
                 CheckIfComputerHit(shoot);
                 CheckIfPlayerLost();
                 ChangePlayerTurn();
-            } 
+            }
             else if (MyGameEngine.ComputerCheckCloseOrNot(shoot[0], shoot[1]))
+            {
                 AddCloseOnPlayerBoard(shoot[0], shoot[1]);
+            }
             else
             {
                 CheckIfComputerMiss(shoot);
@@ -343,7 +382,9 @@ namespace Sup20_12.ViewModels
             foreach (var myPlayerButton in PlayerButtonsInGame)
             {
                 if (myPlayerButton.Longitude == shoot[0] && myPlayerButton.Latitude == shoot[1])
+                {
                     ComputerHitPlayerShip(shoot, myPlayerButton);
+                }
             }
         }
         private void CheckIfPlayerLost()
@@ -365,12 +406,14 @@ namespace Sup20_12.ViewModels
             ComputerHitShip = true;
         }
 
-        
+
         public void ComputerShootToSinkShip(int[] shoot)
         {
             if (MyGameEngine.ComputerCheckIfShipStillFloating(shoot[0], shoot[1]))
+            {
                 CheckComputerTurn(shoot);
-            else if(MyGameEngine.ComputerCheckIfShipStillFloating(shoot[0], shoot[1]) == false)
+            }
+            else if (MyGameEngine.ComputerCheckIfShipStillFloating(shoot[0], shoot[1]) == false)
             {
                 ComputerHitShip = false;
                 ComputerHitOrMiss();
@@ -388,7 +431,9 @@ namespace Sup20_12.ViewModels
                 ChangePlayerTurn();
             }
             else if (MyGameEngine.ComputerCheckCloseOrNot(newShot[0], newShot[1]))
+            {
                 AddCloseOnPlayerBoard(newShot[0], newShot[1]);
+            }
             else
             {
                 CheckIfComputerMiss(newShot);
@@ -432,7 +477,9 @@ namespace Sup20_12.ViewModels
                     foreach (var myPlayerButton in PlayerButtonsInGame)
                     {
                         if (myPlayerButton.Longitude == shoot[0] && myPlayerButton.Latitude == shoot[1])
+                        {
                             ComputerHitPlayerShip(shoot, myPlayerButton);
+                        }
                     }
 
                     CheckIfPlayerLost();
@@ -448,13 +495,19 @@ namespace Sup20_12.ViewModels
                     CheckIfComputerMiss(shoot);
                     ChangePlayerTurn();
                 }
-            } 
+            }
             else if (WasCloseToShip == true && ComputerHitShip == false && MyGameEngine.CheckIfAPlayerShipHasBeenHit() == false)
+            {
                 ComputerShootAroundSplashSonar();
+            }
             else if (ComputerHitShip == true && MyGameEngine.CheckIfAPlayerShipHasBeenHit() == false)
+            {
                 ComputerShootToSinkShip(CoordinatesHitShip);
+            }
             else if (MyGameEngine.CheckIfAPlayerShipHasBeenHit() == true)
+            {
                 ShootCloseToAShipAlreadyHit();
+            }
         }
         private void UpdateNumberOfMovesOnGameboard()
         {
@@ -471,25 +524,37 @@ namespace Sup20_12.ViewModels
         private void ChangePlayerTurn()
         {
             if (PlayerTurn == true)
+            {
                 PlayerTurn = false;
+            }
             else
+            {
                 PlayerTurn = true;
+            }
         }
 
         private bool HitComputerShip(int buttonToNumber)
         {
             if (MyGameEngine.PlayerCheckHitOrMiss(ComputerButtonsInGame[buttonToNumber].Longitude, ComputerButtonsInGame[buttonToNumber].Latitude))
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
 
         private bool HasBeenShotAtAlready(int buttonToNumber)
         {
             if (PlayerShotsFired.Contains(buttonToNumber))
+            {
                 return true;
-            else 
+            }
+            else
+            {
                 return false;
+            }
         }
         public void ChangePlayerGridToSingleBoat(GameGrid grid)
         {
@@ -502,7 +567,7 @@ namespace Sup20_12.ViewModels
         }
         private void ChangePlayerGridToBattleShip(int longitude, int latitude, GameGrid grid)
         {
-           
+
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
                 foreach (var myPlayerButton in PlayerButtonsInGame)
@@ -521,7 +586,7 @@ namespace Sup20_12.ViewModels
                         myPlayerButton.backgroundImage.Stretch = Stretch.Uniform;
                     }
                 }
-                
+
             });
         }
         private void ChangePlayerGridToSubmarine(int longitude, int latitude, GameGrid grid)
@@ -538,7 +603,7 @@ namespace Sup20_12.ViewModels
                         myPlayerButton.backgroundImage.Stretch = Stretch.Uniform;
 
                     }
-                    if (myPlayerButton.Longitude == longitude + 1  && myPlayerButton.Latitude == latitude)
+                    if (myPlayerButton.Longitude == longitude + 1 && myPlayerButton.Latitude == latitude)
                     {
                         BitmapFrame image1 = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/boatTreeSternVerticalImg.png", UriKind.Absolute));
                         myPlayerButton.backgroundImage.ImageSource = image1;

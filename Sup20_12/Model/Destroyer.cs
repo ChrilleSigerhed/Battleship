@@ -1,9 +1,9 @@
-﻿using Sup20_12.ViewModels;
-using Sup20_12.Interface;
+﻿using Sup20_12.Interface;
+using Sup20_12.ViewModels;
 
 namespace Sup20_12.Model
 {
-    class Destroyer : Ships, IShips
+    internal class Destroyer : Ships, IShips
     {
         public Destroyer(int longitude, int latitude)
         {

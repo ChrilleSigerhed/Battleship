@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Resources;
-using System.Windows.Shapes;
 
 namespace Sup20_12.View
 {
@@ -49,11 +41,11 @@ namespace Sup20_12.View
         }
         protected override void OnGiveFeedback(GiveFeedbackEventArgs e)
         {
-            if (e.Effects.HasFlag(DragDropEffects.Move)) 
+            if (e.Effects.HasFlag(DragDropEffects.Move))
             {
                 StreamResourceInfo shipCurs = Application.GetResourceStream(new Uri("Assets/Cursor/battleshipImgTest2.cur", UriKind.Relative));
                 Mouse.SetCursor(new Cursor(shipCurs.Stream));
-                
+
             }
             e.Handled = true;
         }

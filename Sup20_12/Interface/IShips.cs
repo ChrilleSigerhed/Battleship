@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Sup20_12.Interface
+﻿namespace Sup20_12.Interface
 {
-    interface IShips
+    internal interface IShips
     {
         public string ShipType { get; set; }
         public int HitsTaken { get; set; }

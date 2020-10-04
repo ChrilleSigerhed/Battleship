@@ -6,7 +6,7 @@ using System.Configuration;
 
 namespace Sup20_12
 {
-    class DbConnection
+    internal class DbConnection
     {
         private static string connectionString = ConfigurationManager.ConnectionStrings["universitetet"].ConnectionString;
 
@@ -138,7 +138,7 @@ namespace Sup20_12
         {
             int lastPlayerId = 0;
             string getLastestPlayerSqlString = "SELECT highscore.id, player_id, nickname FROM highscore INNER JOIN player on highscore.player_id = player.id ORDER BY id DESC LIMIT 1";
-            
+
             using (var command = new NpgsqlCommand(getLastestPlayerSqlString, conn))
             {
                 using (var reader = command.ExecuteReader())
@@ -157,7 +157,9 @@ namespace Sup20_12
             foreach (Player myPlayer in myList)
             {
                 if (myPlayer.Id == id)
+                {
                     myPlayer.LastPlayer = true;
+                }
             }
             return myList;
         }
@@ -276,7 +278,7 @@ namespace Sup20_12
                     {
                         while (reader.Read())
                         {
-                            
+
                             {
                                 playerNicknameFromDb = (string)reader["nickname"];
                             };
@@ -286,7 +288,10 @@ namespace Sup20_12
                 conn.Close();
 
                 if (playerNicknameFromDb == "")
+                {
                     result = true;
+                }
+
                 return result;
             }
         }
@@ -299,11 +304,11 @@ namespace Sup20_12
             return null;
         }
         #endregion
-        
+
         #region DELETE
         private static void Delete()
         {
-                
+
         }
         #endregion
     }

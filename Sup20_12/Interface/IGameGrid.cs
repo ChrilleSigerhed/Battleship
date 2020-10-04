@@ -2,7 +2,7 @@
 
 namespace Sup20_12.Interface
 {
-    interface IGameGrid
+    internal interface IGameGrid
     {
         public int Longitude { get; set; }
         public int Latitude { get; set; }

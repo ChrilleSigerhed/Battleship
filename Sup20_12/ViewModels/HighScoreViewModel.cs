@@ -70,9 +70,13 @@ namespace Sup20_12
         private string AddTabToHighscoreList(string nickname)
         {
             if (nickname.Length < 10)
+            {
                 return "\t\t\t";
+            }
             else
+            {
                 return "\t\t";
+            }
         }
     }
 }

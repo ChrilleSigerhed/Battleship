@@ -9,7 +9,7 @@ namespace Sup20_12.View
     /// </summary>
     public partial class ChoosePlayerPage : Page
     {
-       
+
         public ChoosePlayerPage()
         {
             InitializeComponent();

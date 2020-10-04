@@ -31,7 +31,9 @@ namespace Sup20_12.ViewModels
         private void AddPlayer()
         {
             if (PlayerNickname == null || NicknameContainBlankSpaces(PlayerNickname))
+            {
                 MessageBox.Show("Du har inte skrivit något nickname eller valt ett felaktigt namn (blanksteg är inte tillåtna). Välj från listan eller skriv in ett i rutan.");
+            }
             else if (!DbConnection.IsPlayerNicknameUniqueInDb(PlayerNickname))
             {
                 MessageBox.Show("Detta nickname finns redan. Om det är ditt kan du klicka på -Starta Spelet- direkt för att spela med detta nickname eller skriv in ett unikt nickname i rutan och klicka - Lägg till spelare");
@@ -50,9 +52,13 @@ namespace Sup20_12.ViewModels
         private bool NicknameContainBlankSpaces(string PlayerStringNickname)
         {
             if (PlayerStringNickname.Contains(" "))
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
         private void ClearTextBox()
         {
@@ -61,7 +67,7 @@ namespace Sup20_12.ViewModels
 
         private void GetPlayersFromDb()
         {
-           ListOfPlayersInListBox = DbConnection.Players;
+            ListOfPlayersInListBox = DbConnection.Players;
         }
         private void SelectedPlayerForGame()
         {
@@ -90,7 +96,9 @@ namespace Sup20_12.ViewModels
                 return false;
             }
             else
+            {
                 return true;
+            }
         }
 
         private void SetActivePlayer(Player myTempPlayer)
@@ -113,9 +121,13 @@ namespace Sup20_12.ViewModels
         private void HighlightLastPlayerFromPreviousSessionInList()
         {
             if (MyTempPlayer != null)
+            {
                 HighlightSelectedPlayer(MyTempPlayer.Nickname);
+            }
             else
+            {
                 FindLastPlayerInHighscoreList();
+            }
         }
 
         private void FindLastPlayerInHighscoreList()

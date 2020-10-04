@@ -1,7 +1,7 @@
 ﻿
 namespace Sup20_12
 {
-   public class Player : IPlayer
+    public class Player : IPlayer
     {
         public string Nickname { get; set; }
         public int Id { get; set; }

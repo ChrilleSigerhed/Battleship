@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Sup20_12
 {
-    interface IHighscore
+    internal interface IHighscore
     {
         int Id { get; set; }
         public bool Win { get; set; }

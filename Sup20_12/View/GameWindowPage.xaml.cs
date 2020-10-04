@@ -30,25 +30,25 @@ namespace Sup20_12.View
             {
                 gameWindowViewModel.PlayerPlaceBattleShip(button.CommandParameter.ToString());
             }
-            else if(gameWindowViewModel.Ships == 1)
+            else if (gameWindowViewModel.Ships == 1)
             {
                 gameWindowViewModel.PlayerPlaceSubmarineShip(button.CommandParameter.ToString());
             }
-            if(gameWindowViewModel.Ships == 2)
+            if (gameWindowViewModel.Ships == 2)
             {
                 rectangleUI.Visibility = Visibility.Hidden;
             }
-            else if(gameWindowViewModel.Ships == 1)
+            else if (gameWindowViewModel.Ships == 1)
             {
                 rectangleBS.Visibility = Visibility.Hidden;
             }
-            else if(gameWindowViewModel.Ships == 0)
+            else if (gameWindowViewModel.Ships == 0)
             {
                 rectangleSub.Visibility = Visibility.Hidden;
             }
             BtnSlump.IsEnabled = false;
             BtnSlump.Background = Brushes.Gray;
-            BtnSlump.Content = "";    
+            BtnSlump.Content = "";
         }
         private void RemoveBoatsAfterRandomPlacedShips(object sender, RoutedEventArgs e)
         {

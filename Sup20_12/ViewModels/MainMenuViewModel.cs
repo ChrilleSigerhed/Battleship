@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace Sup20_12
 {
-   public class MainMenuViewModel : BaseViewModel
+    public class MainMenuViewModel : BaseViewModel
     {
         #region Properties
         public ICommand ChoosePlayerPageCommand { get; set; }
@@ -43,7 +43,7 @@ namespace Sup20_12
                     break;
                 case MessageBoxResult.No:
                     break;
-            }    
+            }
         }
     }
 }

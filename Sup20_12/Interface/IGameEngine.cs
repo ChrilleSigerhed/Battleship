@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace Sup20_12.ViewModels
 {
-    interface IGameEngine
+    internal interface IGameEngine
     {
         public List<Ships> PlayerShipsList { get; set; }
         public List<Ships> ComputerShipsList { get; set; }
