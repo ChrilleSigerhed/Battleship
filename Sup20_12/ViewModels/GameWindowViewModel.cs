@@ -406,7 +406,7 @@ namespace Sup20_12.ViewModels
                 }
             }
         }
-        
+        //-------------------------------------------------------------------------------------------
         public void ShootCloseToAShipAlreadyHit()
         {
             int[] shot = MyGameEngine.GetCoordinatesOfPlayerShipAlreadyHit();
@@ -421,19 +421,24 @@ namespace Sup20_12.ViewModels
                 ComputerHitOrMiss();
             }
         }
-
-        //------------------------------------------------------------
         public void ComputerHitOrMiss()
         {
             int[] shoot = MyGameEngine.ComputerRandomShotFired();
 
             if (WasCloseToShip == false && ComputerHitShip == false && MyGameEngine.CheckIfAPlayerShipHasBeenHit() == false)
             {
-                CheckComputerTurn(shoot);
-                CheckIfPlayerLost();
-                ChangePlayerTurn();
-                
-                if (MyGameEngine.ComputerCheckCloseOrNot(shoot[0], shoot[1]))
+                if (MyGameEngine.ComputerCheckHitOrMiss(shoot[0], shoot[1]))
+                {
+                    foreach (var myPlayerButton in PlayerButtonsInGame)
+                    {
+                        if (myPlayerButton.Longitude == shoot[0] && myPlayerButton.Latitude == shoot[1])
+                            ComputerHitPlayerShip(shoot, myPlayerButton);
+                    }
+
+                    CheckIfPlayerLost();
+                    ChangePlayerTurn();
+                }
+                else if (MyGameEngine.ComputerCheckCloseOrNot(shoot[0], shoot[1]))
                 {
                     CoordinatesCloseToShip = new int[] { shoot[0], shoot[1] };
                     AddCloseOnPlayerBoard(shoot[0], shoot[1]);
@@ -500,20 +505,20 @@ namespace Sup20_12.ViewModels
            
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                foreach (var c in PlayerButtonsInGame)
+                foreach (var myPlayerButton in PlayerButtonsInGame)
                 {
-                    if (c.Longitude == longitude + 1 && c.Latitude == latitude)
+                    if (myPlayerButton.Longitude == longitude + 1 && myPlayerButton.Latitude == latitude)
                     {
                         BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/boatTwoSternVerticalImg.png", UriKind.Absolute));
-                        c.backgroundImage.ImageSource = image;
-                        c.backgroundImage.Stretch = Stretch.Uniform;
+                        myPlayerButton.backgroundImage.ImageSource = image;
+                        myPlayerButton.backgroundImage.Stretch = Stretch.Uniform;
 
                     }
-                    if (c.Longitude == longitude && c.Latitude == latitude)
+                    if (myPlayerButton.Longitude == longitude && myPlayerButton.Latitude == latitude)
                     {
                         BitmapFrame image1 = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/boatTwoBowVerticalImg.png", UriKind.Absolute));
-                        c.backgroundImage.ImageSource = image1;
-                        c.backgroundImage.Stretch = Stretch.Uniform;
+                        myPlayerButton.backgroundImage.ImageSource = image1;
+                        myPlayerButton.backgroundImage.Stretch = Stretch.Uniform;
                     }
                 }
                 
@@ -524,26 +529,26 @@ namespace Sup20_12.ViewModels
 
             Application.Current.Dispatcher.InvokeAsync(() =>
             {
-                foreach (var c in PlayerButtonsInGame)
+                foreach (var myPlayerButton in PlayerButtonsInGame)
                 {
-                    if (c.Longitude == longitude - 1 && c.Latitude == latitude)
+                    if (myPlayerButton.Longitude == longitude - 1 && myPlayerButton.Latitude == latitude)
                     {
                         BitmapFrame image = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/boatTreeBowVerticalImg.png", UriKind.Absolute));
-                        c.backgroundImage.ImageSource = image;
-                        c.backgroundImage.Stretch = Stretch.Uniform;
+                        myPlayerButton.backgroundImage.ImageSource = image;
+                        myPlayerButton.backgroundImage.Stretch = Stretch.Uniform;
 
                     }
-                    if (c.Longitude == longitude + 1  && c.Latitude == latitude)
+                    if (myPlayerButton.Longitude == longitude + 1  && myPlayerButton.Latitude == latitude)
                     {
                         BitmapFrame image1 = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/boatTreeSternVerticalImg.png", UriKind.Absolute));
-                        c.backgroundImage.ImageSource = image1;
-                        c.backgroundImage.Stretch = Stretch.Uniform;
+                        myPlayerButton.backgroundImage.ImageSource = image1;
+                        myPlayerButton.backgroundImage.Stretch = Stretch.Uniform;
                     }
-                    if (c.Longitude == longitude && c.Latitude == latitude)
+                    if (myPlayerButton.Longitude == longitude && myPlayerButton.Latitude == latitude)
                     {
                         BitmapFrame image1 = BitmapFrame.Create(new Uri(@"Pack://application:,,,/Assets/Images/boatTreeMiddleVerticalImg.png", UriKind.Absolute));
-                        c.backgroundImage.ImageSource = image1;
-                        c.backgroundImage.Stretch = Stretch.Uniform;
+                        myPlayerButton.backgroundImage.ImageSource = image1;
+                        myPlayerButton.backgroundImage.Stretch = Stretch.Uniform;
                     }
                 }
 
